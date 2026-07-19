@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_026",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b026",
+    "source_role": "delivery_intake",
+    "target_role": "dock_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs026u",
+      "source_type": "user",
+      "content": {
+        "goal": "reserve revised loading dock window",
+        "schedule_window": "window_026"
+      }
+    },
+    {
+      "trace_id": "cs026t",
+      "source_type": "tool",
+      "tool": "schedule_registry_026",
+      "content": {
+        "dock_window_id": "dock_D6"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs026p",
+      "source_type": "policy",
+      "content": {
+        "dock_acceptance": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "dock_acceptance",
+            "irrelevant_026_a",
+            "irrelevant_026_b"
+          ]
+        }
+      },
+      "requires": [
+        "dock_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "reserve_dock_window",
+      "arguments": {
+        "dock_window_id": {
+          "type": "string",
+          "enum": [
+            "dock_D6_altB",
+            "dock_D6_altA",
+            "dock_D6"
+          ]
+        }
+      },
+      "requires": [
+        "dock_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_026": {
+      "request": {
+        "task_id": "cand_scheduling_026"
+      },
+      "response": {
+        "dock_window_id": "dock_D6"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_dock_acceptance": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "dock_acceptance"
+        }
+      },
+      "updates": {
+        "dock_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

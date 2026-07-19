@@ -1,0 +1,203 @@
+{
+  "task_id": "cand_procurement_009",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_009_b",
+    "source_role": "Global buyer",
+    "target_role": "treasury liaison",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_009_u01",
+      "source_type": "user",
+      "content": {
+        "place_foreign_order": "observed place foreign order",
+        "replacement_rate": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_009_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "quote_currency": "observed quote currency",
+        "payment_date": "2027-01-14",
+        "fx_lock_expired": "observed fx lock expired",
+        "candidate_assessments": {
+          "ref_009_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_009_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_009_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_009_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_procurement_009_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Foreign quote; FX lock ID and expiry; payment date; lock expired at boundary"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "place_order",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_009_a",
+            "ref_009_b",
+            "ref_009_c"
+          ],
+          "enum_descriptions": {
+            "ref_009_a": "scope conflicts with an active constraint; verification is current",
+            "ref_009_b": "scope matches the request; a required verification is still pending",
+            "ref_009_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "replacement_rate=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "accept_fx_exposure",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_009_a",
+            "ref_009_b",
+            "ref_009_c"
+          ],
+          "enum_descriptions": {
+            "ref_009_a": "scope conflicts with an active constraint; verification is current",
+            "ref_009_b": "scope matches the request; a required verification is still pending",
+            "ref_009_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "replacement_rate=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "cancel_quote",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_009_a",
+            "ref_009_b",
+            "ref_009_c"
+          ],
+          "enum_descriptions": {
+            "ref_009_a": "scope conflicts with an active constraint; verification is current",
+            "ref_009_b": "scope matches the request; a required verification is still pending",
+            "ref_009_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "replacement_rate=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "refresh_fx_quote",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_009_a",
+            "ref_009_b",
+            "ref_009_c"
+          ],
+          "enum_descriptions": {
+            "ref_009_a": "scope conflicts with an active constraint; verification is current",
+            "ref_009_b": "scope matches the request; a required verification is still pending",
+            "ref_009_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "replacement_rate=unknown"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_009"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_009_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_009_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_009_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_replacement_rate": {
+      "trigger": {
+        "name": "refresh_fx_quote",
+        "arguments": {
+          "choice": "ref_009_c"
+        }
+      },
+      "updates": {
+        "replacement_rate": {
+          "status": "known",
+          "value": "cand_procurement_009_replacement_rate_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

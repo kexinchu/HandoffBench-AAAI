@@ -1,0 +1,152 @@
+{
+  "task_id": "cand_travel_012",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_012_b",
+    "source_role": "booking intake",
+    "target_role": "international ticketing",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_012_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to international booking using only a policy-compliant option.",
+        "travel_dates": "2027-03-18",
+        "passport_expiry": "contradicted"
+      }
+    },
+    {
+      "trace_id": "cand_travel_012_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_012_c",
+        "candidate_targets": [
+          "opt_012_a",
+          "opt_012_b",
+          "opt_012_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_012_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_012_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_012_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Destination rule and travel dates verified; two passport expiry dates conflict between user message and stale profile. Stress: authority precedence.",
+        "validity_rule": "verified validity rule status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_012_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask current expiry; use profile; ticket; hold"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "clarify_slot_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "passport_expiry",
+            "unrelated_012_x",
+            "unrelated_012_y"
+          ]
+        }
+      },
+      "requires": [
+        "passport_expiry=contradicted"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_012_a",
+            "opt_012_b",
+            "opt_012_c"
+          ]
+        }
+      },
+      "requires": [
+        "passport_expiry=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_012"
+      },
+      "response": {
+        "eligible_action_target": "opt_012_c",
+        "candidate_targets": [
+          "opt_012_a",
+          "opt_012_b",
+          "opt_012_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_012_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_012_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_012_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Destination rule and travel dates verified; two passport expiry dates conflict between user message and stale profile. Stress: authority precedence.",
+        "validity_rule": "verified validity rule status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_passport_expiry": {
+      "trigger": {
+        "name": "clarify_slot_1",
+        "arguments": {
+          "key": "passport_expiry"
+        }
+      },
+      "updates": {
+        "passport_expiry": {
+          "status": "known",
+          "value": "resolved:passport_expiry"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

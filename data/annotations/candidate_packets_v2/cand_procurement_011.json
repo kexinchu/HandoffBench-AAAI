@@ -1,0 +1,203 @@
+{
+  "task_id": "cand_procurement_011",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_011_b",
+    "source_role": "Project buyer",
+    "target_role": "change-control board",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_011_u01",
+      "source_type": "user",
+      "content": {
+        "modify_contract_scope": "observed modify contract scope",
+        "requester_agreement": "observed requester agreement",
+        "budget_approval": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_011_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "scope_delta": "observed scope delta",
+        "schedule_impact": "observed schedule impact",
+        "candidate_assessments": {
+          "ref_011_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_011_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_011_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_011_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_procurement_011_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Original SOW; supplier change proposal; schedule impact; requester agreement; budget approval absent"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "amend_schedule_only",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_011_a",
+            "ref_011_b",
+            "ref_011_c"
+          ],
+          "enum_descriptions": {
+            "ref_011_a": "scope conflicts with an active constraint; verification is current",
+            "ref_011_b": "scope matches the authenticated request; required verification is current",
+            "ref_011_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "budget_approval=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_budget_approval",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_011_a",
+            "ref_011_b",
+            "ref_011_c"
+          ],
+          "enum_descriptions": {
+            "ref_011_a": "scope conflicts with an active constraint; verification is current",
+            "ref_011_b": "scope matches the authenticated request; required verification is current",
+            "ref_011_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "budget_approval=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "approve_change_order",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_011_a",
+            "ref_011_b",
+            "ref_011_c"
+          ],
+          "enum_descriptions": {
+            "ref_011_a": "scope conflicts with an active constraint; verification is current",
+            "ref_011_b": "scope matches the authenticated request; required verification is current",
+            "ref_011_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "budget_approval=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "reject_change",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_011_a",
+            "ref_011_b",
+            "ref_011_c"
+          ],
+          "enum_descriptions": {
+            "ref_011_a": "scope conflicts with an active constraint; verification is current",
+            "ref_011_b": "scope matches the authenticated request; required verification is current",
+            "ref_011_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "budget_approval=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_011"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_011_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_011_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_011_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_budget_approval": {
+      "trigger": {
+        "name": "request_budget_approval",
+        "arguments": {
+          "choice": "ref_011_b"
+        }
+      },
+      "updates": {
+        "budget_approval": {
+          "status": "known",
+          "value": "cand_procurement_011_budget_approval_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

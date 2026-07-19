@@ -1,0 +1,118 @@
+\section{Benchmark Construction}
+\label{sec:benchmark-construction}
+
+\paragraph{Unit of construction.}
+HandoffBench targets state transfer at a fixed control boundary rather than
+routing quality.  Each episode fixes an authenticated upstream trace, source and
+receiver roles, the boundary cut, a public action contract, deterministic mock
+tools and user replies, and a machine-executable terminal predicate.  The
+evaluator-side boundary state is a set of typed atomic claims with exact trace
+provenance and epistemic status (known, unknown, contradicted, or not applicable).
+We include a claim only when changing or removing it can alter a legal next action
+or terminal success.  Goals, user constraints, verified business facts, ordinary
+unresolved slots, scoped consent, and organizational policy checks are mutually
+exclusive roles.  Executable action preconditions remain in the public contract,
+and tool-execution metadata remains in the trace; neither is duplicated as a
+semantic claim for primary state F1.
+
+\paragraph{Candidate-pool generation.}
+We first authored a workflow blueprint---roles, causal trace, authority boundary,
+plausible alternatives, legal sequence, and first user-impacting action---then
+instantiated concrete synthetic dates, monetary values, statuses, scopes, option
+attributes, and opaque identifiers with deterministic generators.  Families are
+the split unit: entity replacement or paraphrase does not create a new family.
+The resulting \emph{candidate} pool has 200 unique families, evenly divided among
+travel, commerce, procurement, enterprise IT, and scheduling (Table~\ref{tab:candidate-stats}).
+Six preregistered stressors vary what must cross the boundary: long distractors,
+conflicting evidence, irreversible actions, multi-step evidence, missing
+authority, and user revisions.  Of the 200 gold-path proposals, 195 contain a
+user-impacting action.
+
+Construction checks are deterministic and should not be confused with model
+results.  Schema, provenance, unique-key, argument-grounding, enum-permutation,
+and action-sequence mutation tests pass, and the authored sequence executes in
+200/200 simulators; an exact-copy oracle likewise reaches 200/200.  These numbers
+establish internal executability only, not task validity or agent competence.
+When the hidden terminal predicate is withheld, only 137/200 public contracts
+admit a unique legal terminal sequence; clarification or authority actions can
+commute in 63.  Moreover, only 305/990 proposed claims have a direct syntactic
+counterfactual witness in a guard key or exact action argument.  The remainder
+may be semantically necessary, but static code cannot establish their minimal
+causal relevance.  Both sets therefore require independent human reconstruction.
+Simple leakage diagnostics obtain 14/200 from the public catalog alone and 12/200
+from predicate-only features.  A stronger diagnostic is sometimes mislabeled
+``name only'': it receives the oracle action-name sequence, then guesses the
+first value in every public enum.  It succeeds on 69/200 (34.5\%; Wilson 95\% CI
+[28.3, 41.3]), versus 13.9\% expected under uniform enum guessing.  All successes
+occur when every correct enum value is first.  This reveals combined oracle-name
+and interface-ordering leakage, not that action names alone solve 34.5\%.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Repository-static statistics for candidate v2. ``Oracle'' denotes
+deterministic simulator consistency; human validation is pending.}
+\label{tab:candidate-stats}
+\begin{tabular}{@{}lr@{}}
+\toprule
+Statistic & Count / rate \\
+\midrule
+Candidate families (five domains) & 200 (40 each) \\
+Primary stressors: LD / CE / IA & 38 / 35 / 35 \\
+Primary stressors: ME / MA / UR & 32 / 30 / 30 \\
+Proposed atomic claims & 990 \\
+User-impacting gold paths & 195 / 200 \\
+Static sequence / copy-oracle success & 200 / 200 \\
+Unique legal sequence without predicate & 137 / 200 \\
+Claims with direct syntactic witness & 305 / 990 \\
+Catalog-only / predicate-only success & 7.0\% / 6.0\% \\
+Oracle names + enum-first success & 69 / 200 (34.5\%) \\
+Exact trace / action-graph collisions & 0 / 0 \\
+Normalized topology overlaps & 69 candidates \\
+Lexical pairs at Jaccard $\geq .80$ & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Development-overlap audit.}
+We compared the 200 candidates with 54 development episodes after normalizing
+dates, numeric and opaque identifiers, and task/trace/boundary IDs.  There are no
+collisions in family ID, entity pool, generator seed, exact trace hash, normalized
+trace hash, or exact action-graph hash, and no trace-content bigram pair reaches
+the preregistered Jaccard threshold of .80.  However, 69 candidate tasks share a
+\emph{normalized} action-graph hash with at least one development task (552
+candidate--development pair groups).  This is distinct from the numerically equal
+69 oracle-name/enum-first successes: the former diagnoses topology reuse across
+splits, whereas the latter diagnoses public-interface ordering leakage within candidates.
+Normalization may over-collapse common schema structure, but it may also reveal
+genuine workflow similarity.  We therefore do not describe the pool as
+structurally held out or frozen; these cases require human review and
+rejection/redesign before sealing.
+
+\section{Planned Human Validation}
+\label{sec:human-validation}
+
+Human validation has not yet been executed, so we report no agreement statistic
+and call no candidate a test item.  The preregistered procedure assigns every
+label-free packet to two annotators in independently randomized order.  Annotators
+see the authenticated trace, boundary roles, public actions, and deterministic
+tool semantics, but not source labels, evaluator predicates, model outputs,
+development results, family blueprints, or one another's responses.  Each first
+derives the exact legal action sequence, then independently reconstructs the
+minimal claims, typed values and statuses, criticality, and one or more exact
+\texttt{(trace\_id, source\_type, field\_path)} pointers.  They also flag whether
+irreversible arguments are inferable and whether catalog order or action names
+leak the sequence.
+
+Responses are schema-checked, hashed, and locked before comparison; corrections
+create a new retained version rather than overwriting the original.  We will
+report one-to-one claim precision/recall/F1, exact typed-value and provenance
+agreement, category/status/criticality agreement, and exact sequence agreement,
+clustered by family.  Cohen's $\kappa$ is used only when both annotators employ at
+least two labels, with raw agreement and denominators always shown.  A third
+annotator receives disagreements only and may reject an ambiguous task.  Tasks
+with secret arguments, non-unique legal sequences, unresolved safety claims,
+interface-ordering leakage that trivializes the decision, or problematic normalized
+topology overlap must be rejected or regenerated before any confirmatory model
+call.  Only after adjudication, overlap remediation, final hashes, and a
+non-overwritable manifest may a later version be called frozen.

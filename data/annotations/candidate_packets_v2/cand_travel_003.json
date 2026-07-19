@@ -1,0 +1,160 @@
+{
+  "task_id": "cand_travel_003",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_003_b",
+    "source_role": "airport assistant",
+    "target_role": "gate service",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_003_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to earlier flight using only a policy-compliant option.",
+        "same_airport": "user specified same airport"
+      }
+    },
+    {
+      "trace_id": "cand_travel_003_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_003_c",
+        "candidate_targets": [
+          "opt_003_a",
+          "opt_003_b",
+          "opt_003_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_003_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_003_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_003_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Check-in status, standby inventory, and published priority rule; user asks for earlier flight. Stress: tool reports inventory but priority eligibility is contradicted by two status records.",
+        "standby_inventory": {
+          "id": "fact_dby_priority",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_003_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "reconcile status; join standby; buy confirmed seat; claim priority",
+        "priority_eligibility": "contradicted"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "request_authority_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "priority_eligibility",
+            "unrelated_003_x",
+            "unrelated_003_y"
+          ]
+        }
+      },
+      "requires": [
+        "priority_eligibility=contradicted"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_003_a",
+            "opt_003_b",
+            "opt_003_c"
+          ]
+        }
+      },
+      "requires": [
+        "priority_eligibility=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_003"
+      },
+      "response": {
+        "eligible_action_target": "opt_003_c",
+        "candidate_targets": [
+          "opt_003_a",
+          "opt_003_b",
+          "opt_003_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_003_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_003_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_003_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Check-in status, standby inventory, and published priority rule; user asks for earlier flight. Stress: tool reports inventory but priority eligibility is contradicted by two status records.",
+        "standby_inventory": {
+          "id": "fact_dby_priority",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_priority_eligibility": {
+      "trigger": {
+        "name": "request_authority_1",
+        "arguments": {
+          "key": "priority_eligibility"
+        }
+      },
+      "updates": {
+        "priority_eligibility": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

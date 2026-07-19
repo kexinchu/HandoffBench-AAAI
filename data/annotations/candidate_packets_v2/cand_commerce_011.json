@@ -1,0 +1,153 @@
+{
+  "task_id": "cand_commerce_011",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_011_b",
+    "source_role": "preorder intake",
+    "target_role": "order management",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_011_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to resolve delayed preorder using only a policy-compliant option.",
+        "delay_acceptance": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_011_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_011_b",
+        "candidate_targets": [
+          "opt_011_a",
+          "opt_011_b",
+          "opt_011_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_011_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_011_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_011_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Product release date was revised after preorder; user message accepts original date only; cancellation window remains open.",
+        "revised_release": "2027-03-18",
+        "cancel_eligible": true
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_011_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask accept/cancel; keep preorder; cancel; claim shipped"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "delay_acceptance",
+            "unrelated_011_x",
+            "unrelated_011_y"
+          ]
+        }
+      },
+      "requires": [
+        "delay_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_011_a",
+            "opt_011_b",
+            "opt_011_c"
+          ]
+        }
+      },
+      "requires": [
+        "delay_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_011"
+      },
+      "response": {
+        "eligible_action_target": "opt_011_b",
+        "candidate_targets": [
+          "opt_011_a",
+          "opt_011_b",
+          "opt_011_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_011_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_011_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_011_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Product release date was revised after preorder; user message accepts original date only; cancellation window remains open.",
+        "revised_release": "2027-03-18",
+        "cancel_eligible": true
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_delay_acceptance": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "delay_acceptance"
+        }
+      },
+      "updates": {
+        "delay_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

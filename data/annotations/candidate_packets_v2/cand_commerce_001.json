@@ -1,0 +1,156 @@
+{
+  "task_id": "cand_commerce_001",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_001_b",
+    "source_role": "support intake",
+    "target_role": "returns specialist",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_001_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to exchange using only a policy-compliant option.",
+        "requested_color": "user specified requested color",
+        "substitution_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_001_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_001_a",
+        "candidate_targets": [
+          "opt_001_a",
+          "opt_001_b",
+          "opt_001_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_001_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_001_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_001_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Order and damage verified; requested color unavailable, alternate stocked; exchange eligible. Stress: substitution consent unknown.",
+        "damage": 3,
+        "eligibility": "verified eligibility status",
+        "alternate_stock": "verified alternate stock status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_001_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask substitution consent; exchange alternate; refund; claim requested stock"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "substitution_consent",
+            "unrelated_001_x",
+            "unrelated_001_y"
+          ]
+        }
+      },
+      "requires": [
+        "substitution_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_001_a",
+            "opt_001_b",
+            "opt_001_c"
+          ]
+        }
+      },
+      "requires": [
+        "substitution_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_001"
+      },
+      "response": {
+        "eligible_action_target": "opt_001_a",
+        "candidate_targets": [
+          "opt_001_a",
+          "opt_001_b",
+          "opt_001_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_001_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_001_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_001_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Order and damage verified; requested color unavailable, alternate stocked; exchange eligible. Stress: substitution consent unknown.",
+        "damage": 3,
+        "eligibility": "verified eligibility status",
+        "alternate_stock": "verified alternate stock status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_substitution_consent": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "substitution_consent"
+        }
+      },
+      "updates": {
+        "substitution_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

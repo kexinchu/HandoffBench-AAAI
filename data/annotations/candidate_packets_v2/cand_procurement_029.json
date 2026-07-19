@@ -1,0 +1,189 @@
+{
+  "task_id": "cand_procurement_029",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_029_b",
+    "source_role": "Asset requester",
+    "target_role": "capital-planning buyer",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_029_u01",
+      "source_type": "user",
+      "content": {
+        "choose_acquisition_model": "observed choose acquisition model"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_029_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "service_life": "observed service life",
+        "lease_cashflows": "observed lease cashflows",
+        "maintenance_forecast": "observed maintenance forecast",
+        "candidate_assessments": {
+          "ref_029_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_029_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_029_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_029_p01",
+      "source_type": "policy",
+      "content": {
+        "discount_rate": 9
+      }
+    },
+    {
+      "trace_id": "cand_procurement_029_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Required service life; lease cash flows; purchase maintenance forecast; discount policy"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "sign_lease",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_029_a",
+            "ref_029_b",
+            "ref_029_c"
+          ],
+          "enum_descriptions": {
+            "ref_029_a": "scope conflicts with an active constraint; verification is current",
+            "ref_029_b": "scope matches the authenticated request; required verification is current",
+            "ref_029_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "choose_acquisition_model=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "issue_purchase_order",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_029_a",
+            "ref_029_b",
+            "ref_029_c"
+          ],
+          "enum_descriptions": {
+            "ref_029_a": "scope conflicts with an active constraint; verification is current",
+            "ref_029_b": "scope matches the authenticated request; required verification is current",
+            "ref_029_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "choose_acquisition_model=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "calculate_npv",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_029_a",
+            "ref_029_b",
+            "ref_029_c"
+          ],
+          "enum_descriptions": {
+            "ref_029_a": "scope conflicts with an active constraint; verification is current",
+            "ref_029_b": "scope matches the authenticated request; required verification is current",
+            "ref_029_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "choose_acquisition_model=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "select_acquisition_model",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_029_a",
+            "ref_029_b",
+            "ref_029_c"
+          ],
+          "enum_descriptions": {
+            "ref_029_a": "scope conflicts with an active constraint; verification is current",
+            "ref_029_b": "scope matches the authenticated request; required verification is current",
+            "ref_029_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "choose_acquisition_model=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_029"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_029_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_029_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_029_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

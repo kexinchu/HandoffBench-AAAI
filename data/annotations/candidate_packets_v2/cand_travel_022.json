@@ -1,0 +1,162 @@
+{
+  "task_id": "cand_travel_022",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_022_b",
+    "source_role": "ferry planner",
+    "target_role": "vehicle reservation",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_022_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to book vehicle ferry using only a policy-compliant option.",
+        "vehicle_length": "user specified vehicle length",
+        "vehicle_height": "contradicted"
+      }
+    },
+    {
+      "trace_id": "cand_travel_022_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_022_a",
+        "candidate_targets": [
+          "opt_022_a",
+          "opt_022_b",
+          "opt_022_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_022_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_022_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_022_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Vehicle length known, height has two conflicting measurements; sailing deck limits verified.",
+        "deck_limits": "verified deck limits status",
+        "sailing": {
+          "id": "fact_le_dimension",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_022_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask current height; book deck; classify as car; repeat sailing search"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "clarify_slot_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "vehicle_height",
+            "unrelated_022_x",
+            "unrelated_022_y"
+          ]
+        }
+      },
+      "requires": [
+        "vehicle_height=contradicted"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_022_a",
+            "opt_022_b",
+            "opt_022_c"
+          ]
+        }
+      },
+      "requires": [
+        "vehicle_height=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_022"
+      },
+      "response": {
+        "eligible_action_target": "opt_022_a",
+        "candidate_targets": [
+          "opt_022_a",
+          "opt_022_b",
+          "opt_022_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_022_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_022_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_022_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Vehicle length known, height has two conflicting measurements; sailing deck limits verified.",
+        "deck_limits": "verified deck limits status",
+        "sailing": {
+          "id": "fact_le_dimension",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_vehicle_height": {
+      "trigger": {
+        "name": "clarify_slot_1",
+        "arguments": {
+          "key": "vehicle_height"
+        }
+      },
+      "updates": {
+        "vehicle_height": {
+          "status": "known",
+          "value": "resolved:vehicle_height"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

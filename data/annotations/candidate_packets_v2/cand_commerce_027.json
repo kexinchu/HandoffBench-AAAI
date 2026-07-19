@@ -1,0 +1,175 @@
+{
+  "task_id": "cand_commerce_027",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_027_b",
+    "source_role": "billing intake",
+    "target_role": "finance servicing",
+    "trace_cut": 5,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_027_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to pay off installment using only a policy-compliant option.",
+        "payoff_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_027_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_027_c",
+        "candidate_targets": [
+          "opt_027_a",
+          "opt_027_b",
+          "opt_027_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_027_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_027_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_027_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Remaining principal, accrued interest, and payoff quote expiry are verified; scheduled autopay would otherwise duplicate part of payoff.",
+        "payoff_amount": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "quote_expiry": "2027-03-18",
+        "autopay_scheduled": "verified autopay scheduled status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_027_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "disclose payoff; suspend autopay; charge payoff; charge installment"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_027_d1",
+      "source_type": "environment",
+      "content": {
+        "unrelated_case_note": "authenticated non-causal context"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_027_d2",
+      "source_type": "environment",
+      "content": {
+        "unrelated_preference": "not applicable to public actions"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "payoff_consent",
+            "unrelated_027_x",
+            "unrelated_027_y"
+          ]
+        }
+      },
+      "requires": [
+        "payoff_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_027_a",
+            "opt_027_b",
+            "opt_027_c"
+          ]
+        }
+      },
+      "requires": [
+        "payoff_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_027"
+      },
+      "response": {
+        "eligible_action_target": "opt_027_c",
+        "candidate_targets": [
+          "opt_027_a",
+          "opt_027_b",
+          "opt_027_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_027_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_027_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_027_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Remaining principal, accrued interest, and payoff quote expiry are verified; scheduled autopay would otherwise duplicate part of payoff.",
+        "payoff_amount": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "quote_expiry": "2027-03-18",
+        "autopay_scheduled": "verified autopay scheduled status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_payoff_consent": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "payoff_consent"
+        }
+      },
+      "updates": {
+        "payoff_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

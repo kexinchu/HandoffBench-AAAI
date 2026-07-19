@@ -1,0 +1,217 @@
+{
+  "task_id": "cand_commerce_008",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_008_b",
+    "source_role": "payment intake",
+    "target_role": "disputes operations",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_008_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to reverse duplicate using only a policy-compliant option.",
+        "reversal_confirmation": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_008_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_008_b",
+        "candidate_targets": [
+          "opt_008_a",
+          "opt_008_b",
+          "opt_008_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_008_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_008_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_008_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Two captures share order authorization; one is verified duplicate, one pending authorization is not a charge. Stress: transaction-type discrimination.",
+        "duplicate_capture": "verified duplicate capture status",
+        "pending_authorization": "verified pending authorization status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_008_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "confirm reversal; reverse duplicate; reverse both; dispute pending auth"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "clarify_slot_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "duplicate_capture",
+            "unrelated_008_x",
+            "unrelated_008_y"
+          ]
+        }
+      },
+      "requires": [
+        "duplicate_capture=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "clarify_slot_2",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "pending_authorization",
+            "unrelated_008_x",
+            "unrelated_008_y"
+          ]
+        }
+      },
+      "requires": [
+        "pending_authorization=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "ask_user_3",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "reversal_confirmation",
+            "unrelated_008_x",
+            "unrelated_008_y"
+          ]
+        }
+      },
+      "requires": [
+        "reversal_confirmation=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_008_a",
+            "opt_008_b",
+            "opt_008_c"
+          ]
+        }
+      },
+      "requires": [
+        "duplicate_capture=known",
+        "pending_authorization=known",
+        "reversal_confirmation=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_008"
+      },
+      "response": {
+        "eligible_action_target": "opt_008_b",
+        "candidate_targets": [
+          "opt_008_a",
+          "opt_008_b",
+          "opt_008_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_008_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_008_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_008_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Two captures share order authorization; one is verified duplicate, one pending authorization is not a charge. Stress: transaction-type discrimination.",
+        "duplicate_capture": "verified duplicate capture status",
+        "pending_authorization": "verified pending authorization status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_duplicate_capture": {
+      "trigger": {
+        "name": "clarify_slot_1",
+        "arguments": {
+          "key": "duplicate_capture"
+        }
+      },
+      "updates": {
+        "duplicate_capture": {
+          "status": "known",
+          "value": "resolved:duplicate_capture"
+        }
+      }
+    },
+    "reply_pending_authorization": {
+      "trigger": {
+        "name": "clarify_slot_2",
+        "arguments": {
+          "key": "pending_authorization"
+        }
+      },
+      "updates": {
+        "pending_authorization": {
+          "status": "known",
+          "value": "resolved:pending_authorization"
+        }
+      }
+    },
+    "reply_reversal_confirmation": {
+      "trigger": {
+        "name": "ask_user_3",
+        "arguments": {
+          "key": "reversal_confirmation"
+        }
+      },
+      "updates": {
+        "reversal_confirmation": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

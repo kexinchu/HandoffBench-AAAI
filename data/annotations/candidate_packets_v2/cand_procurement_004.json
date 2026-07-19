@@ -1,0 +1,202 @@
+{
+  "task_id": "cand_procurement_004",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_004_b",
+    "source_role": "Sourcing coordinator",
+    "target_role": "vendor master specialist",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_004_u01",
+      "source_type": "user",
+      "content": {
+        "onboard_vendor": "observed onboard vendor",
+        "bank_verification": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_004_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "tax_form_valid": true,
+        "sanctions_clear": true,
+        "candidate_assessments": {
+          "ref_004_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_004_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_004_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_004_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_procurement_004_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Winning supplier selected; tax form received; sanctions clear; bank verification unresolved"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "reject_vendor",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_004_a",
+            "ref_004_b",
+            "ref_004_c"
+          ],
+          "enum_descriptions": {
+            "ref_004_a": "scope matches the authenticated request; required verification is current",
+            "ref_004_b": "scope conflicts with an active constraint; verification is current",
+            "ref_004_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "bank_verification=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_tax_form",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_004_a",
+            "ref_004_b",
+            "ref_004_c"
+          ],
+          "enum_descriptions": {
+            "ref_004_a": "scope matches the authenticated request; required verification is current",
+            "ref_004_b": "scope conflicts with an active constraint; verification is current",
+            "ref_004_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "bank_verification=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "initiate_bank_callback",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_004_a",
+            "ref_004_b",
+            "ref_004_c"
+          ],
+          "enum_descriptions": {
+            "ref_004_a": "scope matches the authenticated request; required verification is current",
+            "ref_004_b": "scope conflicts with an active constraint; verification is current",
+            "ref_004_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "bank_verification=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "activate_vendor",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_004_a",
+            "ref_004_b",
+            "ref_004_c"
+          ],
+          "enum_descriptions": {
+            "ref_004_a": "scope matches the authenticated request; required verification is current",
+            "ref_004_b": "scope conflicts with an active constraint; verification is current",
+            "ref_004_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "bank_verification=known"
+      ],
+      "user_impacting": true
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_004"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_004_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_004_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_004_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_bank_verification": {
+      "trigger": {
+        "name": "initiate_bank_callback",
+        "arguments": {
+          "choice": "ref_004_a"
+        }
+      },
+      "updates": {
+        "bank_verification": {
+          "status": "known",
+          "value": "cand_procurement_004_bank_verification_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

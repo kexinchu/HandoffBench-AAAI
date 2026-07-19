@@ -1,0 +1,202 @@
+{
+  "task_id": "cand_procurement_017",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_017_b",
+    "source_role": "Engineering request",
+    "target_role": "technical buyer",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_017_u01",
+      "source_type": "user",
+      "content": {
+        "source_replacement_part": "observed source replacement part",
+        "required_tolerance": true,
+        "engineering_disposition": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_017_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "substitute_spec": "observed substitute spec",
+        "candidate_assessments": {
+          "ref_017_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_017_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_017_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_017_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_procurement_017_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Original part obsolete; substitute datasheet; critical tolerance; engineering review unresolved"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "issue_po",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_017_a",
+            "ref_017_b",
+            "ref_017_c"
+          ],
+          "enum_descriptions": {
+            "ref_017_a": "scope conflicts with an active constraint; verification is current",
+            "ref_017_b": "scope matches the authenticated request; required verification is current",
+            "ref_017_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "engineering_disposition=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_inventory",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_017_a",
+            "ref_017_b",
+            "ref_017_c"
+          ],
+          "enum_descriptions": {
+            "ref_017_a": "scope conflicts with an active constraint; verification is current",
+            "ref_017_b": "scope matches the authenticated request; required verification is current",
+            "ref_017_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "engineering_disposition=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_engineering_review",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_017_a",
+            "ref_017_b",
+            "ref_017_c"
+          ],
+          "enum_descriptions": {
+            "ref_017_a": "scope conflicts with an active constraint; verification is current",
+            "ref_017_b": "scope matches the authenticated request; required verification is current",
+            "ref_017_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "engineering_disposition=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "select_substitute",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_017_a",
+            "ref_017_b",
+            "ref_017_c"
+          ],
+          "enum_descriptions": {
+            "ref_017_a": "scope conflicts with an active constraint; verification is current",
+            "ref_017_b": "scope matches the authenticated request; required verification is current",
+            "ref_017_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "engineering_disposition=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_017"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_017_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_017_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_017_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_engineering_disposition": {
+      "trigger": {
+        "name": "request_engineering_review",
+        "arguments": {
+          "choice": "ref_017_b"
+        }
+      },
+      "updates": {
+        "engineering_disposition": {
+          "status": "known",
+          "value": "cand_procurement_017_engineering_disposition_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,203 @@
+{
+  "task_id": "cand_procurement_035",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_035_b",
+    "source_role": "Project office",
+    "target_role": "milestone approver",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_035_u01",
+      "source_type": "user",
+      "content": {
+        "process_milestone": "observed process milestone",
+        "cure_promised": "observed cure promised",
+        "cure_evidence": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_035_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "invoice_received": true,
+        "test_failures": "observed test failures",
+        "candidate_assessments": {
+          "ref_035_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_035_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_035_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_035_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_procurement_035_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Supplier invoice; deliverable upload; acceptance-test failures; cure submission promised"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "accept_milestone",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_035_a",
+            "ref_035_b",
+            "ref_035_c"
+          ],
+          "enum_descriptions": {
+            "ref_035_a": "scope conflicts with an active constraint; verification is current",
+            "ref_035_b": "scope matches the authenticated request; required verification is current",
+            "ref_035_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "cure_evidence=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "release_milestone_payment",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_035_a",
+            "ref_035_b",
+            "ref_035_c"
+          ],
+          "enum_descriptions": {
+            "ref_035_a": "scope conflicts with an active constraint; verification is current",
+            "ref_035_b": "scope matches the authenticated request; required verification is current",
+            "ref_035_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "cure_evidence=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "reject_entire_contract",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_035_a",
+            "ref_035_b",
+            "ref_035_c"
+          ],
+          "enum_descriptions": {
+            "ref_035_a": "scope conflicts with an active constraint; verification is current",
+            "ref_035_b": "scope matches the authenticated request; required verification is current",
+            "ref_035_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "cure_evidence=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_cure_evidence",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_035_a",
+            "ref_035_b",
+            "ref_035_c"
+          ],
+          "enum_descriptions": {
+            "ref_035_a": "scope conflicts with an active constraint; verification is current",
+            "ref_035_b": "scope matches the authenticated request; required verification is current",
+            "ref_035_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "cure_evidence=unknown"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_035"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_035_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_035_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_035_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_cure_evidence": {
+      "trigger": {
+        "name": "request_cure_evidence",
+        "arguments": {
+          "choice": "ref_035_b"
+        }
+      },
+      "updates": {
+        "cure_evidence": {
+          "status": "known",
+          "value": "cand_procurement_035_cure_evidence_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

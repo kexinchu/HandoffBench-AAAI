@@ -1,0 +1,184 @@
+{
+  "task_id": "cand_commerce_005",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_005_b",
+    "source_role": "safety intake",
+    "target_role": "recall team",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_005_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to resolve recall using only a policy-compliant option.",
+        "current_lot": "contradicted"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_005_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_005_b",
+        "candidate_targets": [
+          "opt_005_a",
+          "opt_005_b",
+          "opt_005_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_005_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_005_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_005_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Model and lot tool results conflict because profile is stale; recall bulletin lists affected lots and remedies.",
+        "recall_rule": "verified recall rule status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_005_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask physical lot; adjudicate eligibility; issue remedy; deny",
+        "remedy_eligibility": null
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "clarify_slot_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "current_lot",
+            "unrelated_005_x",
+            "unrelated_005_y"
+          ]
+        }
+      },
+      "requires": [
+        "current_lot=contradicted"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_authority_2",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "remedy_eligibility",
+            "unrelated_005_x",
+            "unrelated_005_y"
+          ]
+        }
+      },
+      "requires": [
+        "remedy_eligibility=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_005_a",
+            "opt_005_b",
+            "opt_005_c"
+          ]
+        }
+      },
+      "requires": [
+        "current_lot=known",
+        "remedy_eligibility=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_005"
+      },
+      "response": {
+        "eligible_action_target": "opt_005_b",
+        "candidate_targets": [
+          "opt_005_a",
+          "opt_005_b",
+          "opt_005_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_005_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_005_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_005_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Model and lot tool results conflict because profile is stale; recall bulletin lists affected lots and remedies.",
+        "recall_rule": "verified recall rule status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_current_lot": {
+      "trigger": {
+        "name": "clarify_slot_1",
+        "arguments": {
+          "key": "current_lot"
+        }
+      },
+      "updates": {
+        "current_lot": {
+          "status": "known",
+          "value": "resolved:current_lot"
+        }
+      }
+    },
+    "reply_remedy_eligibility": {
+      "trigger": {
+        "name": "request_authority_2",
+        "arguments": {
+          "key": "remedy_eligibility"
+        }
+      },
+      "updates": {
+        "remedy_eligibility": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

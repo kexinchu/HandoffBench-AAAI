@@ -1,0 +1,154 @@
+{
+  "task_id": "cand_commerce_035",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_035_b",
+    "source_role": "customization intake",
+    "target_role": "production control",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_035_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to revise engraving using only a policy-compliant option.",
+        "current_engraving": "user specified current engraving",
+        "revised_proof_approval": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_035_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_035_b",
+        "candidate_targets": [
+          "opt_035_a",
+          "opt_035_b",
+          "opt_035_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_035_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_035_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_035_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "User revises engraving after proof approval; production status is queued but cutoff timestamp has not passed. Old text is superseded.",
+        "production_not_started": "verified production not started status",
+        "cutoff_open": "verified cutoff open status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_035_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "render proof; approve revision; use old proof; start production"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "revised_proof_approval",
+            "unrelated_035_x",
+            "unrelated_035_y"
+          ]
+        }
+      },
+      "requires": [
+        "revised_proof_approval=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_035_a",
+            "opt_035_b",
+            "opt_035_c"
+          ]
+        }
+      },
+      "requires": [
+        "revised_proof_approval=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_035"
+      },
+      "response": {
+        "eligible_action_target": "opt_035_b",
+        "candidate_targets": [
+          "opt_035_a",
+          "opt_035_b",
+          "opt_035_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_035_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_035_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_035_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "User revises engraving after proof approval; production status is queued but cutoff timestamp has not passed. Old text is superseded.",
+        "production_not_started": "verified production not started status",
+        "cutoff_open": "verified cutoff open status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_revised_proof_approval": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "revised_proof_approval"
+        }
+      },
+      "updates": {
+        "revised_proof_approval": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

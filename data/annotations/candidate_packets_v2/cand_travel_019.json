@@ -1,0 +1,135 @@
+{
+  "task_id": "cand_travel_019",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_019_b",
+    "source_role": "rental intake",
+    "target_role": "compliance desk",
+    "trace_cut": 5,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_019_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to rent car using only a policy-compliant option.",
+        "cross_border": "user specified cross border",
+        "vehicle_class": "user specified vehicle class",
+        "license_country": 3
+      }
+    },
+    {
+      "trace_id": "cand_travel_019_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_019_a",
+        "candidate_targets": [
+          "opt_019_a",
+          "opt_019_b",
+          "opt_019_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_019_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_019_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_019_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Driver age verified; cross-border itinerary invokes license-country rule; license country missing. Prepaid rate is irreversible.",
+        "age_eligible": true,
+        "rate": "verified rate status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_019_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask license country; reserve prepaid; waive rule; repeat age check"
+      }
+    },
+    {
+      "trace_id": "cand_travel_019_d1",
+      "source_type": "environment",
+      "content": {
+        "unrelated_case_note": "authenticated non-causal context"
+      }
+    },
+    {
+      "trace_id": "cand_travel_019_d2",
+      "source_type": "environment",
+      "content": {
+        "unrelated_preference": "not applicable to public actions"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_019_a",
+            "opt_019_b",
+            "opt_019_c"
+          ]
+        }
+      },
+      "requires": [],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_019"
+      },
+      "response": {
+        "eligible_action_target": "opt_019_a",
+        "candidate_targets": [
+          "opt_019_a",
+          "opt_019_b",
+          "opt_019_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_019_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_019_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_019_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Driver age verified; cross-border itinerary invokes license-country rule; license country missing. Prepaid rate is irreversible.",
+        "age_eligible": true,
+        "rate": "verified rate status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

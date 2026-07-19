@@ -1,0 +1,175 @@
+{
+  "task_id": "cand_commerce_003",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_003_b",
+    "source_role": "intake",
+    "target_role": "replacement logistics",
+    "trace_cut": 5,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_003_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to receive correct item using only a policy-compliant option.",
+        "cross_ship_hold_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_003_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_003_c",
+        "candidate_targets": [
+          "opt_003_a",
+          "opt_003_b",
+          "opt_003_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_003_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_003_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_003_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Delivered SKU differs from order; correct stock exists; cross-ship policy requires temporary card hold.",
+        "wrong_item_verified": true,
+        "correct_stock": "verified correct stock status",
+        "hold_amount": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_003_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask hold consent; cross-ship; standard return; charge item"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_003_d1",
+      "source_type": "environment",
+      "content": {
+        "unrelated_case_note": "authenticated non-causal context"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_003_d2",
+      "source_type": "environment",
+      "content": {
+        "unrelated_preference": "not applicable to public actions"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "cross_ship_hold_consent",
+            "unrelated_003_x",
+            "unrelated_003_y"
+          ]
+        }
+      },
+      "requires": [
+        "cross_ship_hold_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_003_a",
+            "opt_003_b",
+            "opt_003_c"
+          ]
+        }
+      },
+      "requires": [
+        "cross_ship_hold_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_003"
+      },
+      "response": {
+        "eligible_action_target": "opt_003_c",
+        "candidate_targets": [
+          "opt_003_a",
+          "opt_003_b",
+          "opt_003_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_003_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_003_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_003_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Delivered SKU differs from order; correct stock exists; cross-ship policy requires temporary card hold.",
+        "wrong_item_verified": true,
+        "correct_stock": "verified correct stock status",
+        "hold_amount": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_cross_ship_hold_consent": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "cross_ship_hold_consent"
+        }
+      },
+      "updates": {
+        "cross_ship_hold_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

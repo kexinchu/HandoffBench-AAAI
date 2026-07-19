@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_015",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b015",
+    "source_role": "reschedule_intake",
+    "target_role": "booking_resolver",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs015u",
+      "source_type": "user",
+      "content": {
+        "goal": "reschedule under current fee policy",
+        "schedule_window": "window_015"
+      }
+    },
+    {
+      "trace_id": "cs015t",
+      "source_type": "tool",
+      "tool": "schedule_registry_015",
+      "content": {
+        "replacement_slot_id": "slot_N3"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs015p",
+      "source_type": "policy",
+      "content": {
+        "quote_acceptance": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "quote_acceptance",
+            "irrelevant_015_a",
+            "irrelevant_015_b"
+          ]
+        }
+      },
+      "requires": [
+        "quote_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "reschedule_appointment",
+      "arguments": {
+        "replacement_slot_id": {
+          "type": "string",
+          "enum": [
+            "slot_N3_altA",
+            "slot_N3",
+            "slot_N3_altB"
+          ]
+        }
+      },
+      "requires": [
+        "quote_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_015": {
+      "request": {
+        "task_id": "cand_scheduling_015"
+      },
+      "response": {
+        "replacement_slot_id": "slot_N3"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_quote_acceptance": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "quote_acceptance"
+        }
+      },
+      "updates": {
+        "quote_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

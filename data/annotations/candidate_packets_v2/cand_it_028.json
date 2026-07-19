@@ -1,0 +1,189 @@
+{
+  "task_id": "cand_it_028",
+  "domain": "it",
+  "boundary": {
+    "boundary_id": "cand_it_028_b",
+    "source_role": "Network helpdesk",
+    "target_role": "IPAM engineer",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_it_028_u01",
+      "source_type": "user",
+      "content": {
+        "restore_address_capacity": "Complete objective: restore address capacity"
+      }
+    },
+    {
+      "trace_id": "cand_it_028_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "pool_utilization": "observed pool utilization",
+        "stale_leases": "observed stale leases",
+        "reserved_range": "observed reserved range",
+        "candidate_assessments": {
+          "ref_028_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_028_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_028_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_it_028_p01",
+      "source_type": "policy",
+      "content": {
+        "overlap_check": "observed overlap check"
+      }
+    },
+    {
+      "trace_id": "cand_it_028_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Address pool 98% used; stale leases; reserved addresses; subnet expansion overlaps adjacent range"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "expand_scope",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_028_a",
+            "ref_028_b",
+            "ref_028_c"
+          ],
+          "enum_descriptions": {
+            "ref_028_a": "scope conflicts with an active constraint; verification is current",
+            "ref_028_b": "scope matches the authenticated request; required verification is current",
+            "ref_028_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "restore_address_capacity=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "remove_reservations",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_028_a",
+            "ref_028_b",
+            "ref_028_c"
+          ],
+          "enum_descriptions": {
+            "ref_028_a": "scope conflicts with an active constraint; verification is current",
+            "ref_028_b": "scope matches the authenticated request; required verification is current",
+            "ref_028_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "restore_address_capacity=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "reclaim_stale_leases",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_028_a",
+            "ref_028_b",
+            "ref_028_c"
+          ],
+          "enum_descriptions": {
+            "ref_028_a": "scope conflicts with an active constraint; verification is current",
+            "ref_028_b": "scope matches the authenticated request; required verification is current",
+            "ref_028_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "restore_address_capacity=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "validate_expansion_range",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_028_a",
+            "ref_028_b",
+            "ref_028_c"
+          ],
+          "enum_descriptions": {
+            "ref_028_a": "scope conflicts with an active constraint; verification is current",
+            "ref_028_b": "scope matches the authenticated request; required verification is current",
+            "ref_028_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "restore_address_capacity=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_it_028"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_028_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_028_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_028_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

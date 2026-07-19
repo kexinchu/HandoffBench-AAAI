@@ -1,0 +1,134 @@
+{
+  "task_id": "cand_commerce_037",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_037_b",
+    "source_role": "electronics intake",
+    "target_role": "activation desk",
+    "trace_cut": 5,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_037_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to activate device using only a policy-compliant option.",
+        "requested_carrier": "user specified requested carrier",
+        "wait_or_return_choice": "user specified wait or return choice"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_037_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_037_a",
+        "candidate_targets": [
+          "opt_037_a",
+          "opt_037_b",
+          "opt_037_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_037_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_037_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_037_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Device IMEI and carrier lock verified; requested carrier differs, unlock eligibility date is future.",
+        "carrier_lock": "verified carrier lock status",
+        "unlock_date": "2027-03-18"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_037_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "explain date; activate incompatible carrier; return; schedule unlock"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_037_d1",
+      "source_type": "environment",
+      "content": {
+        "unrelated_case_note": "authenticated non-causal context"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_037_d2",
+      "source_type": "environment",
+      "content": {
+        "unrelated_preference": "not applicable to public actions"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_037_a",
+            "opt_037_b",
+            "opt_037_c"
+          ]
+        }
+      },
+      "requires": [],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_037"
+      },
+      "response": {
+        "eligible_action_target": "opt_037_a",
+        "candidate_targets": [
+          "opt_037_a",
+          "opt_037_b",
+          "opt_037_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_037_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_037_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_037_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Device IMEI and carrier lock verified; requested carrier differs, unlock eligibility date is future.",
+        "carrier_lock": "verified carrier lock status",
+        "unlock_date": "2027-03-18"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

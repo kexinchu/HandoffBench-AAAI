@@ -1,0 +1,146 @@
+{
+  "task_id": "cand_travel_025",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_025_b",
+    "source_role": "credit intake",
+    "target_role": "ticketing payments",
+    "trace_cut": 5,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_025_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to use flight credit using only a policy-compliant option.",
+        "new_passenger": "user specified new passenger",
+        "transfer_allowed": true
+      }
+    },
+    {
+      "trace_id": "cand_travel_025_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_025_a",
+        "candidate_targets": [
+          "opt_025_a",
+          "opt_025_b",
+          "opt_025_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_025_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_025_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_025_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Credit balance and original passenger are verified; user wants to apply it to another traveler, while published policy binds nontransferable credit to owner.",
+        "credit_balance": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "credit_owner": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_025_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "book owner; transfer credit; request policy exception; buy for new passenger"
+      }
+    },
+    {
+      "trace_id": "cand_travel_025_d1",
+      "source_type": "environment",
+      "content": {
+        "unrelated_case_note": "authenticated non-causal context"
+      }
+    },
+    {
+      "trace_id": "cand_travel_025_d2",
+      "source_type": "environment",
+      "content": {
+        "unrelated_preference": "not applicable to public actions"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_025_a",
+            "opt_025_b",
+            "opt_025_c"
+          ]
+        }
+      },
+      "requires": [],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_025"
+      },
+      "response": {
+        "eligible_action_target": "opt_025_a",
+        "candidate_targets": [
+          "opt_025_a",
+          "opt_025_b",
+          "opt_025_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_025_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_025_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_025_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Credit balance and original passenger are verified; user wants to apply it to another traveler, while published policy binds nontransferable credit to owner.",
+        "credit_balance": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "credit_owner": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

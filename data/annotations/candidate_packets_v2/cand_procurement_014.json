@@ -1,0 +1,188 @@
+{
+  "task_id": "cand_procurement_014",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_014_b",
+    "source_role": "Inventory planner",
+    "target_role": "buyer",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_014_u01",
+      "source_type": "user",
+      "content": {
+        "replenish_stock": "observed replenish stock",
+        "max_expiry_loss": "2027-06-19"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_014_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "net_demand": "observed net demand",
+        "moq": "observed moq",
+        "alternate_terms": "observed alternate terms",
+        "candidate_assessments": {
+          "ref_014_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_014_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_014_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_014_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_procurement_014_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Demand forecast; stock; supplier MOQ; expiry risk; alternate supplier terms"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "select_supplier",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_014_a",
+            "ref_014_b",
+            "ref_014_c"
+          ],
+          "enum_descriptions": {
+            "ref_014_a": "scope conflicts with an active constraint; verification is current",
+            "ref_014_b": "scope matches the authenticated request; required verification is current",
+            "ref_014_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "replenish_stock=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_moq_exception",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_014_a",
+            "ref_014_b",
+            "ref_014_c"
+          ],
+          "enum_descriptions": {
+            "ref_014_a": "scope conflicts with an active constraint; verification is current",
+            "ref_014_b": "scope matches the authenticated request; required verification is current",
+            "ref_014_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "replenish_stock=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "place_order",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_014_a",
+            "ref_014_b",
+            "ref_014_c"
+          ],
+          "enum_descriptions": {
+            "ref_014_a": "scope conflicts with an active constraint; verification is current",
+            "ref_014_b": "scope matches the authenticated request; required verification is current",
+            "ref_014_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "replenish_stock=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "defer_purchase",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_014_a",
+            "ref_014_b",
+            "ref_014_c"
+          ],
+          "enum_descriptions": {
+            "ref_014_a": "scope conflicts with an active constraint; verification is current",
+            "ref_014_b": "scope matches the authenticated request; required verification is current",
+            "ref_014_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "replenish_stock=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_014"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_014_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_014_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_014_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

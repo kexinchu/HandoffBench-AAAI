@@ -1,0 +1,156 @@
+% Evidence-grounded draft for selective inclusion in paper/main.tex.
+% Development numbers are diagnostic only. Citation keys must be synchronized
+% with the final, manually verified bibliography before inclusion.
+
+\section{Closest Related Work}
+
+The broad idea of evaluating agent handoffs is not new.  Most directly,
+\emph{Handoff Debt} interrupts coding agents at deterministic repository
+checkpoints and compares repository-only, raw-trace, summary-note, and
+structured-note views, measuring task resolution and successor rediscovery
+cost~\citep{kc2026handoff}.  We therefore do not claim the first handoff
+benchmark, controlled takeover, or structured transfer artifact.  Our estimand
+is instead the fidelity of a semantic interface at an inter-role boundary: each
+episode exposes an evaluator-only set of atomic claims with epistemic status and
+trace evidence, and tests which claim errors precede policy-invalid or
+regressive actions.  This also differs from state-probe and runtime-guard work
+\citep{jia2026neurostate,she2026provenanceguard}
+(Table~\ref{tab:closest-collisions}).
+Concurrent work makes the collision sharper.  PACT treats inter-agent messages
+as compact public action-state updates and evaluates accuracy--cost trade-offs
+\citep{huang2026pact}; AgentAsk annotates edge-level data gaps, referential
+drift, signal corruption, and capability gaps, then learns when to clarify
+\citep{lin2026agentask}; and EntCollabBench objectively scores role-specialized,
+permission-isolated enterprise workflows in which context transfer is one
+bottleneck \citep{yu2026entcollab}.  HandoffBench does not claim these messaging,
+repair, or enterprise settings.  It contributes evaluator-visible atomic boundary
+state and matched interventions that localize extraction, transport, and
+receiver-utilization failures.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{p{0.20\columnwidth}p{0.21\columnwidth}p{0.43\columnwidth}}
+\toprule
+Work & Primary object & Distinction of HandoffBench \\
+\midrule
+Handoff Debt
+& Coding takeover and rediscovery under four context views
+& Gold field-level boundary state; epistemic and authority-bearing claims;
+oracle-conditional transfer regression rather than repository resumability. \\
+NeuroState-Bench
+& Commitment integrity through side-query probes within an agent profile
+& A manipulated predecessor--successor boundary and alternative transport
+representations, with claims bound to authenticated trace events. \\
+Provenance\-Guard
+& Runtime screening of proposed tool actions using evidence for user intent
+& Provenance is an advisory representation factor in the primary study;
+action blocking is isolated as a separate enforcement intervention. \\
+\bottomrule
+\end{tabular}
+\caption{Claim-level positioning against the closest collisions.  Structured
+handoffs, state probes, and provenance-aware blocking are prior art; our target
+is controlled measurement of semantic state transfer across a role handoff.}
+\label{tab:closest-collisions}
+\end{table}
+
+\section{Development Findings and Design Adaptation}
+
+We used six counterfactual travel families only to debug the protocol and set
+the confirmatory design; these data are excluded from all confirmatory tables.
+Across Qwen2.5-14B and Ministral-3-14B (48 scheduled episodes per legacy view),
+strict success was 68.8\% for the all-on executable handoff capsule (EHC),
+75.0\% for the schema-matched Structured payload, 47.9\% for Free Summary,
+91.7\% for Full History, and 93.8\% for the Gold Oracle.  The EHC--Structured
+difference was $-6.25$ percentage points (family-clustered 95\% CI
+$[-22.9,12.5]$).  This is a
+negative development result: it does not support generic EHC superiority, and
+we retain rather than tune it away.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Development view & Success & Rate \\
+\midrule
+Full History & 44/48 & 91.7\% \\
+Free Summary & 23/48 & 47.9\% \\
+Structured Payload & 36/48 & 75.0\% \\
+All-on EHC & 33/48 & 68.8\% \\
+Gold Oracle & 45/48 & 93.8\% \\
+\bottomrule
+\end{tabular}
+\caption{Development-only strict success across two model families and six independent
+families (four counterfactual variants each). These are design diagnostics, not
+benchmark test results.}
+\label{tab:dev-legacy}
+\end{table}
+
+A representation-matched $2\!\times\!2\!\times\!2$ development factorial
+(typing, trace-linked provenance, and advisory checks) scheduled 384 cells for
+two model families; 381 completed provider/parsing successfully, and all cells remain in
+the intent-to-treat denominator.  Strict-success main effects were $+2.60$ pp
+for typing (95\% CI $[0.52,4.69]$), $-6.77$ pp for provenance
+($[-15.63,2.60]$), and $+6.77$ pp for advisory checks
+($[3.65,9.38]$).  The provenance--checks interaction was $-4.69$ pp
+($[-10.42,-0.52]$); provenance also increased mean critical-error count by
+0.042 ($[0.010,0.078]$).  With only six independent families, these
+estimates are diagnostic, not population evidence.  They changed the study's
+thesis from ``all-on capsules are superior'' to two falsifiable benchmark
+questions: whether boundary regression exists, and which representation
+mechanisms help or harm under matched information.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Factor / interaction & Effect & Family 95\% CI \\
+\midrule
+Typing & +2.60 pp & $[0.52,4.69]$ \\
+Provenance & $-6.77$ pp & $[-15.63,2.60]$ \\
+Advisory checks & +6.77 pp & $[3.65,9.38]$ \\
+Provenance $\times$ checks & $-4.69$ pp & $[-10.42,-0.52]$ \\
+\bottomrule
+\end{tabular}
+\caption{Development-only strict-success effects from the fair
+$2\times2\times2$ factorial (two model families, six independent families, 384 ITT
+cells). The source-identity audit passed all 48 episode--model blocks.}
+\label{tab:dev-factorial}
+\end{table}
+
+Power was likewise treated as a pre-test design input.  A fixed-seed simulation
+with model repeats nested within family and family-cluster bootstrap inference
+estimated, at ICC $=.10$, power of .441 for an 8-pp effect and .633 for a 10-pp
+effect at 120 families; at 200 families the corresponding estimates were .691
+and .847.  We therefore expanded the candidate pool to 200 independently
+authored families (40 per domain) before annotation or any candidate model call.
+These simulated values are assumptions, not observed test effects, and do not
+permit optional stopping.
+
+\section{Confirmatory Analysis Plan}
+
+The confirmatory unit is the independently authored task family.  Model and
+seed observations are repeated measures nested within family and are never
+counted as independent samples.  Every scheduled task--model--seed--condition
+cell is analyzed intent-to-treat: provider, schema, and parse failures receive
+zero strict-success and state credit while their calls and costs remain in the
+release artifacts.  Strict end-to-end success is primary; first-probe macro
+state F1, episode-level critical errors, oracle-conditional handoff-induced
+regression, input/output tokens, calls, and validator cost are secondary.
+
+Two contrasts form the confirmatory family: Structured versus Gold Oracle on
+strict success, testing whether non-oracle transfer induces boundary regression,
+and the advisory-check main effect in the matched factorial.  Paired binary
+effects use 95\% family-cluster percentile-bootstrap intervals; exact McNemar
+tests are sensitivity analyses because repeated model/seed rows are clustered.
+Continuous and count outcomes use the same family bootstrap.  The two primary
+two-sided tests are Holm-adjusted.  Typing and provenance effects are two-sided,
+as development evidence was uncertain or negative; all interactions,
+domain/category/model slices, and legacy-view contrasts are secondary or
+exploratory.  EHC versus Structured remains a reported two-sided comparison,
+but no superiority claim is made unless its corrected interval excludes zero
+in the favorable direction.  Advisory representation and enforced action
+gating are analyzed separately, and null or harmful provenance effects remain
+reportable outcomes.

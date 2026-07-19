@@ -1,0 +1,89 @@
+\documentclass[letterpaper]{article}
+\usepackage[submission]{aaai2027}
+\usepackage[hyphens]{url}
+\usepackage{graphicx}
+\urlstyle{rm}
+\def\UrlFont{\rm}
+\usepackage{natbib}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\frenchspacing
+\pdfinfo{/TemplateVersion (2027.1)}
+\setcounter{secnumdepth}{1}
+
+\title{State Is the Interface: Evaluating Handoff Fidelity in Multi-Agent LLM Workflows}
+\author{Anonymous Submission}
+\affiliations{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Multi-agent language-model systems increasingly transfer task ownership between
+specialized agents, yet existing evaluations rarely measure which task-critical
+state survives the transfer. We introduce HandoffBench, a controlled evaluation
+protocol for inter-role handoffs in interactive, policy-constrained tool
+workflows. Each episode fixes an upstream trace and annotates a hidden atomic
+state at the handoff boundary, including verified evidence, epistemic unknowns,
+scoped consent, and policy decisions. Deterministic probes enable separate
+measurement of source extraction, transport, and receiver utilization errors and link
+field-level fidelity to downstream regression and policy violations. We compare
+full history, free-form summaries, structured payloads, and Executable Handoff
+Capsules, which bind typed claims to trace provenance and machine-checkable
+preconditions. We preregister a factorial evaluation to isolate the effects of typing,
+provenance, and executable checks under matched evidence and budgets. This
+framework treats state as the interface between agents and makes handoff
+failures independently measurable rather than conflating them with routing,
+memory, or general reasoning failures.
+\end{abstract}
+
+\section{Introduction}
+
+Handoffs are becoming a standard orchestration primitive: an intake agent may
+collect constraints, a policy agent may verify eligibility, and a resolution
+agent may execute the final action. The routing decision can be correct while
+the workflow still fails. A verified fare can disappear, an unresolved field
+can become an assumed value, or approval for one action can be mistaken for
+consent to another. These are failures of the interface between agents.
+
+Existing agent benchmarks richly measure tool use, policy compliance, and team
+performance \citep{liu2024agentbench,yao2024taubench,lu2025toolsandbox,zhu2025multiagentbench},
+while recent coding-agent takeover evaluation measures the effort needed to
+resume interrupted work \citep{kc2026handoff}. These works do not, however, expose a gold semantic
+state at an inter-role boundary and score which atomic facts, unknowns,
+permissions, and preconditions crossed it. Consequently, an end-to-end failure
+cannot be localized to source extraction, the transfer representation, or the
+receiving agent's use of correctly transferred state.
+
+We present HandoffBench, a benchmark and intervention protocol that holds the
+upstream trace, target model, tools, and budget fixed while intervening on the
+handoff representation. Its central object is a task-critical annotated gold
+state whose claims are typed and linked to authenticated user, tool, policy, or
+environment events. Core metrics are computed from typed equality, provenance
+integrity, simulator transitions, and Boolean success predicates rather than an
+LLM judge.
+
+Our intended contributions are: (1) a controlled benchmark for field-level
+handoff fidelity in interactive tool workflows; (2) a three-stage diagnostic
+decomposition of extraction, transport, and utilization, including oracle
+interventions that identify handoff-induced regression; and (3) a matched
+factorial protocol that separates typing, provenance, and advisory executable
+checks from action enforcement. We report development diagnostics transparently
+but reserve benchmark-level claims for the frozen confirmatory evaluation.
+
+\input{sections/method}
+\input{sections/benchmark}
+\input{sections/evidence}
+\input{sections/ethics}
+
+\section{Conclusion}
+
+Reliable multi-agent systems require more than correct routing. By treating the
+handoff boundary as a typed, measurable interface, HandoffBench aims to reveal
+which state is lost, why downstream behavior regresses, and when evidence-linked
+and executable transfer artifacts help.
+
+\bibliography{references}
+
+\end{document}

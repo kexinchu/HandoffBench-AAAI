@@ -1,0 +1,75 @@
+{
+  "task_id": "cand_scheduling_007",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b007",
+    "source_role": "document_intake",
+    "target_role": "appointment_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs007u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule passport renewal visit",
+        "schedule_window": "window_007"
+      }
+    },
+    {
+      "trace_id": "cs007t",
+      "source_type": "tool",
+      "tool": "schedule_registry_007",
+      "content": {
+        "appointment_slot_id": "slot_D12"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs007p",
+      "source_type": "policy",
+      "content": {
+        "document_clearance": true
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "schedule_passport_visit",
+      "arguments": {
+        "appointment_slot_id": {
+          "type": "string",
+          "enum": [
+            "slot_D12",
+            "slot_D12_altB",
+            "slot_D12_altA"
+          ]
+        }
+      },
+      "requires": [
+        "document_clearance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_007": {
+      "request": {
+        "task_id": "cand_scheduling_007"
+      },
+      "response": {
+        "appointment_slot_id": "slot_D12"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

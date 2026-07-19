@@ -1,0 +1,121 @@
+{
+  "task_id": "cand_travel_002",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_002_b",
+    "source_role": "itinerary monitor",
+    "target_role": "irregular-operations desk",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_002_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to repair connection using only a policy-compliant option.",
+        "latest_arrival": "user specified latest arrival"
+      }
+    },
+    {
+      "trace_id": "cand_travel_002_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_002_b",
+        "candidate_targets": [
+          "opt_002_a",
+          "opt_002_b",
+          "opt_002_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_002_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_002_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_002_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "First leg delay and minimum-connect calculation show connection impossible; carrier protection policy covers reroute. Stress: authority is known but passenger arrival preference is unknown.",
+        "predicted_arrival": "verified predicted arrival status",
+        "connection_infeasible": false,
+        "protection_eligible": true
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_002_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask arrival bound; protect seat; reroute; cancel remaining legs"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_002_a",
+            "opt_002_b",
+            "opt_002_c"
+          ]
+        }
+      },
+      "requires": [],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_002"
+      },
+      "response": {
+        "eligible_action_target": "opt_002_b",
+        "candidate_targets": [
+          "opt_002_a",
+          "opt_002_b",
+          "opt_002_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_002_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_002_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_002_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "First leg delay and minimum-connect calculation show connection impossible; carrier protection policy covers reroute. Stress: authority is known but passenger arrival preference is unknown.",
+        "predicted_arrival": "verified predicted arrival status",
+        "connection_infeasible": false,
+        "protection_eligible": true
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

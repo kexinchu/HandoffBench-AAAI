@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_031",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b031",
+    "source_role": "student_intake",
+    "target_role": "advising_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs031u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule policy-valid advising appointment",
+        "schedule_window": "window_031"
+      }
+    },
+    {
+      "trace_id": "cs031t",
+      "source_type": "tool",
+      "tool": "schedule_registry_031",
+      "content": {
+        "advising_slot_id": "adv_A7"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs031p",
+      "source_type": "policy",
+      "content": {
+        "student_acceptance": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "student_acceptance",
+            "irrelevant_031_a",
+            "irrelevant_031_b"
+          ]
+        }
+      },
+      "requires": [
+        "student_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "schedule_advising",
+      "arguments": {
+        "advising_slot_id": {
+          "type": "string",
+          "enum": [
+            "adv_A7",
+            "adv_A7_altB",
+            "adv_A7_altA"
+          ]
+        }
+      },
+      "requires": [
+        "student_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_031": {
+      "request": {
+        "task_id": "cand_scheduling_031"
+      },
+      "response": {
+        "advising_slot_id": "adv_A7"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_student_acceptance": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "student_acceptance"
+        }
+      },
+      "updates": {
+        "student_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,49 @@
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
+*.pyo
+.DS_Store
+.idea/
+.vscode/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+*.vrb
+paper/AuthorKit27/**/*.pdf
+paper/AuthorKit27/Word/
+paper/ReproducibilityChecklist_draft.pdf
+outputs/private/
+build/
+
+# Third-party reading copies and downloaded archives are not project sources.
+papers/
+
+# Historical 120-task annotation export; candidate v2 is the active public set.
+data/annotations/candidate_packets_v1/
+data/annotations/candidate_packets_v1.sha256
+data/annotations/assignments_v1/
+
+# Raw model traces are published separately; keep only aggregate evidence in Git.
+outputs/**/runs/
+
+# Most exploratory aggregates are local. Explicitly retain manuscript evidence.
+outputs/*
+!outputs/README.md
+!outputs/cf_combined_v2_qwen_ministral/
+!outputs/cf_combined_v2_qwen_ministral/counterfactual_analysis.json
+!outputs/cf_combined_v2_qwen_ministral/counterfactual_summary.csv
+!outputs/factorial_cf_v2_qwen14b/
+!outputs/factorial_cf_v2_qwen14b/factorial_analysis.json
+!outputs/factorial_cf_v3_ministral3_14b/
+!outputs/factorial_cf_v3_ministral3_14b/factorial_analysis.json
+!outputs/factorial_cf_v4_qwen_ministral/
+!outputs/factorial_cf_v4_qwen_ministral/factorial_analysis.json

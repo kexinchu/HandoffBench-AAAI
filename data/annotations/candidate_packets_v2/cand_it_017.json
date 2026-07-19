@@ -1,0 +1,202 @@
+{
+  "task_id": "cand_it_017",
+  "domain": "it",
+  "boundary": {
+    "boundary_id": "cand_it_017_b",
+    "source_role": "App support",
+    "target_role": "API platform operator",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_it_017_u01",
+      "source_type": "user",
+      "content": {
+        "restore_api_capacity": "Complete objective: restore api capacity",
+        "legacy_rotation": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_it_017_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "shared_client": "observed shared client",
+        "traffic_split": "observed traffic split",
+        "candidate_assessments": {
+          "ref_017_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_017_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_017_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_it_017_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_it_017_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "One client ID shared by two services; throttling observed; per-service traffic; rotation capability differs"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "migrate_service",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_017_a",
+            "ref_017_b",
+            "ref_017_c"
+          ],
+          "enum_descriptions": {
+            "ref_017_a": "scope conflicts with an active constraint; verification is current",
+            "ref_017_b": "scope matches the request; a required verification is still pending",
+            "ref_017_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "legacy_rotation=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "raise_global_limit",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_017_a",
+            "ref_017_b",
+            "ref_017_c"
+          ],
+          "enum_descriptions": {
+            "ref_017_a": "scope conflicts with an active constraint; verification is current",
+            "ref_017_b": "scope matches the request; a required verification is still pending",
+            "ref_017_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "legacy_rotation=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "disable_client",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_017_a",
+            "ref_017_b",
+            "ref_017_c"
+          ],
+          "enum_descriptions": {
+            "ref_017_a": "scope conflicts with an active constraint; verification is current",
+            "ref_017_b": "scope matches the request; a required verification is still pending",
+            "ref_017_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "legacy_rotation=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "issue_separate_client",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_017_a",
+            "ref_017_b",
+            "ref_017_c"
+          ],
+          "enum_descriptions": {
+            "ref_017_a": "scope conflicts with an active constraint; verification is current",
+            "ref_017_b": "scope matches the request; a required verification is still pending",
+            "ref_017_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "legacy_rotation=unknown"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_it_017"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_017_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_017_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_017_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_legacy_rotation": {
+      "trigger": {
+        "name": "issue_separate_client",
+        "arguments": {
+          "choice": "ref_017_c"
+        }
+      },
+      "updates": {
+        "legacy_rotation": {
+          "status": "known",
+          "value": "cand_it_017_legacy_rotation_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

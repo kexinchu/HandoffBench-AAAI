@@ -1,0 +1,202 @@
+{
+  "task_id": "cand_procurement_034",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_034_b",
+    "source_role": "Software sourcing",
+    "target_role": "contracts counsel",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_034_u01",
+      "source_type": "user",
+      "content": {
+        "contract_custom_software": "observed contract custom software",
+        "required_ip_rights": true,
+        "negotiated_clause": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_034_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "supplier_ip_clause": "observed supplier ip clause",
+        "candidate_assessments": {
+          "ref_034_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_034_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_034_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_034_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_procurement_034_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Custom deliverables; supplier template assigns IP to supplier; business requires source ownership; negotiation open"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "execute_development_contract",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_034_a",
+            "ref_034_b",
+            "ref_034_c"
+          ],
+          "enum_descriptions": {
+            "ref_034_a": "scope matches the authenticated request; required verification is current",
+            "ref_034_b": "scope conflicts with an active constraint; verification is current",
+            "ref_034_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "negotiated_clause=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "accept_supplier_template",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_034_a",
+            "ref_034_b",
+            "ref_034_c"
+          ],
+          "enum_descriptions": {
+            "ref_034_a": "scope matches the authenticated request; required verification is current",
+            "ref_034_b": "scope conflicts with an active constraint; verification is current",
+            "ref_034_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "negotiated_clause=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "cancel_sourcing",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_034_a",
+            "ref_034_b",
+            "ref_034_c"
+          ],
+          "enum_descriptions": {
+            "ref_034_a": "scope matches the authenticated request; required verification is current",
+            "ref_034_b": "scope conflicts with an active constraint; verification is current",
+            "ref_034_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "negotiated_clause=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "negotiate_ip_clause",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_034_a",
+            "ref_034_b",
+            "ref_034_c"
+          ],
+          "enum_descriptions": {
+            "ref_034_a": "scope matches the authenticated request; required verification is current",
+            "ref_034_b": "scope conflicts with an active constraint; verification is current",
+            "ref_034_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "negotiated_clause=unknown"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_034"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_034_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_034_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_034_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_negotiated_clause": {
+      "trigger": {
+        "name": "negotiate_ip_clause",
+        "arguments": {
+          "choice": "ref_034_a"
+        }
+      },
+      "updates": {
+        "negotiated_clause": {
+          "status": "known",
+          "value": "cand_procurement_034_negotiated_clause_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

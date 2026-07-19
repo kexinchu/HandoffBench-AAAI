@@ -1,0 +1,204 @@
+{
+  "task_id": "cand_it_025",
+  "domain": "it",
+  "boundary": {
+    "boundary_id": "cand_it_025_b",
+    "source_role": "Access support",
+    "target_role": "authentication administrator",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_it_025_u01",
+      "source_type": "user",
+      "content": {
+        "enroll_replacement_factor": "observed enroll replacement factor",
+        "recovery_code_status": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_it_025_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "identity_proof_complete": true,
+        "old_factor_lost": "observed old factor lost",
+        "candidate_assessments": {
+          "ref_025_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_025_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_025_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_it_025_p01",
+      "source_type": "policy",
+      "content": {
+        "replacement_factor_policy": "observed replacement factor policy"
+      }
+    },
+    {
+      "trace_id": "cand_it_025_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "New phone enrollment requested; old factor lost; identity proof complete; recovery code status unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "bypass_mfa",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_025_a",
+            "ref_025_b",
+            "ref_025_c"
+          ],
+          "enum_descriptions": {
+            "ref_025_a": "scope conflicts with an active constraint; verification is current",
+            "ref_025_b": "scope matches the authenticated request; required verification is current",
+            "ref_025_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "recovery_code_status=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "verify_recovery_code",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_025_a",
+            "ref_025_b",
+            "ref_025_c"
+          ],
+          "enum_descriptions": {
+            "ref_025_a": "scope conflicts with an active constraint; verification is current",
+            "ref_025_b": "scope matches the authenticated request; required verification is current",
+            "ref_025_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "recovery_code_status=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "enroll_new_factor",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_025_a",
+            "ref_025_b",
+            "ref_025_c"
+          ],
+          "enum_descriptions": {
+            "ref_025_a": "scope conflicts with an active constraint; verification is current",
+            "ref_025_b": "scope matches the authenticated request; required verification is current",
+            "ref_025_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "recovery_code_status=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "remove_old_factor",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_025_a",
+            "ref_025_b",
+            "ref_025_c"
+          ],
+          "enum_descriptions": {
+            "ref_025_a": "scope conflicts with an active constraint; verification is current",
+            "ref_025_b": "scope matches the authenticated request; required verification is current",
+            "ref_025_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "recovery_code_status=known"
+      ],
+      "user_impacting": true
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_it_025"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_025_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_025_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_025_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_recovery_code_status": {
+      "trigger": {
+        "name": "verify_recovery_code",
+        "arguments": {
+          "choice": "ref_025_b"
+        }
+      },
+      "updates": {
+        "recovery_code_status": {
+          "status": "known",
+          "value": "cand_it_025_recovery_code_status_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

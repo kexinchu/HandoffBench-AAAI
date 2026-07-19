@@ -1,0 +1,131 @@
+{
+  "estimates": {
+    "effects": {
+      "critical_errors": {
+        "checks": {
+          "cluster_bootstrap_ci_high": 0.036458333333333336,
+          "cluster_bootstrap_ci_low": -0.057291666666666664,
+          "effect": -0.010416666666666666
+        },
+        "provenance": {
+          "cluster_bootstrap_ci_high": 0.078125,
+          "cluster_bootstrap_ci_low": 0.010416666666666666,
+          "effect": 0.041666666666666664
+        },
+        "provenance:checks": {
+          "cluster_bootstrap_ci_high": 0.03125,
+          "cluster_bootstrap_ci_low": -0.109375,
+          "effect": -0.03125
+        },
+        "typing": {
+          "cluster_bootstrap_ci_high": 0.03125,
+          "cluster_bootstrap_ci_low": -0.140625,
+          "effect": -0.041666666666666664
+        },
+        "typing:checks": {
+          "cluster_bootstrap_ci_high": 0.09375,
+          "cluster_bootstrap_ci_low": 0.015625,
+          "effect": 0.052083333333333336
+        },
+        "typing:provenance": {
+          "cluster_bootstrap_ci_high": 0.03125,
+          "cluster_bootstrap_ci_low": -0.078125,
+          "effect": -0.020833333333333332
+        },
+        "typing:provenance:checks": {
+          "cluster_bootstrap_ci_high": 0.0625,
+          "cluster_bootstrap_ci_low": 0.0,
+          "effect": 0.03125
+        }
+      },
+      "macro_state_f1": {
+        "checks": {
+          "cluster_bootstrap_ci_high": 0.01423611111111111,
+          "cluster_bootstrap_ci_low": -0.007465277777777776,
+          "effect": 0.003385416666666667
+        },
+        "provenance": {
+          "cluster_bootstrap_ci_high": 0.0008680555555555559,
+          "cluster_bootstrap_ci_low": -0.015277777777777777,
+          "effect": -0.00703125
+        },
+        "provenance:checks": {
+          "cluster_bootstrap_ci_high": 0.019791666666666666,
+          "cluster_bootstrap_ci_low": -0.0078125,
+          "effect": 0.005295138888888888
+        },
+        "typing": {
+          "cluster_bootstrap_ci_high": 0.02387152777777778,
+          "cluster_bootstrap_ci_low": -0.006944444444444444,
+          "effect": 0.008159722222222223
+        },
+        "typing:checks": {
+          "cluster_bootstrap_ci_high": -0.00390625,
+          "cluster_bootstrap_ci_low": -0.020225694444444445,
+          "effect": -0.0125
+        },
+        "typing:provenance": {
+          "cluster_bootstrap_ci_high": 0.014583333333333332,
+          "cluster_bootstrap_ci_low": -0.0078125,
+          "effect": 0.0031249999999999993
+        },
+        "typing:provenance:checks": {
+          "cluster_bootstrap_ci_high": 0.001215277777777778,
+          "cluster_bootstrap_ci_low": -0.01657986111111111,
+          "effect": -0.007465277777777777
+        }
+      },
+      "strict_success": {
+        "checks": {
+          "cluster_bootstrap_ci_high": 0.09375,
+          "cluster_bootstrap_ci_low": 0.036458333333333336,
+          "effect": 0.06770833333333333
+        },
+        "provenance": {
+          "cluster_bootstrap_ci_high": 0.026041666666666668,
+          "cluster_bootstrap_ci_low": -0.15625,
+          "effect": -0.06770833333333333
+        },
+        "provenance:checks": {
+          "cluster_bootstrap_ci_high": -0.005208333333333333,
+          "cluster_bootstrap_ci_low": -0.10416666666666667,
+          "effect": -0.046875
+        },
+        "typing": {
+          "cluster_bootstrap_ci_high": 0.046875,
+          "cluster_bootstrap_ci_low": 0.005208333333333333,
+          "effect": 0.026041666666666668
+        },
+        "typing:checks": {
+          "cluster_bootstrap_ci_high": 0.03125,
+          "cluster_bootstrap_ci_low": -0.015625,
+          "effect": 0.005208333333333333
+        },
+        "typing:provenance": {
+          "cluster_bootstrap_ci_high": 0.036458333333333336,
+          "cluster_bootstrap_ci_low": 0.0,
+          "effect": 0.015625
+        },
+        "typing:provenance:checks": {
+          "cluster_bootstrap_ci_high": 0.0,
+          "cluster_bootstrap_ci_low": -0.06770833333333333,
+          "effect": -0.026041666666666668
+        }
+      }
+    },
+    "n_errors": 3,
+    "n_families": 6,
+    "n_ok": 381,
+    "n_runs": 384
+  },
+  "fairness_audit": {
+    "failures": [],
+    "n_blocks": 48,
+    "n_complete_blocks": 48,
+    "pass": true
+  },
+  "input_directories": [
+    "outputs/factorial_cf_v2_qwen14b",
+    "outputs/factorial_cf_v3_ministral3_14b"
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "task_id": "cand_procurement_030",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_030_b",
+    "source_role": "Equipment buyer",
+    "target_role": "service-contract manager",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_030_u01",
+      "source_type": "user",
+      "content": {
+        "select_warranty": "observed select warranty",
+        "maximum_response_time": "observed maximum response time",
+        "downtime_acceptance": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_030_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "coverage_exclusions": "observed coverage exclusions",
+        "sla_options": "observed sla options",
+        "candidate_assessments": {
+          "ref_030_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_030_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_030_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_030_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_procurement_030_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Failure criticality; warranty exclusions; response-time options; business downtime tolerance"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "select_warranty",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_030_a",
+            "ref_030_b",
+            "ref_030_c"
+          ],
+          "enum_descriptions": {
+            "ref_030_a": "scope conflicts with an active constraint; verification is current",
+            "ref_030_b": "scope matches the request; a required verification is still pending",
+            "ref_030_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "downtime_acceptance=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "execute_service_contract",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_030_a",
+            "ref_030_b",
+            "ref_030_c"
+          ],
+          "enum_descriptions": {
+            "ref_030_a": "scope conflicts with an active constraint; verification is current",
+            "ref_030_b": "scope matches the request; a required verification is still pending",
+            "ref_030_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "downtime_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "choose_basic_coverage",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_030_a",
+            "ref_030_b",
+            "ref_030_c"
+          ],
+          "enum_descriptions": {
+            "ref_030_a": "scope conflicts with an active constraint; verification is current",
+            "ref_030_b": "scope matches the request; a required verification is still pending",
+            "ref_030_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "downtime_acceptance=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_downtime_acceptance",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_030_a",
+            "ref_030_b",
+            "ref_030_c"
+          ],
+          "enum_descriptions": {
+            "ref_030_a": "scope conflicts with an active constraint; verification is current",
+            "ref_030_b": "scope matches the request; a required verification is still pending",
+            "ref_030_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "downtime_acceptance=unknown"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_030"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_030_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_030_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_030_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_downtime_acceptance": {
+      "trigger": {
+        "name": "request_downtime_acceptance",
+        "arguments": {
+          "choice": "ref_030_c"
+        }
+      },
+      "updates": {
+        "downtime_acceptance": {
+          "status": "known",
+          "value": "cand_procurement_030_downtime_acceptance_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

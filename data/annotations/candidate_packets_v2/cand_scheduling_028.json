@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_028",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b028",
+    "source_role": "case_intake",
+    "target_role": "mediation_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs028u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule mediation with participant authority",
+        "schedule_window": "window_028"
+      }
+    },
+    {
+      "trace_id": "cs028t",
+      "source_type": "tool",
+      "tool": "schedule_registry_028",
+      "content": {
+        "mediation_slot_id": "med_K3"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs028p",
+      "source_type": "policy",
+      "content": {
+        "participant_acceptance": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "participant_acceptance",
+            "irrelevant_028_a",
+            "irrelevant_028_b"
+          ]
+        }
+      },
+      "requires": [
+        "participant_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "schedule_mediation",
+      "arguments": {
+        "mediation_slot_id": {
+          "type": "string",
+          "enum": [
+            "med_K3",
+            "med_K3_altB",
+            "med_K3_altA"
+          ]
+        }
+      },
+      "requires": [
+        "participant_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_028": {
+      "request": {
+        "task_id": "cand_scheduling_028"
+      },
+      "response": {
+        "mediation_slot_id": "med_K3"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_participant_acceptance": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "participant_acceptance"
+        }
+      },
+      "updates": {
+        "participant_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

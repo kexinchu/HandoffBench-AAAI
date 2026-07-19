@@ -1,0 +1,75 @@
+{
+  "task_id": "cand_scheduling_029",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b029",
+    "source_role": "procedure_intake",
+    "target_role": "resource_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs029u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule administratively cleared pre-op visit",
+        "schedule_window": "window_029"
+      }
+    },
+    {
+      "trace_id": "cs029t",
+      "source_type": "tool",
+      "tool": "schedule_registry_029",
+      "content": {
+        "preop_slot_id": "preop_P6"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs029p",
+      "source_type": "policy",
+      "content": {
+        "resource_clearance": true
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "schedule_preop_visit",
+      "arguments": {
+        "preop_slot_id": {
+          "type": "string",
+          "enum": [
+            "preop_P6_altB",
+            "preop_P6_altA",
+            "preop_P6"
+          ]
+        }
+      },
+      "requires": [
+        "resource_clearance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_029": {
+      "request": {
+        "task_id": "cand_scheduling_029"
+      },
+      "response": {
+        "preop_slot_id": "preop_P6"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

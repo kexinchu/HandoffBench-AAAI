@@ -1,0 +1,188 @@
+{
+  "task_id": "cand_procurement_003",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_003_b",
+    "source_role": "Department requester",
+    "target_role": "purchasing analyst",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_003_u01",
+      "source_type": "user",
+      "content": {
+        "purchase_equipment": "Complete objective: purchase equipment",
+        "project_cap": 875
+      }
+    },
+    {
+      "trace_id": "cand_procurement_003_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "aggregate_total": 875,
+        "candidate_assessments": {
+          "ref_003_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_003_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_003_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_003_p01",
+      "source_type": "policy",
+      "content": {
+        "split_prohibited": "observed split prohibited"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_003_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Two carts for same project; aggregate total tool; anti-splitting policy; project cap verified"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "delete_cart",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_003_a",
+            "ref_003_b",
+            "ref_003_c"
+          ],
+          "enum_descriptions": {
+            "ref_003_a": "scope conflicts with an active constraint; verification is current",
+            "ref_003_b": "scope matches the request; a required verification is still pending",
+            "ref_003_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "purchase_equipment=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "merge_requisitions",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_003_a",
+            "ref_003_b",
+            "ref_003_c"
+          ],
+          "enum_descriptions": {
+            "ref_003_a": "scope conflicts with an active constraint; verification is current",
+            "ref_003_b": "scope matches the request; a required verification is still pending",
+            "ref_003_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "purchase_equipment=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "submit_cart",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_003_a",
+            "ref_003_b",
+            "ref_003_c"
+          ],
+          "enum_descriptions": {
+            "ref_003_a": "scope conflicts with an active constraint; verification is current",
+            "ref_003_b": "scope matches the request; a required verification is still pending",
+            "ref_003_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "purchase_equipment=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "request_budget_review",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_003_a",
+            "ref_003_b",
+            "ref_003_c"
+          ],
+          "enum_descriptions": {
+            "ref_003_a": "scope conflicts with an active constraint; verification is current",
+            "ref_003_b": "scope matches the request; a required verification is still pending",
+            "ref_003_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "purchase_equipment=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_003"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_003_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_003_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_003_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

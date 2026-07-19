@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HandoffBench Confirmatory Cost Accounting",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["experiment_id", "pricing_snapshot", "scheduled", "observed", "currency"],
+  "properties": {
+    "experiment_id": {"const": "confirmatory_v2"},
+    "currency": {"type": "string", "minLength": 3},
+    "pricing_snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["captured_at", "source", "models"],
+      "properties": {
+        "captured_at": {"type": "string", "format": "date-time"},
+        "source": {"type": "string"},
+        "models": {"type": "object", "additionalProperties": {
+          "type": "object", "additionalProperties": false,
+          "required": ["input_per_million", "output_per_million"],
+          "properties": {"input_per_million": {"type": "number", "minimum": 0},
+                         "output_per_million": {"type": "number", "minimum": 0}}
+        }}
+      }
+    },
+    "scheduled": {
+      "type": "object", "additionalProperties": false,
+      "required": ["families", "blocks", "receiver_runs", "source_generations",
+                   "minimum_calls", "maximum_calls"],
+      "properties": {
+        "families": {"const": 200}, "blocks": {"const": 800},
+        "receiver_runs": {"const": 8800}, "source_generations": {"const": 800},
+        "minimum_calls": {"const": 9600}, "maximum_calls": {"const": 34000}
+      }
+    },
+    "observed": {
+      "type": "object", "additionalProperties": false,
+      "required": ["calls", "input_tokens", "output_tokens", "provider_failures",
+                   "parse_failures", "estimated_cost"],
+      "properties": {
+        "calls": {"type": "integer", "minimum": 0},
+        "input_tokens": {"type": "integer", "minimum": 0},
+        "output_tokens": {"type": "integer", "minimum": 0},
+        "provider_failures": {"type": "integer", "minimum": 0},
+        "parse_failures": {"type": "integer", "minimum": 0},
+        "estimated_cost": {"type": "number", "minimum": 0}
+      }
+    }
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "task_id": "cand_commerce_030",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_030_b",
+    "source_role": "grocery intake",
+    "target_role": "pickup fulfillment",
+    "trace_cut": 5,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_030_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to complete curbside order using only a policy-compliant option.",
+        "unit_price_cap": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "over_cap_substitution_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_030_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_030_c",
+        "candidate_targets": [
+          "opt_030_a",
+          "opt_030_b",
+          "opt_030_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_030_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_030_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_030_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "One item unavailable; substitute satisfies brand but exceeds user unit-price cap. Removal is allowed without consent; substitution is not.",
+        "substitute_price": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "removal_allowed": true
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_030_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "offer substitute/removal; substitute; remove item; cancel order"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_030_d1",
+      "source_type": "environment",
+      "content": {
+        "unrelated_case_note": "authenticated non-causal context"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_030_d2",
+      "source_type": "environment",
+      "content": {
+        "unrelated_preference": "not applicable to public actions"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "over_cap_substitution_consent",
+            "unrelated_030_x",
+            "unrelated_030_y"
+          ]
+        }
+      },
+      "requires": [
+        "over_cap_substitution_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_030_a",
+            "opt_030_b",
+            "opt_030_c"
+          ]
+        }
+      },
+      "requires": [
+        "over_cap_substitution_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_030"
+      },
+      "response": {
+        "eligible_action_target": "opt_030_c",
+        "candidate_targets": [
+          "opt_030_a",
+          "opt_030_b",
+          "opt_030_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_030_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_030_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_030_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "One item unavailable; substitute satisfies brand but exceeds user unit-price cap. Removal is allowed without consent; substitution is not.",
+        "substitute_price": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "removal_allowed": true
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_over_cap_substitution_consent": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "over_cap_substitution_consent"
+        }
+      },
+      "updates": {
+        "over_cap_substitution_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

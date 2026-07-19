@@ -1,0 +1,161 @@
+{
+  "task_id": "cand_travel_036",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_036_b",
+    "source_role": "special-item intake",
+    "target_role": "dangerous-goods desk",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_036_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to carry medical device using only a policy-compliant option."
+      }
+    },
+    {
+      "trace_id": "cand_travel_036_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_036_c",
+        "candidate_targets": [
+          "opt_036_a",
+          "opt_036_b",
+          "opt_036_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_036_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_036_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_036_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Device watt-hours and battery removability are verified; published threshold allows cabin carriage but carrier clearance is pending.",
+        "battery_wh": "verified battery wh status",
+        "removable": "verified removable status",
+        "threshold_eligible": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_036_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "request clearance; add cabin item; check as baggage; infer medical exemption",
+        "carrier_clearance": null
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "request_authority_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "carrier_clearance",
+            "unrelated_036_x",
+            "unrelated_036_y"
+          ]
+        }
+      },
+      "requires": [
+        "carrier_clearance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_036_a",
+            "opt_036_b",
+            "opt_036_c"
+          ]
+        }
+      },
+      "requires": [
+        "carrier_clearance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_036"
+      },
+      "response": {
+        "eligible_action_target": "opt_036_c",
+        "candidate_targets": [
+          "opt_036_a",
+          "opt_036_b",
+          "opt_036_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_036_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_036_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_036_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Device watt-hours and battery removability are verified; published threshold allows cabin carriage but carrier clearance is pending.",
+        "battery_wh": "verified battery wh status",
+        "removable": "verified removable status",
+        "threshold_eligible": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_carrier_clearance": {
+      "trigger": {
+        "name": "request_authority_1",
+        "arguments": {
+          "key": "carrier_clearance"
+        }
+      },
+      "updates": {
+        "carrier_clearance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

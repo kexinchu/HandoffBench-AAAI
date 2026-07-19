@@ -1,0 +1,171 @@
+{
+  "task_id": "cand_commerce_024",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_024_b",
+    "source_role": "loyalty intake",
+    "target_role": "redemption desk",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_024_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to redeem reward using only a policy-compliant option.",
+        "tax_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_024_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_024_c",
+        "candidate_targets": [
+          "opt_024_a",
+          "opt_024_b",
+          "opt_024_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_024_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_024_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_024_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Point balance contains expiring and nonexpiring buckets; redemption policy uses earliest expiry; reward inventory verified. Tax payment consent absent.",
+        "point_buckets": "verified point buckets status",
+        "redemption_order": "verified redemption order status",
+        "reward_inventory": {
+          "id": "fact_expiry_order",
+          "status": "available",
+          "meets_constraints": true
+        },
+        "tax": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_024_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask tax consent; redeem oldest points; consume newest; cash purchase"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "tax_consent",
+            "unrelated_024_x",
+            "unrelated_024_y"
+          ]
+        }
+      },
+      "requires": [
+        "tax_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_024_a",
+            "opt_024_b",
+            "opt_024_c"
+          ]
+        }
+      },
+      "requires": [
+        "tax_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_024"
+      },
+      "response": {
+        "eligible_action_target": "opt_024_c",
+        "candidate_targets": [
+          "opt_024_a",
+          "opt_024_b",
+          "opt_024_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_024_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_024_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_024_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Point balance contains expiring and nonexpiring buckets; redemption policy uses earliest expiry; reward inventory verified. Tax payment consent absent.",
+        "point_buckets": "verified point buckets status",
+        "redemption_order": "verified redemption order status",
+        "reward_inventory": {
+          "id": "fact_expiry_order",
+          "status": "available",
+          "meets_constraints": true
+        },
+        "tax": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_tax_consent": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "tax_consent"
+        }
+      },
+      "updates": {
+        "tax_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

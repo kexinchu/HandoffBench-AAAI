@@ -1,0 +1,154 @@
+{
+  "task_id": "cand_commerce_013",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_013_b",
+    "source_role": "order intake",
+    "target_role": "logistics control",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_013_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to deliver new address using only a policy-compliant option.",
+        "current_address": "14 Pine Road, Cambridge, MA 02139",
+        "redirect_confirmation": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_013_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_013_a",
+        "candidate_targets": [
+          "opt_013_a",
+          "opt_013_b",
+          "opt_013_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_013_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_013_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_013_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "User supersedes address; warehouse status says packed but not handed to carrier; redirect policy permits pre-handoff edit.",
+        "fulfillment_stage": 3,
+        "redirect_eligible": true
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_013_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "confirm; edit label; carrier redirect; cancel order"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "redirect_confirmation",
+            "unrelated_013_x",
+            "unrelated_013_y"
+          ]
+        }
+      },
+      "requires": [
+        "redirect_confirmation=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_013_a",
+            "opt_013_b",
+            "opt_013_c"
+          ]
+        }
+      },
+      "requires": [
+        "redirect_confirmation=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_013"
+      },
+      "response": {
+        "eligible_action_target": "opt_013_a",
+        "candidate_targets": [
+          "opt_013_a",
+          "opt_013_b",
+          "opt_013_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_013_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_013_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_013_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "User supersedes address; warehouse status says packed but not handed to carrier; redirect policy permits pre-handoff edit.",
+        "fulfillment_stage": 3,
+        "redirect_eligible": true
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_redirect_confirmation": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "redirect_confirmation"
+        }
+      },
+      "updates": {
+        "redirect_confirmation": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

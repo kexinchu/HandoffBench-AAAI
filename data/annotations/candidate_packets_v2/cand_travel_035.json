@@ -1,0 +1,172 @@
+{
+  "task_id": "cand_travel_035",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_035_b",
+    "source_role": "travel money intake",
+    "target_role": "branch fulfillment",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_035_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to reserve travel cash using only a policy-compliant option.",
+        "amount": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "currency": "user specified currency"
+      }
+    },
+    {
+      "trace_id": "cand_travel_035_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_035_b",
+        "candidate_targets": [
+          "opt_035_a",
+          "opt_035_b",
+          "opt_035_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_035_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_035_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_035_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "FX quote and pickup cash inventory are verified; recipient differs from purchaser and policy requires recipient ID preverification.",
+        "fx_quote": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "cash_inventory": {
+          "id": "fact_kup_identity",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_035_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "verify recipient; reserve cash; substitute purchaser; charge card",
+        "recipient_identity_verified": null
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "request_authority_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "recipient_identity_verified",
+            "unrelated_035_x",
+            "unrelated_035_y"
+          ]
+        }
+      },
+      "requires": [
+        "recipient_identity_verified=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_035_a",
+            "opt_035_b",
+            "opt_035_c"
+          ]
+        }
+      },
+      "requires": [
+        "recipient_identity_verified=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_035"
+      },
+      "response": {
+        "eligible_action_target": "opt_035_b",
+        "candidate_targets": [
+          "opt_035_a",
+          "opt_035_b",
+          "opt_035_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_035_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_035_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_035_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "FX quote and pickup cash inventory are verified; recipient differs from purchaser and policy requires recipient ID preverification.",
+        "fx_quote": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "cash_inventory": {
+          "id": "fact_kup_identity",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_recipient_identity_verified": {
+      "trigger": {
+        "name": "request_authority_1",
+        "arguments": {
+          "key": "recipient_identity_verified"
+        }
+      },
+      "updates": {
+        "recipient_identity_verified": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

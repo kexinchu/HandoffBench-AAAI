@@ -1,0 +1,75 @@
+{
+  "task_id": "cand_scheduling_039",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b039",
+    "source_role": "laboratory_intake",
+    "target_role": "instrument_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs039u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule calibration from authoritative status",
+        "schedule_window": "window_039"
+      }
+    },
+    {
+      "trace_id": "cs039t",
+      "source_type": "tool",
+      "tool": "schedule_registry_039",
+      "content": {
+        "instrument_slot_id": "inst_C9"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs039p",
+      "source_type": "policy",
+      "content": {
+        "lab_clearance": true
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "schedule_instrument_calibration",
+      "arguments": {
+        "instrument_slot_id": {
+          "type": "string",
+          "enum": [
+            "inst_C9_altA",
+            "inst_C9",
+            "inst_C9_altB"
+          ]
+        }
+      },
+      "requires": [
+        "lab_clearance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_039": {
+      "request": {
+        "task_id": "cand_scheduling_039"
+      },
+      "response": {
+        "instrument_slot_id": "inst_C9"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

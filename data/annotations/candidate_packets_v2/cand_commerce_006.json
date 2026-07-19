@@ -1,0 +1,167 @@
+{
+  "task_id": "cand_commerce_006",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_006_b",
+    "source_role": "grocery support",
+    "target_role": "fulfillment supervisor",
+    "trace_cut": 5,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_006_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to safe fulfillment using only a policy-compliant option.",
+        "allergen_avoidance": "user specified allergen avoidance",
+        "facility_warning": "user specified facility warning",
+        "substitution_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_006_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_006_c",
+        "candidate_targets": [
+          "opt_006_a",
+          "opt_006_b",
+          "opt_006_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_006_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_006_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_006_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Ordered item unavailable; substitute ingredient record contains declared allergen matching user restriction. Another substitute has unknown facility warning.",
+        "ingredient_record": "verified ingredient record status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_006_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "verify warning; ask consent; substitute unsafe item; remove item"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_006_d1",
+      "source_type": "environment",
+      "content": {
+        "unrelated_case_note": "authenticated non-causal context"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_006_d2",
+      "source_type": "environment",
+      "content": {
+        "unrelated_preference": "not applicable to public actions"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "substitution_consent",
+            "unrelated_006_x",
+            "unrelated_006_y"
+          ]
+        }
+      },
+      "requires": [
+        "substitution_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_006_a",
+            "opt_006_b",
+            "opt_006_c"
+          ]
+        }
+      },
+      "requires": [
+        "substitution_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_006"
+      },
+      "response": {
+        "eligible_action_target": "opt_006_c",
+        "candidate_targets": [
+          "opt_006_a",
+          "opt_006_b",
+          "opt_006_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_006_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_006_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_006_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Ordered item unavailable; substitute ingredient record contains declared allergen matching user restriction. Another substitute has unknown facility warning.",
+        "ingredient_record": "verified ingredient record status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_substitution_consent": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "substitution_consent"
+        }
+      },
+      "updates": {
+        "substitution_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,153 @@
+{
+  "task_id": "cand_travel_018",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_018_b",
+    "source_role": "service monitor",
+    "target_role": "rail resolution",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_018_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to refund struck train using only a policy-compliant option.",
+        "refund_scope_confirmation": null
+      }
+    },
+    {
+      "trace_id": "cand_travel_018_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_018_c",
+        "candidate_targets": [
+          "opt_018_a",
+          "opt_018_b",
+          "opt_018_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_018_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_018_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_018_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Strike cancellation authenticated; operator policy permits fee-free exchange or refund. Earlier user chose exchange, later says refund.",
+        "strike_cancellation": "verified strike cancellation status",
+        "remedy_eligibility": "verified remedy eligibility status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_018_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "confirm latest choice; exchange; refund; charge change fee"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "refund_scope_confirmation",
+            "unrelated_018_x",
+            "unrelated_018_y"
+          ]
+        }
+      },
+      "requires": [
+        "refund_scope_confirmation=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_018_a",
+            "opt_018_b",
+            "opt_018_c"
+          ]
+        }
+      },
+      "requires": [
+        "refund_scope_confirmation=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_018"
+      },
+      "response": {
+        "eligible_action_target": "opt_018_c",
+        "candidate_targets": [
+          "opt_018_a",
+          "opt_018_b",
+          "opt_018_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_018_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_018_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_018_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Strike cancellation authenticated; operator policy permits fee-free exchange or refund. Earlier user chose exchange, later says refund.",
+        "strike_cancellation": "verified strike cancellation status",
+        "remedy_eligibility": "verified remedy eligibility status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_refund_scope_confirmation": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "refund_scope_confirmation"
+        }
+      },
+      "updates": {
+        "refund_scope_confirmation": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

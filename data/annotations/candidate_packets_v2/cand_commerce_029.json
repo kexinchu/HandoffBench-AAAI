@@ -1,0 +1,192 @@
+{
+  "task_id": "cand_commerce_029",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_029_b",
+    "source_role": "accounts intake",
+    "target_role": "enterprise billing",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_029_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to release invoice using only a policy-compliant option.",
+        "po_revision": "contradicted"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_029_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_029_b",
+        "candidate_targets": [
+          "opt_029_a",
+          "opt_029_b",
+          "opt_029_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_029_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_029_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_029_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Invoice amount and purchase order cap are verified; invoice references superseded PO revision with a lower cap.",
+        "invoice_amount": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "current_po_cap": "verified current po cap status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_029_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "reconcile PO; request approval; release invoice; split invoice",
+        "over_cap_approval": null
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "clarify_slot_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "po_revision",
+            "unrelated_029_x",
+            "unrelated_029_y"
+          ]
+        }
+      },
+      "requires": [
+        "po_revision=contradicted"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_authority_2",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "over_cap_approval",
+            "unrelated_029_x",
+            "unrelated_029_y"
+          ]
+        }
+      },
+      "requires": [
+        "over_cap_approval=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_029_a",
+            "opt_029_b",
+            "opt_029_c"
+          ]
+        }
+      },
+      "requires": [
+        "po_revision=known",
+        "over_cap_approval=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_029"
+      },
+      "response": {
+        "eligible_action_target": "opt_029_b",
+        "candidate_targets": [
+          "opt_029_a",
+          "opt_029_b",
+          "opt_029_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_029_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_029_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_029_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Invoice amount and purchase order cap are verified; invoice references superseded PO revision with a lower cap.",
+        "invoice_amount": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "current_po_cap": "verified current po cap status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_po_revision": {
+      "trigger": {
+        "name": "clarify_slot_1",
+        "arguments": {
+          "key": "po_revision"
+        }
+      },
+      "updates": {
+        "po_revision": {
+          "status": "known",
+          "value": "resolved:po_revision"
+        }
+      }
+    },
+    "reply_over_cap_approval": {
+      "trigger": {
+        "name": "request_authority_2",
+        "arguments": {
+          "key": "over_cap_approval"
+        }
+      },
+      "updates": {
+        "over_cap_approval": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

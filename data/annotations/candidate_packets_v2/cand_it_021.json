@@ -1,0 +1,202 @@
+{
+  "task_id": "cand_it_021",
+  "domain": "it",
+  "boundary": {
+    "boundary_id": "cand_it_021_b",
+    "source_role": "Asset manager",
+    "target_role": "SaaS administrator",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_it_021_u01",
+      "source_type": "user",
+      "content": {
+        "reclaim_license": "observed reclaim license",
+        "new_owner": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_it_021_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "user_inactive": true,
+        "automation_dependency": "observed automation dependency",
+        "candidate_assessments": {
+          "ref_021_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_021_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_021_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_it_021_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_it_021_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "User inactive; license expensive; automation owned by user; transfer owner unresolved"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "revoke_license",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_021_a",
+            "ref_021_b",
+            "ref_021_c"
+          ],
+          "enum_descriptions": {
+            "ref_021_a": "scope matches the authenticated request; required verification is current",
+            "ref_021_b": "scope conflicts with an active constraint; verification is current",
+            "ref_021_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "new_owner=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "delete_automation",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_021_a",
+            "ref_021_b",
+            "ref_021_c"
+          ],
+          "enum_descriptions": {
+            "ref_021_a": "scope matches the authenticated request; required verification is current",
+            "ref_021_b": "scope conflicts with an active constraint; verification is current",
+            "ref_021_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "new_owner=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_new_owner",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_021_a",
+            "ref_021_b",
+            "ref_021_c"
+          ],
+          "enum_descriptions": {
+            "ref_021_a": "scope matches the authenticated request; required verification is current",
+            "ref_021_b": "scope conflicts with an active constraint; verification is current",
+            "ref_021_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "new_owner=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "transfer_automation",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_021_a",
+            "ref_021_b",
+            "ref_021_c"
+          ],
+          "enum_descriptions": {
+            "ref_021_a": "scope matches the authenticated request; required verification is current",
+            "ref_021_b": "scope conflicts with an active constraint; verification is current",
+            "ref_021_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "new_owner=unknown"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_it_021"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_021_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_021_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_021_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_new_owner": {
+      "trigger": {
+        "name": "transfer_automation",
+        "arguments": {
+          "choice": "ref_021_a"
+        }
+      },
+      "updates": {
+        "new_owner": {
+          "status": "known",
+          "value": "cand_it_021_new_owner_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_011",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b011",
+    "source_role": "mobility_intake",
+    "target_role": "joint_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs011u",
+      "source_type": "user",
+      "content": {
+        "goal": "reserve synchronized accessible pickup",
+        "schedule_window": "window_011"
+      }
+    },
+    {
+      "trace_id": "cs011t",
+      "source_type": "tool",
+      "tool": "schedule_registry_011",
+      "content": {
+        "pickup_id": "ride_M6"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs011p",
+      "source_type": "policy",
+      "content": {
+        "pickup_contact": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "pickup_contact",
+            "irrelevant_011_a",
+            "irrelevant_011_b"
+          ]
+        }
+      },
+      "requires": [
+        "pickup_contact=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "reserve_pickup",
+      "arguments": {
+        "pickup_id": {
+          "type": "string",
+          "enum": [
+            "ride_M6_altB",
+            "ride_M6_altA",
+            "ride_M6"
+          ]
+        }
+      },
+      "requires": [
+        "pickup_contact=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_011": {
+      "request": {
+        "task_id": "cand_scheduling_011"
+      },
+      "response": {
+        "pickup_id": "ride_M6"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_pickup_contact": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "pickup_contact"
+        }
+      },
+      "updates": {
+        "pickup_contact": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

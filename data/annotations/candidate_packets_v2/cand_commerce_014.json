@@ -1,0 +1,169 @@
+{
+  "task_id": "cand_commerce_014",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_014_b",
+    "source_role": "support intake",
+    "target_role": "carrier liaison",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_014_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to redirect shipment using only a policy-compliant option.",
+        "intercept_fee_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_014_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_014_b",
+        "candidate_targets": [
+          "opt_014_a",
+          "opt_014_b",
+          "opt_014_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_014_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_014_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_014_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Carrier possession verified; seller edit is no longer allowed, paid intercept is available. User has not accepted intercept fee.",
+        "carrier_handoff": "verified carrier handoff status",
+        "intercept_option": {
+          "id": "fact_rier_handoff",
+          "status": "available",
+          "meets_constraints": true
+        },
+        "fee": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_014_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask fee consent; edit seller label; request intercept; refund"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "intercept_fee_consent",
+            "unrelated_014_x",
+            "unrelated_014_y"
+          ]
+        }
+      },
+      "requires": [
+        "intercept_fee_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_014_a",
+            "opt_014_b",
+            "opt_014_c"
+          ]
+        }
+      },
+      "requires": [
+        "intercept_fee_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_014"
+      },
+      "response": {
+        "eligible_action_target": "opt_014_b",
+        "candidate_targets": [
+          "opt_014_a",
+          "opt_014_b",
+          "opt_014_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_014_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_014_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_014_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Carrier possession verified; seller edit is no longer allowed, paid intercept is available. User has not accepted intercept fee.",
+        "carrier_handoff": "verified carrier handoff status",
+        "intercept_option": {
+          "id": "fact_rier_handoff",
+          "status": "available",
+          "meets_constraints": true
+        },
+        "fee": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_intercept_fee_consent": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "intercept_fee_consent"
+        }
+      },
+      "updates": {
+        "intercept_fee_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

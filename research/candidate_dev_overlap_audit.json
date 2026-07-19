@@ -1,0 +1,1129 @@
+{
+  "scope": {
+    "candidate_tasks": 200,
+    "development_tasks": 54,
+    "candidate_files": [
+      "/home/kec23008/HandoffBench-AAAI/data/tasks/candidate/procurement_it.json",
+      "/home/kec23008/HandoffBench-AAAI/data/tasks/candidate/scheduling.json",
+      "/home/kec23008/HandoffBench-AAAI/data/tasks/candidate/travel_commerce.json"
+    ],
+    "development_files": [
+      "/home/kec23008/HandoffBench-AAAI/data/tasks/dev/counterfactual_travel.json",
+      "/home/kec23008/HandoffBench-AAAI/data/tasks/dev/pilot.json"
+    ]
+  },
+  "method": {
+    "lexical_metric": "Jaccard over normalized trace-content token bigrams",
+    "lexical_threshold": 0.8,
+    "normalization": "lowercase; replace dates, numeric/opaque-ID-like tokens; remove trace/task/boundary IDs",
+    "limitations": [
+      "lexical similarity does not establish semantic or automaton equivalence",
+      "normalization can over-collapse common schema vocabulary",
+      "different wording can hide equivalent workflow logic"
+    ]
+  },
+  "collisions": {
+    "family_id": [],
+    "entity_pool": [],
+    "generator_seed": [],
+    "exact_trace_hash": [],
+    "normalized_trace_hash": [],
+    "exact_action_graph_hash": [],
+    "normalized_action_graph_hash": [
+      {
+        "candidate": "cand_scheduling_001",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_002",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_003",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_004",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_005",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_008",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_010",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_011",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_013",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_014",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_015",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_016",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_017",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_022",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_023",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_025",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_026",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_028",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_031",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_032",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_034",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_037",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_038",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_scheduling_040",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_001",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_004",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_005",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_006",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_007",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_008",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_010",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_014",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_016",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_018",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_020",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_021",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_023",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_027",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_029",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_030",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_033",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_035",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_036",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_038",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_travel_039",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_001",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_002",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_003",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_006",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_009",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_011",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_012",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_013",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_014",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_016",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_017",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_018",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_020",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_021",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_023",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_024",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_025",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_027",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_028",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_030",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_031",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_035",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_036",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      },
+      {
+        "candidate": "cand_commerce_039",
+        "development": [
+          "dev_travel_01",
+          "dev_travel_02",
+          "dev_travel_03",
+          "dev_travel_04",
+          "dev_travel_06",
+          "dev_commerce_08",
+          "dev_procurement_15",
+          "dev_procurement_18"
+        ],
+        "value": "e3c4abd6687e21fec61b8e0703fa389ca327c87919fbd68bbb213e19871ef266"
+      }
+    ]
+  },
+  "lexical_near_duplicates": [],
+  "top_lexical_pairs": [
+    {
+      "candidate": "cand_scheduling_004",
+      "development": "dev_scheduling_26",
+      "jaccard": 0.16666666666666666
+    },
+    {
+      "candidate": "cand_scheduling_004",
+      "development": "dev_scheduling_28",
+      "jaccard": 0.05
+    },
+    {
+      "candidate": "cand_scheduling_005",
+      "development": "cf_travel_03_denied",
+      "jaccard": 0.05
+    },
+    {
+      "candidate": "cand_scheduling_005",
+      "development": "cf_travel_03_granted",
+      "jaccard": 0.05
+    },
+    {
+      "candidate": "cand_scheduling_005",
+      "development": "cf_travel_03_unknown",
+      "jaccard": 0.05
+    },
+    {
+      "candidate": "cand_scheduling_005",
+      "development": "dev_travel_03",
+      "jaccard": 0.05
+    },
+    {
+      "candidate": "cand_scheduling_006",
+      "development": "dev_scheduling_26",
+      "jaccard": 0.05
+    },
+    {
+      "candidate": "cand_scheduling_006",
+      "development": "dev_scheduling_28",
+      "jaccard": 0.05
+    },
+    {
+      "candidate": "cand_scheduling_007",
+      "development": "dev_scheduling_26",
+      "jaccard": 0.047619047619047616
+    },
+    {
+      "candidate": "cand_scheduling_007",
+      "development": "dev_scheduling_28",
+      "jaccard": 0.047619047619047616
+    },
+    {
+      "candidate": "cand_scheduling_009",
+      "development": "dev_scheduling_26",
+      "jaccard": 0.047619047619047616
+    },
+    {
+      "candidate": "cand_scheduling_009",
+      "development": "dev_scheduling_28",
+      "jaccard": 0.047619047619047616
+    },
+    {
+      "candidate": "cand_scheduling_010",
+      "development": "dev_commerce_10",
+      "jaccard": 0.047619047619047616
+    },
+    {
+      "candidate": "cand_scheduling_012",
+      "development": "dev_scheduling_26",
+      "jaccard": 0.047619047619047616
+    },
+    {
+      "candidate": "cand_scheduling_012",
+      "development": "dev_scheduling_28",
+      "jaccard": 0.047619047619047616
+    },
+    {
+      "candidate": "cand_scheduling_016",
+      "development": "dev_scheduling_26",
+      "jaccard": 0.047619047619047616
+    },
+    {
+      "candidate": "cand_scheduling_016",
+      "development": "dev_scheduling_28",
+      "jaccard": 0.047619047619047616
+    },
+    {
+      "candidate": "cand_scheduling_017",
+      "development": "dev_scheduling_26",
+      "jaccard": 0.047619047619047616
+    },
+    {
+      "candidate": "cand_scheduling_017",
+      "development": "dev_scheduling_28",
+      "jaccard": 0.047619047619047616
+    },
+    {
+      "candidate": "cand_scheduling_019",
+      "development": "dev_scheduling_26",
+      "jaccard": 0.047619047619047616
+    },
+    {
+      "candidate": "cand_scheduling_019",
+      "development": "dev_scheduling_28",
+      "jaccard": 0.047619047619047616
+    },
+    {
+      "candidate": "cand_scheduling_023",
+      "development": "dev_scheduling_26",
+      "jaccard": 0.047619047619047616
+    },
+    {
+      "candidate": "cand_scheduling_023",
+      "development": "dev_scheduling_28",
+      "jaccard": 0.047619047619047616
+    },
+    {
+      "candidate": "cand_scheduling_024",
+      "development": "dev_scheduling_26",
+      "jaccard": 0.047619047619047616
+    },
+    {
+      "candidate": "cand_scheduling_024",
+      "development": "dev_scheduling_28",
+      "jaccard": 0.047619047619047616
+    }
+  ]
+}

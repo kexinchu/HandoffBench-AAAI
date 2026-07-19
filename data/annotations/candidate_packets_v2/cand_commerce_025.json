@@ -1,0 +1,161 @@
+{
+  "task_id": "cand_commerce_025",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_025_b",
+    "source_role": "returns intake",
+    "target_role": "bundle resolution",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_025_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to return bundle component using only a policy-compliant option.",
+        "net_refund_acceptance": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_025_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_025_a",
+        "candidate_targets": [
+          "opt_025_a",
+          "opt_025_b",
+          "opt_025_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_025_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_025_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_025_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Three-item bundle discount and returned component are verified; policy requires prorated refund and retention charge for remaining components.",
+        "bundle_price": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "prorated_refund": "verified prorated refund status",
+        "retention_charge": "verified retention charge status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_025_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "disclose net; accept component; refund list price; return whole bundle"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "net_refund_acceptance",
+            "unrelated_025_x",
+            "unrelated_025_y"
+          ]
+        }
+      },
+      "requires": [
+        "net_refund_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_025_a",
+            "opt_025_b",
+            "opt_025_c"
+          ]
+        }
+      },
+      "requires": [
+        "net_refund_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_025"
+      },
+      "response": {
+        "eligible_action_target": "opt_025_a",
+        "candidate_targets": [
+          "opt_025_a",
+          "opt_025_b",
+          "opt_025_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_025_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_025_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_025_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Three-item bundle discount and returned component are verified; policy requires prorated refund and retention charge for remaining components.",
+        "bundle_price": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "prorated_refund": "verified prorated refund status",
+        "retention_charge": "verified retention charge status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_net_refund_acceptance": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "net_refund_acceptance"
+        }
+      },
+      "updates": {
+        "net_refund_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

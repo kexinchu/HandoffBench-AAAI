@@ -1,0 +1,75 @@
+{
+  "task_id": "cand_scheduling_018",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b018",
+    "source_role": "case_calendar_intake",
+    "target_role": "hearing_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs018u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule hearing with certified interpreter",
+        "schedule_window": "window_018"
+      }
+    },
+    {
+      "trace_id": "cs018t",
+      "source_type": "tool",
+      "tool": "schedule_registry_018",
+      "content": {
+        "hearing_window_id": "hearing_H11"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs018p",
+      "source_type": "policy",
+      "content": {
+        "clerk_clearance": true
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "schedule_hearing",
+      "arguments": {
+        "hearing_window_id": {
+          "type": "string",
+          "enum": [
+            "hearing_H11_altA",
+            "hearing_H11",
+            "hearing_H11_altB"
+          ]
+        }
+      },
+      "requires": [
+        "clerk_clearance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_018": {
+      "request": {
+        "task_id": "cand_scheduling_018"
+      },
+      "response": {
+        "hearing_window_id": "hearing_H11"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

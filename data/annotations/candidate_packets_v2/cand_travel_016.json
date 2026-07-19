@@ -1,0 +1,180 @@
+{
+  "task_id": "cand_travel_016",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_016_b",
+    "source_role": "hotel incident intake",
+    "target_role": "relocation desk",
+    "trace_cut": 5,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_016_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to secure lodging using only a policy-compliant option.",
+        "minimum_room_class": {
+          "id": "fact__walk_remedy",
+          "status": "available",
+          "meets_constraints": true
+        },
+        "relocation_acceptance": null
+      }
+    },
+    {
+      "trace_id": "cand_travel_016_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_016_a",
+        "candidate_targets": [
+          "opt_016_a",
+          "opt_016_b",
+          "opt_016_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_016_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_016_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_016_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Confirmed booking, overbooking notice, and walk policy verified; relocation options include transport. User has not accepted property change.",
+        "walk_eligibility": "verified walk eligibility status",
+        "relocation_option": {
+          "id": "fact__walk_remedy",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_016_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask acceptance; relocate; cancel without remedy; demand payment"
+      }
+    },
+    {
+      "trace_id": "cand_travel_016_d1",
+      "source_type": "environment",
+      "content": {
+        "unrelated_case_note": "authenticated non-causal context"
+      }
+    },
+    {
+      "trace_id": "cand_travel_016_d2",
+      "source_type": "environment",
+      "content": {
+        "unrelated_preference": "not applicable to public actions"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "relocation_acceptance",
+            "unrelated_016_x",
+            "unrelated_016_y"
+          ]
+        }
+      },
+      "requires": [
+        "relocation_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_016_a",
+            "opt_016_b",
+            "opt_016_c"
+          ]
+        }
+      },
+      "requires": [
+        "relocation_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_016"
+      },
+      "response": {
+        "eligible_action_target": "opt_016_a",
+        "candidate_targets": [
+          "opt_016_a",
+          "opt_016_b",
+          "opt_016_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_016_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_016_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_016_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Confirmed booking, overbooking notice, and walk policy verified; relocation options include transport. User has not accepted property change.",
+        "walk_eligibility": "verified walk eligibility status",
+        "relocation_option": {
+          "id": "fact__walk_remedy",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_relocation_acceptance": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "relocation_acceptance"
+        }
+      },
+      "updates": {
+        "relocation_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

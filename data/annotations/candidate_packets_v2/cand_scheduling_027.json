@@ -1,0 +1,75 @@
+{
+  "task_id": "cand_scheduling_027",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b027",
+    "source_role": "group_visit_intake",
+    "target_role": "tour_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs027u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule capacity-valid museum tour",
+        "schedule_window": "window_027"
+      }
+    },
+    {
+      "trace_id": "cs027t",
+      "source_type": "tool",
+      "tool": "schedule_registry_027",
+      "content": {
+        "tour_slot_id": "tour_M4"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs027p",
+      "source_type": "policy",
+      "content": {
+        "capacity_clearance": true
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "reserve_group_tour",
+      "arguments": {
+        "tour_slot_id": {
+          "type": "string",
+          "enum": [
+            "tour_M4_altA",
+            "tour_M4",
+            "tour_M4_altB"
+          ]
+        }
+      },
+      "requires": [
+        "capacity_clearance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_027": {
+      "request": {
+        "task_id": "cand_scheduling_027"
+      },
+      "response": {
+        "tour_slot_id": "tour_M4"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

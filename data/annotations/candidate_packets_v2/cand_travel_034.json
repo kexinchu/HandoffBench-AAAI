@@ -1,0 +1,134 @@
+{
+  "task_id": "cand_travel_034",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_034_b",
+    "source_role": "rental add-on intake",
+    "target_role": "mobility billing",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_034_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to select toll option using only a policy-compliant option.",
+        "planned_route": {
+          "id": "fact_onder_region",
+          "status": "available",
+          "meets_constraints": true
+        },
+        "toll_option_choice": {
+          "id": "fact_onder_region",
+          "status": "available",
+          "meets_constraints": true
+        }
+      }
+    },
+    {
+      "trace_id": "cand_travel_034_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_034_a",
+        "candidate_targets": [
+          "opt_034_a",
+          "opt_034_b",
+          "opt_034_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_034_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_034_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_034_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Planned route crosses two toll systems; rental transponder covers only one, while pay-by-plate covers both with fee.",
+        "coverage_map": 3,
+        "pay_by_plate_fee": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_034_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "explain coverage; ask choice; add transponder; add pay-by-plate"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_034_a",
+            "opt_034_b",
+            "opt_034_c"
+          ]
+        }
+      },
+      "requires": [],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_034"
+      },
+      "response": {
+        "eligible_action_target": "opt_034_a",
+        "candidate_targets": [
+          "opt_034_a",
+          "opt_034_b",
+          "opt_034_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_034_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_034_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_034_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Planned route crosses two toll systems; rental transponder covers only one, while pay-by-plate covers both with fee.",
+        "coverage_map": 3,
+        "pay_by_plate_fee": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

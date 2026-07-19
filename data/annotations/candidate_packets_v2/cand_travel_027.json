@@ -1,0 +1,154 @@
+{
+  "task_id": "cand_travel_027",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_027_b",
+    "source_role": "complex itinerary intake",
+    "target_role": "fare construction",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_027_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to book open jaw using only a policy-compliant option.",
+        "city_sequence": "user specified city sequence",
+        "surface_segment_acceptance": null
+      }
+    },
+    {
+      "trace_id": "cand_travel_027_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_027_c",
+        "candidate_targets": [
+          "opt_027_a",
+          "opt_027_b",
+          "opt_027_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_027_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_027_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_027_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Requested arrival/departure cities form an open jaw; published region rule and constructed fare are verified, but surface segment responsibility is unconfirmed.",
+        "fare_rule": "verified fare rule status",
+        "constructed_fare": "verified constructed fare status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_027_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "disclose surface gap; ask acceptance; issue fare; add invented flight"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "surface_segment_acceptance",
+            "unrelated_027_x",
+            "unrelated_027_y"
+          ]
+        }
+      },
+      "requires": [
+        "surface_segment_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_027_a",
+            "opt_027_b",
+            "opt_027_c"
+          ]
+        }
+      },
+      "requires": [
+        "surface_segment_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_027"
+      },
+      "response": {
+        "eligible_action_target": "opt_027_c",
+        "candidate_targets": [
+          "opt_027_a",
+          "opt_027_b",
+          "opt_027_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_027_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_027_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_027_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Requested arrival/departure cities form an open jaw; published region rule and constructed fare are verified, but surface segment responsibility is unconfirmed.",
+        "fare_rule": "verified fare rule status",
+        "constructed_fare": "verified constructed fare status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_surface_segment_acceptance": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "surface_segment_acceptance"
+        }
+      },
+      "updates": {
+        "surface_segment_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

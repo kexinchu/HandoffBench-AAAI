@@ -1,0 +1,154 @@
+{
+  "task_id": "cand_travel_033",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_033_b",
+    "source_role": "attraction intake",
+    "target_role": "ticketing desk",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_033_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to book event tickets using only a policy-compliant option.",
+        "party_size": 3,
+        "contiguous": "user specified contiguous",
+        "budget": "user specified budget",
+        "higher_total_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_travel_033_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_033_c",
+        "candidate_targets": [
+          "opt_033_a",
+          "opt_033_b",
+          "opt_033_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_033_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_033_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_033_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Party size is four; inventory contains four noncontiguous cheap seats and one contiguous block at higher total. Contiguity is required.",
+        "seat_blocks": "verified seat blocks status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_033_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "disclose block total; ask consent; buy scattered seats; buy block"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "higher_total_consent",
+            "unrelated_033_x",
+            "unrelated_033_y"
+          ]
+        }
+      },
+      "requires": [
+        "higher_total_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_033_a",
+            "opt_033_b",
+            "opt_033_c"
+          ]
+        }
+      },
+      "requires": [
+        "higher_total_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_033"
+      },
+      "response": {
+        "eligible_action_target": "opt_033_c",
+        "candidate_targets": [
+          "opt_033_a",
+          "opt_033_b",
+          "opt_033_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_033_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_033_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_033_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Party size is four; inventory contains four noncontiguous cheap seats and one contiguous block at higher total. Contiguity is required.",
+        "seat_blocks": "verified seat blocks status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_higher_total_consent": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "higher_total_consent"
+        }
+      },
+      "updates": {
+        "higher_total_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

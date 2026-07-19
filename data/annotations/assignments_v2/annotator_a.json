@@ -1,0 +1,1604 @@
+{
+  "assignments": [
+    {
+      "assignment_id": "cd97a866c6fa58c9",
+      "position": 1,
+      "task_id": "cand_it_023",
+      "packet": "cand_it_023.json",
+      "packet_sha256": "6605abe7da67e4d130a32b65dd399f3beed38e315205ceb0e33f51d4a2fd2579",
+      "response": null
+    },
+    {
+      "assignment_id": "d39a49af69fa290b",
+      "position": 2,
+      "task_id": "cand_procurement_006",
+      "packet": "cand_procurement_006.json",
+      "packet_sha256": "230e810e77c2d7944ffd0fc738d1dee05ed0b66d1570f5843fc18ea5689ddb6b",
+      "response": null
+    },
+    {
+      "assignment_id": "fe398b4f1590e5be",
+      "position": 3,
+      "task_id": "cand_procurement_034",
+      "packet": "cand_procurement_034.json",
+      "packet_sha256": "8d50e8e914e1ae7ae2f0c7291b900b60ae1b40d70140c1d2b3810973bd367a1e",
+      "response": null
+    },
+    {
+      "assignment_id": "8c4123dd51b55a5a",
+      "position": 4,
+      "task_id": "cand_scheduling_010",
+      "packet": "cand_scheduling_010.json",
+      "packet_sha256": "fae88a736d703961e41bcc70b6e019d95430bba0d408a609c646baae9d40315d",
+      "response": null
+    },
+    {
+      "assignment_id": "d49e9e998d09a2cc",
+      "position": 5,
+      "task_id": "cand_travel_035",
+      "packet": "cand_travel_035.json",
+      "packet_sha256": "bdc6cfbadc1551f7a3a09094b96b1b02d80c25a256f8fba58dc6b75c1eebb85d",
+      "response": null
+    },
+    {
+      "assignment_id": "06eefc58f561639e",
+      "position": 6,
+      "task_id": "cand_procurement_032",
+      "packet": "cand_procurement_032.json",
+      "packet_sha256": "52929c5386741dd4bcf28a81701db2854fccf750b1c59989013a4b0a483cb540",
+      "response": null
+    },
+    {
+      "assignment_id": "6473ac52e45fb3aa",
+      "position": 7,
+      "task_id": "cand_commerce_026",
+      "packet": "cand_commerce_026.json",
+      "packet_sha256": "edc06477933cad0b2bff3d24b5c5be032467dcfe44f79e4619b4ee77f1dba920",
+      "response": null
+    },
+    {
+      "assignment_id": "61eb301374e3e320",
+      "position": 8,
+      "task_id": "cand_commerce_013",
+      "packet": "cand_commerce_013.json",
+      "packet_sha256": "478536c1ca661a0c5d2199927db63ecb369688fb0d4dacb205497493949ebf15",
+      "response": null
+    },
+    {
+      "assignment_id": "5a030e383facd191",
+      "position": 9,
+      "task_id": "cand_travel_036",
+      "packet": "cand_travel_036.json",
+      "packet_sha256": "24a32a870a60e6d7ca95cba44d33cced43a1bcbc88b7f0c9e22001728bd05d22",
+      "response": null
+    },
+    {
+      "assignment_id": "4aca4842ed536606",
+      "position": 10,
+      "task_id": "cand_scheduling_002",
+      "packet": "cand_scheduling_002.json",
+      "packet_sha256": "2572990e08efcbc116475e6bc5e39c45aefa5af8fff44d9b17bd8401379523c5",
+      "response": null
+    },
+    {
+      "assignment_id": "78cfe9992cd45a33",
+      "position": 11,
+      "task_id": "cand_commerce_001",
+      "packet": "cand_commerce_001.json",
+      "packet_sha256": "fc214d4bbe678fe72a12199efb5cd011d359224a0ea1718b31ffec1e9a1f1f12",
+      "response": null
+    },
+    {
+      "assignment_id": "84d82bd2abb5376e",
+      "position": 12,
+      "task_id": "cand_travel_011",
+      "packet": "cand_travel_011.json",
+      "packet_sha256": "96dc0064e07c70cf486068c132b1bf5e40a9cf02d7686715cb99e967e8682d2d",
+      "response": null
+    },
+    {
+      "assignment_id": "8593d80b7e4c9e00",
+      "position": 13,
+      "task_id": "cand_travel_010",
+      "packet": "cand_travel_010.json",
+      "packet_sha256": "72567f553047ccf60d7363306728104265cc1a73ca36c62fab11c8df7e07a57b",
+      "response": null
+    },
+    {
+      "assignment_id": "51c9a1ad81cb9d82",
+      "position": 14,
+      "task_id": "cand_scheduling_019",
+      "packet": "cand_scheduling_019.json",
+      "packet_sha256": "c5e6c257d32564cb7c0750e878c481470acf8f3ead1ca65f89b692da355fb95b",
+      "response": null
+    },
+    {
+      "assignment_id": "53a4d0c80d2387bf",
+      "position": 15,
+      "task_id": "cand_travel_023",
+      "packet": "cand_travel_023.json",
+      "packet_sha256": "6c975bb474423590ebae7f9482a8b082d10090da6257c0d2d44f618d0b29832d",
+      "response": null
+    },
+    {
+      "assignment_id": "10307b098e7b0f18",
+      "position": 16,
+      "task_id": "cand_travel_025",
+      "packet": "cand_travel_025.json",
+      "packet_sha256": "b378b9095f7e640c70e1ff30e6a475db17ed5937e4ff3ccdd7517a22dcc3ae21",
+      "response": null
+    },
+    {
+      "assignment_id": "2fc26d41d47db5ef",
+      "position": 17,
+      "task_id": "cand_travel_026",
+      "packet": "cand_travel_026.json",
+      "packet_sha256": "1d4883e9d6b766c67af0ad20782e9f943d03f488e3a4fd17f80ada876c4d7bc7",
+      "response": null
+    },
+    {
+      "assignment_id": "cab73ea43461761d",
+      "position": 18,
+      "task_id": "cand_commerce_009",
+      "packet": "cand_commerce_009.json",
+      "packet_sha256": "1563d9918e86d3e03fd29c15b09c959a89799142e6010c3c07632d51e91e2df9",
+      "response": null
+    },
+    {
+      "assignment_id": "532ff19a9d856d07",
+      "position": 19,
+      "task_id": "cand_it_005",
+      "packet": "cand_it_005.json",
+      "packet_sha256": "4026bfa8fb7ce9dad2c5d76d47aaa2e5b3f3c51b5f50a472ef847ca2b3295088",
+      "response": null
+    },
+    {
+      "assignment_id": "015db54060042c16",
+      "position": 20,
+      "task_id": "cand_it_036",
+      "packet": "cand_it_036.json",
+      "packet_sha256": "cccefa573673ade0ef07cc85038f62e1e2444006d6442c945122e596a94af64d",
+      "response": null
+    },
+    {
+      "assignment_id": "6b9ee0e8851d75f5",
+      "position": 21,
+      "task_id": "cand_it_040",
+      "packet": "cand_it_040.json",
+      "packet_sha256": "70b472309f345d0a75d38e727f51484af8867004fa5d2c3fbbec427e06c302c3",
+      "response": null
+    },
+    {
+      "assignment_id": "7b4d33d70170b176",
+      "position": 22,
+      "task_id": "cand_procurement_011",
+      "packet": "cand_procurement_011.json",
+      "packet_sha256": "6e66f4e2592fec56f9547b833885eee2c0bb3d441776c70dbe5e087434c768e3",
+      "response": null
+    },
+    {
+      "assignment_id": "c8bde1d15127b0b4",
+      "position": 23,
+      "task_id": "cand_commerce_005",
+      "packet": "cand_commerce_005.json",
+      "packet_sha256": "9efb035b150d15d47ca305b2e7d11058ab7bf1282e6de0bae9577702f791208c",
+      "response": null
+    },
+    {
+      "assignment_id": "307fd8cf3c77a37d",
+      "position": 24,
+      "task_id": "cand_travel_032",
+      "packet": "cand_travel_032.json",
+      "packet_sha256": "cafabfb35cd3cc70e3f6727850239182abbe8c788cc877de1c9607d8e9a84507",
+      "response": null
+    },
+    {
+      "assignment_id": "5dbe15e3c46db388",
+      "position": 25,
+      "task_id": "cand_scheduling_003",
+      "packet": "cand_scheduling_003.json",
+      "packet_sha256": "fd0dcae696ec5de5a8e3b79501c8b2dcf6d4dabd577ecca362712a797ac08f95",
+      "response": null
+    },
+    {
+      "assignment_id": "4d560a026d609af3",
+      "position": 26,
+      "task_id": "cand_commerce_007",
+      "packet": "cand_commerce_007.json",
+      "packet_sha256": "5c4c6ec638da3a1e0e042e8804d9c471e7e3c871c7079a01693a45617bc24572",
+      "response": null
+    },
+    {
+      "assignment_id": "bf2931afc3ce070b",
+      "position": 27,
+      "task_id": "cand_commerce_022",
+      "packet": "cand_commerce_022.json",
+      "packet_sha256": "d9beb03f329c480a5e8edc921639371b7d3f3be1cdca36b396acbc24d4c21582",
+      "response": null
+    },
+    {
+      "assignment_id": "236486494eb79576",
+      "position": 28,
+      "task_id": "cand_it_028",
+      "packet": "cand_it_028.json",
+      "packet_sha256": "21dfc779301fb8b3891ba1820877fdce45ca1dcc6e849330e0cc59ebfec14773",
+      "response": null
+    },
+    {
+      "assignment_id": "0a1f2f58a14f68fe",
+      "position": 29,
+      "task_id": "cand_procurement_020",
+      "packet": "cand_procurement_020.json",
+      "packet_sha256": "399cfb9322479433a2a087412edf8a613b3e1ab9d65a3da53982e011c5b6a0dc",
+      "response": null
+    },
+    {
+      "assignment_id": "4d6c69b5ae9075b2",
+      "position": 30,
+      "task_id": "cand_procurement_003",
+      "packet": "cand_procurement_003.json",
+      "packet_sha256": "fd6f4dd4317bf725fdacffde314da811d230bee6c50b672503d853ffea78164e",
+      "response": null
+    },
+    {
+      "assignment_id": "6ca18227baa7b7de",
+      "position": 31,
+      "task_id": "cand_commerce_019",
+      "packet": "cand_commerce_019.json",
+      "packet_sha256": "69a1feb2144a3cd7b3c540ecf5441684a00a6342c3c8ec2a96d41b8fce61f495",
+      "response": null
+    },
+    {
+      "assignment_id": "3aa994f7c726c64b",
+      "position": 32,
+      "task_id": "cand_it_020",
+      "packet": "cand_it_020.json",
+      "packet_sha256": "34ebfa6743d89acee8a1d41f94d229ed91a53adb96ec2704b0b3bbc3af306f38",
+      "response": null
+    },
+    {
+      "assignment_id": "00f3f8ee34b918db",
+      "position": 33,
+      "task_id": "cand_scheduling_004",
+      "packet": "cand_scheduling_004.json",
+      "packet_sha256": "498617f9631ecc66215e4903b7b4be7eadf140ee40ea8e5bf2f40f2281028b93",
+      "response": null
+    },
+    {
+      "assignment_id": "0084756be85b2609",
+      "position": 34,
+      "task_id": "cand_it_032",
+      "packet": "cand_it_032.json",
+      "packet_sha256": "1a44d673a3530aea1e18ccf0dc9b74ada54102ca62d641873f75b81ca209ab53",
+      "response": null
+    },
+    {
+      "assignment_id": "0f2e12e721605c2e",
+      "position": 35,
+      "task_id": "cand_commerce_020",
+      "packet": "cand_commerce_020.json",
+      "packet_sha256": "74faa5c198960e79e8c9beadf992ba197c23b3f6489c9a649b7ce2e32687dce9",
+      "response": null
+    },
+    {
+      "assignment_id": "dd99425400249d46",
+      "position": 36,
+      "task_id": "cand_travel_005",
+      "packet": "cand_travel_005.json",
+      "packet_sha256": "aef13ffb8f7eecf66c76df4e453a5128a0539ad897966f268cb0400baed5b061",
+      "response": null
+    },
+    {
+      "assignment_id": "a52175b92773759e",
+      "position": 37,
+      "task_id": "cand_it_031",
+      "packet": "cand_it_031.json",
+      "packet_sha256": "bafc0dc1c9d0e9e2c46287e7a731e691e509b553892074e9d09f98e07694c74d",
+      "response": null
+    },
+    {
+      "assignment_id": "9a67e8e31f3977a8",
+      "position": 38,
+      "task_id": "cand_commerce_008",
+      "packet": "cand_commerce_008.json",
+      "packet_sha256": "42573e2c63695de4a15141bc24a51aae211567d58f545a57d6dcd1c7ebc78353",
+      "response": null
+    },
+    {
+      "assignment_id": "42a3aac05d8381f3",
+      "position": 39,
+      "task_id": "cand_travel_001",
+      "packet": "cand_travel_001.json",
+      "packet_sha256": "11707857209cf17a351aad5bd235f0d47f3a245af54f6edb7f9bdd86773e77bd",
+      "response": null
+    },
+    {
+      "assignment_id": "f7a8964276feeb9a",
+      "position": 40,
+      "task_id": "cand_it_012",
+      "packet": "cand_it_012.json",
+      "packet_sha256": "4c3e486ac59ed3cc25d9ec2d8ee7d599b7ee53df4bfd94bcc519b42c1f0e8358",
+      "response": null
+    },
+    {
+      "assignment_id": "295c243f34bfb9a9",
+      "position": 41,
+      "task_id": "cand_procurement_014",
+      "packet": "cand_procurement_014.json",
+      "packet_sha256": "5a222715be8da68a82fe299fc0a2a40d3c7cfa37ee1db0932c623d6e6879f9e1",
+      "response": null
+    },
+    {
+      "assignment_id": "4f8fbeaa59535cad",
+      "position": 42,
+      "task_id": "cand_it_015",
+      "packet": "cand_it_015.json",
+      "packet_sha256": "0497cd5a61d8b020017ddcd593d7a97aeb4f17bcf4115e689682675e4e31ba62",
+      "response": null
+    },
+    {
+      "assignment_id": "4c8b5cf3e487d292",
+      "position": 43,
+      "task_id": "cand_procurement_017",
+      "packet": "cand_procurement_017.json",
+      "packet_sha256": "4bd6b3893acf3ff2e8814b9fda6dfc8d7704ef9215d2eef4a0f718c4a1fdd60e",
+      "response": null
+    },
+    {
+      "assignment_id": "89cea61982692a94",
+      "position": 44,
+      "task_id": "cand_commerce_039",
+      "packet": "cand_commerce_039.json",
+      "packet_sha256": "ce681d673c225b7193dc55d552385c2c5e4de199ac565019f5ee3813d5690425",
+      "response": null
+    },
+    {
+      "assignment_id": "2a55cfbbd4f3085c",
+      "position": 45,
+      "task_id": "cand_commerce_016",
+      "packet": "cand_commerce_016.json",
+      "packet_sha256": "225847bff0c1decfd2ff183eb489a586e9cd4a2bbee0efe2a9d302b0d3c20b0c",
+      "response": null
+    },
+    {
+      "assignment_id": "37bad9ac183346a0",
+      "position": 46,
+      "task_id": "cand_procurement_036",
+      "packet": "cand_procurement_036.json",
+      "packet_sha256": "99443e03e85aadf9170d9d5355bfd806a4cbc9cd5e63920fc868a8bbe37a59cd",
+      "response": null
+    },
+    {
+      "assignment_id": "80cb96c9c5bdc5a7",
+      "position": 47,
+      "task_id": "cand_scheduling_035",
+      "packet": "cand_scheduling_035.json",
+      "packet_sha256": "f74f9ac7329bd69ec077d71d476bc5226e52ef25ab9b3dddc312fbf6e8e0df6c",
+      "response": null
+    },
+    {
+      "assignment_id": "c9194a519981a4c6",
+      "position": 48,
+      "task_id": "cand_travel_008",
+      "packet": "cand_travel_008.json",
+      "packet_sha256": "c26cad73d9024a0e87451b295b9e1fa1fbca456a72e9d24370d2e63505497131",
+      "response": null
+    },
+    {
+      "assignment_id": "187dbf18299784f4",
+      "position": 49,
+      "task_id": "cand_it_038",
+      "packet": "cand_it_038.json",
+      "packet_sha256": "1c142f4b18b71c640ac6f2dbf5d0e96dec9b3b379243c3de5ea23c659669eecb",
+      "response": null
+    },
+    {
+      "assignment_id": "3fc52984c41badcf",
+      "position": 50,
+      "task_id": "cand_procurement_029",
+      "packet": "cand_procurement_029.json",
+      "packet_sha256": "981c26315da04ce0f4d834fd57eacc2eb57b60df182fca35f99aa8abe0efcc75",
+      "response": null
+    },
+    {
+      "assignment_id": "4ac7f548ae1a5c94",
+      "position": 51,
+      "task_id": "cand_commerce_037",
+      "packet": "cand_commerce_037.json",
+      "packet_sha256": "31c6c9b971e42c47d9afdcd87e65104cf287b7928137458fa51d82102f1d44b8",
+      "response": null
+    },
+    {
+      "assignment_id": "a9220d43484cd398",
+      "position": 52,
+      "task_id": "cand_it_030",
+      "packet": "cand_it_030.json",
+      "packet_sha256": "7d8a128ce28ac08c444dc6c2881613e7d38da8e1831fc12c587d4a4118d37696",
+      "response": null
+    },
+    {
+      "assignment_id": "f04b0bace57ec3a1",
+      "position": 53,
+      "task_id": "cand_scheduling_037",
+      "packet": "cand_scheduling_037.json",
+      "packet_sha256": "4710dc5a6d13415fb880772a74c25b45d04de0ea3239015cd5bfc01b5fcb5ba0",
+      "response": null
+    },
+    {
+      "assignment_id": "f6f13f8b2f61d040",
+      "position": 54,
+      "task_id": "cand_commerce_032",
+      "packet": "cand_commerce_032.json",
+      "packet_sha256": "b88ea9e008990f700ae4b99672a8abefe731309763d30ea7e1c7b18cb647d28e",
+      "response": null
+    },
+    {
+      "assignment_id": "1a58c1bc512af487",
+      "position": 55,
+      "task_id": "cand_travel_016",
+      "packet": "cand_travel_016.json",
+      "packet_sha256": "2d91e167e0571e1eee46e3af7d7ff6e4724d5b05c3cbd948a0bd3f1e17dd0ee1",
+      "response": null
+    },
+    {
+      "assignment_id": "88647623ef6281b2",
+      "position": 56,
+      "task_id": "cand_procurement_025",
+      "packet": "cand_procurement_025.json",
+      "packet_sha256": "7dbb46b88d11df29dc1ad93f9a8ef8783755124416178f1d9285208ff5900879",
+      "response": null
+    },
+    {
+      "assignment_id": "84135dee6a19dd90",
+      "position": 57,
+      "task_id": "cand_it_003",
+      "packet": "cand_it_003.json",
+      "packet_sha256": "921a91b20f57840e3cc833a2cebd27feeed750dccd70040ef60eb01323659158",
+      "response": null
+    },
+    {
+      "assignment_id": "a4b3ad773fbcdfbf",
+      "position": 58,
+      "task_id": "cand_commerce_025",
+      "packet": "cand_commerce_025.json",
+      "packet_sha256": "03edc749de4ac65b06b81727732882fdbf33764d4a2c7fedad5730c593d065d1",
+      "response": null
+    },
+    {
+      "assignment_id": "e0c838d46b4b4654",
+      "position": 59,
+      "task_id": "cand_commerce_011",
+      "packet": "cand_commerce_011.json",
+      "packet_sha256": "b576b69b1c3aa8d72ca05db10d54e13e29404db30bb18b7311b4a460ce71968a",
+      "response": null
+    },
+    {
+      "assignment_id": "3e8db2d06326a0e4",
+      "position": 60,
+      "task_id": "cand_it_034",
+      "packet": "cand_it_034.json",
+      "packet_sha256": "562f7d75e0d4eda94cea03b7fefdf2d8c63c1b4378460dcd8410dc1f408cf597",
+      "response": null
+    },
+    {
+      "assignment_id": "dcb02ea535aeda51",
+      "position": 61,
+      "task_id": "cand_procurement_033",
+      "packet": "cand_procurement_033.json",
+      "packet_sha256": "528f95c03f815ec05969b5c883381733b5c3eb4323d2b8ce6bf55dfbb11f1ac4",
+      "response": null
+    },
+    {
+      "assignment_id": "00faa8176f1684b9",
+      "position": 62,
+      "task_id": "cand_scheduling_028",
+      "packet": "cand_scheduling_028.json",
+      "packet_sha256": "26b224278021ffb3a167d894666108a3adcf34d64b1998defd8e3b959a509174",
+      "response": null
+    },
+    {
+      "assignment_id": "89cd6d605faf316f",
+      "position": 63,
+      "task_id": "cand_travel_034",
+      "packet": "cand_travel_034.json",
+      "packet_sha256": "22559736ff3facd3ef40b46e0e030f56c1756080f730be53bcf21354d09c6fe4",
+      "response": null
+    },
+    {
+      "assignment_id": "2789fee5b17debd6",
+      "position": 64,
+      "task_id": "cand_it_025",
+      "packet": "cand_it_025.json",
+      "packet_sha256": "e4b5950b421daa60396bd6de532d41619a9faaec687c6a80cbeab11c73b9b193",
+      "response": null
+    },
+    {
+      "assignment_id": "d298a9e279291b2a",
+      "position": 65,
+      "task_id": "cand_procurement_035",
+      "packet": "cand_procurement_035.json",
+      "packet_sha256": "010bf358c50f97cafca5704df2ca51b84e70d073d9ff78d2fdfa069d53e9e815",
+      "response": null
+    },
+    {
+      "assignment_id": "f02fc57827b323b9",
+      "position": 66,
+      "task_id": "cand_commerce_010",
+      "packet": "cand_commerce_010.json",
+      "packet_sha256": "007cd8a5db784a772c680916a9d1f3bfb0e87dcf7c140903c35c3dd944039e6a",
+      "response": null
+    },
+    {
+      "assignment_id": "1bd0a19030eed5e6",
+      "position": 67,
+      "task_id": "cand_it_006",
+      "packet": "cand_it_006.json",
+      "packet_sha256": "2d12ea213cde7ea02c6a806f180235cafdd6f82bf50e6625b47cc26a0be058fc",
+      "response": null
+    },
+    {
+      "assignment_id": "655d66940a5852cf",
+      "position": 68,
+      "task_id": "cand_scheduling_022",
+      "packet": "cand_scheduling_022.json",
+      "packet_sha256": "a79de26debaf4a2dc20fabfedfd1483345b21461267fdd63c08158eb0a5bc742",
+      "response": null
+    },
+    {
+      "assignment_id": "e00923e6e0d9e853",
+      "position": 69,
+      "task_id": "cand_scheduling_009",
+      "packet": "cand_scheduling_009.json",
+      "packet_sha256": "8ceeb14ecf71b344934861e47c340b02de9b40d0ba067ac1ef10362c4d53fd62",
+      "response": null
+    },
+    {
+      "assignment_id": "dc298f0d54539f03",
+      "position": 70,
+      "task_id": "cand_travel_037",
+      "packet": "cand_travel_037.json",
+      "packet_sha256": "58d04c7708f0c421cb3087fdc9e357c38a5f97784feae1bcea477a4e5dbf3186",
+      "response": null
+    },
+    {
+      "assignment_id": "92f531f9dd9a3608",
+      "position": 71,
+      "task_id": "cand_scheduling_034",
+      "packet": "cand_scheduling_034.json",
+      "packet_sha256": "a871ecf1154e86d5cd800909cf641f479a54c80b8bc5cea4cc5aede7c193249f",
+      "response": null
+    },
+    {
+      "assignment_id": "ff89d7a4bf952e9d",
+      "position": 72,
+      "task_id": "cand_travel_004",
+      "packet": "cand_travel_004.json",
+      "packet_sha256": "f08cd31bd16bde3a3b879f205eda5e4f455674417b11db5101e7fa013c06d570",
+      "response": null
+    },
+    {
+      "assignment_id": "cd05bcd4db10ea14",
+      "position": 73,
+      "task_id": "cand_scheduling_011",
+      "packet": "cand_scheduling_011.json",
+      "packet_sha256": "342fa5b69ec29aba934c11e1919e488f4de94fdff448da3a6426868f52731187",
+      "response": null
+    },
+    {
+      "assignment_id": "6c1b5656e6c7ff14",
+      "position": 74,
+      "task_id": "cand_scheduling_029",
+      "packet": "cand_scheduling_029.json",
+      "packet_sha256": "e0cd1db5c626a239195f87bcd1c54d204cecff5bd0321bc1c99ded8ec5432ceb",
+      "response": null
+    },
+    {
+      "assignment_id": "10040e00111fcc03",
+      "position": 75,
+      "task_id": "cand_it_014",
+      "packet": "cand_it_014.json",
+      "packet_sha256": "48b66810489664b2ca12cf9930a8783b5b017002ce72a3ae03bc2066e1d8fb7c",
+      "response": null
+    },
+    {
+      "assignment_id": "dc46110fbf49cca4",
+      "position": 76,
+      "task_id": "cand_scheduling_032",
+      "packet": "cand_scheduling_032.json",
+      "packet_sha256": "5b3e544f6527cbb309b9213eb678ce62f71eed3977b80c4dbf57765666c10171",
+      "response": null
+    },
+    {
+      "assignment_id": "630f64169146d3f3",
+      "position": 77,
+      "task_id": "cand_travel_013",
+      "packet": "cand_travel_013.json",
+      "packet_sha256": "d928ba3f6c02f09366014ced99e03d890db948f6166fe90afa80b622797eb05f",
+      "response": null
+    },
+    {
+      "assignment_id": "ab116de55e4d64a7",
+      "position": 78,
+      "task_id": "cand_travel_006",
+      "packet": "cand_travel_006.json",
+      "packet_sha256": "2a177b6e7770efbad51162269b92a5fbf51fa35e619d5d9e8c81f1da6d4ed2dd",
+      "response": null
+    },
+    {
+      "assignment_id": "98a152fd954195d9",
+      "position": 79,
+      "task_id": "cand_it_022",
+      "packet": "cand_it_022.json",
+      "packet_sha256": "26ed7465d8accfb5332abe17f60c0e7c829857dca0cbd2995c6e1619f74f5316",
+      "response": null
+    },
+    {
+      "assignment_id": "eaa0f053bf6abee9",
+      "position": 80,
+      "task_id": "cand_it_013",
+      "packet": "cand_it_013.json",
+      "packet_sha256": "60ff1f5e2bf1d115f71ef859921073bb96d93e1110fa9f21305b3da4127129f0",
+      "response": null
+    },
+    {
+      "assignment_id": "9005d75d923b5c55",
+      "position": 81,
+      "task_id": "cand_scheduling_007",
+      "packet": "cand_scheduling_007.json",
+      "packet_sha256": "31985f702f7d5f3fcd0dc6e466d113ac4bae7047080cb4a137739ebc2798b400",
+      "response": null
+    },
+    {
+      "assignment_id": "1da923b0d0385cc5",
+      "position": 82,
+      "task_id": "cand_commerce_034",
+      "packet": "cand_commerce_034.json",
+      "packet_sha256": "12b1c0afef87061b60f85780914c0380e826e8dd31154deb33b990fd03c4c1ac",
+      "response": null
+    },
+    {
+      "assignment_id": "23572cfa27b9c189",
+      "position": 83,
+      "task_id": "cand_travel_038",
+      "packet": "cand_travel_038.json",
+      "packet_sha256": "8046764602d3fad9eabd3a762e6aac901971a234cdd84c043f652e7540c1a4a8",
+      "response": null
+    },
+    {
+      "assignment_id": "1d1340d1109639a7",
+      "position": 84,
+      "task_id": "cand_commerce_033",
+      "packet": "cand_commerce_033.json",
+      "packet_sha256": "29f56f9bc66d89509e7073a6dfabf55df6fd8b9fa338115ce58d3d6f170e84a1",
+      "response": null
+    },
+    {
+      "assignment_id": "bcb23e756e183b56",
+      "position": 85,
+      "task_id": "cand_scheduling_030",
+      "packet": "cand_scheduling_030.json",
+      "packet_sha256": "515fb02f52ceeca06ceab730f2a0361a06a35633d46a9c753c23de8c5927cfbf",
+      "response": null
+    },
+    {
+      "assignment_id": "594b8c2497425490",
+      "position": 86,
+      "task_id": "cand_it_027",
+      "packet": "cand_it_027.json",
+      "packet_sha256": "8eca4fae95473982302dee50c82fe9a380576af011b2321b84af4792e7118fa0",
+      "response": null
+    },
+    {
+      "assignment_id": "c6c0f34b313acea6",
+      "position": 87,
+      "task_id": "cand_scheduling_033",
+      "packet": "cand_scheduling_033.json",
+      "packet_sha256": "400cf9ed24f1040b489af6ada1e1b47a7712c8ac0fe50c177668fb57132e53c1",
+      "response": null
+    },
+    {
+      "assignment_id": "e4f2bbc84ab8f64c",
+      "position": 88,
+      "task_id": "cand_procurement_028",
+      "packet": "cand_procurement_028.json",
+      "packet_sha256": "1478eb40df1cb141e23ad1492184344051f0ab70205800c1c25a7258a0e8313f",
+      "response": null
+    },
+    {
+      "assignment_id": "b1a7b97efda73e23",
+      "position": 89,
+      "task_id": "cand_procurement_016",
+      "packet": "cand_procurement_016.json",
+      "packet_sha256": "0543090dbf05e7a8928b17c2f7a2608d46b3b4457374633c25949989ea2ef037",
+      "response": null
+    },
+    {
+      "assignment_id": "438e233ee94a6476",
+      "position": 90,
+      "task_id": "cand_commerce_014",
+      "packet": "cand_commerce_014.json",
+      "packet_sha256": "faf1335419bf7e003f601c2e6092691e8a511ca4cdcd9e17adc9d884264143bf",
+      "response": null
+    },
+    {
+      "assignment_id": "782239b19fd99236",
+      "position": 91,
+      "task_id": "cand_travel_003",
+      "packet": "cand_travel_003.json",
+      "packet_sha256": "a0073513b436919094db9d8525dae52311a466fba186520fefa166906a7cd364",
+      "response": null
+    },
+    {
+      "assignment_id": "942b824697cd60ac",
+      "position": 92,
+      "task_id": "cand_procurement_031",
+      "packet": "cand_procurement_031.json",
+      "packet_sha256": "c4740e4961dc6b7a9099df1dbdb63e69b324bc22ca67474b4e75c6574c27e1c9",
+      "response": null
+    },
+    {
+      "assignment_id": "428de217929fd7f2",
+      "position": 93,
+      "task_id": "cand_commerce_036",
+      "packet": "cand_commerce_036.json",
+      "packet_sha256": "7f500b3390a167f0ef1320fe7f73b5054878a651fe87b416cedb3332de4135d5",
+      "response": null
+    },
+    {
+      "assignment_id": "9b6fe024f3d52208",
+      "position": 94,
+      "task_id": "cand_scheduling_031",
+      "packet": "cand_scheduling_031.json",
+      "packet_sha256": "4a5d271d28201f96febec4a5a9aa178471977fcbbcce25b345ca9b2d80c6a1f4",
+      "response": null
+    },
+    {
+      "assignment_id": "c734237a1c4bc891",
+      "position": 95,
+      "task_id": "cand_scheduling_039",
+      "packet": "cand_scheduling_039.json",
+      "packet_sha256": "819b947bf4b5ad494c80ba0a3f01e99c4c69bfa97b2c2426b4f1286a59947020",
+      "response": null
+    },
+    {
+      "assignment_id": "270196b251b6eb32",
+      "position": 96,
+      "task_id": "cand_procurement_001",
+      "packet": "cand_procurement_001.json",
+      "packet_sha256": "87cca701d2db4d5148b2550cfb1cb311a4f087a106b273562798ec58166cc3aa",
+      "response": null
+    },
+    {
+      "assignment_id": "67248904fcfc85d4",
+      "position": 97,
+      "task_id": "cand_travel_031",
+      "packet": "cand_travel_031.json",
+      "packet_sha256": "aacb407c8b69efc633e5a6a12582f84c390fd57d3fab00379da4528641b4f181",
+      "response": null
+    },
+    {
+      "assignment_id": "1b422a849df61062",
+      "position": 98,
+      "task_id": "cand_it_018",
+      "packet": "cand_it_018.json",
+      "packet_sha256": "265d1011f800fa549485fc60f10aa3197ca908d56cf433eee15b002471134242",
+      "response": null
+    },
+    {
+      "assignment_id": "8bf652968a58da16",
+      "position": 99,
+      "task_id": "cand_it_021",
+      "packet": "cand_it_021.json",
+      "packet_sha256": "6b654e98e09473ff96121f527c70424309ab5c3c8e18c7d22089e9ee7c9df61c",
+      "response": null
+    },
+    {
+      "assignment_id": "fad7725b788b33bb",
+      "position": 100,
+      "task_id": "cand_it_037",
+      "packet": "cand_it_037.json",
+      "packet_sha256": "e143a40a2d145e1741defdcfccbbc3ef3811845c7b616815c85f300c1c875d6f",
+      "response": null
+    },
+    {
+      "assignment_id": "a09969420ef7413f",
+      "position": 101,
+      "task_id": "cand_it_009",
+      "packet": "cand_it_009.json",
+      "packet_sha256": "34b2b7a0b60a93a4850f6ebe079be01a663e0d6114795c90849c7004afb2fe11",
+      "response": null
+    },
+    {
+      "assignment_id": "df84d0262be4630b",
+      "position": 102,
+      "task_id": "cand_procurement_018",
+      "packet": "cand_procurement_018.json",
+      "packet_sha256": "5affe74adb225b9f5df3d8cfda80937c8175f84fbe004bb00e887683e90eaa24",
+      "response": null
+    },
+    {
+      "assignment_id": "3070707b01c7c8e8",
+      "position": 103,
+      "task_id": "cand_it_035",
+      "packet": "cand_it_035.json",
+      "packet_sha256": "a5b94c2c9a0dae9f64ec90f914a90e5093148c6e2d4ba3e93a9fbef5c2f60e69",
+      "response": null
+    },
+    {
+      "assignment_id": "8b58dfbf564760e9",
+      "position": 104,
+      "task_id": "cand_procurement_005",
+      "packet": "cand_procurement_005.json",
+      "packet_sha256": "df378fd807c2bb07661b3d4c4090d7381627658b8557db49c14b5f148cd1f581",
+      "response": null
+    },
+    {
+      "assignment_id": "943818a77345cca1",
+      "position": 105,
+      "task_id": "cand_travel_018",
+      "packet": "cand_travel_018.json",
+      "packet_sha256": "4f7f7c2d30b9f4128840f337524ece6d74d90c71813598acd9d9bdad85b0f484",
+      "response": null
+    },
+    {
+      "assignment_id": "175f949dbff0a01d",
+      "position": 106,
+      "task_id": "cand_travel_027",
+      "packet": "cand_travel_027.json",
+      "packet_sha256": "6a6e58aaea6828d25cc7b726216cbfa9b730ba61b8eecfcbd6b5268b04a08c0f",
+      "response": null
+    },
+    {
+      "assignment_id": "7c636d08d759fa63",
+      "position": 107,
+      "task_id": "cand_commerce_027",
+      "packet": "cand_commerce_027.json",
+      "packet_sha256": "d8b94b30f40150331b35f1ccb6e90773a113cd2eef9e2f0dd26c6108717798c8",
+      "response": null
+    },
+    {
+      "assignment_id": "ea1ca92ac62c7159",
+      "position": 108,
+      "task_id": "cand_it_016",
+      "packet": "cand_it_016.json",
+      "packet_sha256": "adf1dd69d9dc287cfb45de761f083b774bd929a6fd6dece4d8506afa62725283",
+      "response": null
+    },
+    {
+      "assignment_id": "154496804cad8059",
+      "position": 109,
+      "task_id": "cand_commerce_028",
+      "packet": "cand_commerce_028.json",
+      "packet_sha256": "1b61b3b5fa7c4cfebe9f791835072e648ea26cb9c5c127671609e77d7bd9dd1b",
+      "response": null
+    },
+    {
+      "assignment_id": "e0134ce1a0ba462d",
+      "position": 110,
+      "task_id": "cand_commerce_018",
+      "packet": "cand_commerce_018.json",
+      "packet_sha256": "3607e8c23d7507f890b10dae9c0a82c5f4128f257f99d1f57a06efc3fee17b61",
+      "response": null
+    },
+    {
+      "assignment_id": "be9dc7a013076a40",
+      "position": 111,
+      "task_id": "cand_procurement_023",
+      "packet": "cand_procurement_023.json",
+      "packet_sha256": "935afee6cb2dd878de348435fd6ab035e8f2d3e037bff3da1e08d4948f839dcc",
+      "response": null
+    },
+    {
+      "assignment_id": "9b47a5ff3a81df78",
+      "position": 112,
+      "task_id": "cand_procurement_010",
+      "packet": "cand_procurement_010.json",
+      "packet_sha256": "8de97e099f89f7a6c8731b7b77c7d18330fd2db16a6b5b3a46a9f67a08dc2c31",
+      "response": null
+    },
+    {
+      "assignment_id": "5db98358d8991a69",
+      "position": 113,
+      "task_id": "cand_travel_015",
+      "packet": "cand_travel_015.json",
+      "packet_sha256": "8a3b36391e2df4c23bfce47b0e5b968d9739a2e4f6f066c046ed8105e0f4b149",
+      "response": null
+    },
+    {
+      "assignment_id": "03a4e38899a3e769",
+      "position": 114,
+      "task_id": "cand_travel_019",
+      "packet": "cand_travel_019.json",
+      "packet_sha256": "6d34900a6a6553fa6015d51fcc4c19f073e3cddc666f76db089e472179f94211",
+      "response": null
+    },
+    {
+      "assignment_id": "209e8bd870fbc0a0",
+      "position": 115,
+      "task_id": "cand_commerce_029",
+      "packet": "cand_commerce_029.json",
+      "packet_sha256": "5d8c7dfbfc11884c18fd4ada80a7b4551f3d124dbe8d58057b9872e168d6a557",
+      "response": null
+    },
+    {
+      "assignment_id": "038001d4f63ba4c3",
+      "position": 116,
+      "task_id": "cand_travel_028",
+      "packet": "cand_travel_028.json",
+      "packet_sha256": "307b2a3e032b363c883c6c8c0fbc1a8c6a51f29c4a4871f65ad4600528be2eb9",
+      "response": null
+    },
+    {
+      "assignment_id": "2a1f9cfc72626220",
+      "position": 117,
+      "task_id": "cand_scheduling_005",
+      "packet": "cand_scheduling_005.json",
+      "packet_sha256": "025e3f11acea26f39a56f09ff8f6e2155df5f4cd69fb7e2eb563e6dc5c8a1433",
+      "response": null
+    },
+    {
+      "assignment_id": "893bf857f1c06e94",
+      "position": 118,
+      "task_id": "cand_procurement_030",
+      "packet": "cand_procurement_030.json",
+      "packet_sha256": "f464ccb84ce34669df116c1c590497e9e55ad050afabc93038bc33305eaee989",
+      "response": null
+    },
+    {
+      "assignment_id": "94129cb77235c571",
+      "position": 119,
+      "task_id": "cand_scheduling_023",
+      "packet": "cand_scheduling_023.json",
+      "packet_sha256": "2b3bb07dea497094ab34ac79da01ec9f547a351981d73ee2730790fe95ad8cec",
+      "response": null
+    },
+    {
+      "assignment_id": "c29ede20a00fea80",
+      "position": 120,
+      "task_id": "cand_procurement_008",
+      "packet": "cand_procurement_008.json",
+      "packet_sha256": "e95bddceadaa34c97fc4a61d18b627495f442f282b779c258ce5f2f2e7c257b4",
+      "response": null
+    },
+    {
+      "assignment_id": "d4715ad230782adc",
+      "position": 121,
+      "task_id": "cand_procurement_015",
+      "packet": "cand_procurement_015.json",
+      "packet_sha256": "6ae9a625de2d3317fe63a742d94a49c93fb94c47589f19747b281021247c0912",
+      "response": null
+    },
+    {
+      "assignment_id": "96357999f4a56684",
+      "position": 122,
+      "task_id": "cand_travel_024",
+      "packet": "cand_travel_024.json",
+      "packet_sha256": "73d79af92e63b6ddc657b8785ee5d3810cee02ecaf5d611b824244cf65b2d800",
+      "response": null
+    },
+    {
+      "assignment_id": "532551ee194ae283",
+      "position": 123,
+      "task_id": "cand_procurement_007",
+      "packet": "cand_procurement_007.json",
+      "packet_sha256": "06fe46f38d85bb6949ad5247257c513889c0d683d04f1da0d708f0b04d033f47",
+      "response": null
+    },
+    {
+      "assignment_id": "11422e4ff5265c0a",
+      "position": 124,
+      "task_id": "cand_procurement_024",
+      "packet": "cand_procurement_024.json",
+      "packet_sha256": "fc845bfddc1ef61b9421191fea5c895af35fd0662f061804b34b10b6696ec9ec",
+      "response": null
+    },
+    {
+      "assignment_id": "c95aa6d5be5b672d",
+      "position": 125,
+      "task_id": "cand_travel_017",
+      "packet": "cand_travel_017.json",
+      "packet_sha256": "9e6c54ff51f8d0588c7379afff2ae8472364a1891382290455044404e91de1f5",
+      "response": null
+    },
+    {
+      "assignment_id": "763bab2f42e08670",
+      "position": 126,
+      "task_id": "cand_travel_022",
+      "packet": "cand_travel_022.json",
+      "packet_sha256": "a5656ca3c8decddccb1592a53215a04853f69d91dfb9852a5c62134f30231046",
+      "response": null
+    },
+    {
+      "assignment_id": "676af286752b571b",
+      "position": 127,
+      "task_id": "cand_travel_039",
+      "packet": "cand_travel_039.json",
+      "packet_sha256": "48a146ae2b441b50233f9908e95c9c76d912303b2a4a38e9c44ee0a0ccff8ac6",
+      "response": null
+    },
+    {
+      "assignment_id": "35ebc29b1d5ce3ab",
+      "position": 128,
+      "task_id": "cand_it_001",
+      "packet": "cand_it_001.json",
+      "packet_sha256": "f2b155a94b142f9969c3623321e0da82117f70729c25bb89cef8d0425f6c248b",
+      "response": null
+    },
+    {
+      "assignment_id": "756bfda4652da20c",
+      "position": 129,
+      "task_id": "cand_commerce_017",
+      "packet": "cand_commerce_017.json",
+      "packet_sha256": "bb33f2e73177eaa095d06cfbd5369671c9ea46fb0f97a8f5037d6501bcf2c65a",
+      "response": null
+    },
+    {
+      "assignment_id": "7116728c330be8bb",
+      "position": 130,
+      "task_id": "cand_scheduling_013",
+      "packet": "cand_scheduling_013.json",
+      "packet_sha256": "a19f7a6452685768c9bee0034461ce33dd7860eca392f3f57aeee81af8cd4b47",
+      "response": null
+    },
+    {
+      "assignment_id": "ab6b2e80ca1cb9c0",
+      "position": 131,
+      "task_id": "cand_commerce_040",
+      "packet": "cand_commerce_040.json",
+      "packet_sha256": "3b553157125d489ab657c7f2294bb1f2c7bc08eddc5843dae7ee0518f9f972d9",
+      "response": null
+    },
+    {
+      "assignment_id": "58ac379fa10b84b4",
+      "position": 132,
+      "task_id": "cand_procurement_013",
+      "packet": "cand_procurement_013.json",
+      "packet_sha256": "21ed75e5e164b670d81d6ed89a03b9f9f4b728b184a0fb74490f2d242cb722fe",
+      "response": null
+    },
+    {
+      "assignment_id": "def6cd7cd8adf16f",
+      "position": 133,
+      "task_id": "cand_it_019",
+      "packet": "cand_it_019.json",
+      "packet_sha256": "c700aba9168907ceeb78d6ba89f4170f37bed663dd88c68210d58f4123be424c",
+      "response": null
+    },
+    {
+      "assignment_id": "3b88feeb82e18923",
+      "position": 134,
+      "task_id": "cand_it_029",
+      "packet": "cand_it_029.json",
+      "packet_sha256": "af9add02e14b0fe3f3d6da901f87d61f921a3cc81e0b8344b2003bdf25722b0c",
+      "response": null
+    },
+    {
+      "assignment_id": "ed6f3bbe99cb84f1",
+      "position": 135,
+      "task_id": "cand_commerce_002",
+      "packet": "cand_commerce_002.json",
+      "packet_sha256": "f936b3c2444b2a3bf73fc22287add57a4c9e519b4f96dcd3aa52bcc5efe5d745",
+      "response": null
+    },
+    {
+      "assignment_id": "e8bf99dc1130a5aa",
+      "position": 136,
+      "task_id": "cand_procurement_009",
+      "packet": "cand_procurement_009.json",
+      "packet_sha256": "0fb5b3b47f7447053053dfac18110ec8cd1cd92d82c169287c1d87fa41e7276e",
+      "response": null
+    },
+    {
+      "assignment_id": "57f799274b029fc1",
+      "position": 137,
+      "task_id": "cand_travel_040",
+      "packet": "cand_travel_040.json",
+      "packet_sha256": "c09b3f072f8ed4b8b657bb9cc9c7c76aaf9512fbbb3417be447103c3ef50153f",
+      "response": null
+    },
+    {
+      "assignment_id": "238155aef1bb400f",
+      "position": 138,
+      "task_id": "cand_it_017",
+      "packet": "cand_it_017.json",
+      "packet_sha256": "f545e64709d92dbc3095b9bb4300e329d125fdaee9c575735c2e711519216590",
+      "response": null
+    },
+    {
+      "assignment_id": "af51f0ddb540ea83",
+      "position": 139,
+      "task_id": "cand_procurement_021",
+      "packet": "cand_procurement_021.json",
+      "packet_sha256": "ee06d1460e43beea5abf0c027d01cfdaaa89d6e802f3d4f3f3ff18ba84e55d2f",
+      "response": null
+    },
+    {
+      "assignment_id": "8489401dd333457c",
+      "position": 140,
+      "task_id": "cand_scheduling_016",
+      "packet": "cand_scheduling_016.json",
+      "packet_sha256": "0e25066c6690fa29c4ca6ee75293b6333a8b2861ed789b7567e0bb91f8391c8e",
+      "response": null
+    },
+    {
+      "assignment_id": "dcb33ebe5616cfeb",
+      "position": 141,
+      "task_id": "cand_scheduling_012",
+      "packet": "cand_scheduling_012.json",
+      "packet_sha256": "5cf46227dcb6b2a62a2905e82885debb6e6fef2ae4393c6e32db2dcb1faf70a0",
+      "response": null
+    },
+    {
+      "assignment_id": "5e541c81eeffefee",
+      "position": 142,
+      "task_id": "cand_it_024",
+      "packet": "cand_it_024.json",
+      "packet_sha256": "f4fde7b5f921ef6b6cf3a5d666f11334476cc0712e0b404121524677ad2bd774",
+      "response": null
+    },
+    {
+      "assignment_id": "f1a628960b309df2",
+      "position": 143,
+      "task_id": "cand_scheduling_014",
+      "packet": "cand_scheduling_014.json",
+      "packet_sha256": "bb396ac97ac3267c97ebdbffc917a5342014bbda6ac92bb3cdc2bced79c012ee",
+      "response": null
+    },
+    {
+      "assignment_id": "456044a4bf773848",
+      "position": 144,
+      "task_id": "cand_commerce_004",
+      "packet": "cand_commerce_004.json",
+      "packet_sha256": "c8c07284ae1c1a237bd556c7d7e6614258591b22cdf746c9ede249505cd29c2c",
+      "response": null
+    },
+    {
+      "assignment_id": "fbfbfd44deac43fe",
+      "position": 145,
+      "task_id": "cand_travel_007",
+      "packet": "cand_travel_007.json",
+      "packet_sha256": "3fbd4e4c273a34520b0767a81b67bc0c527c29cd2e698fa8bf78ab76e5025c09",
+      "response": null
+    },
+    {
+      "assignment_id": "41ae8fe80ffca3ca",
+      "position": 146,
+      "task_id": "cand_commerce_030",
+      "packet": "cand_commerce_030.json",
+      "packet_sha256": "6f4c934440ec02a4710b890d6c1e149d110820fb48cd565064d5bae1bcf8ac7b",
+      "response": null
+    },
+    {
+      "assignment_id": "c81a78d9629ff2dc",
+      "position": 147,
+      "task_id": "cand_commerce_024",
+      "packet": "cand_commerce_024.json",
+      "packet_sha256": "cddc272568f2918f375d02ccaf3119e8bc95a228a6613152a4ec43bcc9dba7d5",
+      "response": null
+    },
+    {
+      "assignment_id": "caf01a760c7c432c",
+      "position": 148,
+      "task_id": "cand_scheduling_027",
+      "packet": "cand_scheduling_027.json",
+      "packet_sha256": "cb46c0d06e5e599a14ee9692346e1dcf3c4cd976e349667919b9b2d7e471f735",
+      "response": null
+    },
+    {
+      "assignment_id": "37aaae411e5e9071",
+      "position": 149,
+      "task_id": "cand_scheduling_026",
+      "packet": "cand_scheduling_026.json",
+      "packet_sha256": "4739700a410176e9c429ea5f6124cd13452f761352ddd9d6eab1b9a6c48a3bc0",
+      "response": null
+    },
+    {
+      "assignment_id": "b0452782c3161d82",
+      "position": 150,
+      "task_id": "cand_it_026",
+      "packet": "cand_it_026.json",
+      "packet_sha256": "fb3fcc116b3ab8baec8ab94e46bc003e3eb720e7fdcc4c758b0b01175158cb20",
+      "response": null
+    },
+    {
+      "assignment_id": "b88fa00bdcdd6040",
+      "position": 151,
+      "task_id": "cand_commerce_012",
+      "packet": "cand_commerce_012.json",
+      "packet_sha256": "231d21273e0db8116547c3eb27983c82f398c005b1ca49167699040ca1d99166",
+      "response": null
+    },
+    {
+      "assignment_id": "020d7057c3b96e7e",
+      "position": 152,
+      "task_id": "cand_procurement_019",
+      "packet": "cand_procurement_019.json",
+      "packet_sha256": "e9652d7080b7a681faf0d935131f04f431360ec805ef49c2a120b1620a552637",
+      "response": null
+    },
+    {
+      "assignment_id": "db6b2c0e026e1069",
+      "position": 153,
+      "task_id": "cand_commerce_038",
+      "packet": "cand_commerce_038.json",
+      "packet_sha256": "5115a8a41ad065bf92448da8a17cae6cd5cfd1aabf3a4cbb6592fd38cff11dff",
+      "response": null
+    },
+    {
+      "assignment_id": "65c4f871eef42da8",
+      "position": 154,
+      "task_id": "cand_travel_002",
+      "packet": "cand_travel_002.json",
+      "packet_sha256": "7dcfbf5ae157f81d6be1ff12b54108f330bddd6d985a689b3d34a6bb58f136b6",
+      "response": null
+    },
+    {
+      "assignment_id": "18d4d5133bfa3fdd",
+      "position": 155,
+      "task_id": "cand_scheduling_008",
+      "packet": "cand_scheduling_008.json",
+      "packet_sha256": "14c09520c3569207fa08cf268d8397382cc790fbeefad47a6da94736d6f0820c",
+      "response": null
+    },
+    {
+      "assignment_id": "f4e41e3a54aede51",
+      "position": 156,
+      "task_id": "cand_travel_014",
+      "packet": "cand_travel_014.json",
+      "packet_sha256": "bd781b75326ad70b105d01fb008d403d7fa675044a91dac0f89253ce5bbbe29b",
+      "response": null
+    },
+    {
+      "assignment_id": "6a6fc978c380c719",
+      "position": 157,
+      "task_id": "cand_commerce_035",
+      "packet": "cand_commerce_035.json",
+      "packet_sha256": "11b0447a9e72fed8fc31ca9952281a8bf2830aa68cce24fa02c38deac5e285fb",
+      "response": null
+    },
+    {
+      "assignment_id": "8d8ab0eb8a3c39ad",
+      "position": 158,
+      "task_id": "cand_procurement_038",
+      "packet": "cand_procurement_038.json",
+      "packet_sha256": "39e7e24db1afba05802bf55a10279dce5ed3436768d70d179e9d7b86e1b9ad2a",
+      "response": null
+    },
+    {
+      "assignment_id": "f35662be22dd4a3b",
+      "position": 159,
+      "task_id": "cand_scheduling_038",
+      "packet": "cand_scheduling_038.json",
+      "packet_sha256": "f0add4aba852bad3189e15d2a73bd89551334ebac6cb61a68f260d6a3f4894eb",
+      "response": null
+    },
+    {
+      "assignment_id": "05b7b79d292d9755",
+      "position": 160,
+      "task_id": "cand_scheduling_040",
+      "packet": "cand_scheduling_040.json",
+      "packet_sha256": "647264546cee15290018cce8e8ff08bd8ad240a3fa295b714b1cda5ede5a6a53",
+      "response": null
+    },
+    {
+      "assignment_id": "99796ccf9715690b",
+      "position": 161,
+      "task_id": "cand_procurement_022",
+      "packet": "cand_procurement_022.json",
+      "packet_sha256": "fcbd684cd77c5d30aeef18039f2978b39be57a76f004d576b186ac28b5a95812",
+      "response": null
+    },
+    {
+      "assignment_id": "0a539cb26202dced",
+      "position": 162,
+      "task_id": "cand_travel_012",
+      "packet": "cand_travel_012.json",
+      "packet_sha256": "91ee9d8c9d63d43739918d79f5c0498b2b0dc6e45aa3e3f1b0e6f089b067ad2b",
+      "response": null
+    },
+    {
+      "assignment_id": "08bce3082f4309fd",
+      "position": 163,
+      "task_id": "cand_it_002",
+      "packet": "cand_it_002.json",
+      "packet_sha256": "ceacbac75c5b59cbb049033bdbe29bab689c48ac06f326e0d59f7f0e029a51ab",
+      "response": null
+    },
+    {
+      "assignment_id": "94fd7a095a4ea6f8",
+      "position": 164,
+      "task_id": "cand_scheduling_021",
+      "packet": "cand_scheduling_021.json",
+      "packet_sha256": "358e3af5fa0514806cbccca9824f5e1a6d6064f764eafff8ce4d67a278e6ebef",
+      "response": null
+    },
+    {
+      "assignment_id": "9b929f293cef188d",
+      "position": 165,
+      "task_id": "cand_scheduling_001",
+      "packet": "cand_scheduling_001.json",
+      "packet_sha256": "e5d09f7a93703a5347d0786e64352d488809a2da814eee38292fd54792ab0deb",
+      "response": null
+    },
+    {
+      "assignment_id": "9fe4499c85005f0a",
+      "position": 166,
+      "task_id": "cand_travel_030",
+      "packet": "cand_travel_030.json",
+      "packet_sha256": "43192750a235953e695905c593c2dca2dd66196519b81c8d19a33286272b1a22",
+      "response": null
+    },
+    {
+      "assignment_id": "b915429943cf9647",
+      "position": 167,
+      "task_id": "cand_commerce_006",
+      "packet": "cand_commerce_006.json",
+      "packet_sha256": "f53c4eb07543414a462e0150a9989ac9f64245f575101bbed68cba1af7cf5dc0",
+      "response": null
+    },
+    {
+      "assignment_id": "2c9df053acab2b3b",
+      "position": 168,
+      "task_id": "cand_procurement_040",
+      "packet": "cand_procurement_040.json",
+      "packet_sha256": "0d6e3ccf5f5bdb4b645e4917d58e62c03fae38fb5d59e9fec5ae71c0da03b1d6",
+      "response": null
+    },
+    {
+      "assignment_id": "76e5867e073545d6",
+      "position": 169,
+      "task_id": "cand_procurement_039",
+      "packet": "cand_procurement_039.json",
+      "packet_sha256": "1881fd40908517e930bbcd83104fe192fc34bce4f6895bea6627a206f4debc63",
+      "response": null
+    },
+    {
+      "assignment_id": "29961869e4ef4834",
+      "position": 170,
+      "task_id": "cand_travel_021",
+      "packet": "cand_travel_021.json",
+      "packet_sha256": "ff6665c6080a725b681310fbec7aa789b1bfd981783c905e5a695ecf7de8d0f1",
+      "response": null
+    },
+    {
+      "assignment_id": "9a2ee75db4e70163",
+      "position": 171,
+      "task_id": "cand_procurement_026",
+      "packet": "cand_procurement_026.json",
+      "packet_sha256": "451fbefd5a5fda14a86b71bc03436cccccd1bfc14df76e7bbf7349f1d15bf2d8",
+      "response": null
+    },
+    {
+      "assignment_id": "09fdaf53b72fe302",
+      "position": 172,
+      "task_id": "cand_it_004",
+      "packet": "cand_it_004.json",
+      "packet_sha256": "394dccab135a673550c9cbd869e527d303a5b77ccb39dcf9dee00f606e1ae020",
+      "response": null
+    },
+    {
+      "assignment_id": "d1ddd83ca6ceeae5",
+      "position": 173,
+      "task_id": "cand_procurement_012",
+      "packet": "cand_procurement_012.json",
+      "packet_sha256": "9f1ebc6d2320f016fc0aa70083c1e79e0729b37b525331c74a134b1549bd560e",
+      "response": null
+    },
+    {
+      "assignment_id": "e127e797a7b4f2fa",
+      "position": 174,
+      "task_id": "cand_it_011",
+      "packet": "cand_it_011.json",
+      "packet_sha256": "608d0fcf02f13c1fd12bdc0e83d0109ab25f6a2c5ea80197293260bc1c266e58",
+      "response": null
+    },
+    {
+      "assignment_id": "10d67d8aed429002",
+      "position": 175,
+      "task_id": "cand_it_010",
+      "packet": "cand_it_010.json",
+      "packet_sha256": "9e82ee9dd3e3df36adc82d022406e057f6bbc908a53f6c5f363f471ec82c5a32",
+      "response": null
+    },
+    {
+      "assignment_id": "8dd1a4a9d76e4fe2",
+      "position": 176,
+      "task_id": "cand_scheduling_036",
+      "packet": "cand_scheduling_036.json",
+      "packet_sha256": "101c8381d5eb762d9f4bc63d9dcd57d18fd07af24fc06433c31e2710f22b0697",
+      "response": null
+    },
+    {
+      "assignment_id": "fc2560e7e05ac173",
+      "position": 177,
+      "task_id": "cand_scheduling_017",
+      "packet": "cand_scheduling_017.json",
+      "packet_sha256": "f8b209c879edd7e898ba81dc05ac62f341ff365f4c0a2cf8192f6d2f1c0494bf",
+      "response": null
+    },
+    {
+      "assignment_id": "da03d095ab956bdb",
+      "position": 178,
+      "task_id": "cand_travel_029",
+      "packet": "cand_travel_029.json",
+      "packet_sha256": "2317394f7163eb79b3928229d6e0878bb15e29ece58720f6da7cc09fe73759e4",
+      "response": null
+    },
+    {
+      "assignment_id": "3dbcda50d3bc514f",
+      "position": 179,
+      "task_id": "cand_commerce_015",
+      "packet": "cand_commerce_015.json",
+      "packet_sha256": "32f74b89287b2651225c9d066110ae548f24666bcf08f2b90222738e0ca622d7",
+      "response": null
+    },
+    {
+      "assignment_id": "4573ddefa23e8797",
+      "position": 180,
+      "task_id": "cand_scheduling_025",
+      "packet": "cand_scheduling_025.json",
+      "packet_sha256": "9fd3a3de462aac6c5b0cb05fe005871dbdf837c7e724a7f6847b317b6e5530a1",
+      "response": null
+    },
+    {
+      "assignment_id": "bb79205491e5a351",
+      "position": 181,
+      "task_id": "cand_it_008",
+      "packet": "cand_it_008.json",
+      "packet_sha256": "aa9da51d7e8e31043691c5d9041b91a3fb80a1ceb56d40afd3361b64e6d3555e",
+      "response": null
+    },
+    {
+      "assignment_id": "d534e5aa83c1fc30",
+      "position": 182,
+      "task_id": "cand_it_039",
+      "packet": "cand_it_039.json",
+      "packet_sha256": "10a57a9d610d942df49fdd73d38880d9de0bd99afd1bb1a36fb2cfb9fd69bed0",
+      "response": null
+    },
+    {
+      "assignment_id": "3293fe0364df3e4c",
+      "position": 183,
+      "task_id": "cand_it_007",
+      "packet": "cand_it_007.json",
+      "packet_sha256": "9fd0cbb4ba4730872bb7a5acd269353cf2439963f38cd696f475bea38d0640fd",
+      "response": null
+    },
+    {
+      "assignment_id": "6e39601705ba944b",
+      "position": 184,
+      "task_id": "cand_procurement_002",
+      "packet": "cand_procurement_002.json",
+      "packet_sha256": "8413d286e77058ad24951fb6dc6b4ac75433cd11896b64f2882ef240a51f9af6",
+      "response": null
+    },
+    {
+      "assignment_id": "6b16d7d26f4dcef0",
+      "position": 185,
+      "task_id": "cand_scheduling_015",
+      "packet": "cand_scheduling_015.json",
+      "packet_sha256": "d02071e31c553f5ad3c88efd6a129511e72a5976fec90006dadca97d628602fe",
+      "response": null
+    },
+    {
+      "assignment_id": "9b3818f6b65ca6a8",
+      "position": 186,
+      "task_id": "cand_commerce_023",
+      "packet": "cand_commerce_023.json",
+      "packet_sha256": "2a5593acee9312a3ec17f5cc27835c3b8cbd56f6574847e80148c9491858945f",
+      "response": null
+    },
+    {
+      "assignment_id": "2ffc25beb67da0fa",
+      "position": 187,
+      "task_id": "cand_commerce_003",
+      "packet": "cand_commerce_003.json",
+      "packet_sha256": "e75bd86f4270942b13c17b0dede5c93888c2926ead59820a589b72f08bd9309d",
+      "response": null
+    },
+    {
+      "assignment_id": "391d30c01dde80fa",
+      "position": 188,
+      "task_id": "cand_procurement_037",
+      "packet": "cand_procurement_037.json",
+      "packet_sha256": "66b028d955278b0ab3e1d36118a7a3f65c2a156ef76f36f27598a67cc42b78fa",
+      "response": null
+    },
+    {
+      "assignment_id": "98b536105521f9b4",
+      "position": 189,
+      "task_id": "cand_it_033",
+      "packet": "cand_it_033.json",
+      "packet_sha256": "7aba79104e54f732b573c25001dafddf84cc06bb5cf1e45f21827ac64b91f941",
+      "response": null
+    },
+    {
+      "assignment_id": "149fe9c5dee10600",
+      "position": 190,
+      "task_id": "cand_travel_020",
+      "packet": "cand_travel_020.json",
+      "packet_sha256": "1c6acfa86ce1213286298f5855f3790204cd570b601fa2157abb2681727ad5f0",
+      "response": null
+    },
+    {
+      "assignment_id": "5cdc75a44ce19a2c",
+      "position": 191,
+      "task_id": "cand_travel_009",
+      "packet": "cand_travel_009.json",
+      "packet_sha256": "18e5deab5c34bbbbd6d2acae981f9e16fc75da1278e8db839e41749e18d1d913",
+      "response": null
+    },
+    {
+      "assignment_id": "017676314f3c3307",
+      "position": 192,
+      "task_id": "cand_procurement_027",
+      "packet": "cand_procurement_027.json",
+      "packet_sha256": "2531542b6bf526692842da9e8b3607c5cd9aa27b3cd9d83002123fb69fc5a6dc",
+      "response": null
+    },
+    {
+      "assignment_id": "5b0b77307e663d1b",
+      "position": 193,
+      "task_id": "cand_scheduling_020",
+      "packet": "cand_scheduling_020.json",
+      "packet_sha256": "8f7ec2ac5ce2c5ec9a540f99260a453149fc43f74ad25ee0be2ea5a5b6391f04",
+      "response": null
+    },
+    {
+      "assignment_id": "096005efb1ac1965",
+      "position": 194,
+      "task_id": "cand_procurement_004",
+      "packet": "cand_procurement_004.json",
+      "packet_sha256": "a2402189d7af78eb19e95c9bc23cecc83232c3c31e14d4a9b2cf31a43fa6e231",
+      "response": null
+    },
+    {
+      "assignment_id": "006293cad9d8e80b",
+      "position": 195,
+      "task_id": "cand_commerce_021",
+      "packet": "cand_commerce_021.json",
+      "packet_sha256": "078328b81826cecc93e9dd01587579ad9d3f94576525ad4a49d8d8228abb0b35",
+      "response": null
+    },
+    {
+      "assignment_id": "79a64a629983ca53",
+      "position": 196,
+      "task_id": "cand_scheduling_024",
+      "packet": "cand_scheduling_024.json",
+      "packet_sha256": "562d51ad4884c70632d901a3e25624e6c3484f4edbeadc5db08ccc7bd997f65e",
+      "response": null
+    },
+    {
+      "assignment_id": "21d5e083591be1ce",
+      "position": 197,
+      "task_id": "cand_travel_033",
+      "packet": "cand_travel_033.json",
+      "packet_sha256": "514b7687c5993b0df527a31f08c57511ef5f2066899d20cbdcf4c86389489771",
+      "response": null
+    },
+    {
+      "assignment_id": "34b2516cff11b6ff",
+      "position": 198,
+      "task_id": "cand_scheduling_018",
+      "packet": "cand_scheduling_018.json",
+      "packet_sha256": "c80a061816d90b937d95eedcd91751e3bb202aa67fe4cfd1875de0dafecade87",
+      "response": null
+    },
+    {
+      "assignment_id": "e27476438da5af7c",
+      "position": 199,
+      "task_id": "cand_commerce_031",
+      "packet": "cand_commerce_031.json",
+      "packet_sha256": "9c4a25a16fc45503cb67f618f53a0e5674bb39edfe7fba89eaa19ea88c52a930",
+      "response": null
+    },
+    {
+      "assignment_id": "3a06cc57cc65fd41",
+      "position": 200,
+      "task_id": "cand_scheduling_006",
+      "packet": "cand_scheduling_006.json",
+      "packet_sha256": "f2575ec3671c52165c6baf09e0bae34ebb5c9c512931cf4f619fe102ce3ca0dc",
+      "response": null
+    }
+  ]
+}

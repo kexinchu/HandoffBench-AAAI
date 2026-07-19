@@ -1,0 +1,75 @@
+{
+  "task_id": "cand_scheduling_035",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b035",
+    "source_role": "casework_intake",
+    "target_role": "service_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs035u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule reentry case conference",
+        "schedule_window": "window_035"
+      }
+    },
+    {
+      "trace_id": "cs035t",
+      "source_type": "tool",
+      "tool": "schedule_registry_035",
+      "content": {
+        "case_slot_id": "case_R4"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs035p",
+      "source_type": "policy",
+      "content": {
+        "case_clearance": true
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "schedule_case_conference",
+      "arguments": {
+        "case_slot_id": {
+          "type": "string",
+          "enum": [
+            "case_R4_altB",
+            "case_R4_altA",
+            "case_R4"
+          ]
+        }
+      },
+      "requires": [
+        "case_clearance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_035": {
+      "request": {
+        "task_id": "cand_scheduling_035"
+      },
+      "response": {
+        "case_slot_id": "case_R4"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,203 @@
+{
+  "task_id": "cand_procurement_033",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_033_b",
+    "source_role": "Surplus-assets desk",
+    "target_role": "disposal officer",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_033_u01",
+      "source_type": "user",
+      "content": {
+        "dispose_asset": "observed dispose asset",
+        "wipe_certificate": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_033_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "ownership": "observed ownership",
+        "residual_value": "observed residual value",
+        "data_bearing": "observed data bearing",
+        "candidate_assessments": {
+          "ref_033_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_033_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_033_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_033_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_procurement_033_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Asset ownership; residual value; data-bearing status; wipe certificate absent; charity request received"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "approve_donation",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_033_a",
+            "ref_033_b",
+            "ref_033_c"
+          ],
+          "enum_descriptions": {
+            "ref_033_a": "scope conflicts with an active constraint; verification is current",
+            "ref_033_b": "scope matches the request; a required verification is still pending",
+            "ref_033_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "wipe_certificate=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "sell_asset",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_033_a",
+            "ref_033_b",
+            "ref_033_c"
+          ],
+          "enum_descriptions": {
+            "ref_033_a": "scope conflicts with an active constraint; verification is current",
+            "ref_033_b": "scope matches the request; a required verification is still pending",
+            "ref_033_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "wipe_certificate=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "discard_asset",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_033_a",
+            "ref_033_b",
+            "ref_033_c"
+          ],
+          "enum_descriptions": {
+            "ref_033_a": "scope conflicts with an active constraint; verification is current",
+            "ref_033_b": "scope matches the request; a required verification is still pending",
+            "ref_033_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "wipe_certificate=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_wipe_certificate",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_033_a",
+            "ref_033_b",
+            "ref_033_c"
+          ],
+          "enum_descriptions": {
+            "ref_033_a": "scope conflicts with an active constraint; verification is current",
+            "ref_033_b": "scope matches the request; a required verification is still pending",
+            "ref_033_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "wipe_certificate=unknown"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_033"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_033_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_033_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_033_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_wipe_certificate": {
+      "trigger": {
+        "name": "request_wipe_certificate",
+        "arguments": {
+          "choice": "ref_033_c"
+        }
+      },
+      "updates": {
+        "wipe_certificate": {
+          "status": "known",
+          "value": "cand_procurement_033_wipe_certificate_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

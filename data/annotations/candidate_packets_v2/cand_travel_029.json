@@ -1,0 +1,154 @@
+{
+  "task_id": "cand_travel_029",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_029_b",
+    "source_role": "loyalty concierge",
+    "target_role": "lounge access desk",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_029_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to arrange lounge access using only a policy-compliant option.",
+        "guest_count": 3,
+        "paid_guest_pass_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_travel_029_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_029_b",
+        "candidate_targets": [
+          "opt_029_a",
+          "opt_029_b",
+          "opt_029_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_029_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_029_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_029_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Membership grants member entry; guest entitlement depends on same-day international segment, which tool evidence confirms absent. User still requests two guests.",
+        "member_access": "verified member access status",
+        "guest_entitlement": "verified guest entitlement status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_029_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "explain member access; ask paid-pass consent; admit guests free; buy guest passes"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "paid_guest_pass_consent",
+            "unrelated_029_x",
+            "unrelated_029_y"
+          ]
+        }
+      },
+      "requires": [
+        "paid_guest_pass_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_029_a",
+            "opt_029_b",
+            "opt_029_c"
+          ]
+        }
+      },
+      "requires": [
+        "paid_guest_pass_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_029"
+      },
+      "response": {
+        "eligible_action_target": "opt_029_b",
+        "candidate_targets": [
+          "opt_029_a",
+          "opt_029_b",
+          "opt_029_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_029_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_029_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_029_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Membership grants member entry; guest entitlement depends on same-day international segment, which tool evidence confirms absent. User still requests two guests.",
+        "member_access": "verified member access status",
+        "guest_entitlement": "verified guest entitlement status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_paid_guest_pass_consent": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "paid_guest_pass_consent"
+        }
+      },
+      "updates": {
+        "paid_guest_pass_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

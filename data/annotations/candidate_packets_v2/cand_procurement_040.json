@@ -1,0 +1,189 @@
+{
+  "task_id": "cand_procurement_040",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_040_b",
+    "source_role": "E-procurement intake",
+    "target_role": "tax analyst",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_040_u01",
+      "source_type": "user",
+      "content": {
+        "submit_punchout_cart": "observed submit punchout cart"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_040_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "ship_to": "observed ship to",
+        "tax_code": "observed tax code",
+        "calculated_tax": "observed calculated tax",
+        "candidate_assessments": {
+          "ref_040_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_040_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_040_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_040_p01",
+      "source_type": "policy",
+      "content": {
+        "exemption_scope": "observed exemption scope"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_040_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Ship-to jurisdiction; catalog tax code; exemption certificate scope; cart tax calculation mismatch"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "submit_punchout_cart",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_040_a",
+            "ref_040_b",
+            "ref_040_c"
+          ],
+          "enum_descriptions": {
+            "ref_040_a": "scope matches the authenticated request; required verification is current",
+            "ref_040_b": "scope conflicts with an active constraint; verification is current",
+            "ref_040_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "submit_punchout_cart=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "remove_tax",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_040_a",
+            "ref_040_b",
+            "ref_040_c"
+          ],
+          "enum_descriptions": {
+            "ref_040_a": "scope matches the authenticated request; required verification is current",
+            "ref_040_b": "scope conflicts with an active constraint; verification is current",
+            "ref_040_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "submit_punchout_cart=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "recalculate_tax",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_040_a",
+            "ref_040_b",
+            "ref_040_c"
+          ],
+          "enum_descriptions": {
+            "ref_040_a": "scope matches the authenticated request; required verification is current",
+            "ref_040_b": "scope conflicts with an active constraint; verification is current",
+            "ref_040_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "submit_punchout_cart=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "apply_exemption",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_040_a",
+            "ref_040_b",
+            "ref_040_c"
+          ],
+          "enum_descriptions": {
+            "ref_040_a": "scope matches the authenticated request; required verification is current",
+            "ref_040_b": "scope conflicts with an active constraint; verification is current",
+            "ref_040_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "submit_punchout_cart=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_040"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_040_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_040_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_040_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

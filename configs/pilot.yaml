@@ -1,0 +1,34 @@
+experiment_id: pilot_v1
+purpose: development_only
+split: dev
+tasks: 30
+models:
+  # Resolve to exact immutable provider snapshots before any run.
+  - provider: unresolved
+    model: strong_model_a
+  - provider: unresolved
+    model: representative_model_b
+methods:
+  - full_history
+  - free_summary
+  - structured_payload
+  - executable_capsule
+  - gold_state_oracle
+seeds: [101, 202]
+generation:
+  temperature: 0
+  max_output_tokens: 1600
+budgets:
+  max_post_handoff_tool_calls: 8
+  retry_provider_failures: false
+primary_endpoints:
+  - strict_success
+  - macro_state_f1
+  - critical_error
+  - input_tokens
+gate:
+  evaluator_pass_rate: 0.95
+  ehc_vs_structured_success_pp: 5
+notes: >-
+  This pilot selects prompts and estimates effect size/cost. Its outcomes must not
+  be reported as frozen-test confirmatory evidence.

@@ -1,0 +1,3373 @@
+{
+  "global_enum_position_majority": {
+    "majority_position": 0,
+    "position_counts": {
+      "0": 194,
+      "1": 107,
+      "2": 101
+    },
+    "rate": 0.345,
+    "successes": 69
+  },
+  "interpretation": "The diagnostic is above uniform argument chance, but its 34.5% rate equals the global first-enum-position majority baseline. It demonstrates combined oracle-name exposure and enum-order imbalance, not independently identified action-name leakage.",
+  "n": 200,
+  "observed": {
+    "family_bootstrap_95": [
+      0.28,
+      0.41
+    ],
+    "rate": 0.345,
+    "successes": 69,
+    "wilson_95": [
+      0.2825968690139029,
+      0.41324539282077655
+    ]
+  },
+  "probe_definition": "oracle action-name sequence plus canonical first-enum/false/unknown argument guesses; not a pure action-name-only learner",
+  "recommended_paper_wording": "An oracle-name/canonical-argument diagnostic succeeds on 69/200 tasks (34.5%; report CI), versus 13.9% expected under uniform argument guessing. Because index 0 is the global enum-position majority and the probe is given the gold action names, this is a material combined interface/ordering leakage diagnostic, not evidence that action names alone solve 34.5%.",
+  "rows": [
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_travel_001",
+      "template_family": "travel_cancel_rebook_fee_consent",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_travel_002",
+      "template_family": "travel_missed_connection_protection",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_003",
+      "template_family": "travel_same_day_standby_priority",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_travel_004",
+      "template_family": "travel_name_correction_document_match",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_005",
+      "template_family": "travel_schedule_change_refund_choice",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_006",
+      "template_family": "travel_multi_city_segment_scope",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_travel_007",
+      "template_family": "travel_award_ticket_miles_cash",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_008",
+      "template_family": "travel_unaccompanied_minor_service",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_009",
+      "template_family": "travel_pet_cabin_capacity",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_travel_010",
+      "template_family": "travel_wheelchair_connection_assistance",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_travel_011",
+      "template_family": "travel_visa_transit_avoidance",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_012",
+      "template_family": "travel_passport_validity_gate",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0",
+      "enum_positions": [
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 1,
+      "task_id": "cand_travel_013",
+      "template_family": "travel_hotel_destination_supersession",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_014",
+      "template_family": "travel_hotel_deposit_currency",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "2",
+      "enum_positions": [
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_travel_015",
+      "template_family": "travel_hotel_accessible_room_feature",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_travel_016",
+      "template_family": "travel_overbooking_walk_remedy",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_travel_017",
+      "template_family": "travel_rail_connection_buffer",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_018",
+      "template_family": "travel_rail_strike_refund_exchange",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0",
+      "enum_positions": [
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 1,
+      "task_id": "cand_travel_019",
+      "template_family": "travel_car_driver_eligibility",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_020",
+      "template_family": "travel_car_fuel_damage_hold",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_021",
+      "template_family": "travel_cruise_cabin_muster_access",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_travel_022",
+      "template_family": "travel_ferry_vehicle_dimension",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_023",
+      "template_family": "travel_insurance_coverage_selection",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_024",
+      "template_family": "travel_baggage_delayed_delivery",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0",
+      "enum_positions": [
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 1,
+      "task_id": "cand_travel_025",
+      "template_family": "travel_flight_credit_owner_binding",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_travel_026",
+      "template_family": "travel_companion_certificate_inventory",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_027",
+      "template_family": "travel_open_jaw_fare_rule",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0",
+      "enum_positions": [
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 1,
+      "task_id": "cand_travel_028",
+      "template_family": "travel_codeshare_operating_carrier_bag",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_029",
+      "template_family": "travel_lounge_access_guest_scope",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_030",
+      "template_family": "travel_airport_transfer_terminal_change",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0",
+      "enum_positions": [
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 1,
+      "task_id": "cand_travel_031",
+      "template_family": "travel_tour_weather_cancellation",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_032",
+      "template_family": "travel_ski_pass_activation_date",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_033",
+      "template_family": "travel_event_ticket_seat_contiguity",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0",
+      "enum_positions": [
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 1,
+      "task_id": "cand_travel_034",
+      "template_family": "travel_toll_transponder_region",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_035",
+      "template_family": "travel_currency_cash_pickup_identity",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_036",
+      "template_family": "travel_medical_equipment_battery_clearance",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0",
+      "enum_positions": [
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 1,
+      "task_id": "cand_travel_037",
+      "template_family": "travel_group_booking_name_deadline",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_038",
+      "template_family": "travel_upgrade_bid_withdrawal",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_travel_039",
+      "template_family": "travel_evisa_application_document",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_travel_040",
+      "template_family": "travel_lost_ticket_reissue_identity",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_001",
+      "template_family": "commerce_damaged_exchange_substitution",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_002",
+      "template_family": "commerce_missing_line_partial_refund",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_003",
+      "template_family": "commerce_wrong_item_cross_ship",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0",
+      "enum_positions": [
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 1,
+      "task_id": "cand_commerce_004",
+      "template_family": "commerce_warranty_repair_serial",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0,1",
+      "enum_positions": [
+        0,
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_commerce_005",
+      "template_family": "commerce_recall_remedy_eligibility",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_006",
+      "template_family": "commerce_food_allergen_substitution",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0,0",
+      "enum_positions": [
+        0,
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 3,
+      "task_id": "cand_commerce_007",
+      "template_family": "commerce_subscription_prorate_settlement",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0,0,1",
+      "enum_positions": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 4,
+      "task_id": "cand_commerce_008",
+      "template_family": "commerce_duplicate_charge_reversal",
+      "uniform_argument_success_probability": 0.012345679012345678
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_009",
+      "template_family": "commerce_price_match_derived_credit",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0",
+      "enum_positions": [
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 1,
+      "task_id": "cand_commerce_010",
+      "template_family": "commerce_coupon_stack_policy",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_011",
+      "template_family": "commerce_preorder_release_revision",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_012",
+      "template_family": "commerce_backorder_split_shipment",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_013",
+      "template_family": "commerce_address_change_fulfillment_stage",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_014",
+      "template_family": "commerce_intercept_after_carrier_handoff",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "2",
+      "enum_positions": [
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_commerce_015",
+      "template_family": "commerce_signature_delivery_exception",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_016",
+      "template_family": "commerce_age_restricted_pickup",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_017",
+      "template_family": "commerce_gift_return_recipient_credit",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_018",
+      "template_family": "commerce_marketplace_seller_dispute",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_019",
+      "template_family": "commerce_digital_download_refund",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_020",
+      "template_family": "commerce_license_seat_reassignment",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_021",
+      "template_family": "commerce_trade_in_condition_revision",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0",
+      "enum_positions": [
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 1,
+      "task_id": "cand_commerce_022",
+      "template_family": "commerce_installation_service_dependency",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_023",
+      "template_family": "commerce_custom_product_proof_approval",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_024",
+      "template_family": "commerce_loyalty_points_expiry_order",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_025",
+      "template_family": "commerce_bundle_component_return",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_026",
+      "template_family": "commerce_serialized_item_swap",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_027",
+      "template_family": "commerce_installment_early_payoff",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_028",
+      "template_family": "commerce_tax_exemption_document",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0,1",
+      "enum_positions": [
+        0,
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_commerce_029",
+      "template_family": "commerce_invoice_purchase_order_match",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_030",
+      "template_family": "commerce_curbside_pickup_substitute",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_031",
+      "template_family": "commerce_furniture_delivery_stair_fee",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_commerce_032",
+      "template_family": "commerce_hazardous_return_method",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "2",
+      "enum_positions": [
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_commerce_033",
+      "template_family": "commerce_data_export_account_closure",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0",
+      "enum_positions": [
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 1,
+      "task_id": "cand_commerce_034",
+      "template_family": "commerce_chargeback_open_refund_block",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_035",
+      "template_family": "commerce_engraving_revision_cutoff",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_036",
+      "template_family": "commerce_membership_household_transfer",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0",
+      "enum_positions": [
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 1,
+      "task_id": "cand_commerce_037",
+      "template_family": "commerce_device_activation_carrier_lock",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_commerce_038",
+      "template_family": "commerce_perishable_delivery_temperature",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_commerce_039",
+      "template_family": "commerce_reserved_inventory_payment_retry",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0,0",
+      "enum_positions": [
+        0,
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 3,
+      "task_id": "cand_commerce_040",
+      "template_family": "commerce_repair_data_backup_consent",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_001",
+      "template_family": "proc_competitive_bid_threshold",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "1,1",
+      "enum_positions": [
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_002",
+      "template_family": "proc_emergency_single_source",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "2,2",
+      "enum_positions": [
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_003",
+      "template_family": "proc_budget_split_prohibition",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_004",
+      "template_family": "proc_vendor_onboarding_tax",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "1,1,1",
+      "enum_positions": [
+        1,
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_procurement_005",
+      "template_family": "proc_conflict_disclosure",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "2,2",
+      "enum_positions": [
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_006",
+      "template_family": "proc_data_residency_saas",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_007",
+      "template_family": "proc_auto_renewal_notice",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "1,1,1",
+      "enum_positions": [
+        1,
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_procurement_008",
+      "template_family": "proc_incoterm_landed_cost",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "2,2",
+      "enum_positions": [
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_009",
+      "template_family": "proc_currency_hedge_expiry",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_010",
+      "template_family": "proc_receipt_invoice_mismatch",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "1,1",
+      "enum_positions": [
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_011",
+      "template_family": "proc_change_order_scope",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "2",
+      "enum_positions": [
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_procurement_012",
+      "template_family": "proc_duplicate_invoice_identity",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_013",
+      "template_family": "proc_blanket_po_depletion",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "1,1",
+      "enum_positions": [
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_014",
+      "template_family": "proc_minimum_order_overbuy",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "2,2",
+      "enum_positions": [
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_015",
+      "template_family": "proc_subcontractor_flowdown",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0,0",
+      "enum_positions": [
+        0,
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 3,
+      "task_id": "cand_procurement_016",
+      "template_family": "proc_insurance_certificate_expiry",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "1,1,1",
+      "enum_positions": [
+        1,
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_procurement_017",
+      "template_family": "proc_approved_substitute_spec",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "2,2,2",
+      "enum_positions": [
+        2,
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_procurement_018",
+      "template_family": "proc_delivery_acceptance_damage",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_019",
+      "template_family": "proc_prepaid_supplier_risk",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "1,1",
+      "enum_positions": [
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_020",
+      "template_family": "proc_framework_lot_scope",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "2,2,2",
+      "enum_positions": [
+        2,
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_procurement_021",
+      "template_family": "proc_export_control_end_use",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_022",
+      "template_family": "proc_delegation_limit",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "1,1",
+      "enum_positions": [
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_023",
+      "template_family": "proc_supplier_capacity_allocation",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "2,2",
+      "enum_positions": [
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_024",
+      "template_family": "proc_retention_release",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_025",
+      "template_family": "proc_reverse_auction_reserve",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "1,1",
+      "enum_positions": [
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_026",
+      "template_family": "proc_catalog_volume_tier",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "2,2",
+      "enum_positions": [
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_027",
+      "template_family": "proc_supplier_carbon_attestation",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_028",
+      "template_family": "proc_preference_program_eligibility",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "1,1,1",
+      "enum_positions": [
+        1,
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_procurement_029",
+      "template_family": "proc_lease_buy_horizon",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "2,2,2",
+      "enum_positions": [
+        2,
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_procurement_030",
+      "template_family": "proc_warranty_response_sla",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0,0",
+      "enum_positions": [
+        0,
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 3,
+      "task_id": "cand_procurement_031",
+      "template_family": "proc_consignment_title_transfer",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "1,1,1",
+      "enum_positions": [
+        1,
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_procurement_032",
+      "template_family": "proc_hazmat_carrier_authorization",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "2,2",
+      "enum_positions": [
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_033",
+      "template_family": "proc_asset_disposal_chain",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_034",
+      "template_family": "proc_custom_development_ip",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "1,1,1",
+      "enum_positions": [
+        1,
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_procurement_035",
+      "template_family": "proc_milestone_evidence_acceptance",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "2,2,2",
+      "enum_positions": [
+        2,
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_procurement_036",
+      "template_family": "proc_forecast_cancellation_liability",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_037",
+      "template_family": "proc_cyber_insurance_limit",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "1,1,1",
+      "enum_positions": [
+        1,
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_procurement_038",
+      "template_family": "proc_reusable_packaging_return",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "2,2",
+      "enum_positions": [
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_039",
+      "template_family": "proc_cooperative_contract_scope",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_procurement_040",
+      "template_family": "proc_punchout_tax_jurisdiction",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "1,1",
+      "enum_positions": [
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_it_001",
+      "template_family": "it_privileged_reset_two_factor",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "2,2",
+      "enum_positions": [
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_it_002",
+      "template_family": "it_terminated_user_session",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_it_003",
+      "template_family": "it_breakglass_expiry",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "1,1,1",
+      "enum_positions": [
+        1,
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_it_004",
+      "template_family": "it_certificate_chain_rotation",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "2,2",
+      "enum_positions": [
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_it_005",
+      "template_family": "it_dns_cutover_ttl",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0,0",
+      "enum_positions": [
+        0,
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 3,
+      "task_id": "cand_it_006",
+      "template_family": "it_backup_restore_scope",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "1,1",
+      "enum_positions": [
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_it_007",
+      "template_family": "it_ransomware_host_isolation",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "2,2,2",
+      "enum_positions": [
+        2,
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_it_008",
+      "template_family": "it_patch_dependency_order",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0,0",
+      "enum_positions": [
+        0,
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 3,
+      "task_id": "cand_it_009",
+      "template_family": "it_database_failover_lag",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "1,1,1",
+      "enum_positions": [
+        1,
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_it_010",
+      "template_family": "it_firewall_rule_shadow",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "2,2,2",
+      "enum_positions": [
+        2,
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_it_011",
+      "template_family": "it_service_account_key_leak",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0,0",
+      "enum_positions": [
+        0,
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 3,
+      "task_id": "cand_it_012",
+      "template_family": "it_sso_metadata_rollover",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "1,1",
+      "enum_positions": [
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_it_013",
+      "template_family": "it_email_forwarding_exfiltration",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "2,2",
+      "enum_positions": [
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_it_014",
+      "template_family": "it_mobile_wipe_ownership",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_it_015",
+      "template_family": "it_change_window_timezone",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "1,1",
+      "enum_positions": [
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_it_016",
+      "template_family": "it_log_retention_capacity",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "2,2",
+      "enum_positions": [
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_it_017",
+      "template_family": "it_api_rate_limit_shared_client",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_it_018",
+      "template_family": "it_kubernetes_namespace_quota",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "1,1",
+      "enum_positions": [
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_it_019",
+      "template_family": "it_vpn_geo_anomaly",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "2,2",
+      "enum_positions": [
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_it_020",
+      "template_family": "it_data_deletion_legal_hold",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_it_021",
+      "template_family": "it_license_reclamation_dependency",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "1,1",
+      "enum_positions": [
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_it_022",
+      "template_family": "it_message_queue_replay",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "2,2,2",
+      "enum_positions": [
+        2,
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_it_023",
+      "template_family": "it_schema_migration_backward_compat",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_it_024",
+      "template_family": "it_monitoring_silence_scope",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "1,1,1",
+      "enum_positions": [
+        1,
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_it_025",
+      "template_family": "it_mfa_enrollment_factor_loss",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "2,2,2",
+      "enum_positions": [
+        2,
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_it_026",
+      "template_family": "it_public_snapshot_exposure",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0,0",
+      "enum_positions": [
+        0,
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 3,
+      "task_id": "cand_it_027",
+      "template_family": "it_kernel_rollout_hardware",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "1,1,1",
+      "enum_positions": [
+        1,
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_it_028",
+      "template_family": "it_dhcp_scope_exhaustion",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "2,2,2",
+      "enum_positions": [
+        2,
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_it_029",
+      "template_family": "it_domain_transfer_lock",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0,0",
+      "enum_positions": [
+        0,
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 3,
+      "task_id": "cand_it_030",
+      "template_family": "it_ci_runner_compromise",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "1,1",
+      "enum_positions": [
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_it_031",
+      "template_family": "it_dlp_release_dual_control",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "2,2",
+      "enum_positions": [
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_it_032",
+      "template_family": "it_archive_immutability_extension",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0,0",
+      "enum_positions": [
+        0,
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 3,
+      "task_id": "cand_it_033",
+      "template_family": "it_ntp_drift_authentication",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "1,1,1",
+      "enum_positions": [
+        1,
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_it_034",
+      "template_family": "it_load_balancer_connection_drain",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "2,2,2",
+      "enum_positions": [
+        2,
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_it_035",
+      "template_family": "it_oauth_redirect_registration",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_it_036",
+      "template_family": "it_shared_mailbox_delegation",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "1,1,1",
+      "enum_positions": [
+        1,
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_it_037",
+      "template_family": "it_printer_firmware_signature",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "2,2,2",
+      "enum_positions": [
+        2,
+        2,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_it_038",
+      "template_family": "it_branch_protection_emergency",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0,0",
+      "enum_positions": [
+        0,
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 3,
+      "task_id": "cand_it_039",
+      "template_family": "it_storage_key_rotation_replicas",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "1,1,1",
+      "enum_positions": [
+        1,
+        1,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 3,
+      "task_id": "cand_it_040",
+      "template_family": "it_webhook_signature_replay",
+      "uniform_argument_success_probability": 0.037037037037037035
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_001",
+      "template_family": "scheduling_specialist_cancellation_offer",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_002",
+      "template_family": "scheduling_interpreter_joint_availability",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_003",
+      "template_family": "scheduling_recurring_series_exception",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_004",
+      "template_family": "scheduling_interview_candidate_confirmation",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_005",
+      "template_family": "scheduling_exam_accommodation_clearance",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_006",
+      "template_family": "scheduling_calibration_before_release",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0",
+      "enum_positions": [
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_007",
+      "template_family": "scheduling_passport_document_clearance",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_008",
+      "template_family": "scheduling_identity_session_channel_revision",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_009",
+      "template_family": "scheduling_parent_conference_custody_scope",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_010",
+      "template_family": "scheduling_cancellation_fee_acceptance",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_011",
+      "template_family": "scheduling_accessible_transit_synchronization",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_012",
+      "template_family": "scheduling_maintenance_outage_coverage",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_013",
+      "template_family": "scheduling_room_inventory_conflict",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_014",
+      "template_family": "scheduling_dst_timezone_revision",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,1",
+      "enum_positions": [
+        0,
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_015",
+      "template_family": "scheduling_reschedule_fee_policy_conflict",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_016",
+      "template_family": "scheduling_tenant_entry_authorization",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_017",
+      "template_family": "scheduling_permit_inspection_dependency",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_018",
+      "template_family": "scheduling_court_interpreter_reservation",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0",
+      "enum_positions": [
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_019",
+      "template_family": "scheduling_childcare_authorized_pickup",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "2",
+      "enum_positions": [
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_020",
+      "template_family": "scheduling_certification_class_modality_revision",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_021",
+      "template_family": "scheduling_vendor_demo_security_conflict",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_022",
+      "template_family": "scheduling_onboarding_recording_consent",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_023",
+      "template_family": "scheduling_board_meeting_clearance_join",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_024",
+      "template_family": "scheduling_emergency_drill_staffing_gate",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_025",
+      "template_family": "scheduling_shift_swap_coverage",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_026",
+      "template_family": "scheduling_loading_dock_revision",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_027",
+      "template_family": "scheduling_museum_tour_capacity_conflict",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_028",
+      "template_family": "scheduling_mediation_participant_authority",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "2",
+      "enum_positions": [
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_029",
+      "template_family": "scheduling_preop_resource_join",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_030",
+      "template_family": "scheduling_datacenter_change_window",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_031",
+      "template_family": "scheduling_advising_queue_priority",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_032",
+      "template_family": "scheduling_property_inspection_attendee_revision",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_033",
+      "template_family": "scheduling_grant_panel_conflict_recusal",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_034",
+      "template_family": "scheduling_venue_deposit_authority",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "2",
+      "enum_positions": [
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_035",
+      "template_family": "scheduling_reentry_case_resource_join",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_036",
+      "template_family": "scheduling_power_shutdown_coordination",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_037",
+      "template_family": "scheduling_language_class_waitlist",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,2",
+      "enum_positions": [
+        0,
+        2
+      ],
+      "name_first_success": false,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_038",
+      "template_family": "scheduling_volunteer_shift_revision",
+      "uniform_argument_success_probability": 0.1111111111111111
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "1",
+      "enum_positions": [
+        1
+      ],
+      "name_first_success": false,
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_039",
+      "template_family": "scheduling_instrument_calibration_conflict",
+      "uniform_argument_success_probability": 0.3333333333333333
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "enum_positions": [
+        0,
+        0
+      ],
+      "name_first_success": true,
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_040",
+      "template_family": "scheduling_teleconference_recording_authority",
+      "uniform_argument_success_probability": 0.1111111111111111
+    }
+  ],
+  "status": "static_candidate_audit_no_model_calls",
+  "strata": {
+    "domain": [
+      {
+        "n": 40,
+        "stratum": "commerce",
+        "success_rate": 0.35,
+        "successes": 14,
+        "uniform_random_expected_rate": 0.15123456790123455,
+        "wilson_95": [
+          0.2213433317104915,
+          0.5049440300646263
+        ]
+      },
+      {
+        "n": 40,
+        "stratum": "it",
+        "success_rate": 0.325,
+        "successes": 13,
+        "uniform_random_expected_rate": 0.07222222222222222,
+        "wilson_95": [
+          0.20084316962661725,
+          0.4798254191110201
+        ]
+      },
+      {
+        "n": 40,
+        "stratum": "procurement",
+        "success_rate": 0.35,
+        "successes": 14,
+        "uniform_random_expected_rate": 0.09259259259259259,
+        "wilson_95": [
+          0.2213433317104915,
+          0.5049440300646263
+        ]
+      },
+      {
+        "n": 40,
+        "stratum": "scheduling",
+        "success_rate": 0.35,
+        "successes": 14,
+        "uniform_random_expected_rate": 0.2,
+        "wilson_95": [
+          0.2213433317104915,
+          0.5049440300646263
+        ]
+      },
+      {
+        "n": 40,
+        "stratum": "travel",
+        "success_rate": 0.35,
+        "successes": 14,
+        "uniform_random_expected_rate": 0.17777777777777776,
+        "wilson_95": [
+          0.2213433317104915,
+          0.5049440300646263
+        ]
+      }
+    ],
+    "enum_position_pattern": [
+      {
+        "n": 14,
+        "stratum": "0",
+        "success_rate": 1.0,
+        "successes": 14,
+        "uniform_random_expected_rate": 0.3333333333333333,
+        "wilson_95": [
+          0.7846829880728186,
+          1.0
+        ]
+      },
+      {
+        "n": 44,
+        "stratum": "0,0",
+        "success_rate": 1.0,
+        "successes": 44,
+        "uniform_random_expected_rate": 0.1111111111111111,
+        "wilson_95": [
+          0.9197016822179859,
+          0.9999999999999999
+        ]
+      },
+      {
+        "n": 11,
+        "stratum": "0,0,0",
+        "success_rate": 1.0,
+        "successes": 11,
+        "uniform_random_expected_rate": 0.037037037037037035,
+        "wilson_95": [
+          0.7411599827511859,
+          1.0
+        ]
+      },
+      {
+        "n": 1,
+        "stratum": "0,0,0,1",
+        "success_rate": 0.0,
+        "successes": 0,
+        "uniform_random_expected_rate": 0.012345679012345678,
+        "wilson_95": [
+          0.0,
+          0.7934567085261071
+        ]
+      },
+      {
+        "n": 2,
+        "stratum": "0,0,1",
+        "success_rate": 0.0,
+        "successes": 0,
+        "uniform_random_expected_rate": 0.037037037037037035,
+        "wilson_95": [
+          0.0,
+          0.6576280471103807
+        ]
+      },
+      {
+        "n": 19,
+        "stratum": "0,1",
+        "success_rate": 0.0,
+        "successes": 0,
+        "uniform_random_expected_rate": 0.11111111111111112,
+        "wilson_95": [
+          0.0,
+          0.16818436536845052
+        ]
+      },
+      {
+        "n": 33,
+        "stratum": "0,2",
+        "success_rate": 0.0,
+        "successes": 0,
+        "uniform_random_expected_rate": 0.1111111111111111,
+        "wilson_95": [
+          0.0,
+          0.10427343003561192
+        ]
+      },
+      {
+        "n": 17,
+        "stratum": "1",
+        "success_rate": 0.0,
+        "successes": 0,
+        "uniform_random_expected_rate": 0.3333333333333333,
+        "wilson_95": [
+          0.0,
+          0.18432366037156456
+        ]
+      },
+      {
+        "n": 13,
+        "stratum": "1,1",
+        "success_rate": 0.0,
+        "successes": 0,
+        "uniform_random_expected_rate": 0.1111111111111111,
+        "wilson_95": [
+          0.0,
+          0.22810184305529166
+        ]
+      },
+      {
+        "n": 14,
+        "stratum": "1,1,1",
+        "success_rate": 0.0,
+        "successes": 0,
+        "uniform_random_expected_rate": 0.037037037037037035,
+        "wilson_95": [
+          0.0,
+          0.21531701192718142
+        ]
+      },
+      {
+        "n": 7,
+        "stratum": "2",
+        "success_rate": 0.0,
+        "successes": 0,
+        "uniform_random_expected_rate": 0.3333333333333333,
+        "wilson_95": [
+          0.0,
+          0.35433884297520657
+        ]
+      },
+      {
+        "n": 14,
+        "stratum": "2,2",
+        "success_rate": 0.0,
+        "successes": 0,
+        "uniform_random_expected_rate": 0.11111111111111109,
+        "wilson_95": [
+          0.0,
+          0.21531701192718142
+        ]
+      },
+      {
+        "n": 11,
+        "stratum": "2,2,2",
+        "success_rate": 0.0,
+        "successes": 0,
+        "uniform_random_expected_rate": 0.037037037037037035,
+        "wilson_95": [
+          2.7755575615628914e-17,
+          0.2588400172488141
+        ]
+      }
+    ],
+    "sequence_length": [
+      {
+        "n": 38,
+        "stratum": "1",
+        "success_rate": 0.3684210526315789,
+        "successes": 14,
+        "uniform_random_expected_rate": 0.3333333333333333,
+        "wilson_95": [
+          0.23384013155413794,
+          0.5271632717573987
+        ]
+      },
+      {
+        "n": 123,
+        "stratum": "2",
+        "success_rate": 0.35772357723577236,
+        "successes": 44,
+        "uniform_random_expected_rate": 0.1111111111111111,
+        "wilson_95": [
+          0.278503383040199,
+          0.4455619078422875
+        ]
+      },
+      {
+        "n": 38,
+        "stratum": "3",
+        "success_rate": 0.2894736842105263,
+        "successes": 11,
+        "uniform_random_expected_rate": 0.037037037037037035,
+        "wilson_95": [
+          0.17003106263656131,
+          0.44757438266189764
+        ]
+      },
+      {
+        "n": 1,
+        "stratum": "4",
+        "success_rate": 0.0,
+        "successes": 0,
+        "uniform_random_expected_rate": 0.012345679012345678,
+        "wilson_95": [
+          0.0,
+          0.7934567085261071
+        ]
+      }
+    ]
+  },
+  "successful_families": [
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_travel_001",
+      "template_family": "travel_cancel_rebook_fee_consent"
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_travel_004",
+      "template_family": "travel_name_correction_document_match"
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_travel_007",
+      "template_family": "travel_award_ticket_miles_cash"
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_travel_010",
+      "template_family": "travel_wheelchair_connection_assistance"
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0",
+      "sequence_length": 1,
+      "task_id": "cand_travel_013",
+      "template_family": "travel_hotel_destination_supersession"
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_travel_016",
+      "template_family": "travel_overbooking_walk_remedy"
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0",
+      "sequence_length": 1,
+      "task_id": "cand_travel_019",
+      "template_family": "travel_car_driver_eligibility"
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_travel_022",
+      "template_family": "travel_ferry_vehicle_dimension"
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0",
+      "sequence_length": 1,
+      "task_id": "cand_travel_025",
+      "template_family": "travel_flight_credit_owner_binding"
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0",
+      "sequence_length": 1,
+      "task_id": "cand_travel_028",
+      "template_family": "travel_codeshare_operating_carrier_bag"
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0",
+      "sequence_length": 1,
+      "task_id": "cand_travel_031",
+      "template_family": "travel_tour_weather_cancellation"
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0",
+      "sequence_length": 1,
+      "task_id": "cand_travel_034",
+      "template_family": "travel_toll_transponder_region"
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0",
+      "sequence_length": 1,
+      "task_id": "cand_travel_037",
+      "template_family": "travel_group_booking_name_deadline"
+    },
+    {
+      "domain": "travel",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_travel_040",
+      "template_family": "travel_lost_ticket_reissue_identity"
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_commerce_001",
+      "template_family": "commerce_damaged_exchange_substitution"
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0",
+      "sequence_length": 1,
+      "task_id": "cand_commerce_004",
+      "template_family": "commerce_warranty_repair_serial"
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0,0",
+      "sequence_length": 3,
+      "task_id": "cand_commerce_007",
+      "template_family": "commerce_subscription_prorate_settlement"
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0",
+      "sequence_length": 1,
+      "task_id": "cand_commerce_010",
+      "template_family": "commerce_coupon_stack_policy"
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_commerce_013",
+      "template_family": "commerce_address_change_fulfillment_stage"
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_commerce_016",
+      "template_family": "commerce_age_restricted_pickup"
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_commerce_019",
+      "template_family": "commerce_digital_download_refund"
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0",
+      "sequence_length": 1,
+      "task_id": "cand_commerce_022",
+      "template_family": "commerce_installation_service_dependency"
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_commerce_025",
+      "template_family": "commerce_bundle_component_return"
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_commerce_028",
+      "template_family": "commerce_tax_exemption_document"
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_commerce_031",
+      "template_family": "commerce_furniture_delivery_stair_fee"
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0",
+      "sequence_length": 1,
+      "task_id": "cand_commerce_034",
+      "template_family": "commerce_chargeback_open_refund_block"
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0",
+      "sequence_length": 1,
+      "task_id": "cand_commerce_037",
+      "template_family": "commerce_device_activation_carrier_lock"
+    },
+    {
+      "domain": "commerce",
+      "enum_position_pattern": "0,0,0",
+      "sequence_length": 3,
+      "task_id": "cand_commerce_040",
+      "template_family": "commerce_repair_data_backup_consent"
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_procurement_001",
+      "template_family": "proc_competitive_bid_threshold"
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_procurement_004",
+      "template_family": "proc_vendor_onboarding_tax"
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_procurement_007",
+      "template_family": "proc_auto_renewal_notice"
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_procurement_010",
+      "template_family": "proc_receipt_invoice_mismatch"
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_procurement_013",
+      "template_family": "proc_blanket_po_depletion"
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0,0",
+      "sequence_length": 3,
+      "task_id": "cand_procurement_016",
+      "template_family": "proc_insurance_certificate_expiry"
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_procurement_019",
+      "template_family": "proc_prepaid_supplier_risk"
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_procurement_022",
+      "template_family": "proc_delegation_limit"
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_procurement_025",
+      "template_family": "proc_reverse_auction_reserve"
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_procurement_028",
+      "template_family": "proc_preference_program_eligibility"
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0,0",
+      "sequence_length": 3,
+      "task_id": "cand_procurement_031",
+      "template_family": "proc_consignment_title_transfer"
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_procurement_034",
+      "template_family": "proc_custom_development_ip"
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_procurement_037",
+      "template_family": "proc_cyber_insurance_limit"
+    },
+    {
+      "domain": "procurement",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_procurement_040",
+      "template_family": "proc_punchout_tax_jurisdiction"
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_it_003",
+      "template_family": "it_breakglass_expiry"
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0,0",
+      "sequence_length": 3,
+      "task_id": "cand_it_006",
+      "template_family": "it_backup_restore_scope"
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0,0",
+      "sequence_length": 3,
+      "task_id": "cand_it_009",
+      "template_family": "it_database_failover_lag"
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0,0",
+      "sequence_length": 3,
+      "task_id": "cand_it_012",
+      "template_family": "it_sso_metadata_rollover"
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_it_015",
+      "template_family": "it_change_window_timezone"
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_it_018",
+      "template_family": "it_kubernetes_namespace_quota"
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_it_021",
+      "template_family": "it_license_reclamation_dependency"
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_it_024",
+      "template_family": "it_monitoring_silence_scope"
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0,0",
+      "sequence_length": 3,
+      "task_id": "cand_it_027",
+      "template_family": "it_kernel_rollout_hardware"
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0,0",
+      "sequence_length": 3,
+      "task_id": "cand_it_030",
+      "template_family": "it_ci_runner_compromise"
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0,0",
+      "sequence_length": 3,
+      "task_id": "cand_it_033",
+      "template_family": "it_ntp_drift_authentication"
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_it_036",
+      "template_family": "it_shared_mailbox_delegation"
+    },
+    {
+      "domain": "it",
+      "enum_position_pattern": "0,0,0",
+      "sequence_length": 3,
+      "task_id": "cand_it_039",
+      "template_family": "it_storage_key_rotation_replicas"
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_001",
+      "template_family": "scheduling_specialist_cancellation_offer"
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_004",
+      "template_family": "scheduling_interview_candidate_confirmation"
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0",
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_007",
+      "template_family": "scheduling_passport_document_clearance"
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_010",
+      "template_family": "scheduling_cancellation_fee_acceptance"
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_013",
+      "template_family": "scheduling_room_inventory_conflict"
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_016",
+      "template_family": "scheduling_tenant_entry_authorization"
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0",
+      "sequence_length": 1,
+      "task_id": "cand_scheduling_019",
+      "template_family": "scheduling_childcare_authorized_pickup"
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_022",
+      "template_family": "scheduling_onboarding_recording_consent"
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_025",
+      "template_family": "scheduling_shift_swap_coverage"
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_028",
+      "template_family": "scheduling_mediation_participant_authority"
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_031",
+      "template_family": "scheduling_advising_queue_priority"
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_034",
+      "template_family": "scheduling_venue_deposit_authority"
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_037",
+      "template_family": "scheduling_language_class_waitlist"
+    },
+    {
+      "domain": "scheduling",
+      "enum_position_pattern": "0,0",
+      "sequence_length": 2,
+      "task_id": "cand_scheduling_040",
+      "template_family": "scheduling_teleconference_recording_authority"
+    }
+  ],
+  "uniform_argument_random": {
+    "expected_rate": 0.13876543209876543,
+    "expected_successes": 27.753086419753085,
+    "poisson_binomial_tail_p": 8.28890178932323e-15
+  }
+}

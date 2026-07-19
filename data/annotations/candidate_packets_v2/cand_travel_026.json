@@ -1,0 +1,128 @@
+{
+  "task_id": "cand_travel_026",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_026_b",
+    "source_role": "loyalty intake",
+    "target_role": "companion desk",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_026_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to redeem companion certificate using only a policy-compliant option.",
+        "travel_dates": "2027-03-18",
+        "alternate_outbound_choice": "user specified alternate outbound choice"
+      }
+    },
+    {
+      "trace_id": "cand_travel_026_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_026_b",
+        "candidate_targets": [
+          "opt_026_a",
+          "opt_026_b",
+          "opt_026_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_026_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_026_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_026_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Certificate validity, eligible fare classes, and paired inventory are separately verified; selected outbound has only one award seat.",
+        "certificate_valid": "verified certificate valid status",
+        "paired_inventory": {
+          "id": "fact_te_inventory",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_026_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask alternate choice; issue paired tickets; issue one ticket; repeat certificate check"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_026_a",
+            "opt_026_b",
+            "opt_026_c"
+          ]
+        }
+      },
+      "requires": [],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_026"
+      },
+      "response": {
+        "eligible_action_target": "opt_026_b",
+        "candidate_targets": [
+          "opt_026_a",
+          "opt_026_b",
+          "opt_026_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_026_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_026_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_026_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Certificate validity, eligible fare classes, and paired inventory are separately verified; selected outbound has only one award seat.",
+        "certificate_valid": "verified certificate valid status",
+        "paired_inventory": {
+          "id": "fact_te_inventory",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

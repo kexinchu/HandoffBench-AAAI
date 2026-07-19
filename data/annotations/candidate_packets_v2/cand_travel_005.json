@@ -1,0 +1,153 @@
+{
+  "task_id": "cand_travel_005",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_005_b",
+    "source_role": "notification agent",
+    "target_role": "refunds desk",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_005_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to resolve schedule change using only a policy-compliant option.",
+        "refund_confirmation": null
+      }
+    },
+    {
+      "trace_id": "cand_travel_005_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_005_b",
+        "candidate_targets": [
+          "opt_005_a",
+          "opt_005_b",
+          "opt_005_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_005_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_005_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_005_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Material schedule change is verified and policy permits refund or reroute; user expressed preference for refund but has not confirmed losing the itinerary.",
+        "material_change": "verified material change status",
+        "refund_eligible": true
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_005_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "explain choices; ask confirmation; refund; reroute"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "refund_confirmation",
+            "unrelated_005_x",
+            "unrelated_005_y"
+          ]
+        }
+      },
+      "requires": [
+        "refund_confirmation=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_005_a",
+            "opt_005_b",
+            "opt_005_c"
+          ]
+        }
+      },
+      "requires": [
+        "refund_confirmation=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_005"
+      },
+      "response": {
+        "eligible_action_target": "opt_005_b",
+        "candidate_targets": [
+          "opt_005_a",
+          "opt_005_b",
+          "opt_005_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_005_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_005_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_005_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Material schedule change is verified and policy permits refund or reroute; user expressed preference for refund but has not confirmed losing the itinerary.",
+        "material_change": "verified material change status",
+        "refund_eligible": true
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_refund_confirmation": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "refund_confirmation"
+        }
+      },
+      "updates": {
+        "refund_confirmation": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

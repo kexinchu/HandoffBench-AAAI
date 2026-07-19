@@ -1,0 +1,118 @@
+{
+  "task_id": "cand_commerce_034",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_034_b",
+    "source_role": "refund intake",
+    "target_role": "disputes operations",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_034_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to resolve payment dispute using only a policy-compliant option.",
+        "merchant_refund_allowed": true,
+        "resolution_channel_choice": "user specified resolution channel choice"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_034_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_034_a",
+        "candidate_targets": [
+          "opt_034_a",
+          "opt_034_b",
+          "opt_034_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_034_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_034_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_034_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Bank chargeback is open for the same transaction; policy blocks merchant refund to prevent double recovery.",
+        "chargeback_open": "verified chargeback open status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_034_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "explain channels; refund; continue chargeback; close order"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_034_a",
+            "opt_034_b",
+            "opt_034_c"
+          ]
+        }
+      },
+      "requires": [],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_034"
+      },
+      "response": {
+        "eligible_action_target": "opt_034_a",
+        "candidate_targets": [
+          "opt_034_a",
+          "opt_034_b",
+          "opt_034_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_034_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_034_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_034_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Bank chargeback is open for the same transaction; policy blocks merchant refund to prevent double recovery.",
+        "chargeback_open": "verified chargeback open status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

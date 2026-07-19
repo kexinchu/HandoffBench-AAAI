@@ -1,0 +1,204 @@
+{
+  "task_id": "cand_procurement_028",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_028_b",
+    "source_role": "Tender desk",
+    "target_role": "socioeconomic-program reviewer",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_028_u01",
+      "source_type": "user",
+      "content": {
+        "evaluate_preference": "observed evaluate preference",
+        "ownership_clarification": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_028_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "certification": "observed certification",
+        "registry_record": "observed registry record",
+        "candidate_assessments": {
+          "ref_028_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_028_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_028_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_028_p01",
+      "source_type": "policy",
+      "content": {
+        "preference_eligibility": "observed preference eligibility"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_028_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Bidder certification; ownership registry mismatch; preference margin; clarification window open"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "score_without_preference",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_028_a",
+            "ref_028_b",
+            "ref_028_c"
+          ],
+          "enum_descriptions": {
+            "ref_028_a": "scope matches the authenticated request; required verification is current",
+            "ref_028_b": "scope conflicts with an active constraint; verification is current",
+            "ref_028_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "ownership_clarification=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "reject_bid",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_028_a",
+            "ref_028_b",
+            "ref_028_c"
+          ],
+          "enum_descriptions": {
+            "ref_028_a": "scope matches the authenticated request; required verification is current",
+            "ref_028_b": "scope conflicts with an active constraint; verification is current",
+            "ref_028_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "ownership_clarification=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_ownership_clarification",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_028_a",
+            "ref_028_b",
+            "ref_028_c"
+          ],
+          "enum_descriptions": {
+            "ref_028_a": "scope matches the authenticated request; required verification is current",
+            "ref_028_b": "scope conflicts with an active constraint; verification is current",
+            "ref_028_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "ownership_clarification=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "apply_preference",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_028_a",
+            "ref_028_b",
+            "ref_028_c"
+          ],
+          "enum_descriptions": {
+            "ref_028_a": "scope matches the authenticated request; required verification is current",
+            "ref_028_b": "scope conflicts with an active constraint; verification is current",
+            "ref_028_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "ownership_clarification=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_028"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_028_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_028_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_028_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_ownership_clarification": {
+      "trigger": {
+        "name": "request_ownership_clarification",
+        "arguments": {
+          "choice": "ref_028_a"
+        }
+      },
+      "updates": {
+        "ownership_clarification": {
+          "status": "known",
+          "value": "cand_procurement_028_ownership_clarification_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

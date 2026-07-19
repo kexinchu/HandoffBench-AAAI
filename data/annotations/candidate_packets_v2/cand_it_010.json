@@ -1,0 +1,187 @@
+{
+  "task_id": "cand_it_010",
+  "domain": "it",
+  "boundary": {
+    "boundary_id": "cand_it_010_b",
+    "source_role": "Network request desk",
+    "target_role": "firewall engineer",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_it_010_u01",
+      "source_type": "user",
+      "content": {
+        "apply_network_policy": "observed apply network policy",
+        "owner_approval": "observed owner approval"
+      }
+    },
+    {
+      "trace_id": "cand_it_010_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "requested_flow": "observed requested flow",
+        "shadowing_rule": "observed shadowing rule",
+        "candidate_assessments": {
+          "ref_010_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_010_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_010_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_it_010_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_it_010_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Requested port/hosts; rule simulation; broader earlier allow shadows proposed restriction; owner approval present"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "close_request",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_010_a",
+            "ref_010_b",
+            "ref_010_c"
+          ],
+          "enum_descriptions": {
+            "ref_010_a": "scope conflicts with an active constraint; verification is current",
+            "ref_010_b": "scope matches the authenticated request; required verification is current",
+            "ref_010_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "apply_network_policy=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "modify_shadowing_rule",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_010_a",
+            "ref_010_b",
+            "ref_010_c"
+          ],
+          "enum_descriptions": {
+            "ref_010_a": "scope conflicts with an active constraint; verification is current",
+            "ref_010_b": "scope matches the authenticated request; required verification is current",
+            "ref_010_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "apply_network_policy=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "add_requested_rule",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_010_a",
+            "ref_010_b",
+            "ref_010_c"
+          ],
+          "enum_descriptions": {
+            "ref_010_a": "scope conflicts with an active constraint; verification is current",
+            "ref_010_b": "scope matches the authenticated request; required verification is current",
+            "ref_010_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "apply_network_policy=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "run_policy_simulation",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_010_a",
+            "ref_010_b",
+            "ref_010_c"
+          ],
+          "enum_descriptions": {
+            "ref_010_a": "scope conflicts with an active constraint; verification is current",
+            "ref_010_b": "scope matches the authenticated request; required verification is current",
+            "ref_010_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "apply_network_policy=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_it_010"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_010_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_010_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_010_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,175 @@
+{
+  "task_id": "cand_commerce_039",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_039_b",
+    "source_role": "checkout recovery",
+    "target_role": "payment operations",
+    "trace_cut": 5,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_039_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to complete reserved purchase using only a policy-compliant option.",
+        "retry_payment_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_039_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_039_c",
+        "candidate_targets": [
+          "opt_039_a",
+          "opt_039_b",
+          "opt_039_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_039_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_039_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_039_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Inventory hold remains valid; first payment failed without capture, and user selected a different card but has not authorized retry amount.",
+        "hold_valid": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "no_capture": "verified no capture status",
+        "order_total": "verified order total status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_039_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask consent; retry new card; retry old card; reserve again"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_039_d1",
+      "source_type": "environment",
+      "content": {
+        "unrelated_case_note": "authenticated non-causal context"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_039_d2",
+      "source_type": "environment",
+      "content": {
+        "unrelated_preference": "not applicable to public actions"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "retry_payment_consent",
+            "unrelated_039_x",
+            "unrelated_039_y"
+          ]
+        }
+      },
+      "requires": [
+        "retry_payment_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_039_a",
+            "opt_039_b",
+            "opt_039_c"
+          ]
+        }
+      },
+      "requires": [
+        "retry_payment_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_039"
+      },
+      "response": {
+        "eligible_action_target": "opt_039_c",
+        "candidate_targets": [
+          "opt_039_a",
+          "opt_039_b",
+          "opt_039_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_039_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_039_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_039_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Inventory hold remains valid; first payment failed without capture, and user selected a different card but has not authorized retry amount.",
+        "hold_valid": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "no_capture": "verified no capture status",
+        "order_total": "verified order total status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_retry_payment_consent": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "retry_payment_consent"
+        }
+      },
+      "updates": {
+        "retry_payment_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

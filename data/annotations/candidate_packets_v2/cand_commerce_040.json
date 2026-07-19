@@ -1,0 +1,186 @@
+{
+  "task_id": "cand_commerce_040",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_040_b",
+    "source_role": "device intake",
+    "target_role": "repair depot",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_040_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to repair device using only a policy-compliant option.",
+        "backup_status": "contradicted",
+        "data_loss_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_040_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_040_a",
+        "candidate_targets": [
+          "opt_040_a",
+          "opt_040_b",
+          "opt_040_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_040_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_040_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_040_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Hardware fault verified; depot procedure may erase storage, and backup status is contradicted between device telemetry and user report.",
+        "fault_verified": true,
+        "erase_risk": "verified erase risk status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_040_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "resolve backup; ask consent; start repair; promise preservation"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "clarify_slot_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "backup_status",
+            "unrelated_040_x",
+            "unrelated_040_y"
+          ]
+        }
+      },
+      "requires": [
+        "backup_status=contradicted"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "ask_user_2",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "data_loss_consent",
+            "unrelated_040_x",
+            "unrelated_040_y"
+          ]
+        }
+      },
+      "requires": [
+        "data_loss_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_040_a",
+            "opt_040_b",
+            "opt_040_c"
+          ]
+        }
+      },
+      "requires": [
+        "backup_status=known",
+        "data_loss_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_040"
+      },
+      "response": {
+        "eligible_action_target": "opt_040_a",
+        "candidate_targets": [
+          "opt_040_a",
+          "opt_040_b",
+          "opt_040_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_040_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_040_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_040_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Hardware fault verified; depot procedure may erase storage, and backup status is contradicted between device telemetry and user report.",
+        "fault_verified": true,
+        "erase_risk": "verified erase risk status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_backup_status": {
+      "trigger": {
+        "name": "clarify_slot_1",
+        "arguments": {
+          "key": "backup_status"
+        }
+      },
+      "updates": {
+        "backup_status": {
+          "status": "known",
+          "value": "resolved:backup_status"
+        }
+      }
+    },
+    "reply_data_loss_consent": {
+      "trigger": {
+        "name": "ask_user_2",
+        "arguments": {
+          "key": "data_loss_consent"
+        }
+      },
+      "updates": {
+        "data_loss_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

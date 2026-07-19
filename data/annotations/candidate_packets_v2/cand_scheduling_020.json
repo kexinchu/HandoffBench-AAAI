@@ -1,0 +1,75 @@
+{
+  "task_id": "cand_scheduling_020",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b020",
+    "source_role": "learner_intake",
+    "target_role": "class_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs020u",
+      "source_type": "user",
+      "content": {
+        "goal": "enroll in revised class modality",
+        "schedule_window": "window_020"
+      }
+    },
+    {
+      "trace_id": "cs020t",
+      "source_type": "tool",
+      "tool": "schedule_registry_020",
+      "content": {
+        "class_section_id": "class_L5"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs020p",
+      "source_type": "policy",
+      "content": {
+        "prerequisite_verification": true
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "enroll_class",
+      "arguments": {
+        "class_section_id": {
+          "type": "string",
+          "enum": [
+            "class_L5_altB",
+            "class_L5_altA",
+            "class_L5"
+          ]
+        }
+      },
+      "requires": [
+        "prerequisite_verification=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_020": {
+      "request": {
+        "task_id": "cand_scheduling_020"
+      },
+      "response": {
+        "class_section_id": "class_L5"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_010",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b010",
+    "source_role": "cancellation_intake",
+    "target_role": "appointment_resolver",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs010u",
+      "source_type": "user",
+      "content": {
+        "goal": "cancel appointment with disclosed fee",
+        "schedule_window": "window_010"
+      }
+    },
+    {
+      "trace_id": "cs010t",
+      "source_type": "tool",
+      "tool": "schedule_registry_010",
+      "content": {
+        "fee_quote_id": "fee_F30"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs010p",
+      "source_type": "policy",
+      "content": {
+        "fee_acceptance": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "fee_acceptance",
+            "irrelevant_010_a",
+            "irrelevant_010_b"
+          ]
+        }
+      },
+      "requires": [
+        "fee_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "cancel_appointment",
+      "arguments": {
+        "fee_quote_id": {
+          "type": "string",
+          "enum": [
+            "fee_F30",
+            "fee_F30_altB",
+            "fee_F30_altA"
+          ]
+        }
+      },
+      "requires": [
+        "fee_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_010": {
+      "request": {
+        "task_id": "cand_scheduling_010"
+      },
+      "response": {
+        "fee_quote_id": "fee_F30"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_fee_acceptance": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "fee_acceptance"
+        }
+      },
+      "updates": {
+        "fee_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

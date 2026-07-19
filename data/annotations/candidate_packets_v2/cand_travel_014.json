@@ -1,0 +1,160 @@
+{
+  "task_id": "cand_travel_014",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_014_b",
+    "source_role": "lodging intake",
+    "target_role": "payment desk",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_014_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to reserve hotel using only a policy-compliant option.",
+        "max_total_home_currency": "user specified max total home currency",
+        "deposit_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_travel_014_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_014_b",
+        "candidate_targets": [
+          "opt_014_a",
+          "opt_014_b",
+          "opt_014_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_014_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_014_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_014_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Hotel quote is in local currency, card currency and deterministic FX snapshot given; deposit is nonrefundable. Stress: total/deposit distinction plus payment consent.",
+        "converted_total": "verified converted total status",
+        "deposit": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_014_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask deposit consent; reserve; charge full stay; refresh nonvolatile quote"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "deposit_consent",
+            "unrelated_014_x",
+            "unrelated_014_y"
+          ]
+        }
+      },
+      "requires": [
+        "deposit_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_014_a",
+            "opt_014_b",
+            "opt_014_c"
+          ]
+        }
+      },
+      "requires": [
+        "deposit_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_014"
+      },
+      "response": {
+        "eligible_action_target": "opt_014_b",
+        "candidate_targets": [
+          "opt_014_a",
+          "opt_014_b",
+          "opt_014_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_014_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_014_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_014_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Hotel quote is in local currency, card currency and deterministic FX snapshot given; deposit is nonrefundable. Stress: total/deposit distinction plus payment consent.",
+        "converted_total": "verified converted total status",
+        "deposit": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_deposit_consent": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "deposit_consent"
+        }
+      },
+      "updates": {
+        "deposit_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

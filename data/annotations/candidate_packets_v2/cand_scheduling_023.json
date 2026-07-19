@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_023",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b023",
+    "source_role": "executive_intake",
+    "target_role": "secure_calendar_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs023u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule cleared board meeting",
+        "schedule_window": "window_023"
+      }
+    },
+    {
+      "trace_id": "cs023t",
+      "source_type": "tool",
+      "tool": "schedule_registry_023",
+      "content": {
+        "meeting_slot_id": "board_T6"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs023p",
+      "source_type": "policy",
+      "content": {
+        "meeting_title": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "meeting_title",
+            "irrelevant_023_a",
+            "irrelevant_023_b"
+          ]
+        }
+      },
+      "requires": [
+        "meeting_title=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "schedule_secure_meeting",
+      "arguments": {
+        "meeting_slot_id": {
+          "type": "string",
+          "enum": [
+            "board_T6_altB",
+            "board_T6_altA",
+            "board_T6"
+          ]
+        }
+      },
+      "requires": [
+        "meeting_title=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_023": {
+      "request": {
+        "task_id": "cand_scheduling_023"
+      },
+      "response": {
+        "meeting_slot_id": "board_T6"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_meeting_title": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "meeting_title"
+        }
+      },
+      "updates": {
+        "meeting_title": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

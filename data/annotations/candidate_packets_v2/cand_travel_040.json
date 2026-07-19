@@ -1,0 +1,152 @@
+{
+  "task_id": "cand_travel_040",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_040_b",
+    "source_role": "incident intake",
+    "target_role": "secure ticketing",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_040_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to reissue lost ticket using only a policy-compliant option.",
+        "verification_channel": "user specified verification channel"
+      }
+    },
+    {
+      "trace_id": "cand_travel_040_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_040_a",
+        "candidate_targets": [
+          "opt_040_a",
+          "opt_040_b",
+          "opt_040_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_040_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_040_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_040_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Booking exists and unused status is verified; caller email conflicts with booking contact, and identity revalidation is required before reissue.",
+        "booking_unused": "verified booking unused status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_040_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "choose channel; verify identity; reissue; send to caller email",
+        "caller_identity": "contradicted"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "request_authority_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "caller_identity",
+            "unrelated_040_x",
+            "unrelated_040_y"
+          ]
+        }
+      },
+      "requires": [
+        "caller_identity=contradicted"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_040_a",
+            "opt_040_b",
+            "opt_040_c"
+          ]
+        }
+      },
+      "requires": [
+        "caller_identity=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_040"
+      },
+      "response": {
+        "eligible_action_target": "opt_040_a",
+        "candidate_targets": [
+          "opt_040_a",
+          "opt_040_b",
+          "opt_040_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_040_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_040_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_040_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Booking exists and unused status is verified; caller email conflicts with booking contact, and identity revalidation is required before reissue.",
+        "booking_unused": "verified booking unused status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_caller_identity": {
+      "trigger": {
+        "name": "request_authority_1",
+        "arguments": {
+          "key": "caller_identity"
+        }
+      },
+      "updates": {
+        "caller_identity": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

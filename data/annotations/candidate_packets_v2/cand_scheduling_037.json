@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_037",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b037",
+    "source_role": "learner_intake",
+    "target_role": "waitlist_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs037u",
+      "source_type": "user",
+      "content": {
+        "goal": "accept language class waitlist offer",
+        "schedule_window": "window_037"
+      }
+    },
+    {
+      "trace_id": "cs037t",
+      "source_type": "tool",
+      "tool": "schedule_registry_037",
+      "content": {
+        "waitlist_slot_id": "lang_L7"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs037p",
+      "source_type": "policy",
+      "content": {
+        "learner_acceptance": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "learner_acceptance",
+            "irrelevant_037_a",
+            "irrelevant_037_b"
+          ]
+        }
+      },
+      "requires": [
+        "learner_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "accept_waitlist_offer",
+      "arguments": {
+        "waitlist_slot_id": {
+          "type": "string",
+          "enum": [
+            "lang_L7",
+            "lang_L7_altB",
+            "lang_L7_altA"
+          ]
+        }
+      },
+      "requires": [
+        "learner_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_037": {
+      "request": {
+        "task_id": "cand_scheduling_037"
+      },
+      "response": {
+        "waitlist_slot_id": "lang_L7"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_learner_acceptance": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "learner_acceptance"
+        }
+      },
+      "updates": {
+        "learner_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,188 @@
+{
+  "task_id": "cand_procurement_008",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_008_b",
+    "source_role": "Quote analyst",
+    "target_role": "import buyer",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_008_u01",
+      "source_type": "user",
+      "content": {
+        "select_import_quote": "observed select import quote",
+        "arrival_deadline": "2027-09-13"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_008_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "landed_costs": 1500,
+        "incoterms": "observed incoterms",
+        "eta": "observed eta",
+        "candidate_assessments": {
+          "ref_008_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_008_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_008_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_008_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_procurement_008_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Unit prices; freight and duty tool outputs; delivery constraint; Incoterms differ"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "issue_po",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_008_a",
+            "ref_008_b",
+            "ref_008_c"
+          ],
+          "enum_descriptions": {
+            "ref_008_a": "scope conflicts with an active constraint; verification is current",
+            "ref_008_b": "scope matches the authenticated request; required verification is current",
+            "ref_008_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "select_import_quote=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "request_freight_refresh",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_008_a",
+            "ref_008_b",
+            "ref_008_c"
+          ],
+          "enum_descriptions": {
+            "ref_008_a": "scope conflicts with an active constraint; verification is current",
+            "ref_008_b": "scope matches the authenticated request; required verification is current",
+            "ref_008_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "select_import_quote=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "calculate_landed_cost",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_008_a",
+            "ref_008_b",
+            "ref_008_c"
+          ],
+          "enum_descriptions": {
+            "ref_008_a": "scope conflicts with an active constraint; verification is current",
+            "ref_008_b": "scope matches the authenticated request; required verification is current",
+            "ref_008_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "select_import_quote=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "select_quote",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_008_a",
+            "ref_008_b",
+            "ref_008_c"
+          ],
+          "enum_descriptions": {
+            "ref_008_a": "scope conflicts with an active constraint; verification is current",
+            "ref_008_b": "scope matches the authenticated request; required verification is current",
+            "ref_008_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "select_import_quote=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_008"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_008_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_008_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_008_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,154 @@
+{
+  "task_id": "cand_commerce_012",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_012_b",
+    "source_role": "fulfillment intake",
+    "target_role": "shipping desk",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_012_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to fulfill order using only a policy-compliant option.",
+        "split_allowed": true,
+        "combined_eta_acceptance": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_012_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_012_c",
+        "candidate_targets": [
+          "opt_012_a",
+          "opt_012_b",
+          "opt_012_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_012_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_012_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_012_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "One line ready, one backordered; user prohibited split shipment; later message asks whether faster option exists but does not revoke constraint.",
+        "line_status": "verified line status status",
+        "combined_eta": "verified combined eta status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_012_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "confirm combined ETA; split ship; hold combined; cancel line"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "combined_eta_acceptance",
+            "unrelated_012_x",
+            "unrelated_012_y"
+          ]
+        }
+      },
+      "requires": [
+        "combined_eta_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_012_a",
+            "opt_012_b",
+            "opt_012_c"
+          ]
+        }
+      },
+      "requires": [
+        "combined_eta_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_012"
+      },
+      "response": {
+        "eligible_action_target": "opt_012_c",
+        "candidate_targets": [
+          "opt_012_a",
+          "opt_012_b",
+          "opt_012_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_012_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_012_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_012_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "One line ready, one backordered; user prohibited split shipment; later message asks whether faster option exists but does not revoke constraint.",
+        "line_status": "verified line status status",
+        "combined_eta": "verified combined eta status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_combined_eta_acceptance": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "combined_eta_acceptance"
+        }
+      },
+      "updates": {
+        "combined_eta_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

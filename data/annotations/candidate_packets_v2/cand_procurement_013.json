@@ -1,0 +1,202 @@
+{
+  "task_id": "cand_procurement_013",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_013_b",
+    "source_role": "Requisition bot",
+    "target_role": "category buyer",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_013_u01",
+      "source_type": "user",
+      "content": {
+        "fulfill_release": "Complete objective: fulfill release",
+        "additional_funds": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_013_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "available_balance": 2125,
+        "pending_total": 2125,
+        "candidate_assessments": {
+          "ref_013_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_013_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_013_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_013_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_procurement_013_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Blanket balance; new release amount; pending releases; replenishment policy"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "issue_release",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_013_a",
+            "ref_013_b",
+            "ref_013_c"
+          ],
+          "enum_descriptions": {
+            "ref_013_a": "scope matches the authenticated request; required verification is current",
+            "ref_013_b": "scope conflicts with an active constraint; verification is current",
+            "ref_013_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "additional_funds=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "cancel_pending_release",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_013_a",
+            "ref_013_b",
+            "ref_013_c"
+          ],
+          "enum_descriptions": {
+            "ref_013_a": "scope matches the authenticated request; required verification is current",
+            "ref_013_b": "scope conflicts with an active constraint; verification is current",
+            "ref_013_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "additional_funds=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "create_spot_po",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_013_a",
+            "ref_013_b",
+            "ref_013_c"
+          ],
+          "enum_descriptions": {
+            "ref_013_a": "scope matches the authenticated request; required verification is current",
+            "ref_013_b": "scope conflicts with an active constraint; verification is current",
+            "ref_013_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "additional_funds=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_blanket_increase",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_013_a",
+            "ref_013_b",
+            "ref_013_c"
+          ],
+          "enum_descriptions": {
+            "ref_013_a": "scope matches the authenticated request; required verification is current",
+            "ref_013_b": "scope conflicts with an active constraint; verification is current",
+            "ref_013_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "additional_funds=unknown"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_013"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_013_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_013_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_013_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_additional_funds": {
+      "trigger": {
+        "name": "request_blanket_increase",
+        "arguments": {
+          "choice": "ref_013_a"
+        }
+      },
+      "updates": {
+        "additional_funds": {
+          "status": "known",
+          "value": "cand_procurement_013_additional_funds_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

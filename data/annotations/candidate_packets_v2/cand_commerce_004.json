@@ -1,0 +1,119 @@
+{
+  "task_id": "cand_commerce_004",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_004_b",
+    "source_role": "product support",
+    "target_role": "warranty depot",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_004_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to warranty repair using only a policy-compliant option.",
+        "serial_number": "user specified serial number"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_004_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_004_a",
+        "candidate_targets": [
+          "opt_004_a",
+          "opt_004_b",
+          "opt_004_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_004_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_004_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_004_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Purchase date and model verified; warranty active; serial number absent. Repair, not replacement, is covered.",
+        "warranty_active": true,
+        "covered_remedy": "verified covered remedy status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_004_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask serial; create repair; replace; rerun warranty"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_004_a",
+            "opt_004_b",
+            "opt_004_c"
+          ]
+        }
+      },
+      "requires": [],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_004"
+      },
+      "response": {
+        "eligible_action_target": "opt_004_a",
+        "candidate_targets": [
+          "opt_004_a",
+          "opt_004_b",
+          "opt_004_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_004_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_004_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_004_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Purchase date and model verified; warranty active; serial number absent. Repair, not replacement, is covered.",
+        "warranty_active": true,
+        "covered_remedy": "verified covered remedy status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_038",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b038",
+    "source_role": "volunteer_intake",
+    "target_role": "shift_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs038u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule revised volunteer shift",
+        "schedule_window": "window_038"
+      }
+    },
+    {
+      "trace_id": "cs038t",
+      "source_type": "tool",
+      "tool": "schedule_registry_038",
+      "content": {
+        "volunteer_slot_id": "vol_V3"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs038p",
+      "source_type": "policy",
+      "content": {
+        "volunteer_acceptance": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "volunteer_acceptance",
+            "irrelevant_038_a",
+            "irrelevant_038_b"
+          ]
+        }
+      },
+      "requires": [
+        "volunteer_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "schedule_volunteer_shift",
+      "arguments": {
+        "volunteer_slot_id": {
+          "type": "string",
+          "enum": [
+            "vol_V3_altB",
+            "vol_V3_altA",
+            "vol_V3"
+          ]
+        }
+      },
+      "requires": [
+        "volunteer_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_038": {
+      "request": {
+        "task_id": "cand_scheduling_038"
+      },
+      "response": {
+        "volunteer_slot_id": "vol_V3"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_volunteer_acceptance": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "volunteer_acceptance"
+        }
+      },
+      "updates": {
+        "volunteer_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

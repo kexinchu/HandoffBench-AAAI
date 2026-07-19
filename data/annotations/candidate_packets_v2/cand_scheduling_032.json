@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_032",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b032",
+    "source_role": "property_intake",
+    "target_role": "inspection_coordinator",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs032u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule inspection with revised attendee",
+        "schedule_window": "window_032"
+      }
+    },
+    {
+      "trace_id": "cs032t",
+      "source_type": "tool",
+      "tool": "schedule_registry_032",
+      "content": {
+        "property_slot_id": "prop_I4"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs032p",
+      "source_type": "policy",
+      "content": {
+        "attendee_acceptance": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "attendee_acceptance",
+            "irrelevant_032_a",
+            "irrelevant_032_b"
+          ]
+        }
+      },
+      "requires": [
+        "attendee_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "schedule_property_inspection",
+      "arguments": {
+        "property_slot_id": {
+          "type": "string",
+          "enum": [
+            "prop_I4_altB",
+            "prop_I4_altA",
+            "prop_I4"
+          ]
+        }
+      },
+      "requires": [
+        "attendee_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_032": {
+      "request": {
+        "task_id": "cand_scheduling_032"
+      },
+      "response": {
+        "property_slot_id": "prop_I4"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_attendee_acceptance": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "attendee_acceptance"
+        }
+      },
+      "updates": {
+        "attendee_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

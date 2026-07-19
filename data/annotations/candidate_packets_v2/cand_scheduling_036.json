@@ -1,0 +1,75 @@
+{
+  "task_id": "cand_scheduling_036",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b036",
+    "source_role": "utility_intake",
+    "target_role": "shutdown_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs036u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule cleared power shutdown",
+        "schedule_window": "window_036"
+      }
+    },
+    {
+      "trace_id": "cs036t",
+      "source_type": "tool",
+      "tool": "schedule_registry_036",
+      "content": {
+        "shutdown_window_id": "power_P8"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs036p",
+      "source_type": "policy",
+      "content": {
+        "shutdown_clearance": true
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "schedule_power_shutdown",
+      "arguments": {
+        "shutdown_window_id": {
+          "type": "string",
+          "enum": [
+            "power_P8_altA",
+            "power_P8",
+            "power_P8_altB"
+          ]
+        }
+      },
+      "requires": [
+        "shutdown_clearance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_036": {
+      "request": {
+        "task_id": "cand_scheduling_036"
+      },
+      "response": {
+        "shutdown_window_id": "power_P8"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

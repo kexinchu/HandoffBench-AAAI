@@ -1,0 +1,161 @@
+{
+  "task_id": "cand_travel_020",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_020_b",
+    "source_role": "pickup assistant",
+    "target_role": "rental counter",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_020_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to complete pickup using only a policy-compliant option.",
+        "deposit_hold_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_travel_020_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_020_b",
+        "candidate_targets": [
+          "opt_020_a",
+          "opt_020_b",
+          "opt_020_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_020_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_020_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_020_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Existing damage inspection and fuel policy verified; deposit hold amount disclosed; user accepted rental price but not deposit hold.",
+        "damage_record": 3,
+        "fuel_policy": "verified fuel policy status",
+        "hold_amount": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_020_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask hold consent; place hold; alter damage report; release vehicle"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "deposit_hold_consent",
+            "unrelated_020_x",
+            "unrelated_020_y"
+          ]
+        }
+      },
+      "requires": [
+        "deposit_hold_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_020_a",
+            "opt_020_b",
+            "opt_020_c"
+          ]
+        }
+      },
+      "requires": [
+        "deposit_hold_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_020"
+      },
+      "response": {
+        "eligible_action_target": "opt_020_b",
+        "candidate_targets": [
+          "opt_020_a",
+          "opt_020_b",
+          "opt_020_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_020_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_020_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_020_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Existing damage inspection and fuel policy verified; deposit hold amount disclosed; user accepted rental price but not deposit hold.",
+        "damage_record": 3,
+        "fuel_policy": "verified fuel policy status",
+        "hold_amount": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_deposit_hold_consent": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "deposit_hold_consent"
+        }
+      },
+      "updates": {
+        "deposit_hold_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_040",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b040",
+    "source_role": "conference_intake",
+    "target_role": "session_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs040u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule recorded teleconference with authority",
+        "schedule_window": "window_040"
+      }
+    },
+    {
+      "trace_id": "cs040t",
+      "source_type": "tool",
+      "tool": "schedule_registry_040",
+      "content": {
+        "conference_session_id": "tele_T5"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs040p",
+      "source_type": "policy",
+      "content": {
+        "recording_acceptance": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "recording_acceptance",
+            "irrelevant_040_a",
+            "irrelevant_040_b"
+          ]
+        }
+      },
+      "requires": [
+        "recording_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "schedule_recorded_conference",
+      "arguments": {
+        "conference_session_id": {
+          "type": "string",
+          "enum": [
+            "tele_T5",
+            "tele_T5_altB",
+            "tele_T5_altA"
+          ]
+        }
+      },
+      "requires": [
+        "recording_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_040": {
+      "request": {
+        "task_id": "cand_scheduling_040"
+      },
+      "response": {
+        "conference_session_id": "tele_T5"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_recording_acceptance": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "recording_acceptance"
+        }
+      },
+      "updates": {
+        "recording_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

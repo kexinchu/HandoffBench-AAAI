@@ -1,0 +1,188 @@
+{
+  "task_id": "cand_procurement_023",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_023_b",
+    "source_role": "Demand planner",
+    "target_role": "allocation manager",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_023_u01",
+      "source_type": "user",
+      "content": {
+        "allocate_supply": "observed allocate supply",
+        "capacity_ceiling": 31
+      }
+    },
+    {
+      "trace_id": "cand_procurement_023_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "total_demand": 3375,
+        "capacity": 31,
+        "plant_priorities": "observed plant priorities",
+        "candidate_assessments": {
+          "ref_023_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_023_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_023_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_023_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_procurement_023_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Demand across plants; supplier capacity; priority policy; allocations proposed above capacity"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "confirm_allocation",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_023_a",
+            "ref_023_b",
+            "ref_023_c"
+          ],
+          "enum_descriptions": {
+            "ref_023_a": "scope conflicts with an active constraint; verification is current",
+            "ref_023_b": "scope matches the authenticated request; required verification is current",
+            "ref_023_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "allocate_supply=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "expedite_capacity",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_023_a",
+            "ref_023_b",
+            "ref_023_c"
+          ],
+          "enum_descriptions": {
+            "ref_023_a": "scope conflicts with an active constraint; verification is current",
+            "ref_023_b": "scope matches the authenticated request; required verification is current",
+            "ref_023_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "allocate_supply=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "drop_plant_request",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_023_a",
+            "ref_023_b",
+            "ref_023_c"
+          ],
+          "enum_descriptions": {
+            "ref_023_a": "scope conflicts with an active constraint; verification is current",
+            "ref_023_b": "scope matches the authenticated request; required verification is current",
+            "ref_023_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "allocate_supply=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "rebalance_allocation",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_023_a",
+            "ref_023_b",
+            "ref_023_c"
+          ],
+          "enum_descriptions": {
+            "ref_023_a": "scope conflicts with an active constraint; verification is current",
+            "ref_023_b": "scope matches the authenticated request; required verification is current",
+            "ref_023_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "allocate_supply=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_023"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_023_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_023_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_023_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

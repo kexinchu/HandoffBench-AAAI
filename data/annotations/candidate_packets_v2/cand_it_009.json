@@ -1,0 +1,203 @@
+{
+  "task_id": "cand_it_009",
+  "domain": "it",
+  "boundary": {
+    "boundary_id": "cand_it_009_b",
+    "source_role": "Database monitor",
+    "target_role": "reliability engineer",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_it_009_u01",
+      "source_type": "user",
+      "content": {
+        "restore_database_service": "Complete objective: restore database service",
+        "maximum_data_loss": "observed maximum data loss",
+        "write_freeze": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_it_009_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "replica_health": "observed replica health",
+        "replication_lag": 39,
+        "candidate_assessments": {
+          "ref_009_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_009_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_009_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_it_009_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_it_009_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Primary degraded; replica healthy; replication lag above RPO; writes continue"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "restart_primary",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_009_a",
+            "ref_009_b",
+            "ref_009_c"
+          ],
+          "enum_descriptions": {
+            "ref_009_a": "scope matches the authenticated request; required verification is current",
+            "ref_009_b": "scope conflicts with an active constraint; verification is current",
+            "ref_009_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "write_freeze=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "freeze_writes",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_009_a",
+            "ref_009_b",
+            "ref_009_c"
+          ],
+          "enum_descriptions": {
+            "ref_009_a": "scope matches the authenticated request; required verification is current",
+            "ref_009_b": "scope conflicts with an active constraint; verification is current",
+            "ref_009_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "write_freeze=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "wait_for_catchup",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_009_a",
+            "ref_009_b",
+            "ref_009_c"
+          ],
+          "enum_descriptions": {
+            "ref_009_a": "scope matches the authenticated request; required verification is current",
+            "ref_009_b": "scope conflicts with an active constraint; verification is current",
+            "ref_009_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "write_freeze=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "promote_replica",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_009_a",
+            "ref_009_b",
+            "ref_009_c"
+          ],
+          "enum_descriptions": {
+            "ref_009_a": "scope matches the authenticated request; required verification is current",
+            "ref_009_b": "scope conflicts with an active constraint; verification is current",
+            "ref_009_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "write_freeze=known"
+      ],
+      "user_impacting": true
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_it_009"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_009_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_009_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_009_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_write_freeze": {
+      "trigger": {
+        "name": "freeze_writes",
+        "arguments": {
+          "choice": "ref_009_a"
+        }
+      },
+      "updates": {
+        "write_freeze": {
+          "status": "known",
+          "value": "cand_it_009_write_freeze_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

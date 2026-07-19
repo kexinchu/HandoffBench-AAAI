@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_022",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b022",
+    "source_role": "hr_intake",
+    "target_role": "onboarding_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs022u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule onboarding with recording choice",
+        "schedule_window": "window_022"
+      }
+    },
+    {
+      "trace_id": "cs022t",
+      "source_type": "tool",
+      "tool": "schedule_registry_022",
+      "content": {
+        "onboarding_slot_id": "onboard_O4"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs022p",
+      "source_type": "policy",
+      "content": {
+        "recording_consent": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "recording_consent",
+            "irrelevant_022_a",
+            "irrelevant_022_b"
+          ]
+        }
+      },
+      "requires": [
+        "recording_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "schedule_onboarding",
+      "arguments": {
+        "onboarding_slot_id": {
+          "type": "string",
+          "enum": [
+            "onboard_O4",
+            "onboard_O4_altB",
+            "onboard_O4_altA"
+          ]
+        }
+      },
+      "requires": [
+        "recording_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_022": {
+      "request": {
+        "task_id": "cand_scheduling_022"
+      },
+      "response": {
+        "onboarding_slot_id": "onboard_O4"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_recording_consent": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "recording_consent"
+        }
+      },
+      "updates": {
+        "recording_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

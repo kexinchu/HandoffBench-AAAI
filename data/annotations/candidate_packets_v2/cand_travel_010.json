@@ -1,0 +1,168 @@
+{
+  "task_id": "cand_travel_010",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_010_b",
+    "source_role": "accessibility intake",
+    "target_role": "airport services",
+    "trace_cut": 5,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_010_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to arrange assistance using only a policy-compliant option.",
+        "mobility_requirements": "user specified mobility requirements",
+        "share_assistance_need": null
+      }
+    },
+    {
+      "trace_id": "cand_travel_010_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_010_a",
+        "candidate_targets": [
+          "opt_010_a",
+          "opt_010_b",
+          "opt_010_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_010_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_010_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_010_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Assistance need and connection terminals known; transfer-time tool shows standard cart insufficient, escort service available. Stress: scoped disclosure consent missing.",
+        "transfer_time": "13:00-15:00 local time",
+        "escort_available": true
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_010_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask disclosure consent; request escort; request standard cart; change medical record"
+      }
+    },
+    {
+      "trace_id": "cand_travel_010_d1",
+      "source_type": "environment",
+      "content": {
+        "unrelated_case_note": "authenticated non-causal context"
+      }
+    },
+    {
+      "trace_id": "cand_travel_010_d2",
+      "source_type": "environment",
+      "content": {
+        "unrelated_preference": "not applicable to public actions"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "share_assistance_need",
+            "unrelated_010_x",
+            "unrelated_010_y"
+          ]
+        }
+      },
+      "requires": [
+        "share_assistance_need=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_010_a",
+            "opt_010_b",
+            "opt_010_c"
+          ]
+        }
+      },
+      "requires": [
+        "share_assistance_need=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_010"
+      },
+      "response": {
+        "eligible_action_target": "opt_010_a",
+        "candidate_targets": [
+          "opt_010_a",
+          "opt_010_b",
+          "opt_010_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_010_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_010_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_010_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Assistance need and connection terminals known; transfer-time tool shows standard cart insufficient, escort service available. Stress: scoped disclosure consent missing.",
+        "transfer_time": "13:00-15:00 local time",
+        "escort_available": true
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_share_assistance_need": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "share_assistance_need"
+        }
+      },
+      "updates": {
+        "share_assistance_need": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

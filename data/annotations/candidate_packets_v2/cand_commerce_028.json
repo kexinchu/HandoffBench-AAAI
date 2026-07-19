@@ -1,0 +1,153 @@
+{
+  "task_id": "cand_commerce_028",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_028_b",
+    "source_role": "business sales intake",
+    "target_role": "tax operations",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_028_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to apply tax exemption using only a policy-compliant option."
+      }
+    },
+    {
+      "trace_id": "cand_commerce_028_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_028_a",
+        "candidate_targets": [
+          "opt_028_a",
+          "opt_028_b",
+          "opt_028_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_028_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_028_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_028_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Customer claims exemption; jurisdiction and certificate requirement verified, but uploaded certificate is expired.",
+        "jurisdiction_rule": "verified jurisdiction rule status",
+        "certificate_expired": "verified certificate expired status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_028_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "request current certificate; remove tax; charge tax; approve exception",
+        "exemption_verified": null
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "request_authority_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "exemption_verified",
+            "unrelated_028_x",
+            "unrelated_028_y"
+          ]
+        }
+      },
+      "requires": [
+        "exemption_verified=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_028_a",
+            "opt_028_b",
+            "opt_028_c"
+          ]
+        }
+      },
+      "requires": [
+        "exemption_verified=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_028"
+      },
+      "response": {
+        "eligible_action_target": "opt_028_a",
+        "candidate_targets": [
+          "opt_028_a",
+          "opt_028_b",
+          "opt_028_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_028_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_028_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_028_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Customer claims exemption; jurisdiction and certificate requirement verified, but uploaded certificate is expired.",
+        "jurisdiction_rule": "verified jurisdiction rule status",
+        "certificate_expired": "verified certificate expired status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_exemption_verified": {
+      "trigger": {
+        "name": "request_authority_1",
+        "arguments": {
+          "key": "exemption_verified"
+        }
+      },
+      "updates": {
+        "exemption_verified": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

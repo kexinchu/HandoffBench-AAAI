@@ -1,0 +1,75 @@
+{
+  "task_id": "cand_scheduling_033",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b033",
+    "source_role": "review_intake",
+    "target_role": "panel_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs033u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule conflict-free grant panel",
+        "schedule_window": "window_033"
+      }
+    },
+    {
+      "trace_id": "cs033t",
+      "source_type": "tool",
+      "tool": "schedule_registry_033",
+      "content": {
+        "panel_window_id": "grant_G8"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs033p",
+      "source_type": "policy",
+      "content": {
+        "recusal_clearance": true
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "schedule_grant_panel",
+      "arguments": {
+        "panel_window_id": {
+          "type": "string",
+          "enum": [
+            "grant_G8_altA",
+            "grant_G8",
+            "grant_G8_altB"
+          ]
+        }
+      },
+      "requires": [
+        "recusal_clearance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_033": {
+      "request": {
+        "task_id": "cand_scheduling_033"
+      },
+      "response": {
+        "panel_window_id": "grant_G8"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

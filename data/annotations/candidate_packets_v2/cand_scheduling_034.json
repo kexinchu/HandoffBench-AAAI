@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_034",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b034",
+    "source_role": "event_intake",
+    "target_role": "venue_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs034u",
+      "source_type": "user",
+      "content": {
+        "goal": "reserve venue after deposit authority",
+        "schedule_window": "window_034"
+      }
+    },
+    {
+      "trace_id": "cs034t",
+      "source_type": "tool",
+      "tool": "schedule_registry_034",
+      "content": {
+        "venue_slot_id": "venue_V6"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs034p",
+      "source_type": "policy",
+      "content": {
+        "deposit_acceptance": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "deposit_acceptance",
+            "irrelevant_034_a",
+            "irrelevant_034_b"
+          ]
+        }
+      },
+      "requires": [
+        "deposit_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "reserve_venue",
+      "arguments": {
+        "venue_slot_id": {
+          "type": "string",
+          "enum": [
+            "venue_V6",
+            "venue_V6_altB",
+            "venue_V6_altA"
+          ]
+        }
+      },
+      "requires": [
+        "deposit_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_034": {
+      "request": {
+        "task_id": "cand_scheduling_034"
+      },
+      "response": {
+        "venue_slot_id": "venue_V6"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_deposit_acceptance": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "deposit_acceptance"
+        }
+      },
+      "updates": {
+        "deposit_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

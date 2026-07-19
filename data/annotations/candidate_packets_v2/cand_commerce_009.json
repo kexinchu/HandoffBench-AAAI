@@ -1,0 +1,159 @@
+{
+  "task_id": "cand_commerce_009",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_009_b",
+    "source_role": "sales support",
+    "target_role": "adjustment desk",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_009_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to price match using only a policy-compliant option.",
+        "credit_acceptance": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_009_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_009_c",
+        "candidate_targets": [
+          "opt_009_a",
+          "opt_009_b",
+          "opt_009_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_009_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_009_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_009_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Original paid price, competitor offer, channel and product identity verified; policy defines difference credit and cap.",
+        "eligible_offer": true,
+        "credit_amount": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_009_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "offer credit; apply credit; refund full price; repeat policy"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "credit_acceptance",
+            "unrelated_009_x",
+            "unrelated_009_y"
+          ]
+        }
+      },
+      "requires": [
+        "credit_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_009_a",
+            "opt_009_b",
+            "opt_009_c"
+          ]
+        }
+      },
+      "requires": [
+        "credit_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_009"
+      },
+      "response": {
+        "eligible_action_target": "opt_009_c",
+        "candidate_targets": [
+          "opt_009_a",
+          "opt_009_b",
+          "opt_009_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_009_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_009_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_009_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Original paid price, competitor offer, channel and product identity verified; policy defines difference credit and cap.",
+        "eligible_offer": true,
+        "credit_amount": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_credit_acceptance": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "credit_acceptance"
+        }
+      },
+      "updates": {
+        "credit_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_004",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b004",
+    "source_role": "recruiting_coordinator",
+    "target_role": "interview_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs004u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule panel interview",
+        "schedule_window": "window_004"
+      }
+    },
+    {
+      "trace_id": "cs004t",
+      "source_type": "tool",
+      "tool": "schedule_registry_004",
+      "content": {
+        "panel_slot_id": "panel_P4"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs004p",
+      "source_type": "policy",
+      "content": {
+        "candidate_acceptance": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "candidate_acceptance",
+            "irrelevant_004_a",
+            "irrelevant_004_b"
+          ]
+        }
+      },
+      "requires": [
+        "candidate_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "schedule_interview",
+      "arguments": {
+        "panel_slot_id": {
+          "type": "string",
+          "enum": [
+            "panel_P4",
+            "panel_P4_altB",
+            "panel_P4_altA"
+          ]
+        }
+      },
+      "requires": [
+        "candidate_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_004": {
+      "request": {
+        "task_id": "cand_scheduling_004"
+      },
+      "response": {
+        "panel_slot_id": "panel_P4"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_candidate_acceptance": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "candidate_acceptance"
+        }
+      },
+      "updates": {
+        "candidate_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

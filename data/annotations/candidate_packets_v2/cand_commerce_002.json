@@ -1,0 +1,159 @@
+{
+  "task_id": "cand_commerce_002",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_002_b",
+    "source_role": "order support",
+    "target_role": "refund desk",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_002_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to refund missing unit using only a policy-compliant option.",
+        "refund_confirmation": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_002_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_002_b",
+        "candidate_targets": [
+          "opt_002_a",
+          "opt_002_b",
+          "opt_002_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_002_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_002_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_002_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Shipment and item-level fulfillment show one missing unit; policy gives exact line refund. Whole order otherwise delivered.",
+        "missing_line": "verified missing line status",
+        "refund_amount": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_002_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "confirm amount; refund line; refund order; reship whole order"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "refund_confirmation",
+            "unrelated_002_x",
+            "unrelated_002_y"
+          ]
+        }
+      },
+      "requires": [
+        "refund_confirmation=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_002_a",
+            "opt_002_b",
+            "opt_002_c"
+          ]
+        }
+      },
+      "requires": [
+        "refund_confirmation=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_002"
+      },
+      "response": {
+        "eligible_action_target": "opt_002_b",
+        "candidate_targets": [
+          "opt_002_a",
+          "opt_002_b",
+          "opt_002_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_002_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_002_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_002_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Shipment and item-level fulfillment show one missing unit; policy gives exact line refund. Whole order otherwise delivered.",
+        "missing_line": "verified missing line status",
+        "refund_amount": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_refund_confirmation": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "refund_confirmation"
+        }
+      },
+      "updates": {
+        "refund_confirmation": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

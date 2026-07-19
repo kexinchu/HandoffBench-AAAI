@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://handoffbench.org/schemas/episode.schema.json",
+  "title": "HandoffBench Episode",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["task_id", "boundary", "gold_state", "success_predicate", "scoring"],
+  "properties": {
+    "task_id": {"type": "string", "pattern": "^[a-z0-9_-]+$"},
+    "domain": {"enum": ["travel", "commerce", "procurement", "it", "scheduling", "finance_ops", "logistics"]},
+    "boundary": {"$ref": "#/$defs/boundary"},
+    "gold_state": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/claim"}},
+    "allowed_next_actions": {"type": "array", "items": {"$ref": "#/$defs/actionRule"}, "default": []},
+    "forbidden_next_actions": {"type": "array", "items": {"$ref": "#/$defs/actionRule"}, "default": []},
+    "success_predicate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["predicate_id", "args"],
+      "properties": {"predicate_id": {"type": "string", "minLength": 1}, "args": {"type": "object"}}
+    },
+    "scoring": {
+      "type": "object", "additionalProperties": false,
+      "required": ["critical_keys", "observable_events", "determinacy"],
+      "properties": {
+        "critical_keys": {"type": "array", "items": {"type": "string"}},
+        "observable_events": {"type": "array", "items": {"type": "string"}},
+        "determinacy": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "split_meta": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "template_family": {"type": ["string", "null"]}, "entity_pool": {"type": ["string", "null"]},
+        "generator_version": {"type": ["string", "null"]}, "seed": {"type": ["integer", "null"]}
+      }
+    }
+  },
+  "$defs": {
+    "boundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["boundary_id", "source_role", "target_role", "trace_cut"],
+      "properties": {
+        "boundary_id": {"type": "string", "minLength": 1}, "source_role": {"type": "string", "minLength": 1},
+        "target_role": {"type": "string", "minLength": 1}, "trace_cut": {"type": "integer", "minimum": 0},
+        "handoff_reason": {"type": ["string", "null"]}
+      }
+    },
+    "evidenceRef": {
+      "type": "object", "additionalProperties": false,
+      "required": ["trace_id", "source_type"],
+      "properties": {
+        "trace_id": {"type": "string", "minLength": 1},
+        "source_type": {"enum": ["user", "tool", "policy", "environment"]},
+        "field_path": {"type": ["string", "null"]}, "content_hash": {"type": ["string", "null"]}
+      }
+    },
+    "claim": {
+      "type": "object", "additionalProperties": false,
+      "required": ["claim_id", "category", "key", "status", "value", "criticality", "weight", "provenance"],
+      "properties": {
+        "claim_id": {"type": "string", "minLength": 1},
+        "category": {
+          "description": "Mutually exclusive operational role; schema support does not imply every corpus split must instantiate every category. Apply data/README.md.",
+          "enum": ["goal", "constraint", "verified_fact", "unresolved_slot", "tool_evidence", "policy_check", "consent", "commitment", "risk", "precondition"]
+        },
+        "key": {"type": "string", "minLength": 1},
+        "status": {"enum": ["known", "unknown", "contradicted", "not_applicable"]},
+        "value": {},
+        "value_type": {"enum": ["string", "number", "boolean", "date", "datetime", "money", "identifier", "set", "object", "null"]},
+        "criticality": {"enum": ["terminal", "safety", "efficiency", "context"]},
+        "weight": {"type": "number", "exclusiveMinimum": 0},
+        "provenance": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidenceRef"}},
+        "supersedes": {"type": "array", "items": {"type": "string"}, "default": []},
+        "valid_at_boundary": {"const": true, "default": true},
+        "normalizer": {"type": ["string", "null"]}
+      }
+    },
+    "actionRule": {
+      "type": "object", "additionalProperties": false,
+      "required": ["action", "when"],
+      "properties": {
+        "action": {"type": "string", "minLength": 1}, "when": {"type": "array", "items": {"type": "string"}},
+        "expected_arguments": {"type": "object", "default": {}},
+        "max_calls": {"type": ["integer", "null"], "minimum": 0}, "irreversible": {"type": "boolean", "default": false}
+      }
+    }
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "task_id": "cand_travel_039",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_039_b",
+    "source_role": "document intake",
+    "target_role": "visa application desk",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_039_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to submit evisa using only a policy-compliant option.",
+        "replacement_portrait": "user specified replacement portrait",
+        "submission_fee_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_travel_039_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_039_c",
+        "candidate_targets": [
+          "opt_039_a",
+          "opt_039_b",
+          "opt_039_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_039_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_039_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_039_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Destination form schema and passport data verified; portrait fails published dimensions and submission fee is nonrefundable.",
+        "form_complete": "verified form complete status",
+        "portrait_invalid": "verified portrait invalid status",
+        "fee": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_039_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "request portrait; validate; ask fee consent; submit invalid form"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "submission_fee_consent",
+            "unrelated_039_x",
+            "unrelated_039_y"
+          ]
+        }
+      },
+      "requires": [
+        "submission_fee_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_039_a",
+            "opt_039_b",
+            "opt_039_c"
+          ]
+        }
+      },
+      "requires": [
+        "submission_fee_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_039"
+      },
+      "response": {
+        "eligible_action_target": "opt_039_c",
+        "candidate_targets": [
+          "opt_039_a",
+          "opt_039_b",
+          "opt_039_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_039_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_039_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_039_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Destination form schema and passport data verified; portrait fails published dimensions and submission fee is nonrefundable.",
+        "form_complete": "verified form complete status",
+        "portrait_invalid": "verified portrait invalid status",
+        "fee": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_submission_fee_consent": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "submission_fee_consent"
+        }
+      },
+      "updates": {
+        "submission_fee_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

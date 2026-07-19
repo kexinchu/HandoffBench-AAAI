@@ -1,0 +1,155 @@
+{
+  "task_id": "cand_travel_004",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_004_b",
+    "source_role": "booking support",
+    "target_role": "ticketing specialist",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_004_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to correct name using only a policy-compliant option."
+      }
+    },
+    {
+      "trace_id": "cand_travel_004_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_004_a",
+        "candidate_targets": [
+          "opt_004_a",
+          "opt_004_b",
+          "opt_004_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_004_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_004_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_004_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Ticket name differs from passport transliteration; carrier name-correction policy and document verification result. Stress: identity spelling is known but policy approval pending.",
+        "ticket_name": "verified ticket name status",
+        "document_name": "verified document name status",
+        "document_verified": true
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_004_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "request approval; reissue; cancel; ask spelling again",
+        "correction_approval": null
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "request_authority_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "correction_approval",
+            "unrelated_004_x",
+            "unrelated_004_y"
+          ]
+        }
+      },
+      "requires": [
+        "correction_approval=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_004_a",
+            "opt_004_b",
+            "opt_004_c"
+          ]
+        }
+      },
+      "requires": [
+        "correction_approval=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_004"
+      },
+      "response": {
+        "eligible_action_target": "opt_004_a",
+        "candidate_targets": [
+          "opt_004_a",
+          "opt_004_b",
+          "opt_004_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_004_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_004_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_004_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Ticket name differs from passport transliteration; carrier name-correction policy and document verification result. Stress: identity spelling is known but policy approval pending.",
+        "ticket_name": "verified ticket name status",
+        "document_name": "verified document name status",
+        "document_verified": true
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_correction_approval": {
+      "trigger": {
+        "name": "request_authority_1",
+        "arguments": {
+          "key": "correction_approval"
+        }
+      },
+      "updates": {
+        "correction_approval": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

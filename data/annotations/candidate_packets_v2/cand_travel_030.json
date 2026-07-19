@@ -1,0 +1,160 @@
+{
+  "task_id": "cand_travel_030",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_030_b",
+    "source_role": "transfer planner",
+    "target_role": "ground transport dispatch",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_030_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to update airport transfer using only a policy-compliant option.",
+        "new_terminal": "user specified new terminal",
+        "dispatch_change_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_travel_030_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_030_c",
+        "candidate_targets": [
+          "opt_030_a",
+          "opt_030_b",
+          "opt_030_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_030_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_030_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_030_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Airline changes arrival terminal; earlier pickup location is superseded, driver capacity remains valid, and dispatch change is chargeable.",
+        "driver_capacity": "verified driver capacity status",
+        "change_fee": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_030_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "confirm fee; update dispatch; retain old terminal; book second vehicle"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "dispatch_change_consent",
+            "unrelated_030_x",
+            "unrelated_030_y"
+          ]
+        }
+      },
+      "requires": [
+        "dispatch_change_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_030_a",
+            "opt_030_b",
+            "opt_030_c"
+          ]
+        }
+      },
+      "requires": [
+        "dispatch_change_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_030"
+      },
+      "response": {
+        "eligible_action_target": "opt_030_c",
+        "candidate_targets": [
+          "opt_030_a",
+          "opt_030_b",
+          "opt_030_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_030_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_030_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_030_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Airline changes arrival terminal; earlier pickup location is superseded, driver capacity remains valid, and dispatch change is chargeable.",
+        "driver_capacity": "verified driver capacity status",
+        "change_fee": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_dispatch_change_consent": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "dispatch_change_consent"
+        }
+      },
+      "updates": {
+        "dispatch_change_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

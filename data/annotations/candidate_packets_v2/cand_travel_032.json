@@ -1,0 +1,162 @@
+{
+  "task_id": "cand_travel_032",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_032_b",
+    "source_role": "resort intake",
+    "target_role": "pass operations",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_032_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to activate ski pass using only a policy-compliant option.",
+        "start_date": "contradicted",
+        "current_start_date": "2027-03-18"
+      }
+    },
+    {
+      "trace_id": "cand_travel_032_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_032_b",
+        "candidate_targets": [
+          "opt_032_a",
+          "opt_032_b",
+          "opt_032_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_032_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_032_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_032_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Multi-day pass inventory and blackout calendar verified; user supplies two different start dates in successive messages. Activation cannot be reversed.",
+        "blackout_calendar": "verified blackout calendar status",
+        "pass_inventory": {
+          "id": "fact_ivation_date",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_032_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask current date; activate; use earlier date; refund unused pass"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "clarify_slot_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "start_date",
+            "unrelated_032_x",
+            "unrelated_032_y"
+          ]
+        }
+      },
+      "requires": [
+        "start_date=contradicted"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_032_a",
+            "opt_032_b",
+            "opt_032_c"
+          ]
+        }
+      },
+      "requires": [
+        "start_date=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_032"
+      },
+      "response": {
+        "eligible_action_target": "opt_032_b",
+        "candidate_targets": [
+          "opt_032_a",
+          "opt_032_b",
+          "opt_032_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_032_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_032_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_032_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Multi-day pass inventory and blackout calendar verified; user supplies two different start dates in successive messages. Activation cannot be reversed.",
+        "blackout_calendar": "verified blackout calendar status",
+        "pass_inventory": {
+          "id": "fact_ivation_date",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_start_date": {
+      "trigger": {
+        "name": "clarify_slot_1",
+        "arguments": {
+          "key": "start_date"
+        }
+      },
+      "updates": {
+        "start_date": {
+          "status": "known",
+          "value": "resolved:start_date"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

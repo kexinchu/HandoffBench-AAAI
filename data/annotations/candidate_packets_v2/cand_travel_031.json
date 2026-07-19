@@ -1,0 +1,130 @@
+{
+  "task_id": "cand_travel_031",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_031_b",
+    "source_role": "excursion monitor",
+    "target_role": "tour resolution",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_031_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to resolve cancelled tour using only a policy-compliant option.",
+        "departure_deadline": "2027-03-18",
+        "remedy_choice": "user specified remedy choice"
+      }
+    },
+    {
+      "trace_id": "cand_travel_031_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_031_a",
+        "candidate_targets": [
+          "opt_031_a",
+          "opt_031_b",
+          "opt_031_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_031_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_031_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_031_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Operator cancels for weather; policy permits refund or one reschedule. User previously chose reschedule but new date conflicts with cruise departure.",
+        "operator_cancellation": "verified operator cancellation status",
+        "remedies": "verified remedies status",
+        "slot_conflict": {
+          "id": "fact_cancellation",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_031_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "clarify refund/reschedule; book conflicting slot; refund; waive deadline"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_031_a",
+            "opt_031_b",
+            "opt_031_c"
+          ]
+        }
+      },
+      "requires": [],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_031"
+      },
+      "response": {
+        "eligible_action_target": "opt_031_a",
+        "candidate_targets": [
+          "opt_031_a",
+          "opt_031_b",
+          "opt_031_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_031_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_031_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_031_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Operator cancels for weather; policy permits refund or one reschedule. User previously chose reschedule but new date conflicts with cruise departure.",
+        "operator_cancellation": "verified operator cancellation status",
+        "remedies": "verified remedies status",
+        "slot_conflict": {
+          "id": "fact_cancellation",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

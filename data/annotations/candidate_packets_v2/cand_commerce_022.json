@@ -1,0 +1,137 @@
+{
+  "task_id": "cand_commerce_022",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_022_b",
+    "source_role": "appliance sales",
+    "target_role": "service scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_022_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to purchase with installation using only a policy-compliant option.",
+        "building_access_window": "13:00-15:00 local time"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_022_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_022_a",
+        "candidate_targets": [
+          "opt_022_a",
+          "opt_022_b",
+          "opt_022_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_022_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_022_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_022_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Product inventory and installer coverage verified; delivery slot available but building access window absent. Purchase consent known, installation schedule incomplete.",
+        "inventory": {
+          "id": "fact_e_dependency",
+          "status": "available",
+          "meets_constraints": true
+        },
+        "coverage": 3,
+        "slot": {
+          "id": "fact_e_dependency",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_022_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask access window; schedule bundle; ship without install; charge extra"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_022_a",
+            "opt_022_b",
+            "opt_022_c"
+          ]
+        }
+      },
+      "requires": [],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_022"
+      },
+      "response": {
+        "eligible_action_target": "opt_022_a",
+        "candidate_targets": [
+          "opt_022_a",
+          "opt_022_b",
+          "opt_022_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_022_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_022_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_022_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Product inventory and installer coverage verified; delivery slot available but building access window absent. Purchase consent known, installation schedule incomplete.",
+        "inventory": {
+          "id": "fact_e_dependency",
+          "status": "available",
+          "meets_constraints": true
+        },
+        "coverage": 3,
+        "slot": {
+          "id": "fact_e_dependency",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

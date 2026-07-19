@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_008",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b008",
+    "source_role": "account_intake",
+    "target_role": "verification_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs008u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule in-person identity session",
+        "schedule_window": "window_008"
+      }
+    },
+    {
+      "trace_id": "cs008t",
+      "source_type": "tool",
+      "tool": "schedule_registry_008",
+      "content": {
+        "verification_slot_id": "idv_I5"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs008p",
+      "source_type": "policy",
+      "content": {
+        "slot_acceptance": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "slot_acceptance",
+            "irrelevant_008_a",
+            "irrelevant_008_b"
+          ]
+        }
+      },
+      "requires": [
+        "slot_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "schedule_identity_session",
+      "arguments": {
+        "verification_slot_id": {
+          "type": "string",
+          "enum": [
+            "idv_I5_altB",
+            "idv_I5_altA",
+            "idv_I5"
+          ]
+        }
+      },
+      "requires": [
+        "slot_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_008": {
+      "request": {
+        "task_id": "cand_scheduling_008"
+      },
+      "response": {
+        "verification_slot_id": "idv_I5"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_slot_acceptance": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "slot_acceptance"
+        }
+      },
+      "updates": {
+        "slot_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

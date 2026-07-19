@@ -1,0 +1,75 @@
+{
+  "task_id": "cand_scheduling_006",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b006",
+    "source_role": "equipment_intake",
+    "target_role": "service_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs006u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule asset calibration",
+        "schedule_window": "window_006"
+      }
+    },
+    {
+      "trace_id": "cs006t",
+      "source_type": "tool",
+      "tool": "schedule_registry_006",
+      "content": {
+        "calibration_slot_id": "cal_T3"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs006p",
+      "source_type": "policy",
+      "content": {
+        "service_clearance": true
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "schedule_calibration",
+      "arguments": {
+        "calibration_slot_id": {
+          "type": "string",
+          "enum": [
+            "cal_T3_altA",
+            "cal_T3",
+            "cal_T3_altB"
+          ]
+        }
+      },
+      "requires": [
+        "service_clearance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_006": {
+      "request": {
+        "task_id": "cand_scheduling_006"
+      },
+      "response": {
+        "calibration_slot_id": "cal_T3"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

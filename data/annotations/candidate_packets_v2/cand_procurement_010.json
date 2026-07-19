@@ -1,0 +1,205 @@
+{
+  "task_id": "cand_procurement_010",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_010_b",
+    "source_role": "AP intake",
+    "target_role": "three-way-match analyst",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_010_u01",
+      "source_type": "user",
+      "content": {
+        "process_invoice": "observed process invoice",
+        "credit_note": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_010_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "ordered_qty": 12,
+        "received_qty": 12,
+        "invoiced_qty": 12,
+        "candidate_assessments": {
+          "ref_010_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_010_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_010_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_010_p01",
+      "source_type": "policy",
+      "content": {
+        "match_failed": true
+      }
+    },
+    {
+      "trace_id": "cand_procurement_010_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "PO quantity; warehouse receipt; invoice quantity; partial shipment confirmed"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "dispute_entire_invoice",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_010_a",
+            "ref_010_b",
+            "ref_010_c"
+          ],
+          "enum_descriptions": {
+            "ref_010_a": "scope matches the authenticated request; required verification is current",
+            "ref_010_b": "scope conflicts with an active constraint; verification is current",
+            "ref_010_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "credit_note=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_credit_note",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_010_a",
+            "ref_010_b",
+            "ref_010_c"
+          ],
+          "enum_descriptions": {
+            "ref_010_a": "scope matches the authenticated request; required verification is current",
+            "ref_010_b": "scope conflicts with an active constraint; verification is current",
+            "ref_010_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "credit_note=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "release_payment",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_010_a",
+            "ref_010_b",
+            "ref_010_c"
+          ],
+          "enum_descriptions": {
+            "ref_010_a": "scope matches the authenticated request; required verification is current",
+            "ref_010_b": "scope conflicts with an active constraint; verification is current",
+            "ref_010_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "credit_note=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "record_partial_receipt",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_010_a",
+            "ref_010_b",
+            "ref_010_c"
+          ],
+          "enum_descriptions": {
+            "ref_010_a": "scope matches the authenticated request; required verification is current",
+            "ref_010_b": "scope conflicts with an active constraint; verification is current",
+            "ref_010_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "credit_note=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_010"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_010_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_010_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_010_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_credit_note": {
+      "trigger": {
+        "name": "request_credit_note",
+        "arguments": {
+          "choice": "ref_010_a"
+        }
+      },
+      "updates": {
+        "credit_note": {
+          "status": "known",
+          "value": "cand_procurement_010_credit_note_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

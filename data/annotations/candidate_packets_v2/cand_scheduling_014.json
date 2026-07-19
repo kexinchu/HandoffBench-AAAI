@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_014",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b014",
+    "source_role": "meeting_intake",
+    "target_role": "calendar_resolver",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs014u",
+      "source_type": "user",
+      "content": {
+        "goal": "send meeting invitations at revised instant",
+        "schedule_window": "window_014"
+      }
+    },
+    {
+      "trace_id": "cs014t",
+      "source_type": "tool",
+      "tool": "schedule_registry_014",
+      "content": {
+        "meeting_instant_id": "instant_Z4"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs014p",
+      "source_type": "policy",
+      "content": {
+        "send_invites": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "send_invites",
+            "irrelevant_014_a",
+            "irrelevant_014_b"
+          ]
+        }
+      },
+      "requires": [
+        "send_invites=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "send_meeting_invites",
+      "arguments": {
+        "meeting_instant_id": {
+          "type": "string",
+          "enum": [
+            "instant_Z4_altB",
+            "instant_Z4_altA",
+            "instant_Z4"
+          ]
+        }
+      },
+      "requires": [
+        "send_invites=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_014": {
+      "request": {
+        "task_id": "cand_scheduling_014"
+      },
+      "response": {
+        "meeting_instant_id": "instant_Z4"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_send_invites": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "send_invites"
+        }
+      },
+      "updates": {
+        "send_invites": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_002",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b002",
+    "source_role": "access_coordinator",
+    "target_role": "joint_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs002u",
+      "source_type": "user",
+      "content": {
+        "goal": "reschedule with interpreter",
+        "schedule_window": "window_002"
+      }
+    },
+    {
+      "trace_id": "cs002t",
+      "source_type": "tool",
+      "tool": "schedule_registry_002",
+      "content": {
+        "joint_slot_id": "joint_A9"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs002p",
+      "source_type": "policy",
+      "content": {
+        "reschedule_acceptance": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "reschedule_acceptance",
+            "irrelevant_002_a",
+            "irrelevant_002_b"
+          ]
+        }
+      },
+      "requires": [
+        "reschedule_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "reserve_joint_slot",
+      "arguments": {
+        "joint_slot_id": {
+          "type": "string",
+          "enum": [
+            "joint_A9_altB",
+            "joint_A9_altA",
+            "joint_A9"
+          ]
+        }
+      },
+      "requires": [
+        "reschedule_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_002": {
+      "request": {
+        "task_id": "cand_scheduling_002"
+      },
+      "response": {
+        "joint_slot_id": "joint_A9"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_reschedule_acceptance": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "reschedule_acceptance"
+        }
+      },
+      "updates": {
+        "reschedule_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

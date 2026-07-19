@@ -1,0 +1,158 @@
+{
+  "task_id": "cand_travel_006",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_006_b",
+    "source_role": "itinerary intake",
+    "target_role": "ticket modification",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_006_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to change middle segment using only a policy-compliant option.",
+        "preserve_segments": "user specified preserve segments",
+        "repricing_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_travel_006_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_006_c",
+        "candidate_targets": [
+          "opt_006_a",
+          "opt_006_b",
+          "opt_006_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_006_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_006_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_006_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "User changes only middle city; later message explicitly preserves first/last legs; pricing tool returns whole-ticket and segment alternatives. Stress: late supersession and scope ambiguity.",
+        "segment_quote": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_006_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask repricing consent; modify segment; replace itinerary; re-search preserved legs"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "repricing_consent",
+            "unrelated_006_x",
+            "unrelated_006_y"
+          ]
+        }
+      },
+      "requires": [
+        "repricing_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_006_a",
+            "opt_006_b",
+            "opt_006_c"
+          ]
+        }
+      },
+      "requires": [
+        "repricing_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_006"
+      },
+      "response": {
+        "eligible_action_target": "opt_006_c",
+        "candidate_targets": [
+          "opt_006_a",
+          "opt_006_b",
+          "opt_006_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_006_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_006_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_006_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "User changes only middle city; later message explicitly preserves first/last legs; pricing tool returns whole-ticket and segment alternatives. Stress: late supersession and scope ambiguity.",
+        "segment_quote": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_repricing_consent": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "repricing_consent"
+        }
+      },
+      "updates": {
+        "repricing_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

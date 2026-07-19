@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_001",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b001",
+    "source_role": "referral_intake",
+    "target_role": "appointment_resolver",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs001u",
+      "source_type": "user",
+      "content": {
+        "goal": "accept specialist cancellation slot",
+        "schedule_window": "window_001"
+      }
+    },
+    {
+      "trace_id": "cs001t",
+      "source_type": "tool",
+      "tool": "schedule_registry_001",
+      "content": {
+        "offered_slot_id": "slot_C17"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs001p",
+      "source_type": "policy",
+      "content": {
+        "offer_acceptance": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "offer_acceptance",
+            "irrelevant_001_a",
+            "irrelevant_001_b"
+          ]
+        }
+      },
+      "requires": [
+        "offer_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "accept_slot",
+      "arguments": {
+        "offered_slot_id": {
+          "type": "string",
+          "enum": [
+            "slot_C17",
+            "slot_C17_altB",
+            "slot_C17_altA"
+          ]
+        }
+      },
+      "requires": [
+        "offer_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_001": {
+      "request": {
+        "task_id": "cand_scheduling_001"
+      },
+      "response": {
+        "offered_slot_id": "slot_C17"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_offer_acceptance": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "offer_acceptance"
+        }
+      },
+      "updates": {
+        "offer_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

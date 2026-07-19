@@ -1,0 +1,33 @@
+experiment_id: factorial_v1
+split: test
+factors:
+  typing: [free_form, typed]
+  provenance: [absent, trace_linked]
+  checks: [absent, executable]
+  # Not a fourth representation factor. The confirmatory 2x2x2 uses advisory
+  # checks; framework blocking is a separate safety-intervention table.
+  enforcement: [advisory]
+design:
+  tasks: 60
+  models: 2
+  seeds: [101, 202]
+controls:
+  identical_upstream_trace: true
+  identical_atomic_information_source: true
+  identical_public_policy_predicates: true
+  identical_state_fields: true
+  approximate_equal_token_budget: true
+  identical_target_prompt_tools_budget: true
+  representation_checks_are_advisory: true
+secondary_enforcement_experiment:
+  representation_cells: [typed__trace_linked__executable]
+  enforcement: [advisory, enforced]
+  report_separately_from_factorial: true
+planned_interactions:
+  - provenance_x_conflicting_evidence
+  - checks_x_missing_consent
+  - checks_x_irreversible_action
+analysis:
+  task_family_random_intercept: true
+  paired_cluster_bootstrap_iterations: 10000
+  multiplicity: holm

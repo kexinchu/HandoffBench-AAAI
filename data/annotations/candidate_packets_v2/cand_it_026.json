@@ -1,0 +1,203 @@
+{
+  "task_id": "cand_it_026",
+  "domain": "it",
+  "boundary": {
+    "boundary_id": "cand_it_026_b",
+    "source_role": "Cloud security intake",
+    "target_role": "storage security engineer",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_it_026_u01",
+      "source_type": "user",
+      "content": {
+        "contain_snapshot_exposure": "observed contain snapshot exposure",
+        "private_copy": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_it_026_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "snapshot_acl": "observed snapshot acl",
+        "data_class": "observed data class",
+        "dependent_clone": "observed dependent clone",
+        "candidate_assessments": {
+          "ref_026_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_026_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_026_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_it_026_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_it_026_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Snapshot ACL public; snapshot contains regulated data; active clone depends on snapshot; private copy absent"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "revoke_public_access",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_026_a",
+            "ref_026_b",
+            "ref_026_c"
+          ],
+          "enum_descriptions": {
+            "ref_026_a": "scope conflicts with an active constraint; verification is current",
+            "ref_026_b": "scope matches the request; a required verification is still pending",
+            "ref_026_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "private_copy=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "delete_snapshot",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_026_a",
+            "ref_026_b",
+            "ref_026_c"
+          ],
+          "enum_descriptions": {
+            "ref_026_a": "scope conflicts with an active constraint; verification is current",
+            "ref_026_b": "scope matches the request; a required verification is still pending",
+            "ref_026_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "private_copy=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "create_private_copy",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_026_a",
+            "ref_026_b",
+            "ref_026_c"
+          ],
+          "enum_descriptions": {
+            "ref_026_a": "scope conflicts with an active constraint; verification is current",
+            "ref_026_b": "scope matches the request; a required verification is still pending",
+            "ref_026_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "private_copy=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "repoint_clone",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_026_a",
+            "ref_026_b",
+            "ref_026_c"
+          ],
+          "enum_descriptions": {
+            "ref_026_a": "scope conflicts with an active constraint; verification is current",
+            "ref_026_b": "scope matches the request; a required verification is still pending",
+            "ref_026_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "private_copy=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_it_026"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_026_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_026_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_026_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_private_copy": {
+      "trigger": {
+        "name": "create_private_copy",
+        "arguments": {
+          "choice": "ref_026_c"
+        }
+      },
+      "updates": {
+        "private_copy": {
+          "status": "known",
+          "value": "cand_it_026_private_copy_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

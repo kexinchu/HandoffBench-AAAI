@@ -1,0 +1,203 @@
+{
+  "task_id": "cand_procurement_019",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_019_b",
+    "source_role": "Requisition analyst",
+    "target_role": "credit-risk approver",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_019_u01",
+      "source_type": "user",
+      "content": {
+        "contract_supplier": "observed contract supplier",
+        "owner_acceptance": "observed owner acceptance",
+        "risk_approval": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_019_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "prepay_terms": "observed prepay terms",
+        "credit_score": 79,
+        "candidate_assessments": {
+          "ref_019_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_019_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_019_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_019_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_procurement_019_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Supplier requests 100% prepay; credit score; performance bond absent; business owner consent"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "release_prepayment",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_019_a",
+            "ref_019_b",
+            "ref_019_c"
+          ],
+          "enum_descriptions": {
+            "ref_019_a": "scope matches the authenticated request; required verification is current",
+            "ref_019_b": "scope conflicts with an active constraint; verification is current",
+            "ref_019_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "risk_approval=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "choose_postpay_vendor",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_019_a",
+            "ref_019_b",
+            "ref_019_c"
+          ],
+          "enum_descriptions": {
+            "ref_019_a": "scope matches the authenticated request; required verification is current",
+            "ref_019_b": "scope conflicts with an active constraint; verification is current",
+            "ref_019_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "risk_approval=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_bond",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_019_a",
+            "ref_019_b",
+            "ref_019_c"
+          ],
+          "enum_descriptions": {
+            "ref_019_a": "scope matches the authenticated request; required verification is current",
+            "ref_019_b": "scope conflicts with an active constraint; verification is current",
+            "ref_019_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "risk_approval=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_risk_approval",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_019_a",
+            "ref_019_b",
+            "ref_019_c"
+          ],
+          "enum_descriptions": {
+            "ref_019_a": "scope matches the authenticated request; required verification is current",
+            "ref_019_b": "scope conflicts with an active constraint; verification is current",
+            "ref_019_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "risk_approval=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_019"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_019_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_019_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_019_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_risk_approval": {
+      "trigger": {
+        "name": "request_bond",
+        "arguments": {
+          "choice": "ref_019_a"
+        }
+      },
+      "updates": {
+        "risk_approval": {
+          "status": "known",
+          "value": "cand_procurement_019_risk_approval_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

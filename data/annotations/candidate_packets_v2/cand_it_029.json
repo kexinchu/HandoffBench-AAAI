@@ -1,0 +1,202 @@
+{
+  "task_id": "cand_it_029",
+  "domain": "it",
+  "boundary": {
+    "boundary_id": "cand_it_029_b",
+    "source_role": "Web operations",
+    "target_role": "registrar administrator",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_it_029_u01",
+      "source_type": "user",
+      "content": {
+        "transfer_domain": "observed transfer domain",
+        "dnssec_rollover": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_it_029_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "transfer_lock": "observed transfer lock",
+        "registrant_approval": "observed registrant approval",
+        "candidate_assessments": {
+          "ref_029_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_029_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_029_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_it_029_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_it_029_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Transfer request; domain lock active; registrant approval verified; DNSSEC key rollover incomplete"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "disable_dnssec",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_029_a",
+            "ref_029_b",
+            "ref_029_c"
+          ],
+          "enum_descriptions": {
+            "ref_029_a": "scope conflicts with an active constraint; verification is current",
+            "ref_029_b": "scope matches the request; a required verification is still pending",
+            "ref_029_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "dnssec_rollover=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "complete_dnssec_rollover",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_029_a",
+            "ref_029_b",
+            "ref_029_c"
+          ],
+          "enum_descriptions": {
+            "ref_029_a": "scope conflicts with an active constraint; verification is current",
+            "ref_029_b": "scope matches the request; a required verification is still pending",
+            "ref_029_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "dnssec_rollover=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "remove_transfer_lock",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_029_a",
+            "ref_029_b",
+            "ref_029_c"
+          ],
+          "enum_descriptions": {
+            "ref_029_a": "scope conflicts with an active constraint; verification is current",
+            "ref_029_b": "scope matches the request; a required verification is still pending",
+            "ref_029_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "dnssec_rollover=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "submit_domain_transfer",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_029_a",
+            "ref_029_b",
+            "ref_029_c"
+          ],
+          "enum_descriptions": {
+            "ref_029_a": "scope conflicts with an active constraint; verification is current",
+            "ref_029_b": "scope matches the request; a required verification is still pending",
+            "ref_029_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "dnssec_rollover=known"
+      ],
+      "user_impacting": true
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_it_029"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_029_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_029_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_029_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_dnssec_rollover": {
+      "trigger": {
+        "name": "complete_dnssec_rollover",
+        "arguments": {
+          "choice": "ref_029_c"
+        }
+      },
+      "updates": {
+        "dnssec_rollover": {
+          "status": "known",
+          "value": "cand_it_029_dnssec_rollover_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

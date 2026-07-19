@@ -1,0 +1,128 @@
+{
+  "task_id": "cand_travel_013",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_013_b",
+    "source_role": "concierge",
+    "target_role": "lodging booking",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_013_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to reserve revised destination using only a policy-compliant option.",
+        "destination": "user specified destination",
+        "budget": "user specified budget",
+        "parking": "user specified parking",
+        "guest_name": "user specified guest name"
+      }
+    },
+    {
+      "trace_id": "cand_travel_013_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_013_a",
+        "candidate_targets": [
+          "opt_013_a",
+          "opt_013_b",
+          "opt_013_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_013_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_013_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_013_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "User revises destination after initial search; refundable options and total prices returned for both places. Guest legal name absent.",
+        "qualifying_room": {
+          "id": "fact_supersession",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_013_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask name; reserve revised option; reserve old option; search again"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_013_a",
+            "opt_013_b",
+            "opt_013_c"
+          ]
+        }
+      },
+      "requires": [],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_013"
+      },
+      "response": {
+        "eligible_action_target": "opt_013_a",
+        "candidate_targets": [
+          "opt_013_a",
+          "opt_013_b",
+          "opt_013_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_013_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_013_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_013_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "User revises destination after initial search; refundable options and total prices returned for both places. Guest legal name absent.",
+        "qualifying_room": {
+          "id": "fact_supersession",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

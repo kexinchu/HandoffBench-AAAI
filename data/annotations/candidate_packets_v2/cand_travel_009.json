@@ -1,0 +1,154 @@
+{
+  "task_id": "cand_travel_009",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_009_b",
+    "source_role": "reservation intake",
+    "target_role": "pet-services agent",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_009_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to add cabin pet using only a policy-compliant option.",
+        "kennel_dimensions": "contradicted",
+        "current_kennel_height": "user specified current kennel height"
+      }
+    },
+    {
+      "trace_id": "cand_travel_009_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_009_c",
+        "candidate_targets": [
+          "opt_009_a",
+          "opt_009_b",
+          "opt_009_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_009_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_009_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_009_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Aircraft pet-slot availability and kennel dimensions returned; user supplied weight but kennel height conflicts across messages.",
+        "pet_slot_available": true,
+        "weight_limit": "verified weight limit status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_009_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "clarify dimensions; reserve pet slot; add checked pet; repeat capacity"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "clarify_slot_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "kennel_dimensions",
+            "unrelated_009_x",
+            "unrelated_009_y"
+          ]
+        }
+      },
+      "requires": [
+        "kennel_dimensions=contradicted"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_009_a",
+            "opt_009_b",
+            "opt_009_c"
+          ]
+        }
+      },
+      "requires": [
+        "kennel_dimensions=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_009"
+      },
+      "response": {
+        "eligible_action_target": "opt_009_c",
+        "candidate_targets": [
+          "opt_009_a",
+          "opt_009_b",
+          "opt_009_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_009_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_009_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_009_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Aircraft pet-slot availability and kennel dimensions returned; user supplied weight but kennel height conflicts across messages.",
+        "pet_slot_available": true,
+        "weight_limit": "verified weight limit status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_kennel_dimensions": {
+      "trigger": {
+        "name": "clarify_slot_1",
+        "arguments": {
+          "key": "kennel_dimensions"
+        }
+      },
+      "updates": {
+        "kennel_dimensions": {
+          "status": "known",
+          "value": "resolved:kennel_dimensions"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

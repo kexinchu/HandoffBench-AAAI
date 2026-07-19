@@ -1,0 +1,203 @@
+{
+  "task_id": "cand_procurement_031",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_031_b",
+    "source_role": "Inventory intake",
+    "target_role": "commercial buyer",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_031_u01",
+      "source_type": "user",
+      "content": {
+        "settle_consigned_stock": "observed settle consigned stock",
+        "damage_liability": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_031_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "consumed_units": "observed consumed units",
+        "title_trigger": "observed title trigger",
+        "damaged_units": "observed damaged units",
+        "candidate_assessments": {
+          "ref_031_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_031_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_031_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_031_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_procurement_031_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Consigned stock count; consumption trigger; title terms; damaged units under investigation"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "return_all_stock",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_031_a",
+            "ref_031_b",
+            "ref_031_c"
+          ],
+          "enum_descriptions": {
+            "ref_031_a": "scope matches the authenticated request; required verification is current",
+            "ref_031_b": "scope conflicts with an active constraint; verification is current",
+            "ref_031_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "damage_liability=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "investigate_damage_liability",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_031_a",
+            "ref_031_b",
+            "ref_031_c"
+          ],
+          "enum_descriptions": {
+            "ref_031_a": "scope matches the authenticated request; required verification is current",
+            "ref_031_b": "scope conflicts with an active constraint; verification is current",
+            "ref_031_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "damage_liability=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "confirm_consumption",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_031_a",
+            "ref_031_b",
+            "ref_031_c"
+          ],
+          "enum_descriptions": {
+            "ref_031_a": "scope matches the authenticated request; required verification is current",
+            "ref_031_b": "scope conflicts with an active constraint; verification is current",
+            "ref_031_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "damage_liability=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "release_supplier_payment",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_031_a",
+            "ref_031_b",
+            "ref_031_c"
+          ],
+          "enum_descriptions": {
+            "ref_031_a": "scope matches the authenticated request; required verification is current",
+            "ref_031_b": "scope conflicts with an active constraint; verification is current",
+            "ref_031_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "damage_liability=known"
+      ],
+      "user_impacting": true
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_031"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_031_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_031_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_031_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_damage_liability": {
+      "trigger": {
+        "name": "investigate_damage_liability",
+        "arguments": {
+          "choice": "ref_031_a"
+        }
+      },
+      "updates": {
+        "damage_liability": {
+          "status": "known",
+          "value": "cand_procurement_031_damage_liability_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

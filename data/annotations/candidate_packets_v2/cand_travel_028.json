@@ -1,0 +1,120 @@
+{
+  "task_id": "cand_travel_028",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_028_b",
+    "source_role": "booking intake",
+    "target_role": "baggage policy desk",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_028_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to add checked bag using only a policy-compliant option.",
+        "bag_weight": "user specified bag weight",
+        "marketing_rule_applicable": "user specified marketing rule applicable"
+      }
+    },
+    {
+      "trace_id": "cand_travel_028_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_028_a",
+        "candidate_targets": [
+          "opt_028_a",
+          "opt_028_b",
+          "opt_028_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_028_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_028_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_028_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Marketing and operating carriers differ; operating-carrier baggage rule controls and conflicts with a stale marketing-carrier allowance.",
+        "operating_carrier": "verified operating carrier status",
+        "operating_bag_rule": "verified operating bag rule status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_028_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask weight; price operating allowance; apply marketing allowance; purchase bag"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_028_a",
+            "opt_028_b",
+            "opt_028_c"
+          ]
+        }
+      },
+      "requires": [],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_028"
+      },
+      "response": {
+        "eligible_action_target": "opt_028_a",
+        "candidate_targets": [
+          "opt_028_a",
+          "opt_028_b",
+          "opt_028_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_028_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_028_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_028_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Marketing and operating carriers differ; operating-carrier baggage rule controls and conflicts with a stale marketing-carrier allowance.",
+        "operating_carrier": "verified operating carrier status",
+        "operating_bag_rule": "verified operating bag rule status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

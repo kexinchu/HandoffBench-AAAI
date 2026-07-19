@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_013",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b013",
+    "source_role": "meeting_intake",
+    "target_role": "room_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs013u",
+      "source_type": "user",
+      "content": {
+        "goal": "reserve authoritative available room",
+        "schedule_window": "window_013"
+      }
+    },
+    {
+      "trace_id": "cs013t",
+      "source_type": "tool",
+      "tool": "schedule_registry_013",
+      "content": {
+        "available_room_id": "room_R9"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs013p",
+      "source_type": "policy",
+      "content": {
+        "reservation_acceptance": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "reservation_acceptance",
+            "irrelevant_013_a",
+            "irrelevant_013_b"
+          ]
+        }
+      },
+      "requires": [
+        "reservation_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "reserve_room",
+      "arguments": {
+        "available_room_id": {
+          "type": "string",
+          "enum": [
+            "room_R9",
+            "room_R9_altB",
+            "room_R9_altA"
+          ]
+        }
+      },
+      "requires": [
+        "reservation_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_013": {
+      "request": {
+        "task_id": "cand_scheduling_013"
+      },
+      "response": {
+        "available_room_id": "room_R9"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_reservation_acceptance": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "reservation_acceptance"
+        }
+      },
+      "updates": {
+        "reservation_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

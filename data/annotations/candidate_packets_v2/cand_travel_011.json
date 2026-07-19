@@ -1,0 +1,150 @@
+{
+  "task_id": "cand_travel_011",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_011_b",
+    "source_role": "route planner",
+    "target_role": "document-aware booking",
+    "trace_cut": 5,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_011_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to book compliant route using only a policy-compliant option.",
+        "passport_country": 3,
+        "transit_visa_possession": "user specified transit visa possession"
+      }
+    },
+    {
+      "trace_id": "cand_travel_011_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_011_b",
+        "candidate_targets": [
+          "opt_011_a",
+          "opt_011_b",
+          "opt_011_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_011_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_011_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_011_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Passport country supplied; official rule says transit visa required on one route; visa possession unknown; alternate route avoids transit country.",
+        "route_rules": {
+          "id": "fact_it_avoidance",
+          "status": "available",
+          "meets_constraints": true
+        },
+        "visa_free_option": {
+          "id": "fact_it_avoidance",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_011_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask visa possession; hold visa route; hold avoiding route; assert visa"
+      }
+    },
+    {
+      "trace_id": "cand_travel_011_d1",
+      "source_type": "environment",
+      "content": {
+        "unrelated_case_note": "authenticated non-causal context"
+      }
+    },
+    {
+      "trace_id": "cand_travel_011_d2",
+      "source_type": "environment",
+      "content": {
+        "unrelated_preference": "not applicable to public actions"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_011_a",
+            "opt_011_b",
+            "opt_011_c"
+          ]
+        }
+      },
+      "requires": [],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_011"
+      },
+      "response": {
+        "eligible_action_target": "opt_011_b",
+        "candidate_targets": [
+          "opt_011_a",
+          "opt_011_b",
+          "opt_011_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_011_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_011_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_011_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Passport country supplied; official rule says transit visa required on one route; visa possession unknown; alternate route avoids transit country.",
+        "route_rules": {
+          "id": "fact_it_avoidance",
+          "status": "available",
+          "meets_constraints": true
+        },
+        "visa_free_option": {
+          "id": "fact_it_avoidance",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,75 @@
+{
+  "task_id": "cand_scheduling_009",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b009",
+    "source_role": "school_intake",
+    "target_role": "conference_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs009u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule authorized parent conference",
+        "schedule_window": "window_009"
+      }
+    },
+    {
+      "trace_id": "cs009t",
+      "source_type": "tool",
+      "tool": "schedule_registry_009",
+      "content": {
+        "conference_slot_id": "conf_C8"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs009p",
+      "source_type": "policy",
+      "content": {
+        "attendee_clearance": true
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "schedule_conference",
+      "arguments": {
+        "conference_slot_id": {
+          "type": "string",
+          "enum": [
+            "conf_C8_altA",
+            "conf_C8",
+            "conf_C8_altB"
+          ]
+        }
+      },
+      "requires": [
+        "attendee_clearance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_009": {
+      "request": {
+        "task_id": "cand_scheduling_009"
+      },
+      "response": {
+        "conference_slot_id": "conf_C8"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

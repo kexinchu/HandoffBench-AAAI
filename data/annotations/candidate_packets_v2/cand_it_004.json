@@ -1,0 +1,187 @@
+{
+  "task_id": "cand_it_004",
+  "domain": "it",
+  "boundary": {
+    "boundary_id": "cand_it_004_b",
+    "source_role": "Certificate monitor",
+    "target_role": "PKI engineer",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_it_004_u01",
+      "source_type": "user",
+      "content": {
+        "rotate_certificate": "observed rotate certificate"
+      }
+    },
+    {
+      "trace_id": "cand_it_004_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "new_leaf": "observed new leaf",
+        "missing_intermediate": "observed missing intermediate",
+        "canary_failed": true,
+        "candidate_assessments": {
+          "ref_004_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_004_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_004_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_it_004_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_it_004_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Leaf expiry imminent; new certificate issued; intermediate missing on one endpoint; canary probe failed"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "deploy_intermediate",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_004_a",
+            "ref_004_b",
+            "ref_004_c"
+          ],
+          "enum_descriptions": {
+            "ref_004_a": "scope conflicts with an active constraint; verification is current",
+            "ref_004_b": "scope matches the authenticated request; required verification is current",
+            "ref_004_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "rotate_certificate=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "activate_certificate",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_004_a",
+            "ref_004_b",
+            "ref_004_c"
+          ],
+          "enum_descriptions": {
+            "ref_004_a": "scope conflicts with an active constraint; verification is current",
+            "ref_004_b": "scope matches the authenticated request; required verification is current",
+            "ref_004_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "rotate_certificate=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "rollback_certificate",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_004_a",
+            "ref_004_b",
+            "ref_004_c"
+          ],
+          "enum_descriptions": {
+            "ref_004_a": "scope conflicts with an active constraint; verification is current",
+            "ref_004_b": "scope matches the authenticated request; required verification is current",
+            "ref_004_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "rotate_certificate=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "rerun_probe",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_004_a",
+            "ref_004_b",
+            "ref_004_c"
+          ],
+          "enum_descriptions": {
+            "ref_004_a": "scope conflicts with an active constraint; verification is current",
+            "ref_004_b": "scope matches the authenticated request; required verification is current",
+            "ref_004_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "rotate_certificate=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_it_004"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_004_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_004_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_004_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_017",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b017",
+    "source_role": "permit_intake",
+    "target_role": "inspection_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs017u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule cleared permit inspection",
+        "schedule_window": "window_017"
+      }
+    },
+    {
+      "trace_id": "cs017t",
+      "source_type": "tool",
+      "tool": "schedule_registry_017",
+      "content": {
+        "inspection_slot_id": "inspection_J2"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs017p",
+      "source_type": "policy",
+      "content": {
+        "site_contact": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "site_contact",
+            "irrelevant_017_a",
+            "irrelevant_017_b"
+          ]
+        }
+      },
+      "requires": [
+        "site_contact=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "schedule_inspection",
+      "arguments": {
+        "inspection_slot_id": {
+          "type": "string",
+          "enum": [
+            "inspection_J2_altB",
+            "inspection_J2_altA",
+            "inspection_J2"
+          ]
+        }
+      },
+      "requires": [
+        "site_contact=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_017": {
+      "request": {
+        "task_id": "cand_scheduling_017"
+      },
+      "response": {
+        "inspection_slot_id": "inspection_J2"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_site_contact": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "site_contact"
+        }
+      },
+      "updates": {
+        "site_contact": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

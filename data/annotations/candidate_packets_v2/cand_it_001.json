@@ -1,0 +1,204 @@
+{
+  "task_id": "cand_it_001",
+  "domain": "it",
+  "boundary": {
+    "boundary_id": "cand_it_001_b",
+    "source_role": "Service desk",
+    "target_role": "identity specialist",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_it_001_u01",
+      "source_type": "user",
+      "content": {
+        "restore_access": "Complete objective: restore access",
+        "manager_verification": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_it_001_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "account_locked": 3,
+        "employee_id_verified": true,
+        "candidate_assessments": {
+          "ref_001_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_001_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_001_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_it_001_p01",
+      "source_type": "policy",
+      "content": {
+        "two_factor_rule": "observed two factor rule"
+      }
+    },
+    {
+      "trace_id": "cand_it_001_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Account locked; employee ID verified; phone unavailable; manager factor unresolved"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "repeat_directory_lookup",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_001_a",
+            "ref_001_b",
+            "ref_001_c"
+          ],
+          "enum_descriptions": {
+            "ref_001_a": "scope conflicts with an active constraint; verification is current",
+            "ref_001_b": "scope matches the authenticated request; required verification is current",
+            "ref_001_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "manager_verification=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "initiate_manager_verification",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_001_a",
+            "ref_001_b",
+            "ref_001_c"
+          ],
+          "enum_descriptions": {
+            "ref_001_a": "scope conflicts with an active constraint; verification is current",
+            "ref_001_b": "scope matches the authenticated request; required verification is current",
+            "ref_001_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "manager_verification=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "reset_credential",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_001_a",
+            "ref_001_b",
+            "ref_001_c"
+          ],
+          "enum_descriptions": {
+            "ref_001_a": "scope conflicts with an active constraint; verification is current",
+            "ref_001_b": "scope matches the authenticated request; required verification is current",
+            "ref_001_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "manager_verification=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "unlock_account",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_001_a",
+            "ref_001_b",
+            "ref_001_c"
+          ],
+          "enum_descriptions": {
+            "ref_001_a": "scope conflicts with an active constraint; verification is current",
+            "ref_001_b": "scope matches the authenticated request; required verification is current",
+            "ref_001_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "manager_verification=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_it_001"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_001_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_001_b": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_001_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_manager_verification": {
+      "trigger": {
+        "name": "initiate_manager_verification",
+        "arguments": {
+          "choice": "ref_001_b"
+        }
+      },
+      "updates": {
+        "manager_verification": {
+          "status": "known",
+          "value": "cand_it_001_manager_verification_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

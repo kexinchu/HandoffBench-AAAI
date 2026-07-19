@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_016",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b016",
+    "source_role": "repair_intake",
+    "target_role": "technician_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs016u",
+      "source_type": "user",
+      "content": {
+        "goal": "schedule authorized entry visit",
+        "schedule_window": "window_016"
+      }
+    },
+    {
+      "trace_id": "cs016t",
+      "source_type": "tool",
+      "tool": "schedule_registry_016",
+      "content": {
+        "technician_visit_id": "visit_V8"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs016p",
+      "source_type": "policy",
+      "content": {
+        "entry_authorization": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "entry_authorization",
+            "irrelevant_016_a",
+            "irrelevant_016_b"
+          ]
+        }
+      },
+      "requires": [
+        "entry_authorization=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "schedule_entry_visit",
+      "arguments": {
+        "technician_visit_id": {
+          "type": "string",
+          "enum": [
+            "visit_V8",
+            "visit_V8_altB",
+            "visit_V8_altA"
+          ]
+        }
+      },
+      "requires": [
+        "entry_authorization=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_016": {
+      "request": {
+        "task_id": "cand_scheduling_016"
+      },
+      "response": {
+        "technician_visit_id": "visit_V8"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_entry_authorization": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "entry_authorization"
+        }
+      },
+      "updates": {
+        "entry_authorization": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

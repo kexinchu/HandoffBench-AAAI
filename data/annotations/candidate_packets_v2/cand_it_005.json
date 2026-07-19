@@ -1,0 +1,202 @@
+{
+  "task_id": "cand_it_005",
+  "domain": "it",
+  "boundary": {
+    "boundary_id": "cand_it_005_b",
+    "source_role": "Migration coordinator",
+    "target_role": "DNS operator",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_it_005_u01",
+      "source_type": "user",
+      "content": {
+        "cutover_service": "observed cutover service",
+        "ttl_propagation": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_it_005_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "new_endpoint_healthy": "observed new endpoint healthy",
+        "current_ttl": "observed current ttl",
+        "candidate_assessments": {
+          "ref_005_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_005_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_005_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_it_005_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_it_005_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "New endpoint healthy; old DNS TTL high; maintenance window; TTL reduction not propagated"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "shutdown_old_endpoint",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_005_a",
+            "ref_005_b",
+            "ref_005_c"
+          ],
+          "enum_descriptions": {
+            "ref_005_a": "scope conflicts with an active constraint; verification is current",
+            "ref_005_b": "scope matches the request; a required verification is still pending",
+            "ref_005_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "ttl_propagation=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "verify_ttl",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_005_a",
+            "ref_005_b",
+            "ref_005_c"
+          ],
+          "enum_descriptions": {
+            "ref_005_a": "scope conflicts with an active constraint; verification is current",
+            "ref_005_b": "scope matches the request; a required verification is still pending",
+            "ref_005_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "ttl_propagation=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "change_dns_target",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_005_a",
+            "ref_005_b",
+            "ref_005_c"
+          ],
+          "enum_descriptions": {
+            "ref_005_a": "scope conflicts with an active constraint; verification is current",
+            "ref_005_b": "scope matches the request; a required verification is still pending",
+            "ref_005_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "ttl_propagation=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "extend_window",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_005_a",
+            "ref_005_b",
+            "ref_005_c"
+          ],
+          "enum_descriptions": {
+            "ref_005_a": "scope conflicts with an active constraint; verification is current",
+            "ref_005_b": "scope matches the request; a required verification is still pending",
+            "ref_005_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "ttl_propagation=known"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_it_005"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_005_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_005_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_005_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_ttl_propagation": {
+      "trigger": {
+        "name": "verify_ttl",
+        "arguments": {
+          "choice": "ref_005_c"
+        }
+      },
+      "updates": {
+        "ttl_propagation": {
+          "status": "known",
+          "value": "cand_it_005_ttl_propagation_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_005",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b005",
+    "source_role": "student_services",
+    "target_role": "exam_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs005u",
+      "source_type": "user",
+      "content": {
+        "goal": "book accommodated exam",
+        "schedule_window": "window_005"
+      }
+    },
+    {
+      "trace_id": "cs005t",
+      "source_type": "tool",
+      "tool": "schedule_registry_005",
+      "content": {
+        "eligible_room_id": "room_Q2"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs005p",
+      "source_type": "policy",
+      "content": {
+        "candidate_number": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "candidate_number",
+            "irrelevant_005_a",
+            "irrelevant_005_b"
+          ]
+        }
+      },
+      "requires": [
+        "candidate_number=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "book_exam",
+      "arguments": {
+        "eligible_room_id": {
+          "type": "string",
+          "enum": [
+            "room_Q2_altB",
+            "room_Q2_altA",
+            "room_Q2"
+          ]
+        }
+      },
+      "requires": [
+        "candidate_number=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_005": {
+      "request": {
+        "task_id": "cand_scheduling_005"
+      },
+      "response": {
+        "eligible_room_id": "room_Q2"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_candidate_number": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "candidate_number"
+        }
+      },
+      "updates": {
+        "candidate_number": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

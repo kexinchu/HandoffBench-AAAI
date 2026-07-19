@@ -1,0 +1,119 @@
+{
+  "task_id": "cand_commerce_038",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_038_b",
+    "source_role": "delivery incident intake",
+    "target_role": "food safety resolution",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_038_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to resolve unsafe delivery using only a policy-compliant option.",
+        "replacement_or_refund_choice": "user specified replacement or refund choice"
+      }
+    },
+    {
+      "trace_id": "cand_commerce_038_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_038_b",
+        "candidate_targets": [
+          "opt_038_a",
+          "opt_038_b",
+          "opt_038_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_038_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_038_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_038_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Sensor log exceeds safe threshold; customer photo is irrelevant to safety rule; policy mandates disposal and replacement/refund.",
+        "temperature_excursion": "verified temperature excursion status",
+        "disposal_required": "verified disposal required status"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_038_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "instruct disposal; reship; refund; request consumption"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_038_a",
+            "opt_038_b",
+            "opt_038_c"
+          ]
+        }
+      },
+      "requires": [],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_038"
+      },
+      "response": {
+        "eligible_action_target": "opt_038_b",
+        "candidate_targets": [
+          "opt_038_a",
+          "opt_038_b",
+          "opt_038_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_038_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_038_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_038_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Sensor log exceeds safe threshold; customer photo is irrelevant to safety rule; policy mandates disposal and replacement/refund.",
+        "temperature_excursion": "verified temperature excursion status",
+        "disposal_required": "verified disposal required status"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

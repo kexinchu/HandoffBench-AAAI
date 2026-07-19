@@ -1,0 +1,205 @@
+{
+  "task_id": "cand_procurement_036",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "cand_procurement_036_b",
+    "source_role": "Demand planner",
+    "target_role": "supply-contract analyst",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_procurement_036_u01",
+      "source_type": "user",
+      "content": {
+        "reduce_committed_order": "observed reduce committed order",
+        "fee_acceptance": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_036_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "revised_forecast": "observed revised forecast",
+        "firm_horizon": "observed firm horizon",
+        "supplier_commitments": "observed supplier commitments",
+        "candidate_assessments": {
+          "ref_036_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_036_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_036_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_procurement_036_p01",
+      "source_type": "policy",
+      "content": {
+        "cancellation_liability": "observed cancellation liability"
+      }
+    },
+    {
+      "trace_id": "cand_procurement_036_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Forecast revision; firm horizon; supplier material commitments; cancellation fee formula"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "request_fee_acceptance",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_036_a",
+            "ref_036_b",
+            "ref_036_c"
+          ],
+          "enum_descriptions": {
+            "ref_036_a": "scope conflicts with an active constraint; verification is current",
+            "ref_036_b": "scope matches the request; a required verification is still pending",
+            "ref_036_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "fee_acceptance=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "reduce_order",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_036_a",
+            "ref_036_b",
+            "ref_036_c"
+          ],
+          "enum_descriptions": {
+            "ref_036_a": "scope conflicts with an active constraint; verification is current",
+            "ref_036_b": "scope matches the request; a required verification is still pending",
+            "ref_036_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "fee_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "cancel_without_fee",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_036_a",
+            "ref_036_b",
+            "ref_036_c"
+          ],
+          "enum_descriptions": {
+            "ref_036_a": "scope conflicts with an active constraint; verification is current",
+            "ref_036_b": "scope matches the request; a required verification is still pending",
+            "ref_036_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "fee_acceptance=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "calculate_cancellation_fee",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_036_a",
+            "ref_036_b",
+            "ref_036_c"
+          ],
+          "enum_descriptions": {
+            "ref_036_a": "scope conflicts with an active constraint; verification is current",
+            "ref_036_b": "scope matches the request; a required verification is still pending",
+            "ref_036_c": "scope matches the authenticated request; required verification is current"
+          }
+        }
+      },
+      "requires": [
+        "fee_acceptance=unknown"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_procurement_036"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_036_a": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_036_b": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          },
+          "ref_036_c": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_fee_acceptance": {
+      "trigger": {
+        "name": "calculate_cancellation_fee",
+        "arguments": {
+          "choice": "ref_036_c"
+        }
+      },
+      "updates": {
+        "fee_acceptance": {
+          "status": "known",
+          "value": "cand_procurement_036_fee_acceptance_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

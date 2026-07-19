@@ -1,0 +1,155 @@
+{
+  "task_id": "cand_travel_024",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_024_b",
+    "source_role": "baggage intake",
+    "target_role": "delivery contractor",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_024_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to deliver delayed bag using only a policy-compliant option.",
+        "current_delivery_address": "contradicted"
+      }
+    },
+    {
+      "trace_id": "cand_travel_024_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_024_c",
+        "candidate_targets": [
+          "opt_024_a",
+          "opt_024_b",
+          "opt_024_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_024_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_024_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_024_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Bag trace confirms delayed status and last scan; two delivery addresses conflict after user moved hotels. Airline reimbursement authority is known.",
+        "bag_status": "verified bag status status",
+        "last_scan": "verified last scan status",
+        "delivery_eligible": true
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_024_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask current address; dispatch courier; send old hotel; file loss payout"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "clarify_slot_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "current_delivery_address",
+            "unrelated_024_x",
+            "unrelated_024_y"
+          ]
+        }
+      },
+      "requires": [
+        "current_delivery_address=contradicted"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_024_a",
+            "opt_024_b",
+            "opt_024_c"
+          ]
+        }
+      },
+      "requires": [
+        "current_delivery_address=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_024"
+      },
+      "response": {
+        "eligible_action_target": "opt_024_c",
+        "candidate_targets": [
+          "opt_024_a",
+          "opt_024_b",
+          "opt_024_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_024_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_024_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_024_c": {
+            "available": true,
+            "policy_compatible": true
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Bag trace confirms delayed status and last scan; two delivery addresses conflict after user moved hotels. Airline reimbursement authority is known.",
+        "bag_status": "verified bag status status",
+        "last_scan": "verified last scan status",
+        "delivery_eligible": true
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_current_delivery_address": {
+      "trigger": {
+        "name": "clarify_slot_1",
+        "arguments": {
+          "key": "current_delivery_address"
+        }
+      },
+      "updates": {
+        "current_delivery_address": {
+          "status": "known",
+          "value": "resolved:current_delivery_address"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

@@ -1,0 +1,130 @@
+{
+  "estimates": {
+    "effects": {
+      "critical_errors": {
+        "checks": {
+          "cluster_bootstrap_ci_high": 0.03125,
+          "cluster_bootstrap_ci_low": 0.0,
+          "effect": 0.010416666666666666
+        },
+        "provenance": {
+          "cluster_bootstrap_ci_high": 0.0,
+          "cluster_bootstrap_ci_low": -0.03125,
+          "effect": -0.010416666666666666
+        },
+        "provenance:checks": {
+          "cluster_bootstrap_ci_high": 0.0,
+          "cluster_bootstrap_ci_low": -0.09375,
+          "effect": -0.03125
+        },
+        "typing": {
+          "cluster_bootstrap_ci_high": 0.0,
+          "cluster_bootstrap_ci_low": -0.15625,
+          "effect": -0.052083333333333336
+        },
+        "typing:checks": {
+          "cluster_bootstrap_ci_high": 0.03125,
+          "cluster_bootstrap_ci_low": 0.0,
+          "effect": 0.010416666666666666
+        },
+        "typing:provenance": {
+          "cluster_bootstrap_ci_high": 0.0,
+          "cluster_bootstrap_ci_low": -0.03125,
+          "effect": -0.010416666666666666
+        },
+        "typing:provenance:checks": {
+          "cluster_bootstrap_ci_high": 0.0,
+          "cluster_bootstrap_ci_low": -0.09375,
+          "effect": -0.03125
+        }
+      },
+      "macro_state_f1": {
+        "checks": {
+          "cluster_bootstrap_ci_high": 0.0,
+          "cluster_bootstrap_ci_low": -0.00390625,
+          "effect": -0.0013020833333333333
+        },
+        "provenance": {
+          "cluster_bootstrap_ci_high": 0.008680555555555556,
+          "cluster_bootstrap_ci_low": 0.0013020833333333333,
+          "effect": 0.004774305555555556
+        },
+        "provenance:checks": {
+          "cluster_bootstrap_ci_high": 0.01171875,
+          "cluster_bootstrap_ci_low": 0.0,
+          "effect": 0.00390625
+        },
+        "typing": {
+          "cluster_bootstrap_ci_high": 0.021267361111111112,
+          "cluster_bootstrap_ci_low": 0.0,
+          "effect": 0.008246527777777778
+        },
+        "typing:checks": {
+          "cluster_bootstrap_ci_high": 0.0,
+          "cluster_bootstrap_ci_low": -0.006510416666666665,
+          "effect": -0.003038194444444444
+        },
+        "typing:provenance": {
+          "cluster_bootstrap_ci_high": 0.00390625,
+          "cluster_bootstrap_ci_low": -0.005208333333333336,
+          "effect": -0.00043402777777777857
+        },
+        "typing:provenance:checks": {
+          "cluster_bootstrap_ci_high": 0.01345486111111111,
+          "cluster_bootstrap_ci_low": 0.0,
+          "effect": 0.005642361111111111
+        }
+      },
+      "strict_success": {
+        "checks": {
+          "cluster_bootstrap_ci_high": 0.14583333333333334,
+          "cluster_bootstrap_ci_low": 0.010416666666666666,
+          "effect": 0.0625
+        },
+        "provenance": {
+          "cluster_bootstrap_ci_high": 0.020833333333333332,
+          "cluster_bootstrap_ci_low": -0.23958333333333334,
+          "effect": -0.10416666666666667
+        },
+        "provenance:checks": {
+          "cluster_bootstrap_ci_high": 0.020833333333333332,
+          "cluster_bootstrap_ci_low": -0.13541666666666666,
+          "effect": -0.041666666666666664
+        },
+        "typing": {
+          "cluster_bootstrap_ci_high": 0.08333333333333333,
+          "cluster_bootstrap_ci_low": 0.010416666666666666,
+          "effect": 0.041666666666666664
+        },
+        "typing:checks": {
+          "cluster_bootstrap_ci_high": 0.07291666666666667,
+          "cluster_bootstrap_ci_low": -0.020833333333333332,
+          "effect": 0.020833333333333332
+        },
+        "typing:provenance": {
+          "cluster_bootstrap_ci_high": 0.07291666666666667,
+          "cluster_bootstrap_ci_low": -0.020833333333333332,
+          "effect": 0.020833333333333332
+        },
+        "typing:provenance:checks": {
+          "cluster_bootstrap_ci_high": -0.010416666666666666,
+          "cluster_bootstrap_ci_low": -0.08333333333333333,
+          "effect": -0.041666666666666664
+        }
+      }
+    },
+    "n_errors": 0,
+    "n_families": 6,
+    "n_ok": 192,
+    "n_runs": 192
+  },
+  "fairness_audit": {
+    "failures": [],
+    "n_blocks": 24,
+    "n_complete_blocks": 24,
+    "pass": true
+  },
+  "input_directories": [
+    "outputs/factorial_cf_v3_ministral3_14b"
+  ]
+}

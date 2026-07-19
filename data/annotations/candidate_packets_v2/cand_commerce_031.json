@@ -1,0 +1,161 @@
+{
+  "task_id": "cand_commerce_031",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_031_b",
+    "source_role": "delivery intake",
+    "target_role": "bulky-item scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_031_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to schedule furniture delivery using only a policy-compliant option.",
+        "stair_fee_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_031_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_031_a",
+        "candidate_targets": [
+          "opt_031_a",
+          "opt_031_b",
+          "opt_031_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_031_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_031_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_031_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Address survey confirms walk-up floor; published stair fee and crew requirement verified, while original checkout omitted access details.",
+        "floor": "verified floor status",
+        "crew_requirement": "verified crew requirement status",
+        "stair_fee": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_031_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "disclose fee; schedule crew; send one driver; cancel silently"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "stair_fee_consent",
+            "unrelated_031_x",
+            "unrelated_031_y"
+          ]
+        }
+      },
+      "requires": [
+        "stair_fee_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_031_a",
+            "opt_031_b",
+            "opt_031_c"
+          ]
+        }
+      },
+      "requires": [
+        "stair_fee_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_031"
+      },
+      "response": {
+        "eligible_action_target": "opt_031_a",
+        "candidate_targets": [
+          "opt_031_a",
+          "opt_031_b",
+          "opt_031_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_031_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_031_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_031_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Address survey confirms walk-up floor; published stair fee and crew requirement verified, while original checkout omitted access details.",
+        "floor": "verified floor status",
+        "crew_requirement": "verified crew requirement status",
+        "stair_fee": {
+          "amount": "85.00",
+          "currency": "USD"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_stair_fee_consent": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "stair_fee_consent"
+        }
+      },
+      "updates": {
+        "stair_fee_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

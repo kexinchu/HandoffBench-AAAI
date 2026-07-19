@@ -1,0 +1,192 @@
+{
+  "task_id": "cand_commerce_007",
+  "domain": "commerce",
+  "boundary": {
+    "boundary_id": "cand_commerce_007_b",
+    "source_role": "billing intake",
+    "target_role": "cancellation desk",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_commerce_007_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to cancel subscription using only a policy-compliant option.",
+        "settlement_acceptance": null,
+        "cancellation_consent": null
+      }
+    },
+    {
+      "trace_id": "cand_commerce_007_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_007_a",
+        "candidate_targets": [
+          "opt_007_a",
+          "opt_007_b",
+          "opt_007_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_007_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_007_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_007_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Renewal, policy, and computed prorated amount verified; full refund ineligible. User authorized cancellation but not settlement amount.",
+        "prorated_amount": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "full_refund_ineligible": false
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_commerce_007_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "offer amount; ask acceptance; full refund; cancel/refund"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user_1",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "settlement_acceptance",
+            "unrelated_007_x",
+            "unrelated_007_y"
+          ]
+        }
+      },
+      "requires": [
+        "settlement_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "ask_user_2",
+      "arguments": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "cancellation_consent",
+            "unrelated_007_x",
+            "unrelated_007_y"
+          ]
+        }
+      },
+      "requires": [
+        "cancellation_consent=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_007_a",
+            "opt_007_b",
+            "opt_007_c"
+          ]
+        }
+      },
+      "requires": [
+        "settlement_acceptance=known",
+        "cancellation_consent=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_commerce_007"
+      },
+      "response": {
+        "eligible_action_target": "opt_007_a",
+        "candidate_targets": [
+          "opt_007_a",
+          "opt_007_b",
+          "opt_007_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_007_a": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_007_b": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_007_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Renewal, policy, and computed prorated amount verified; full refund ineligible. User authorized cancellation but not settlement amount.",
+        "prorated_amount": {
+          "amount": "85.00",
+          "currency": "USD"
+        },
+        "full_refund_ineligible": false
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_settlement_acceptance": {
+      "trigger": {
+        "name": "ask_user_1",
+        "arguments": {
+          "key": "settlement_acceptance"
+        }
+      },
+      "updates": {
+        "settlement_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    },
+    "reply_cancellation_consent": {
+      "trigger": {
+        "name": "ask_user_2",
+        "arguments": {
+          "key": "cancellation_consent"
+        }
+      },
+      "updates": {
+        "cancellation_consent": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

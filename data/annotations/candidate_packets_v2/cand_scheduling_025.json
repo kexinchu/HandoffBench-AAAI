@@ -1,0 +1,107 @@
+{
+  "task_id": "cand_scheduling_025",
+  "domain": "scheduling",
+  "boundary": {
+    "boundary_id": "cand_sched_b025",
+    "source_role": "workforce_intake",
+    "target_role": "roster_scheduler",
+    "trace_cut": 3,
+    "handoff_reason": "candidate specialized scheduling resolution"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cs025u",
+      "source_type": "user",
+      "content": {
+        "goal": "approve coverage-safe shift swap",
+        "schedule_window": "window_025"
+      }
+    },
+    {
+      "trace_id": "cs025t",
+      "source_type": "tool",
+      "tool": "schedule_registry_025",
+      "content": {
+        "swap_slot_id": "swap_S8"
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cs025p",
+      "source_type": "policy",
+      "content": {
+        "employee_acceptance": "unknown"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "ask_user",
+      "arguments": {
+        "slot": {
+          "type": "string",
+          "enum": [
+            "employee_acceptance",
+            "irrelevant_025_a",
+            "irrelevant_025_b"
+          ]
+        }
+      },
+      "requires": [
+        "employee_acceptance=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "approve_shift_swap",
+      "arguments": {
+        "swap_slot_id": {
+          "type": "string",
+          "enum": [
+            "swap_S8",
+            "swap_S8_altB",
+            "swap_S8_altA"
+          ]
+        }
+      },
+      "requires": [
+        "employee_acceptance=known"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "search_schedule",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "schedule_registry_025": {
+      "request": {
+        "task_id": "cand_scheduling_025"
+      },
+      "response": {
+        "swap_slot_id": "swap_S8"
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "reply_employee_acceptance": {
+      "trigger": {
+        "name": "ask_user",
+        "arguments": {
+          "slot": "employee_acceptance"
+        }
+      },
+      "updates": {
+        "employee_acceptance": {
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

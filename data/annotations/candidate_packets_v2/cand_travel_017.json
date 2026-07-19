@@ -1,0 +1,126 @@
+{
+  "task_id": "cand_travel_017",
+  "domain": "travel",
+  "boundary": {
+    "boundary_id": "cand_travel_017_b",
+    "source_role": "rail planner",
+    "target_role": "ticketing agent",
+    "trace_cut": 3,
+    "handoff_reason": "catalog-defined specialist authority boundary"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_travel_017_u",
+      "source_type": "user",
+      "content": {
+        "goal": "The user wants the specialist to book rail using only a policy-compliant option.",
+        "minimum_buffer": "45 minutes",
+        "passenger_dob": "user specified passenger dob"
+      }
+    },
+    {
+      "trace_id": "cand_travel_017_t",
+      "source_type": "tool",
+      "tool": "workflow_lookup",
+      "content": {
+        "eligible_action_target": "opt_017_b",
+        "candidate_targets": [
+          "opt_017_a",
+          "opt_017_b",
+          "opt_017_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_017_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_017_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_017_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Multi-leg schedules and station transfer times verified; cheapest itinerary violates user buffer. Passenger date of birth required for fare.",
+        "qualifying_itinerary": {
+          "id": "fact_ction_buffer",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_travel_017_p",
+      "source_type": "policy",
+      "content": {
+        "public_action_candidates": "ask DOB; book qualifying route; book cheapest; repeat timetable"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "commit_resolution",
+      "arguments": {
+        "target_id": {
+          "type": "string",
+          "enum": [
+            "opt_017_a",
+            "opt_017_b",
+            "opt_017_c"
+          ]
+        }
+      },
+      "requires": [],
+      "user_impacting": true
+    },
+    {
+      "action": "repeat_upstream_tool",
+      "arguments": {},
+      "requires": [],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "workflow_lookup": {
+      "request": {
+        "case": "cand_travel_017"
+      },
+      "response": {
+        "eligible_action_target": "opt_017_b",
+        "candidate_targets": [
+          "opt_017_a",
+          "opt_017_b",
+          "opt_017_c"
+        ],
+        "candidate_business_attributes": {
+          "opt_017_a": {
+            "available": true,
+            "policy_compatible": false
+          },
+          "opt_017_b": {
+            "available": true,
+            "policy_compatible": true
+          },
+          "opt_017_c": {
+            "available": true,
+            "policy_compatible": false
+          }
+        },
+        "selection_basis": "Choose the available candidate whose published attributes satisfy every user and policy constraint.",
+        "workflow_findings": "Multi-leg schedules and station transfer times verified; cheapest itinerary violates user buffer. Passenger date of birth required for fare.",
+        "qualifying_itinerary": {
+          "id": "fact_ction_buffer",
+          "status": "available",
+          "meets_constraints": true
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

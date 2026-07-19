@@ -1,0 +1,202 @@
+{
+  "task_id": "cand_it_027",
+  "domain": "it",
+  "boundary": {
+    "boundary_id": "cand_it_027_b",
+    "source_role": "Endpoint engineering",
+    "target_role": "fleet release manager",
+    "trace_cut": 4,
+    "handoff_reason": "candidate family control transfer"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "cand_it_027_u01",
+      "source_type": "user",
+      "content": {
+        "deploy_kernel_patch": "observed deploy kernel patch",
+        "failed_cohort_fix": "unknown"
+      }
+    },
+    {
+      "trace_id": "cand_it_027_t01",
+      "source_type": "tool",
+      "tool": "workflow_evidence_lookup",
+      "content": {
+        "approved_patch": true,
+        "cohort_tests": "observed cohort tests",
+        "candidate_assessments": {
+          "ref_027_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_027_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_027_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "success": true
+    },
+    {
+      "trace_id": "cand_it_027_p01",
+      "source_type": "policy",
+      "content": {}
+    },
+    {
+      "trace_id": "cand_it_027_e01",
+      "source_type": "environment",
+      "content": {
+        "workflow_observation": "Kernel patch approved; hardware compatibility cohorts; one cohort fails suspend test; exploit mitigation available"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "remediate_failed_cohort",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_027_a",
+            "ref_027_b",
+            "ref_027_c"
+          ],
+          "enum_descriptions": {
+            "ref_027_a": "scope matches the authenticated request; required verification is current",
+            "ref_027_b": "scope conflicts with an active constraint; verification is current",
+            "ref_027_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "failed_cohort_fix=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "deploy_all_devices",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_027_a",
+            "ref_027_b",
+            "ref_027_c"
+          ],
+          "enum_descriptions": {
+            "ref_027_a": "scope matches the authenticated request; required verification is current",
+            "ref_027_b": "scope conflicts with an active constraint; verification is current",
+            "ref_027_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "failed_cohort_fix=known"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "enable_exploit_mitigation",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_027_a",
+            "ref_027_b",
+            "ref_027_c"
+          ],
+          "enum_descriptions": {
+            "ref_027_a": "scope matches the authenticated request; required verification is current",
+            "ref_027_b": "scope conflicts with an active constraint; verification is current",
+            "ref_027_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "failed_cohort_fix=unknown"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "deploy_compatible_cohorts",
+      "arguments": {
+        "choice": {
+          "enum": [
+            "ref_027_a",
+            "ref_027_b",
+            "ref_027_c"
+          ],
+          "enum_descriptions": {
+            "ref_027_a": "scope matches the authenticated request; required verification is current",
+            "ref_027_b": "scope conflicts with an active constraint; verification is current",
+            "ref_027_c": "scope matches the request; a required verification is still pending"
+          }
+        }
+      },
+      "requires": [
+        "failed_cohort_fix=known"
+      ],
+      "user_impacting": true
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_candidate_evidence": {
+      "request": {
+        "task_id": "cand_it_027"
+      },
+      "response": {
+        "candidate_assessments": {
+          "ref_027_a": {
+            "operational_summary": "scope matches the authenticated request; required verification is current",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "current"
+            }
+          },
+          "ref_027_b": {
+            "operational_summary": "scope conflicts with an active constraint; verification is current",
+            "observations": {
+              "scope": "conflicts_with_constraint",
+              "verification": "current"
+            }
+          },
+          "ref_027_c": {
+            "operational_summary": "scope matches the request; a required verification is still pending",
+            "observations": {
+              "scope": "matches_request",
+              "verification": "pending"
+            }
+          }
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {
+    "resolve_failed_cohort_fix": {
+      "trigger": {
+        "name": "enable_exploit_mitigation",
+        "arguments": {
+          "choice": "ref_027_a"
+        }
+      },
+      "updates": {
+        "failed_cohort_fix": {
+          "status": "known",
+          "value": "cand_it_027_failed_cohort_fix_resolved"
+        }
+      }
+    }
+  },
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the legal next-action sequence. Do not consult model outputs, another annotator, or evaluator files."
+}

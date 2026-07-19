@@ -1,0 +1,72 @@
+experiment_id: confirmatory_v2
+status: dry_run_unsealed
+protocol: handoffbench-confirmatory-v2
+preregistration: research/preregistration_v3.md
+protocol_files:
+  - research/preregistration_v3.md
+  - data/schemas/episode.schema.json
+  - data/schemas/confirmatory_cost_accounting.schema.json
+design_matrix: configs/confirmatory_v2_matrix.json
+candidate_files:
+  - data/tasks/candidate/travel_commerce.json
+  - data/tasks/candidate/procurement_it.json
+  - data/tasks/candidate/scheduling.json
+sealed_manifest: data/splits/confirmatory_v2.sealed.json
+annotation_agreement: annotations/confirmatory_v2/agreement.json
+expected_population:
+  families: 200
+  domains: [travel, commerce, procurement, it, scheduling]
+  families_per_domain: 40
+models:
+  - provider: local_vllm
+    snapshot: Qwen2.5-14B-Instruct
+    served_model_name: qwen2.5-14b
+    local_path: /home/kec23008/Models/Qwen2.5-14B-Instruct
+    source: Qwen/Qwen2.5-14B-Instruct
+    source_revision: cf98f3b3bbb457ad9e2bb7baf9a0125b6b88caa8
+    license: apache-2.0
+    serving_args: [--host, 127.0.0.1, --port, '8101', --gpu-memory-utilization, '0.72',
+                   --max-model-len, '8192', --max-num-seqs, '8', --enforce-eager]
+  - provider: local_vllm
+    snapshot: Ministral-3-14B-Instruct-2512
+    served_model_name: ministral3-14b-2512
+    local_path: /home/kec23008/Models/Ministral-3-14B-Instruct-2512
+    source: mistralai/Ministral-3-14B-Instruct-2512
+    source_revision: 29439f81c2be264d8d393273f99e7db9c0961120
+    license: null
+    serving_args: [--host, 127.0.0.1, --port, '8102', --max-model-len, '8192',
+                   --gpu-memory-utilization, '0.85', --enforce-eager,
+                   --trust-remote-code, --language-model-only]
+model_snapshot_manifest: configs/confirmatory_v2_model_snapshots.json
+seeds: [101, 202]
+generation:
+  temperature: 0.7
+  max_output_tokens: 1600
+  max_receiver_turns: 4
+conditions:
+  controls: [full_history, gold_oracle]
+  factorial:
+    - free_form__absent__absent
+    - free_form__absent__executable
+    - free_form__trace_linked__absent
+    - free_form__trace_linked__executable
+    - typed__absent__absent
+    - typed__absent__executable
+    - typed__trace_linked__absent
+    - typed__trace_linked__executable
+  secondary_enforcement: [typed__trace_linked__executable__enforced]
+source_generation:
+  matched_factorial_artifact_per_task_model_seed: 1
+  reuse_across_factorial_cells: true
+analysis:
+  inference_unit: task_family
+  model_and_seed_nested_within_family: true
+  intent_to_treat: true
+  failed_provider_or_parse_credit: 0
+  family_cluster_bootstrap_draws: 10000
+  multiplicity: holm
+outputs:
+  root: outputs/confirmatory_v2
+  invalid_root: outputs/confirmatory_v2_invalid
+  accounting_schema: data/schemas/confirmatory_cost_accounting.schema.json
+execution_authorized: false
