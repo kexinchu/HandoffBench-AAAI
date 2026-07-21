@@ -5,11 +5,12 @@ repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 cd "$repo_root"
 
 gpu_uuid=GPU-474505f8-4b3d-0ba7-65de-8014425baee0
+cuda_visible_device=1
 port=8101
 model_name=qwen2.5-14b
 model_path=/home/kec23008/Models/Qwen2.5-14B-Instruct
-output_root="$repo_root/outputs/confirmatory_v3.4"
-runtime_root="$repo_root/outputs/confirmatory_v3.4_runtime"
+output_root="$repo_root/outputs/confirmatory_v3.4.1"
+runtime_root="$repo_root/outputs/confirmatory_v3.4.1_runtime"
 lock_file=/tmp/handoffbench-v3.4-gpu-474505f8.lock
 server_log="$runtime_root/qwen-vllm.log"
 monitor_log="$runtime_root/gpu-monitor.tsv"
@@ -38,7 +39,7 @@ fi
 : >"$monitor_log"
 rm -f "$violation_file"
 
-CUDA_VISIBLE_DEVICES="$gpu_uuid" setsid vllm serve "$model_path" \
+CUDA_VISIBLE_DEVICES="$cuda_visible_device" setsid vllm serve "$model_path" \
   --served-model-name "$model_name" \
   --host 127.0.0.1 \
   --port "$port" \
@@ -87,7 +88,7 @@ mapfile -t allowed_gpu_pids < <(
 allowed_csv=$(IFS=,; echo "${allowed_gpu_pids[*]}")
 
 PYTHONPATH=src python scripts/run_confirmatory.py \
-  --config configs/confirmatory_v3.4.yaml \
+  --config configs/confirmatory_v3.4.1.yaml \
   --execute \
   --model "$model_name" \
   --base-url "$model_name=http://127.0.0.1:${port}/v1" \
@@ -132,12 +133,12 @@ wait "$monitor_pid" 2>/dev/null || true
 monitor_pid=
 
 if [[ -e "$violation_file" ]]; then
-  echo "v3.4 infrastructure isolation violated; entire attempt is invalid" >&2
+  echo "v3.4.1 infrastructure isolation violated; entire attempt is invalid" >&2
   exit 4
 fi
 if [[ "$runner_status" -ne 0 ]]; then
-  echo "v3.4 runner failed; entire attempt is closed and cannot resume" >&2
+  echo "v3.4.1 runner failed; entire attempt is closed and cannot resume" >&2
   exit "$runner_status"
 fi
 
-echo "v3.4 Qwen full-arm execution completed; run the post-execution audit before analysis"
+echo "v3.4.1 Qwen full-arm execution completed; run the post-execution audit before analysis"

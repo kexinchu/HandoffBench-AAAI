@@ -1,0 +1,130 @@
+experiment_id: confirmatory_v3
+status: sealed_execution_authorized
+protocol: handoffbench-confirmatory-v3
+preregistration: research/preregistration_v3.md
+protocol_files:
+  - research/preregistration_v3.md
+  - research/preregistration_v3.4_execution_amendment.md
+  - research/confirmatory_v3.4_pre_call_startup_correction.md
+  - research/confirmatory_v3.3_execution_disposition.json
+  - research/annotation_protocol.md
+  - data/schemas/episode.schema.json
+  - data/schemas/confirmatory_cost_accounting.schema.json
+  - src/handoffbench/prompts.py
+  - src/handoffbench/transfer.py
+  - src/handoffbench/confirmatory_analysis.py
+  - scripts/run_pilot.py
+  - scripts/run_confirmatory.py
+  - scripts/run_confirmatory_v3_4_isolated.sh
+  - scripts/analyze_confirmatory.py
+  - scripts/preflight_confirmatory.py
+  - scripts/freeze_split.py
+  - scripts/build_confirmatory_v3.py
+  - scripts/audit_confirmatory_v3.py
+  - research/confirmatory_v3_leakage_overlap_audit.json
+  - research/confirmatory_v3_leakage_overlap_audit.md
+design_matrix: configs/confirmatory_v3_matrix.json
+candidate_files:
+  - data/tasks/confirmatory_v3/travel.json
+  - data/tasks/confirmatory_v3/commerce.json
+  - data/tasks/confirmatory_v3/procurement.json
+  - data/tasks/confirmatory_v3/it.json
+  - data/tasks/confirmatory_v3/scheduling.json
+sealed_manifest: data/splits/confirmatory_v3.4.1.execution.sealed.json
+dataset_seal_id: hb-v3.1-9671bf1ff2d5-20260721
+supersedes_manifest:
+  path: data/splits/confirmatory_v3.4.execution.sealed.json
+  reason: >-
+    Pre-call runtime compatibility correction: map the already sealed GPU UUID
+    to physical CUDA device index 1 because the local vLLM build rejects a UUID
+    in CUDA_VISIBLE_DEVICES. No model was loaded, no output root was created,
+    and no candidate call occurred under v3.4.
+annotation_agreement: annotations/confirmatory_v3/agreement.final.v2.json
+final_audit_file: annotations/confirmatory_v3/final_audit.ready.json
+expected_population:
+  families: 200
+  domains: [travel, commerce, procurement, it, scheduling]
+  families_per_domain: 40
+models:
+  - provider: local_vllm
+    snapshot: Qwen2.5-14B-Instruct
+    served_model_name: qwen2.5-14b
+    local_path: /home/kec23008/Models/Qwen2.5-14B-Instruct
+    source: Qwen/Qwen2.5-14B-Instruct
+    source_revision: cf98f3b3bbb457ad9e2bb7baf9a0125b6b88caa8
+    license: apache-2.0
+    serving_args: [--host, 127.0.0.1, --port, '8101', --gpu-memory-utilization, '0.72',
+                   --max-model-len, '8192', --max-num-seqs, '8', --enforce-eager,
+                   --generation-config, vllm]
+  - provider: local_vllm
+    snapshot: Ministral-3-14B-Instruct-2512
+    served_model_name: ministral3-14b-2512
+    local_path: /home/kec23008/Models/Ministral-3-14B-Instruct-2512
+    source: mistralai/Ministral-3-14B-Instruct-2512
+    source_revision: 29439f81c2be264d8d393273f99e7db9c0961120
+    license: null
+    serving_args: [--host, 127.0.0.1, --port, '8102', --max-model-len, '8192',
+                   --gpu-memory-utilization, '0.85', --enforce-eager,
+                   --trust-remote-code, --language-model-only,
+                   --generation-config, vllm]
+model_snapshot_manifest: configs/confirmatory_v3_model_snapshots.v3.json
+seeds: [101, 202]
+generation:
+  temperature: 0.7
+  max_output_tokens: 1600
+  max_receiver_turns: 4
+conditions:
+  controls: [full_history, gold_oracle]
+  factorial:
+    - free_form__absent__absent
+    - free_form__absent__executable
+    - free_form__trace_linked__absent
+    - free_form__trace_linked__executable
+    - typed__absent__absent
+    - typed__absent__executable
+    - typed__trace_linked__absent
+    - typed__trace_linked__executable
+  secondary_enforcement: [typed__trace_linked__executable__enforced]
+source_generation:
+  matched_factorial_artifact_per_task_model_seed: 1
+  reuse_across_factorial_cells: true
+analysis:
+  inference_unit: task_family
+  model_and_seed_nested_within_family: true
+  intent_to_treat: true
+  failed_provider_or_parse_credit: 0
+  family_cluster_bootstrap_draws: 10000
+  multiplicity: holm
+outputs:
+  root: outputs/confirmatory_v3.4.1
+  invalid_root: outputs/confirmatory_v3.4.1_invalid
+  accounting_schema: data/schemas/confirmatory_cost_accounting.schema.json
+execution_attempt:
+  attempt_id: hb-v3.4.1-qwen-full-arm-20260721
+  mode: full_model_arm_replacement
+  execute_models: [qwen2.5-14b]
+  expected_rows: 4400
+  fresh_output_root: outputs/confirmatory_v3.4.1
+  resume_allowed: false
+  partial_retry_allowed: false
+  reuse_prior_rows_allowed: false
+  disposition_file: research/confirmatory_v3.3_execution_disposition.json
+  retained_arms:
+    ministral3-14b-2512:
+      raw_root: outputs/confirmatory_v3/ministral3-14b-2512/runs
+      ledger: outputs/confirmatory_v3/ministral3-14b-2512/execution_ledger.json
+      ledger_sha256: 423336de5e1b1dc330b664b6fe555652121d6b60bc823953fe069c6d1a075e2f
+      raw_file_count: 4400
+      raw_tree_sha256: 67916820e2b56f54a02638696ed5a74422be654935e9bf55d0bcdebcc72dfc0b
+  forbidden_raw_roots:
+    - outputs/confirmatory_v3/qwen2.5-14b/runs
+  infrastructure:
+    gpu_uuid: GPU-474505f8-4b3d-0ba7-65de-8014425baee0
+    cuda_visible_devices: '1'
+    endpoint: http://127.0.0.1:8101/v1
+    lock_file: /tmp/handoffbench-v3.4-gpu-474505f8.lock
+    require_idle_gpu_before_start: true
+    require_unused_port_before_start: true
+    fail_on_competing_gpu_process: true
+    fail_on_provider_restart_or_5xx: true
+execution_authorized: true
