@@ -16,6 +16,22 @@ from typing import Any, Callable
 FACTOR_NAMES = ("typing", "provenance", "checks")
 TERMS = (("typing",), ("provenance",), ("checks",), ("typing", "provenance"),
          ("typing", "checks"), ("provenance", "checks"), FACTOR_NAMES)
+ADVISORY_FACTORIAL = tuple(
+    f"{typing}__{provenance}__{checks}__advisory"
+    for typing in ("free_form", "typed")
+    for provenance in ("absent", "trace_linked")
+    for checks in ("absent", "executable")
+)
+ENFORCED_CONDITION = "typed__trace_linked__executable__enforced"
+STRUCTURED_CONDITION = "typed__absent__absent__advisory"
+EXPECTED_CONDITIONS = ("full_history", "gold_oracle", *ADVISORY_FACTORIAL,
+                       ENFORCED_CONDITION)
+EXPECTED_MATRIX_CONDITIONS = EXPECTED_CONDITIONS
+EXPECTED_SEEDS = (101, 202)
+RUN_CONFIG_KEYS = {
+    "model", "transfer_kind", "temperature", "seed", "protocol_version",
+    "max_turns", "max_output_tokens", "enforce_action_gates", "factorial_cell",
+}
 
 
 def sha256(path: Path) -> str:
@@ -32,41 +48,200 @@ def _resolve(base: Path, value: str) -> Path:
     return (path if path.is_absolute() else base / path).resolve()
 
 
+def _manifest_base(manifest_path: Path, manifest: dict[str, Any]) -> Path:
+    """Resolve repository-relative manifest paths without assuming seal location."""
+    candidate_files = manifest.get("candidate_files")
+    if (not isinstance(candidate_files, list) or not candidate_files
+            or any(not isinstance(value, str) or not value for value in candidate_files)):
+        raise ValueError("sealed manifest requires a non-empty candidate_files list")
+    path_base = manifest.get("path_base")
+    if path_base is not None:
+        if not isinstance(path_base, str) or not path_base:
+            raise ValueError("manifest path_base must be a non-empty string")
+        base = _resolve(manifest_path.parent, path_base)
+        if not base.is_dir():
+            raise ValueError(f"manifest path_base is not a directory: {base}")
+        return base
+
+    relative = [value for value in candidate_files if not Path(value).is_absolute()]
+    if not relative:
+        return manifest_path.parent
+    roots = (manifest_path.parent, *manifest_path.parent.parents)
+    matches = [root for root in roots if all(_resolve(root, value).is_file()
+                                             for value in relative)]
+    if len(matches) != 1:
+        raise ValueError(
+            "cannot resolve repository-relative candidate_files unambiguously; "
+            "set manifest path_base"
+        )
+    return matches[0]
+
+
+def _validated_tasks(manifest_path: Path, manifest: dict[str, Any]) -> tuple[
+        Path, list[Path], list[dict], list[str], dict[str, str], dict[str, str]]:
+    base = _manifest_base(manifest_path, manifest)
+    names = manifest["candidate_files"]
+    if len(names) != len(set(names)):
+        raise ValueError("sealed manifest contains duplicate candidate_files")
+    expected_file_hashes = manifest.get("candidate_file_hashes")
+    if not isinstance(expected_file_hashes, dict) or set(expected_file_hashes) != set(names):
+        raise ValueError("candidate_file_hashes must exactly cover candidate_files")
+    paths, file_hashes, tasks = [], {}, []
+    for name in names:
+        path = _resolve(base, name)
+        if not path.is_file():
+            raise ValueError(f"sealed candidate file is missing: {path}")
+        actual = sha256(path)
+        if actual != expected_file_hashes[name]:
+            raise ValueError(f"sealed candidate file hash drift: {name}")
+        value = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(value, list) or not value:
+            raise ValueError(f"sealed candidate file must contain a non-empty array: {name}")
+        paths.append(path); file_hashes[name] = actual; tasks.extend(value)
+
+    try:
+        task_ids = [item["episode"]["task_id"] for item in tasks]
+        families = {item["episode"]["task_id"]:
+                    item["episode"]["split_meta"]["template_family"] for item in tasks}
+    except (KeyError, TypeError) as error:
+        raise ValueError("sealed task lacks task_id or template_family") from error
+    if len(task_ids) != 200 or len(set(task_ids)) != 200 or len(families) != 200:
+        raise ValueError("sealed tasks are not exactly 200 unique task IDs")
+    if len(set(families.values())) != 200:
+        raise ValueError("sealed tasks are not 200 independent families")
+    if manifest.get("n_independent_families", 200) != 200:
+        raise ValueError("sealed manifest must declare 200 independent families")
+    if "task_ids" in manifest and manifest["task_ids"] != sorted(task_ids):
+        raise ValueError("sealed manifest task_ids drift")
+    expected_task_hashes = manifest.get("task_hashes")
+    if not isinstance(expected_task_hashes, dict) or set(expected_task_hashes) != set(task_ids):
+        raise ValueError("task_hashes must exactly cover all sealed tasks")
+    for item in tasks:
+        task_id = item["episode"]["task_id"]
+        if canonical_hash(item) != expected_task_hashes[task_id]:
+            raise ValueError(f"sealed task hash drift: {task_id}")
+    expected_dataset_hash = manifest.get("canonical_dataset_sha256")
+    if expected_dataset_hash is not None and canonical_hash(tasks) != expected_dataset_hash:
+        raise ValueError("sealed canonical dataset hash drift")
+    return base, paths, tasks, task_ids, families, file_hashes
+
+
+def _validate_design(design: Any, *, require_config_hashes: bool) -> dict[str, Any]:
+    if not isinstance(design, dict):
+        raise ValueError("sealed manifest lacks a valid confirmatory design")
+    models, seeds, conditions = (design.get("models"), design.get("seeds"),
+                                  design.get("conditions"))
+    if (not isinstance(models, list) or len(models) != 2
+            or any(not isinstance(model, str) or not model for model in models)
+            or len(set(models)) != 2):
+        raise ValueError("confirmatory design requires exactly two distinct models")
+    if seeds != list(EXPECTED_SEEDS):
+        raise ValueError(f"confirmatory design seeds must be {list(EXPECTED_SEEDS)}")
+    if conditions != list(EXPECTED_CONDITIONS):
+        raise ValueError("confirmatory design conditions do not match the v3 11-condition matrix")
+    hashes = design.get("config_hashes")
+    expected_keys = {
+        f"{model}|{seed}|{condition}"
+        for model, seed, condition in itertools.product(models, EXPECTED_SEEDS,
+                                                        EXPECTED_CONDITIONS)
+    }
+    if require_config_hashes:
+        if not isinstance(hashes, dict) or set(hashes) != expected_keys:
+            raise ValueError("confirmatory design config_hashes do not exactly cover the schedule")
+        if any(not isinstance(value, str) or len(value) != 64 for value in hashes.values()):
+            raise ValueError("confirmatory design contains an invalid config hash")
+    elif hashes not in (None, {}):
+        raise ValueError("derived confirmatory design cannot contain unbound config hashes")
+    return {"models": models, "seeds": list(EXPECTED_SEEDS),
+            "conditions": list(EXPECTED_CONDITIONS), "config_hashes": hashes or {}}
+
+
+def _derived_design(base: Path, manifest: dict[str, Any]) -> dict[str, Any]:
+    """Derive only from artifacts whose hashes are bound into the sealed manifest."""
+    for field in ("design_matrix", "design_matrix_sha256", "model_snapshot_manifest",
+                  "model_snapshot_manifest_sha256"):
+        if not isinstance(manifest.get(field), str) or not manifest[field]:
+            raise ValueError(f"sealed manifest lacks {field} for design derivation")
+    matrix_path = _resolve(base, manifest["design_matrix"])
+    snapshot_path = _resolve(base, manifest["model_snapshot_manifest"])
+    if sha256(matrix_path) != manifest["design_matrix_sha256"]:
+        raise ValueError("sealed design matrix hash drift")
+    if sha256(snapshot_path) != manifest["model_snapshot_manifest_sha256"]:
+        raise ValueError("sealed model snapshot manifest hash drift")
+    matrix = json.loads(matrix_path.read_text(encoding="utf-8"))
+    if matrix.get("conditions") != list(EXPECTED_MATRIX_CONDITIONS):
+        raise ValueError("bound design matrix does not match the v3 11-condition schedule")
+    snapshot = json.loads(snapshot_path.read_text(encoding="utf-8"))
+    entries = snapshot.get("models")
+    if not isinstance(entries, list):
+        raise ValueError("bound model snapshot manifest lacks models")
+    models = [item.get("served_model_name") for item in entries if isinstance(item, dict)]
+    return _validate_design({"models": models, "seeds": list(EXPECTED_SEEDS),
+                             "conditions": list(EXPECTED_CONDITIONS),
+                             "config_hashes": {}}, require_config_hashes=False)
+
+
+def _run_seed(run: dict[str, Any]) -> int:
+    value = run.get("seed")
+    if not isinstance(value, int) or isinstance(value, bool):
+        raise ValueError("run seed must be an integer")
+    return value
+
+
+def _validate_run_config(run: dict[str, Any], key: tuple[str, str, int, str]) -> None:
+    config = run.get("config")
+    if not isinstance(config, dict) or set(config) != RUN_CONFIG_KEYS:
+        raise ValueError(f"run config does not match the v3 schema: {key}")
+    if canonical_hash(config) != run.get("config_hash"):
+        raise ValueError(f"run config content/hash mismatch: {key}")
+    model, seed, method = key[1], key[2], key[3]
+    if (config["model"] != model or config["seed"] != seed
+            or config["protocol_version"] != "handoffbench-confirmatory-v3"
+            or config["temperature"] != 0.7 or config["max_turns"] != 4
+            or config["max_output_tokens"] != 1600):
+        raise ValueError(f"run config drifts from the v3 frozen generation design: {key}")
+    if method in {"full_history", "gold_oracle"}:
+        valid = (config["transfer_kind"] == method and config["factorial_cell"] is None
+                 and config["enforce_action_gates"] is False)
+    else:
+        parts = method.split("__")
+        enforcement = parts[-1]
+        valid = (
+            len(parts) == 4
+            and config["transfer_kind"] == "factorial"
+            and config["enforce_action_gates"] is (enforcement == "enforced")
+            and config["factorial_cell"] == {
+                "typing": parts[0], "provenance": parts[1], "checks": parts[2],
+                # RunConfig stores the base representation cell here. The
+                # separate enforce_action_gates flag promotes only the runtime
+                # transfer_config/method label to ``enforced``.
+                "enforcement": "advisory",
+            }
+        )
+    if not valid:
+        raise ValueError(f"run config condition semantics mismatch: {key}")
+
+
 def load_and_validate(manifest_path: str | Path, run_dirs: list[str | Path]) -> tuple[dict, list[dict], dict]:
     manifest_path = Path(manifest_path).resolve()
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     if manifest.get("sealed") is not True or manifest.get("n_tasks") != 200:
         raise ValueError("confirmatory manifest must be sealed and contain exactly 200 tasks")
-    design = manifest.get("confirmatory_design")
-    if not isinstance(design, dict) or not all(key in design for key in
-                                               ("models", "seeds", "conditions", "config_hashes")):
-        raise ValueError("sealed manifest lacks confirmatory_design")
-    if len(design["models"]) < 2 or not design["seeds"]:
-        raise ValueError("confirmatory design requires at least two models and one seed")
-    factorial = [condition for condition in design["conditions"] if _factor_levels(condition)]
-    if len(factorial) != 8 or any(not condition.endswith("__advisory") for condition in factorial):
-        raise ValueError("confirmatory design requires the complete advisory 2x2x2 cube")
-    if not {"structured_payload", "gold_oracle"} <= set(design["conditions"]):
-        raise ValueError("confirmatory design lacks Structured or Gold Oracle")
-
-    base = manifest_path.parent
-    task_file = _resolve(base, manifest["task_file"])
-    if sha256(task_file) != manifest["task_file_sha256"]:
-        raise ValueError("sealed task file hash drift")
-    tasks = json.loads(task_file.read_text(encoding="utf-8"))
-    task_ids = [item["episode"]["task_id"] for item in tasks]
-    families = {item["episode"]["task_id"]: item["episode"]["split_meta"]["template_family"]
-                for item in tasks}
-    if len(task_ids) != 200 or len(set(families.values())) != 200:
-        raise ValueError("sealed tasks are not 200 independent families")
-    for item in tasks:
-        task_id = item["episode"]["task_id"]
-        if canonical_hash(item) != manifest["task_hashes"].get(task_id):
-            raise ValueError(f"sealed task hash drift: {task_id}")
-    for value, expected in manifest.get("protocol_file_hashes", {}).items():
+    base, task_files, tasks, task_ids, families, task_file_hashes = _validated_tasks(
+        manifest_path, manifest
+    )
+    protocol_hashes = manifest.get("protocol_file_hashes", {})
+    if not isinstance(protocol_hashes, dict):
+        raise ValueError("sealed protocol_file_hashes must be an object")
+    for value, expected in protocol_hashes.items():
         path = _resolve(base, value)
         if sha256(path) != expected:
             raise ValueError(f"sealed protocol hash drift: {path}")
+    embedded = manifest.get("confirmatory_design")
+    design = (_validate_design(embedded, require_config_hashes=True)
+              if embedded is not None else _derived_design(base, manifest))
+    manifest = dict(manifest); manifest["confirmatory_design"] = design
+    factorial = list(ADVISORY_FACTORIAL)
 
     paths: list[Path] = []
     for directory in map(Path, run_dirs):
@@ -91,7 +266,7 @@ def load_and_validate(manifest_path: str | Path, run_dirs: list[str | Path]) -> 
                                       [int(seed) for seed in design["seeds"]], design["conditions"]))
     observed: dict[tuple[str, str, int, str], dict] = {}
     for run in runs:
-        key = (run.get("task_id"), run.get("model"), int(run.get("seed")), run.get("method"))
+        key = (run.get("task_id"), run.get("model"), _run_seed(run), run.get("method"))
         if key not in scheduled:
             raise ValueError(f"unscheduled/dev/foreign run contaminates confirmatory input: {key}")
         if key in observed:
@@ -99,11 +274,9 @@ def load_and_validate(manifest_path: str | Path, run_dirs: list[str | Path]) -> 
         observed[key] = run
         config_key = f"{key[1]}|{key[2]}|{key[3]}"
         expected_hash = design["config_hashes"].get(config_key)
-        if expected_hash is None or run.get("config_hash") != expected_hash:
+        if expected_hash is not None and run.get("config_hash") != expected_hash:
             raise ValueError(f"config hash drift: {key}")
-        config = run.get("config")
-        if not isinstance(config, dict) or canonical_hash(config) != run["config_hash"]:
-            raise ValueError(f"run config content/hash mismatch: {key}")
+        _validate_run_config(run, key)
         metrics = run.get("metrics")
         validator_cost = metrics.get("validator_cost") if isinstance(metrics, dict) else None
         if (not isinstance(validator_cost, (int, float)) or isinstance(validator_cost, bool)
@@ -116,7 +289,10 @@ def load_and_validate(manifest_path: str | Path, run_dirs: list[str | Path]) -> 
     _audit_shared_sources(list(observed.values()), factorial)
     ordered = [observed[key] for key in sorted(scheduled)]
     provenance = {"sealed_manifest": str(manifest_path), "sealed_manifest_sha256": sha256(manifest_path),
-                  "task_file": str(task_file), "task_file_sha256": sha256(task_file),
+                  "path_base": str(base),
+                  "candidate_files": [str(path) for path in task_files],
+                  "candidate_file_hashes": task_file_hashes,
+                  "canonical_dataset_sha256": canonical_hash(tasks),
                   "raw_run_files": run_files, "n_raw_runs": len(ordered)}
     return manifest, ordered, {"families": families, "provenance": provenance}
 
@@ -135,10 +311,11 @@ def _factor_levels(condition: str) -> dict[str, int] | None:
 def _audit_shared_sources(runs: list[dict], factorial: list[str]) -> None:
     groups: dict[tuple[str, str, int], list[dict]] = defaultdict(list)
     for run in runs:
-        if run["method"] in factorial:
+        if run["method"] in {*factorial, ENFORCED_CONDITION}:
             groups[(run["task_id"], run["model"], int(run["seed"]))].append(run)
     for block, items in groups.items():
-        if len(items) != 8:
+        if len(items) != 9 or {item["method"] for item in items} != {
+                *factorial, ENFORCED_CONDITION}:
             raise ValueError(f"incomplete factorial source block: {block}")
         signatures = set()
         for run in items:
@@ -149,7 +326,7 @@ def _audit_shared_sources(runs: list[dict], factorial: list[str]) -> None:
             signatures.add((run.get("source_hash") or call.get("source_output_hash"),
                             call.get("prompt_hash"), call.get("response_schema_hash"),
                             canonical_hash(call.get("usage"))))
-        if len(signatures) != 1 or None in next(iter(signatures)):
+        if len(signatures) != 1 or any(value is None for value in next(iter(signatures))):
             raise ValueError(f"factorial shared-source hash/config drift: {block}")
 
 
@@ -214,7 +391,10 @@ def _exact_mcnemar_p(left: list[float], right: list[float]) -> dict[str, float |
         pvalue = 1.0
     else:
         tail = sum(math.comb(discordant, k) for k in range(min(left_only, right_only) + 1))
-        pvalue = min(1.0, 2.0 * tail / (2 ** discordant))
+        # Evaluate in log space: direct int-to-float conversion overflows for
+        # the preregistered 200 x 2 x 2 repeated-measures schedule.
+        log_p = math.log(2.0) + math.log(tail) - discordant * math.log(2.0)
+        pvalue = min(1.0, math.exp(log_p)) if log_p > -745 else 0.0
     return {"left_only": left_only, "right_only": right_only,
             "discordant": discordant, "two_sided_exact_p": pvalue}
 
@@ -245,7 +425,8 @@ def analyze(manifest: dict, runs: list[dict], families: dict[str, str], *, draws
     hir_all: dict[str, dict[str, float]] = {}
     for task, model, run_seed in blocks:
         oracle = _metric(indexed[(task, model, run_seed, "gold_oracle")], "strict_success")
-        structured = _metric(indexed[(task, model, run_seed, "structured_payload")], "strict_success")
+        structured = _metric(indexed[(task, model, run_seed, STRUCTURED_CONDITION)],
+                             "strict_success")
         structured_binary.append(structured); oracle_binary.append(oracle)
         paired_by_family[families[task]].append(structured - oracle)
         hir_by_family[families[task]].append(float(oracle == 1 and structured == 0))
@@ -301,7 +482,11 @@ def analyze(manifest: dict, runs: list[dict], families: dict[str, str], *, draws
         factorial["strict_success"]["checks"])
     tests["advisory_checks_main_effect"]["mcnemar_sensitivity"] = _exact_mcnemar_p(
         checks_on_binary, checks_off_binary)
-    return {"analysis_contract": "preregistration-v2", "itt": True,
+    protocol = manifest.get("protocol")
+    if protocol != "handoffbench-confirmatory-v3":
+        raise ValueError("analysis requires the handoffbench-confirmatory-v3 protocol")
+    return {"analysis_contract": "preregistration-v3",
+            "protocol": protocol, "itt": True,
             "bootstrap_seed": seed, "bootstrap_draws": draws,
             "n_tasks": len(families), "n_models": len(design["models"]),
             "n_seeds": len(design["seeds"]), "n_runs": len(runs),

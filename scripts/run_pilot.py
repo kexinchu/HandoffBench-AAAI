@@ -53,9 +53,12 @@ class RecordingProvider:
                                          response_schema=response_schema, schema_name=schema_name,
                                          seed=seed, max_output_tokens=max_output_tokens)
             self.last_usage = getattr(self.provider, "last_usage", None)
-            call.update({"raw_output": raw, "usage": self.last_usage})
+            call.update({"raw_output": raw,
+                         "usage": self.last_usage if isinstance(self.last_usage, dict) else {}})
             return raw
         except Exception as exc:
+            self.last_usage = getattr(self.provider, "last_usage", None)
+            call["usage"] = self.last_usage if isinstance(self.last_usage, dict) else {}
             call["error"] = {"type": type(exc).__name__, "message": str(exc)}
             raise
 
@@ -80,6 +83,56 @@ def selected(values: str, available: list[str]) -> list[str]:
     return requested
 
 
+def observed_usage(calls: Sequence[dict[str, Any]]) -> tuple[list[dict[str, Any]], int, int]:
+    """Return only provider-reported usage and its explicit token totals."""
+    usage = [dict(call["usage"]) for call in calls if isinstance(call.get("usage"), dict)]
+    input_tokens = sum(
+        item.get("prompt_tokens", item.get("input_tokens", 0)) for item in usage
+    )
+    output_tokens = sum(
+        item.get("completion_tokens", item.get("output_tokens", 0)) for item in usage
+    )
+    return usage, input_tokens, output_tokens
+
+
+def source_signature(shared: dict[str, Any]) -> tuple[str, str, str, str]:
+    call = shared["call"]
+    return (
+        shared["source_hash"], call["prompt_hash"], call["response_schema_hash"],
+        hashlib.sha256(json.dumps(call.get("usage"), sort_keys=True,
+                                  separators=(",", ":")).encode()).hexdigest(),
+    )
+
+
+def shared_source_from_run(run: dict[str, Any]) -> dict[str, Any] | None:
+    """Recover an immutable factorial source, including a recorded source failure."""
+    calls = run.get("calls")
+    if not isinstance(calls, list) or not calls or not isinstance(calls[0], dict):
+        return None
+    call = copy.deepcopy(calls[0])
+    required = ("prompt_hash", "response_schema_hash", "source_output_hash", "usage")
+    if any(key not in call or call[key] is None for key in required):
+        return None
+    source_hash = run.get("source_hash") or call["source_output_hash"]
+    if source_hash != call["source_output_hash"]:
+        raise ValueError("persisted factorial source hash disagrees with source call")
+    raw = run.get("source_raw")
+    failure = run.get("source_error") if run.get("source_stage_failure") is True else None
+    if failure is None:
+        if not isinstance(raw, str) or hashlib.sha256(raw.encode()).hexdigest() != source_hash:
+            return None
+        try:
+            generated = json.loads(raw)
+        except json.JSONDecodeError:
+            return None
+    else:
+        if isinstance(raw, str) and hashlib.sha256(raw.encode()).hexdigest() != source_hash:
+            raise ValueError("persisted failed factorial source raw/hash mismatch")
+        generated = None
+    return {"generated": generated, "raw": raw, "call": call,
+            "source_hash": source_hash, "error": copy.deepcopy(failure)}
+
+
 def execute_job(record: Any, method: str, config: RunConfig, path: Path,
                 provider_factory: Any, shared_source: dict[str, Any] | None = None) -> Path:
     """Run and atomically persist one independent task/method/seed cell."""
@@ -93,41 +146,53 @@ def execute_job(record: Any, method: str, config: RunConfig, path: Path,
                               "config": asdict(config), "config_hash": config.config_hash,
                               "status": "error"}
     try:
-        artifact = run_pilot(
-            record, config, recorder,
-            generated_transfer=shared_source["generated"] if shared_source else None,
-            source_raw_output=shared_source["raw"] if shared_source else None,
-        )
-        score = score_boundary_transfer(record, artifact.receiver_states)
-        usage = [c.get("usage") for c in recorder.calls if isinstance(c.get("usage"), dict)]
-        input_tokens = sum(u.get("prompt_tokens", u.get("input_tokens", 0)) for u in usage) if usage else None
-        result.update({"status": "ok", "source_raw": artifact.source_raw_output,
-                       "receiver_raw": list(artifact.receiver_raw_outputs),
-                       "receiver_states": [dict(x) for x in artifact.receiver_states],
-                       "boundary_receiver_state": dict(artifact.receiver_states[0]) if artifact.receiver_states else None,
-                       "final_receiver_state": dict(artifact.receiver_states[-1]) if artifact.receiver_states else None,
-                       "events": list(artifact.events), "violations": list(artifact.execution.violations),
-                       "success": artifact.execution.success, "usage": usage,
-                       "metrics": score | {"strict_success": int(artifact.execution.success),
-                                           "input_tokens": input_tokens}})
-        if artifact.transfer_validation_sidecar is not None:
-            result["transfer_validation_sidecar"] = dict(artifact.transfer_validation_sidecar)
-        if shared_source is not None:
-            result["source_reused_within_factorial_block"] = True
-            result["source_hash"] = shared_source["source_hash"]
+        if shared_source is not None and shared_source.get("error") is not None:
+            error = shared_source["error"]
+            result.update({
+                "error": copy.deepcopy(error), "source_error": copy.deepcopy(error),
+                "source_stage_failure": True, "source_raw": shared_source.get("raw"),
+            })
+        else:
+            artifact = run_pilot(
+                record, config, recorder,
+                generated_transfer=shared_source["generated"] if shared_source else None,
+                source_raw_output=shared_source["raw"] if shared_source else None,
+            )
+            score = score_boundary_transfer(record, artifact.receiver_states)
+            result.update({"status": "ok", "source_raw": artifact.source_raw_output,
+                           "receiver_raw": list(artifact.receiver_raw_outputs),
+                           "receiver_states": [dict(x) for x in artifact.receiver_states],
+                           "boundary_receiver_state": dict(artifact.receiver_states[0]) if artifact.receiver_states else None,
+                           "final_receiver_state": dict(artifact.receiver_states[-1]) if artifact.receiver_states else None,
+                           "events": list(artifact.events), "violations": list(artifact.execution.violations),
+                           "success": artifact.execution.success,
+                           "metrics": score | {"strict_success": int(artifact.execution.success)}})
+            if artifact.transfer_validation_sidecar is not None:
+                result["transfer_validation_sidecar"] = dict(artifact.transfer_validation_sidecar)
     except Exception as exc:
         result["error"] = {"type": type(exc).__name__, "message": str(exc)}
-        result["metrics"] = {"strict_success": 0, "macro_state_f1": 0,
-                             "critical_errors": len(record.episode.scoring.critical_keys),
-                             "input_tokens": None}
-        # Receiver/provider failures remain ITT failures, but must not erase the
-        # already-fixed factorial source manipulation from the audit record.
-        if shared_source is not None:
-            result["source_raw"] = shared_source["raw"]
-            result["source_hash"] = shared_source["source_hash"]
-            result["source_reused_within_factorial_block"] = True
+    if result["status"] != "ok":
+        result.setdefault("metrics", {}).update({
+            "strict_success": 0, "macro_state_f1": 0,
+            "critical_errors": len(record.episode.scoring.critical_keys),
+        })
+    # Validation is deterministic local computation and makes no separately
+    # billed provider call; its explicit accounting value is therefore zero.
+    usage, input_tokens, output_tokens = observed_usage(recorder.calls)
+    result["usage"] = usage
+    result.setdefault("metrics", {}).update({
+        "input_tokens": input_tokens, "output_tokens": output_tokens,
+        "validator_cost": 0.0,
+    })
+    # Receiver/provider failures remain ITT failures, but must not erase the
+    # already-fixed factorial source manipulation from the audit record.
+    if shared_source is not None:
+        result["source_raw"] = shared_source.get("raw")
+        result["source_hash"] = shared_source["source_hash"]
+        result["source_reused_within_factorial_block"] = True
     result["calls"] = recorder.calls
-    result["prompt_hashes"] = [call["prompt_hash"] for call in recorder.calls]
+    result["prompt_hashes"] = [call["prompt_hash"] for call in recorder.calls
+                               if call.get("prompt_hash") is not None]
     atomic_json(path, result)
     return path
 
@@ -152,13 +217,29 @@ def prepare_factorial_sources(
     def generate(item: tuple[tuple[str, str, int], tuple[Any, RunConfig]]):
         key, (record, config) = item
         recorder = RecordingProvider(provider_factory())
-        generated, raw = generate_transfer(record, config, recorder)
-        if len(recorder.calls) != 1 or raw is None:
+        try:
+            generated, raw = generate_transfer(record, config, recorder)
+            error = None
+        except Exception as exc:
+            generated = None
+            raw = recorder.calls[0].get("raw_output") if len(recorder.calls) == 1 else None
+            error = {"type": type(exc).__name__, "message": str(exc),
+                     "stage": "source_parse" if raw is not None else "source_provider"}
+        if len(recorder.calls) != 1:
             raise RuntimeError(f"factorial source block {key} did not produce exactly one call")
         call = copy.deepcopy(recorder.calls[0])
-        call["source_output_hash"] = hashlib.sha256(raw.encode()).hexdigest()
+        call.setdefault("usage", {})
+        if error is not None:
+            call["source_error"] = copy.deepcopy(error)
+        source_material: Any = raw if raw is not None else {
+            "prompt_hash": call["prompt_hash"], "response_schema_hash": call["response_schema_hash"],
+            "seed": call.get("seed"), "error": error,
+        }
+        encoded = (source_material.encode() if isinstance(source_material, str) else
+                   json.dumps(source_material, sort_keys=True, separators=(",", ":")).encode())
+        call["source_output_hash"] = hashlib.sha256(encoded).hexdigest()
         return key, {"generated": generated, "raw": raw, "call": call,
-                     "source_hash": call["source_output_hash"]}
+                     "source_hash": call["source_output_hash"], "error": error}
 
     cache = {}
     with ThreadPoolExecutor(max_workers=workers) as pool:
@@ -184,6 +265,8 @@ def main() -> int:
     parser.add_argument("--api-key", default=os.environ.get("OPENAI_API_KEY", "EMPTY"))
     parser.add_argument("--timeout", type=float, default=120); parser.add_argument("--max-turns", type=int, default=4)
     parser.add_argument("--max-output-tokens", type=int, default=1600)
+    parser.add_argument("--temperature", type=float, default=0.0)
+    parser.add_argument("--protocol-version", default="handoffbench-v1")
     parser.add_argument("--workers", type=int, default=1)
     args = parser.parse_args()
     if args.workers < 1:
@@ -198,7 +281,9 @@ def main() -> int:
     for task_id in task_ids:
         for method in methods:
             for seed in seeds:
-                config = RunConfig(args.model, METHODS[method], seed=seed, max_turns=args.max_turns,
+                config = RunConfig(args.model, METHODS[method], temperature=args.temperature,
+                                   seed=seed, protocol_version=args.protocol_version,
+                                   max_turns=args.max_turns,
                                    max_output_tokens=args.max_output_tokens,
                                    enforce_action_gates=args.enforce_action_gates)
                 path = output / "runs" / task_id / method / f"seed-{seed}-{config.config_hash[:12]}.json"
@@ -210,7 +295,9 @@ def main() -> int:
             for seed in seeds:
                 cell = factorial_cell(cell_id)
                 config = RunConfig(
-                    args.model, TransferKind.FACTORIAL, seed=seed, max_turns=args.max_turns,
+                    args.model, TransferKind.FACTORIAL, temperature=args.temperature,
+                    seed=seed, protocol_version=args.protocol_version,
+                    max_turns=args.max_turns,
                     max_output_tokens=args.max_output_tokens,
                     enforce_action_gates=args.enforce_action_gates, factorial_cell=cell,
                 )
@@ -219,17 +306,14 @@ def main() -> int:
                 if path.exists():
                     print(f"skip {path}", flush=True)
                     previous = json.loads(path.read_text())
-                    if previous.get("status") == "ok" and previous.get("source_raw"):
-                        key = factorial_block_key(by_id[task_id], config)
-                        raw = previous["source_raw"]
-                        call = copy.deepcopy(previous["calls"][0])
-                        source_hash = previous.get("source_hash") or hashlib.sha256(raw.encode()).hexdigest()
-                        shared = {"generated": json.loads(raw), "raw": raw, "call": call,
-                                  "source_hash": source_hash}
-                        existing = resumed_sources.get(key)
-                        if existing is not None and existing["source_hash"] != source_hash:
-                            raise ValueError(f"existing factorial block has inconsistent sources: {key}")
-                        resumed_sources[key] = shared
+                    recovered = shared_source_from_run(previous)
+                    if recovered is None:
+                        raise ValueError(f"cannot recover factorial source from {path}")
+                    key = factorial_block_key(by_id[task_id], config)
+                    existing = resumed_sources.get(key)
+                    if existing is not None and source_signature(existing) != source_signature(recovered):
+                        raise ValueError(f"existing factorial block has inconsistent sources: {key}")
+                    resumed_sources[key] = recovered
                 else:
                     jobs.append((by_id[task_id], arm, config, path))
     factory = lambda: OpenAICompatibleProvider(args.base_url, args.api_key, args.timeout)

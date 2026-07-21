@@ -9,21 +9,32 @@ protocol_files:
   - data/schemas/confirmatory_cost_accounting.schema.json
   - src/handoffbench/prompts.py
   - src/handoffbench/transfer.py
+  - src/handoffbench/confirmatory_analysis.py
   - scripts/run_pilot.py
+  - scripts/run_confirmatory.py
+  - scripts/analyze_confirmatory.py
+  - scripts/preflight_confirmatory.py
+  - scripts/freeze_split.py
   - scripts/build_confirmatory_v3.py
   - scripts/audit_confirmatory_v3.py
   - research/confirmatory_v3_leakage_overlap_audit.json
   - research/confirmatory_v3_leakage_overlap_audit.md
-# The factorial matrix and exact local model snapshots are unchanged from v2;
-# these versioned references avoid silently changing either execution surface.
-design_matrix: configs/confirmatory_v2_matrix.json
+# The v3 matrix makes the real scheduled labels and accounting unit explicit.
+design_matrix: configs/confirmatory_v3_matrix.json
 candidate_files:
   - data/tasks/confirmatory_v3/travel.json
   - data/tasks/confirmatory_v3/commerce.json
   - data/tasks/confirmatory_v3/procurement.json
   - data/tasks/confirmatory_v3/it.json
   - data/tasks/confirmatory_v3/scheduling.json
-sealed_manifest: data/splits/confirmatory_v3.1.sealed.json
+sealed_manifest: data/splits/confirmatory_v3.2.execution.sealed.json
+dataset_seal_id: hb-v3.1-9671bf1ff2d5-20260721
+supersedes_manifest:
+  path: data/splits/confirmatory_v3.1.sealed.json
+  reason: >-
+    Execution-contract correction before any confirmatory model call: bind the
+    complete schedule and RunConfig hashes, align runner parameters and analysis
+    labels, and preserve identical canonical task bytes.
 annotation_agreement: annotations/confirmatory_v3/agreement.final.v2.json
 final_audit_file: annotations/confirmatory_v3/final_audit.ready.json
 expected_population:

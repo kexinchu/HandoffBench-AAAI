@@ -8,6 +8,20 @@ adjudicated split before any confirmatory call.
 
 ## Amendment record
 
+Execution-contract clarification dated 2026-07-21, recorded before the first
+confirmatory model call: the preregistered Structured condition is implemented
+by the representation-equivalent
+`typed__absent__absent__advisory` factorial cell, consistent with the frozen
+legacy-to-factor mapping. Full History and Gold Oracle remain the two separately
+scheduled controls; no redundant `structured_payload` run is introduced. The
+per-run `validator_cost` unit is incremental provider/API monetary charge. The
+deterministic local validator makes no provider call, so this field is recorded
+explicitly as `0.0`; provider-reported input/output tokens and every attempted
+call remain separately accounted. These clarifications correct execution
+metadata and analysis labels without changing the population, model snapshots,
+generation parameters, scheduled receiver rows, estimands, or decision rules.
+No confirmatory output was generated or inspected before this amendment.
+
 Across six development families and two model families, the legacy EHC minus
 Structured effect is -6.25 percentage points, family-clustered 95% CI
 [-22.9, 12.5]. In the matched 2x2x2 development factorial (384 ITT cells), the

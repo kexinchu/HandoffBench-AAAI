@@ -1,11 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "HandoffBench Confirmatory Cost Accounting",
+  "title": "HandoffBench Confirmatory v3 Cost Accounting",
+  "$comment": "validator_cost is the incremental provider/API monetary charge of the deterministic validator. It is 0.0 because validation is local and makes no provider call; provider tokens and calls are reported separately.",
   "type": "object",
   "additionalProperties": false,
   "required": ["experiment_id", "pricing_snapshot", "scheduled", "observed", "currency"],
   "properties": {
-    "experiment_id": {"const": "confirmatory_v2"},
+    "experiment_id": {"const": "confirmatory_v3"},
     "currency": {"type": "string", "minLength": 3},
     "pricing_snapshot": {
       "type": "object",

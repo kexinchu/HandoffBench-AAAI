@@ -29,11 +29,20 @@ def freeze_module():
     return value
 
 
-def sealed_fixture(tmp_path, *, execution_authorized=True):
+def sealed_fixture(tmp_path, *, execution_authorized=True, with_lineage=False):
     preflight = module()
     freeze = freeze_module()
     config = yaml.safe_load(CONFIG.read_text())
     config["project_root"] = str(ROOT)
+    matrix = json.loads((ROOT / config["design_matrix"]).read_text())
+    matrix["conditions"] = [
+        condition if condition in {"full_history", "gold_oracle"}
+        or condition.endswith("__enforced") else f"{condition}__advisory"
+        for condition in matrix["conditions"]
+    ]
+    matrix_path = tmp_path / "matrix.json"
+    matrix_path.write_text(json.dumps(matrix))
+    config["design_matrix"] = str(matrix_path)
     models = []
     for index, label in enumerate(("a", "b")):
         directory = tmp_path / f"model-{label}"; directory.mkdir()
@@ -67,6 +76,19 @@ def sealed_fixture(tmp_path, *, execution_authorized=True):
     config["sealed_manifest"] = str(manifest_path)
     config["annotation_agreement"] = str(agreement_path)
     config["final_audit_file"] = str(final_audit_path)
+    execution_seal_id = seal_id
+    if with_lineage:
+        prior_path = tmp_path / "prior-data-seal.json"
+        prior_path.write_text(json.dumps({
+            "status": "sealed", "sealed": True, "seal_id": seal_id,
+            "canonical_dataset_sha256": dataset_sha256,
+        }))
+        config["dataset_seal_id"] = seal_id
+        config["supersedes_manifest"] = {
+            "path": str(prior_path),
+            "reason": "execution contract correction before any confirmatory model call",
+        }
+        execution_seal_id = "synthetic-execution-seal-not-production"
     agreement = {"status": "complete", "protocol": config["protocol"], "seal_id": seal_id,
                  "annotators_per_task": 2, "double_annotated_tasks": len(tasks),
                  "adjudication_complete": True, "agreement_gate_passed": True,
@@ -86,7 +108,7 @@ def sealed_fixture(tmp_path, *, execution_authorized=True):
     config_path = tmp_path / "config.yaml"; config_path.write_text(yaml.safe_dump(config))
     candidate_paths = [ROOT / value for value in config["candidate_files"]]
     manifest = freeze.build_manifest(
-        candidate_paths, config_path, agreement_path, seal_id=seal_id,
+        candidate_paths, config_path, agreement_path, seal_id=execution_seal_id,
         sealed_at="2099-01-01T00:00:00Z")
     manifest_path.write_text(json.dumps(manifest))
     return preflight, config_path, manifest_path, models
@@ -141,6 +163,31 @@ def test_manifest_candidate_and_agreement_bindings_detect_tamper(tmp_path, field
     result = preflight.preflight(config_path)
     assert not result["passed"]
     assert not result["checks"]["sealed_manifest"]
+
+
+def test_preflight_rejects_confirmatory_design_hash_tamper(tmp_path):
+    preflight, config_path, manifest_path, _ = sealed_fixture(tmp_path)
+    manifest = json.loads(manifest_path.read_text())
+    key = sorted(manifest["confirmatory_design"]["config_hashes"])[0]
+    manifest["confirmatory_design"]["config_hashes"][key] = "0" * 64
+    manifest_path.write_text(json.dumps(manifest))
+    result = preflight.preflight(config_path)
+    assert not result["passed"]
+    assert result["checks"]["confirmatory_design"]
+    assert not result["checks"]["sealed_manifest"]
+
+
+def test_execution_seal_preserves_dataset_seal_lineage(tmp_path):
+    preflight, config_path, manifest_path, _ = sealed_fixture(tmp_path, with_lineage=True)
+    result = preflight.preflight(config_path)
+    assert result["passed"], result["failures"]
+    config = yaml.safe_load(config_path.read_text())
+    manifest = json.loads(manifest_path.read_text())
+    agreement = json.loads(Path(config["annotation_agreement"]).read_text())
+    assert manifest["seal_id"] == "synthetic-execution-seal-not-production"
+    assert manifest["dataset_seal_id"] == agreement["seal_id"]
+    assert manifest["supersedes_manifest"]["path"] == config["supersedes_manifest"]["path"]
+    assert len(manifest["supersedes_manifest"]["sha256"]) == 64
 
 
 def test_model_identities_require_provider_and_distinct_immutable_revisions():

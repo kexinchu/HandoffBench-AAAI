@@ -13,6 +13,8 @@ from typing import Any
 import yaml
 
 from handoffbench.dataset import load_tasks
+from handoffbench.runner import RunConfig
+from handoffbench.transfer import FACTORIAL_CELLS, TransferKind, factorial_cell
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -122,6 +124,87 @@ def final_audit_valid(
                  or audit.get("canonical_dataset_sha256") == dataset_sha256))
 
 
+def confirmatory_design(config: dict[str, Any], base: Path) -> dict[str, Any]:
+    """Recompute the schedule and hashes with the production RunConfig class."""
+    models = [model.get("served_model_name") for model in config.get("models", [])]
+    if len(models) < 2 or not all(isinstance(model, str) and model.strip() for model in models) \
+            or len(set(models)) != len(models):
+        raise ValueError("confirmatory models require unique non-empty served_model_name values")
+    seeds = config.get("seeds")
+    if (not isinstance(seeds, list) or not seeds
+            or any(not isinstance(seed, int) or isinstance(seed, bool) for seed in seeds)
+            or len(set(seeds)) != len(seeds)):
+        raise ValueError("confirmatory seeds must be a non-empty list of unique integers")
+    condition_config = config.get("conditions")
+    if not isinstance(condition_config, dict) or set(condition_config) != {
+            "controls", "factorial", "secondary_enforcement"}:
+        raise ValueError("confirmatory conditions must define exactly three scheduled groups")
+    controls = condition_config["controls"]
+    factorial = condition_config["factorial"]
+    secondary = condition_config["secondary_enforcement"]
+    if controls != ["full_history", "gold_oracle"]:
+        raise ValueError("confirmatory controls must be exactly full_history and gold_oracle")
+    if (not isinstance(factorial, list) or len(factorial) != 8
+            or len(set(factorial)) != 8 or set(factorial) != set(FACTORIAL_CELLS)):
+        raise ValueError("confirmatory factorial conditions must be the complete 2x2x2 cube")
+    if secondary != ["typed__trace_linked__executable__enforced"]:
+        raise ValueError("confirmatory design requires exactly the registered enforcement arm")
+    conditions = controls + [f"{cell}__advisory" for cell in factorial] + secondary
+    if len(conditions) != 11 or len(set(conditions)) != 11:
+        raise ValueError("confirmatory execution design must contain exactly 11 unique conditions")
+    matrix = json.loads(resolve(base, config["design_matrix"]).read_text(encoding="utf-8"))
+    if not isinstance(matrix, dict) or matrix.get("conditions") != conditions:
+        raise ValueError("scheduled conditions must exactly match the locked design matrix labels")
+    generation = config.get("generation", {})
+    required_generation = {"temperature", "max_receiver_turns", "max_output_tokens"}
+    if not required_generation <= set(generation):
+        raise ValueError("generation config lacks RunConfig execution fields")
+    hashes: dict[str, str] = {}
+    for model in models:
+        for seed in seeds:
+            for condition in conditions:
+                if condition in controls:
+                    kind = TransferKind(condition)
+                    cell = None
+                    enforced = False
+                else:
+                    cell_label, enforcement = condition.rsplit("__", 1)
+                    kind = TransferKind.FACTORIAL
+                    cell = factorial_cell(cell_label)
+                    enforced = enforcement == "enforced"
+                run_config = RunConfig(
+                    model=model, transfer_kind=kind,
+                    temperature=generation["temperature"], seed=seed,
+                    protocol_version=config["protocol"],
+                    max_turns=generation["max_receiver_turns"],
+                    max_output_tokens=generation["max_output_tokens"],
+                    enforce_action_gates=enforced, factorial_cell=cell,
+                )
+                hashes[f"{model}|{seed}|{condition}"] = run_config.config_hash
+    return {"models": models, "seeds": seeds, "conditions": conditions,
+            "config_hashes": hashes}
+
+
+def supersedes_binding(
+    config: dict[str, Any], base: Path, *, dataset_seal_id: str, dataset_sha256: str,
+) -> dict[str, str] | None:
+    value = config.get("supersedes_manifest")
+    if value is None:
+        return None
+    if not isinstance(value, dict) or set(value) != {"path", "reason"}:
+        raise ValueError("supersedes_manifest config requires exactly path and reason")
+    if not all(isinstance(value.get(key), str) and value[key].strip()
+               for key in ("path", "reason")):
+        raise ValueError("supersedes_manifest path/reason must be non-empty strings")
+    path = resolve(base, value["path"])
+    prior = json.loads(path.read_text(encoding="utf-8"))
+    if (not isinstance(prior, dict) or prior.get("sealed") is not True
+            or prior.get("seal_id") != dataset_seal_id
+            or prior.get("canonical_dataset_sha256") != dataset_sha256):
+        raise ValueError("superseded manifest must be the matching sealed canonical dataset")
+    return {"path": value["path"], "sha256": file_sha(path), "reason": value["reason"]}
+
+
 def preflight(config_path: Path) -> dict[str, Any]:
     # Repository-relative paths remain anchored at the project root even when
     # callers invoke this script from another working directory.
@@ -146,6 +229,19 @@ def preflight(config_path: Path) -> dict[str, Any]:
                         f"unique_families={len(set(families))}, domains={dict(domains)}")
     canonical_dataset_sha256 = sha(tasks)
     domain_counts = dict(sorted(domains.items()))
+    expected_execution_design = None
+    try:
+        expected_execution_design = confirmatory_design(config, base)
+        checks["confirmatory_design"] = True
+    except Exception as exc:
+        checks["confirmatory_design"] = False
+        failures.append(f"confirmatory design invalid: {exc}")
+    dataset_seal_id = config.get("dataset_seal_id")
+    if dataset_seal_id is not None and (
+            not isinstance(dataset_seal_id, str) or not dataset_seal_id.strip()):
+        failures.append("dataset_seal_id must be a non-empty string when configured")
+        dataset_seal_id = "__invalid_dataset_seal_id__"
+    expected_supersedes = None
 
     manifest_path = resolve(base, config["sealed_manifest"])
     manifest = None
@@ -164,10 +260,15 @@ def preflight(config_path: Path) -> dict[str, Any]:
             agreement_path = resolve(base, config["annotation_agreement"])
             final_audit_path = resolve(base, config["final_audit_file"])
             final_audit = json.loads(final_audit_path.read_text(encoding="utf-8"))
+            effective_dataset_seal_id = dataset_seal_id or manifest.get("seal_id")
+            expected_supersedes = supersedes_binding(
+                config, base, dataset_seal_id=effective_dataset_seal_id,
+                dataset_sha256=canonical_dataset_sha256)
             manifest_ok = (manifest.get("status") == "sealed"
                            and manifest.get("sealed") is True
                            and manifest.get("manifest_version") == "handoffbench-freeze-v3"
                            and manifest.get("protocol") == config["protocol"]
+                           and manifest.get("dataset_seal_id") == effective_dataset_seal_id
                            and manifest.get("task_ids") == sorted(ids)
                            and manifest.get("task_hashes") == expected_hashes
                            and manifest.get("candidate_files") == config["candidate_files"]
@@ -192,7 +293,10 @@ def preflight(config_path: Path) -> dict[str, Any]:
                            and manifest.get("model_snapshot_manifest") == config["model_snapshot_manifest"]
                            and manifest.get("model_snapshot_manifest_sha256") == file_sha(snapshot_manifest)
                            and manifest.get("design_matrix") == config["design_matrix"]
-                           and manifest.get("design_matrix_sha256") == file_sha(design_matrix))
+                           and manifest.get("design_matrix_sha256") == file_sha(design_matrix)
+                           and expected_execution_design is not None
+                           and manifest.get("confirmatory_design") == expected_execution_design
+                           and manifest.get("supersedes_manifest") == expected_supersedes)
             checks["sealed_manifest"] = manifest_ok
             if not manifest_ok:
                 failures.append("sealed manifest does not exactly bind protocol/tasks/files")
@@ -227,7 +331,7 @@ def preflight(config_path: Path) -> dict[str, Any]:
                                                   domain_counts=domain_counts,
                                                   dataset_sha256=canonical_dataset_sha256)
                             and manifest is not None
-                            and agreement.get("seal_id") == manifest.get("seal_id")
+                            and agreement.get("seal_id") == manifest.get("dataset_seal_id")
                             and manifest.get("annotation_agreement_file") == config["annotation_agreement"]
                             and manifest.get("annotation_agreement_sha256") == file_sha(agreement_path))
             checks["human_agreement"] = agreement_ok
@@ -281,7 +385,7 @@ def preflight(config_path: Path) -> dict[str, Any]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--config", type=Path, default=ROOT / "configs/confirmatory_v2.yaml")
+    parser.add_argument("--config", type=Path, default=ROOT / "configs/confirmatory_v3.yaml")
     parser.add_argument("--json-output", type=Path)
     args = parser.parse_args()
     result = preflight(args.config)

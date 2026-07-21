@@ -6,6 +6,9 @@ from pathlib import Path
 import pytest
 import yaml
 
+from handoffbench.runner import RunConfig
+from handoffbench.transfer import TransferKind, factorial_cell
+
 
 PATH = Path(__file__).parents[1] / "scripts/freeze_split.py"
 ROOT = PATH.parents[1]
@@ -33,7 +36,17 @@ def fixture(tmp_path):
     prereg = tmp_path / "preregistration_v3.md"; prereg.write_text("locked")
     protocol = tmp_path / "prompts.py"; protocol.write_text("PROMPT = 'locked'")
     schema = ROOT / "data/schemas/episode.schema.json"
-    matrix = tmp_path / "matrix.json"; matrix.write_text("{}")
+    factorial = [
+        "free_form__absent__absent", "free_form__absent__executable",
+        "free_form__trace_linked__absent", "free_form__trace_linked__executable",
+        "typed__absent__absent", "typed__absent__executable",
+        "typed__trace_linked__absent", "typed__trace_linked__executable",
+    ]
+    controls = ["full_history", "gold_oracle"]
+    secondary = ["typed__trace_linked__executable__enforced"]
+    matrix = tmp_path / "matrix.json"
+    scheduled = controls + [f"{cell}__advisory" for cell in factorial] + secondary
+    matrix.write_text(json.dumps({"conditions": scheduled}))
     snapshots = tmp_path / "snapshots.json"; snapshots.write_text('{"models":[]}')
     flattened = [item for group in tasks for item in group]
     dataset_sha256 = MODULE.canonical_digest(flattened)
@@ -52,7 +65,13 @@ def fixture(tmp_path):
         "preregistration": prereg.name, "protocol_files": [str(schema), protocol.name],
         "design_matrix": matrix.name, "model_snapshot_manifest": snapshots.name,
         "annotation_agreement": agreement.name, "final_audit_file": final_audit.name,
-        "models": [{"snapshot": "a"}, {"snapshot": "b"}],
+        "models": [{"snapshot": "a", "served_model_name": "model-a"},
+                   {"snapshot": "b", "served_model_name": "model-b"}],
+        "seeds": [101, 202],
+        "generation": {"temperature": 0.7, "max_receiver_turns": 4,
+                       "max_output_tokens": 1600},
+        "conditions": {"controls": controls, "factorial": factorial,
+                       "secondary_enforcement": secondary},
         "expected_population": {"families": 2, "domains": ["travel", "it"],
                                 "families_per_domain": 1},
     }
@@ -83,6 +102,27 @@ def test_multifile_manifest_is_deterministic_and_binds_complete_contract(tmp_pat
     assert first["n_tasks"] == first["n_independent_families"] == 2
     assert first["domain_counts"] == {"it": 1, "travel": 1}
     assert first["annotation_agreement_file"] == agreement.name
+    design = first["confirmatory_design"]
+    assert design["models"] == ["model-a", "model-b"]
+    assert design["seeds"] == [101, 202]
+    assert len(design["conditions"]) == 11
+    assert design["conditions"][:2] == ["full_history", "gold_oracle"]
+    assert all(value.endswith("__advisory") for value in design["conditions"][2:10])
+    assert design["conditions"][-1] == "typed__trace_linked__executable__enforced"
+    assert len(design["config_hashes"]) == 44
+    expected_control = RunConfig(
+        "model-a", TransferKind.FULL_HISTORY, temperature=0.7, seed=101,
+        protocol_version="fixture-protocol", max_turns=4, max_output_tokens=1600,
+    )
+    assert design["config_hashes"]["model-a|101|full_history"] == expected_control.config_hash
+    expected_enforced = RunConfig(
+        "model-b", TransferKind.FACTORIAL, temperature=0.7, seed=202,
+        protocol_version="fixture-protocol", max_turns=4, max_output_tokens=1600,
+        enforce_action_gates=True,
+        factorial_cell=factorial_cell("typed__trace_linked__executable"),
+    )
+    enforced_key = "model-b|202|typed__trace_linked__executable__enforced"
+    assert design["config_hashes"][enforced_key] == expected_enforced.config_hash
     assert set(first["candidate_file_hashes"]) == {path.name for path in candidates}
     for key in ("annotation_agreement_sha256", "preregistration_sha256",
                 "confirmatory_config_design_sha256", "model_design_sha256",
@@ -146,3 +186,46 @@ def test_manifest_rejects_failed_final_audit_content(tmp_path, field, replacemen
     with pytest.raises(ValueError, match="final audit did not pass"):
         MODULE.build_manifest(candidates, config_path, agreement,
                               seal_id=seal_id, sealed_at="x")
+
+
+def test_manifest_rejects_design_matrix_or_condition_drift(tmp_path):
+    candidates, config_path, agreement, seal_id = fixture(tmp_path)
+    config = yaml.safe_load(config_path.read_text())
+    config["conditions"]["factorial"][0] = "not-a-factorial-cell"
+    config_path.write_text(yaml.safe_dump(config))
+    with pytest.raises(ValueError, match="complete 2x2x2 cube"):
+        MODULE.build_manifest(candidates, config_path, agreement,
+                              seal_id=seal_id, sealed_at="x")
+
+
+def test_manifest_binds_superseded_dataset_seal_without_rewriting_agreement(tmp_path):
+    candidates, config_path, agreement, dataset_seal_id = fixture(tmp_path)
+    config = yaml.safe_load(config_path.read_text())
+    agreement_value = json.loads(agreement.read_text())
+    prior = tmp_path / "prior-seal.json"
+    prior.write_text(json.dumps({
+        "status": "sealed", "sealed": True, "seal_id": dataset_seal_id,
+        "canonical_dataset_sha256": agreement_value["canonical_dataset_sha256"],
+    }))
+    config["dataset_seal_id"] = dataset_seal_id
+    config["supersedes_manifest"] = {
+        "path": prior.name,
+        "reason": "execution contract correction before any confirmatory model call",
+    }
+    config_path.write_text(yaml.safe_dump(config))
+    manifest = MODULE.build_manifest(
+        candidates, config_path, agreement, seal_id="fixture-execution-seal",
+        sealed_at="2099-01-01T00:00:00Z")
+    assert manifest["seal_id"] == "fixture-execution-seal"
+    assert manifest["dataset_seal_id"] == dataset_seal_id == agreement_value["seal_id"]
+    assert manifest["supersedes_manifest"] == {
+        "path": prior.name, "sha256": MODULE.digest_bytes(prior.read_bytes()),
+        "reason": config["supersedes_manifest"]["reason"],
+    }
+
+    prior_value = json.loads(prior.read_text())
+    prior_value["canonical_dataset_sha256"] = "0" * 64
+    prior.write_text(json.dumps(prior_value))
+    with pytest.raises(ValueError, match="matching sealed canonical dataset"):
+        MODULE.build_manifest(candidates, config_path, agreement,
+                              seal_id="fixture-execution-seal", sealed_at="x")
