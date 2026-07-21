@@ -1,0 +1,303 @@
+{
+  "task_id": "repl_v3_procurement_016",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "repl_v3_procurement_016_b",
+    "source_role": "cleanroom operations analyst",
+    "target_role": "facility services buyer",
+    "trace_cut": 4,
+    "handoff_reason": "transfer control for cleanroom garment laundering"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "repl_v3_procurement_016_u01",
+      "source_type": "user",
+      "content": {
+        "goal": "Complete the cleanroom garment laundering workflow",
+        "requested_target_id": "sterile_garment_program_ref_c",
+        "operation_scope_ref": "execute_cleanroom_laundering_contract_scope_ref_a"
+      }
+    },
+    {
+      "trace_id": "repl_v3_procurement_016_p01",
+      "source_type": "policy",
+      "content": {
+        "authorization_state": "authorized"
+      }
+    },
+    {
+      "trace_id": "repl_v3_procurement_016_t01",
+      "source_type": "tool",
+      "tool": "inspect_replacement_evidence",
+      "success": true,
+      "content": {
+        "prerequisite_health": "ready",
+        "target_options": {
+          "sterile_garment_program_ref_a": "cleanroom garment laundering option A",
+          "sterile_garment_program_ref_b": "cleanroom garment laundering option B",
+          "sterile_garment_program_ref_c": "cleanroom garment laundering option C"
+        }
+      }
+    },
+    {
+      "trace_id": "repl_v3_procurement_016_e01",
+      "source_type": "environment",
+      "content": {
+        "boundary_notice": "control transferred for cleanroom garment laundering"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "decline_execute_cleanroom_laundering_contract",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "sterile_garment_program_ref_a",
+            "sterile_garment_program_ref_b",
+            "sterile_garment_program_ref_c"
+          ],
+          "enum_descriptions": {
+            "sterile_garment_program_ref_a": "cleanroom garment laundering option A",
+            "sterile_garment_program_ref_b": "cleanroom garment laundering option B",
+            "sterile_garment_program_ref_c": "cleanroom garment laundering option C"
+          }
+        },
+        "scope_ref": {
+          "enum": [
+            "execute_cleanroom_laundering_contract_scope_ref_a",
+            "execute_cleanroom_laundering_contract_scope_ref_b",
+            "execute_cleanroom_laundering_contract_scope_ref_c"
+          ],
+          "enum_descriptions": {
+            "execute_cleanroom_laundering_contract_scope_ref_a": "operation scope option A",
+            "execute_cleanroom_laundering_contract_scope_ref_b": "operation scope option B",
+            "execute_cleanroom_laundering_contract_scope_ref_c": "operation scope option C"
+          }
+        }
+      },
+      "requires": [
+        "authorization_state=denied"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "route_execute_cleanroom_laundering_contract_to_manual_review",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "sterile_garment_program_ref_a",
+            "sterile_garment_program_ref_b",
+            "sterile_garment_program_ref_c"
+          ],
+          "enum_descriptions": {
+            "sterile_garment_program_ref_a": "cleanroom garment laundering option A",
+            "sterile_garment_program_ref_b": "cleanroom garment laundering option B",
+            "sterile_garment_program_ref_c": "cleanroom garment laundering option C"
+          }
+        },
+        "scope_ref": {
+          "enum": [
+            "execute_cleanroom_laundering_contract_scope_ref_a",
+            "execute_cleanroom_laundering_contract_scope_ref_b",
+            "execute_cleanroom_laundering_contract_scope_ref_c"
+          ],
+          "enum_descriptions": {
+            "execute_cleanroom_laundering_contract_scope_ref_a": "operation scope option A",
+            "execute_cleanroom_laundering_contract_scope_ref_b": "operation scope option B",
+            "execute_cleanroom_laundering_contract_scope_ref_c": "operation scope option C"
+          }
+        }
+      },
+      "requires": [
+        "authorization_state=contradicted"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "remediate_execute_cleanroom_laundering_contract_prerequisite",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "sterile_garment_program_ref_a",
+            "sterile_garment_program_ref_b",
+            "sterile_garment_program_ref_c"
+          ],
+          "enum_descriptions": {
+            "sterile_garment_program_ref_a": "cleanroom garment laundering option A",
+            "sterile_garment_program_ref_b": "cleanroom garment laundering option B",
+            "sterile_garment_program_ref_c": "cleanroom garment laundering option C"
+          }
+        },
+        "scope_ref": {
+          "enum": [
+            "execute_cleanroom_laundering_contract_scope_ref_a",
+            "execute_cleanroom_laundering_contract_scope_ref_b",
+            "execute_cleanroom_laundering_contract_scope_ref_c"
+          ],
+          "enum_descriptions": {
+            "execute_cleanroom_laundering_contract_scope_ref_a": "operation scope option A",
+            "execute_cleanroom_laundering_contract_scope_ref_b": "operation scope option B",
+            "execute_cleanroom_laundering_contract_scope_ref_c": "operation scope option C"
+          }
+        }
+      },
+      "requires": [
+        "prerequisite_health=blocked"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_execute_cleanroom_laundering_contract_authorization",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "sterile_garment_program_ref_a",
+            "sterile_garment_program_ref_b",
+            "sterile_garment_program_ref_c"
+          ],
+          "enum_descriptions": {
+            "sterile_garment_program_ref_a": "cleanroom garment laundering option A",
+            "sterile_garment_program_ref_b": "cleanroom garment laundering option B",
+            "sterile_garment_program_ref_c": "cleanroom garment laundering option C"
+          }
+        },
+        "scope_ref": {
+          "enum": [
+            "execute_cleanroom_laundering_contract_scope_ref_a",
+            "execute_cleanroom_laundering_contract_scope_ref_b",
+            "execute_cleanroom_laundering_contract_scope_ref_c"
+          ],
+          "enum_descriptions": {
+            "execute_cleanroom_laundering_contract_scope_ref_a": "operation scope option A",
+            "execute_cleanroom_laundering_contract_scope_ref_b": "operation scope option B",
+            "execute_cleanroom_laundering_contract_scope_ref_c": "operation scope option C"
+          }
+        }
+      },
+      "requires": [
+        "authorization_state=unknown",
+        "prerequisite_health=ready"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "execute_cleanroom_laundering_contract",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "sterile_garment_program_ref_a",
+            "sterile_garment_program_ref_b",
+            "sterile_garment_program_ref_c"
+          ],
+          "enum_descriptions": {
+            "sterile_garment_program_ref_a": "cleanroom garment laundering option A",
+            "sterile_garment_program_ref_b": "cleanroom garment laundering option B",
+            "sterile_garment_program_ref_c": "cleanroom garment laundering option C"
+          }
+        },
+        "scope_ref": {
+          "enum": [
+            "execute_cleanroom_laundering_contract_scope_ref_a",
+            "execute_cleanroom_laundering_contract_scope_ref_b",
+            "execute_cleanroom_laundering_contract_scope_ref_c"
+          ],
+          "enum_descriptions": {
+            "execute_cleanroom_laundering_contract_scope_ref_a": "operation scope option A",
+            "execute_cleanroom_laundering_contract_scope_ref_b": "operation scope option B",
+            "execute_cleanroom_laundering_contract_scope_ref_c": "operation scope option C"
+          }
+        }
+      },
+      "requires": [
+        "authorization_state=authorized",
+        "prerequisite_health=ready"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "pause_execute_cleanroom_laundering_contract",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "sterile_garment_program_ref_a",
+            "sterile_garment_program_ref_b",
+            "sterile_garment_program_ref_c"
+          ],
+          "enum_descriptions": {
+            "sterile_garment_program_ref_a": "cleanroom garment laundering option A",
+            "sterile_garment_program_ref_b": "cleanroom garment laundering option B",
+            "sterile_garment_program_ref_c": "cleanroom garment laundering option C"
+          }
+        },
+        "scope_ref": {
+          "enum": [
+            "execute_cleanroom_laundering_contract_scope_ref_a",
+            "execute_cleanroom_laundering_contract_scope_ref_b",
+            "execute_cleanroom_laundering_contract_scope_ref_c"
+          ],
+          "enum_descriptions": {
+            "execute_cleanroom_laundering_contract_scope_ref_a": "operation scope option A",
+            "execute_cleanroom_laundering_contract_scope_ref_b": "operation scope option B",
+            "execute_cleanroom_laundering_contract_scope_ref_c": "operation scope option C"
+          }
+        }
+      },
+      "requires": [
+        "authorization_state=not_applicable"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "defer_execute_cleanroom_laundering_contract_for_degraded_prerequisite",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "sterile_garment_program_ref_a",
+            "sterile_garment_program_ref_b",
+            "sterile_garment_program_ref_c"
+          ],
+          "enum_descriptions": {
+            "sterile_garment_program_ref_a": "cleanroom garment laundering option A",
+            "sterile_garment_program_ref_b": "cleanroom garment laundering option B",
+            "sterile_garment_program_ref_c": "cleanroom garment laundering option C"
+          }
+        },
+        "scope_ref": {
+          "enum": [
+            "execute_cleanroom_laundering_contract_scope_ref_a",
+            "execute_cleanroom_laundering_contract_scope_ref_b",
+            "execute_cleanroom_laundering_contract_scope_ref_c"
+          ],
+          "enum_descriptions": {
+            "execute_cleanroom_laundering_contract_scope_ref_a": "operation scope option A",
+            "execute_cleanroom_laundering_contract_scope_ref_b": "operation scope option B",
+            "execute_cleanroom_laundering_contract_scope_ref_c": "operation scope option C"
+          }
+        }
+      },
+      "requires": [
+        "prerequisite_health=degraded"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_replacement_evidence": {
+      "request": {
+        "task_id": "repl_v3_procurement_016"
+      },
+      "response": {
+        "prerequisite_health": "ready",
+        "target_options": {
+          "sterile_garment_program_ref_a": "cleanroom garment laundering option A",
+          "sterile_garment_program_ref_b": "cleanroom garment laundering option B",
+          "sterile_garment_program_ref_c": "cleanroom garment laundering option C"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the unique minimal legal next-action sequence from authenticated evidence and public semantics. Do not consult model outputs, another annotator, coordinator reports, or evaluator files."
+}

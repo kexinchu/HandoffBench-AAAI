@@ -1,0 +1,483 @@
+{
+  "adjudication_queue": [
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_commerce_001"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_commerce_002"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_commerce_003"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_commerce_004"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_commerce_005"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_003"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_004"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_005"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_006"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_007"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_008"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_011"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_012"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_013"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_016"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_017"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_018"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_019"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_020"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_021"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_024"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_025"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_026"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_027"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_028"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_029"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_032"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_033"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_034"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_035"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_001"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_002"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_003"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_006"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_007"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_008"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_009"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_010"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_011"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_012"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_013"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_016"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_017"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_018"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_019"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_020"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_021"
+    }
+  ],
+  "annotators": [
+    "annotator_a",
+    "annotator_b"
+  ],
+  "bootstrap_draws": 2000,
+  "bootstrap_seed": 2027,
+  "metrics": {
+    "action_sequence": {
+      "agree": 63,
+      "cluster_bootstrap_ci": [
+        1.0,
+        1.0
+      ],
+      "denominator": 63,
+      "rate": 1.0
+    },
+    "catalog_leakage_flag": {
+      "agree": 63,
+      "cluster_bootstrap_ci": [
+        1.0,
+        1.0
+      ],
+      "denominator": 63,
+      "rate": 1.0
+    },
+    "category": {
+      "agree": 299,
+      "cluster_bootstrap_ci": [
+        1.0,
+        1.0
+      ],
+      "cohen_kappa": 1.0,
+      "denominator": 299,
+      "rate": 1.0
+    },
+    "claim": {
+      "annotator_a_denominator": 299,
+      "annotator_b_denominator": 299,
+      "cluster_bootstrap_ci": [
+        1.0,
+        1.0
+      ],
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 299
+    },
+    "criticality": {
+      "agree": 252,
+      "cluster_bootstrap_ci": [
+        0.8235294117647058,
+        0.863013698630137
+      ],
+      "cohen_kappa": 0.693199432376378,
+      "denominator": 299,
+      "rate": 0.842809364548495
+    },
+    "irreversible_args_inferable": {
+      "agree": 63,
+      "cluster_bootstrap_ci": [
+        1.0,
+        1.0
+      ],
+      "denominator": 63,
+      "rate": 1.0
+    },
+    "provenance": {
+      "annotator_a_denominator": 299,
+      "annotator_b_denominator": 299,
+      "cluster_bootstrap_ci": [
+        1.0,
+        1.0
+      ],
+      "exact_set_denominator": 299,
+      "exact_sets": 299,
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "tp": 299
+    },
+    "status": {
+      "agree": 299,
+      "cluster_bootstrap_ci": [
+        1.0,
+        1.0
+      ],
+      "cohen_kappa": 1.0,
+      "denominator": 299,
+      "rate": 1.0
+    },
+    "value": {
+      "agree": 299,
+      "cluster_bootstrap_ci": [
+        1.0,
+        1.0
+      ],
+      "denominator": 299,
+      "rate": 1.0
+    }
+  },
+  "n_families": 63,
+  "n_tasks": 63,
+  "protocol": "annotation-agreement-v1"
+}

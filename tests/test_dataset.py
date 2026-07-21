@@ -273,6 +273,19 @@ def test_schema_mutation_is_rejected(tmp_path: Path) -> None:
         load_tasks(target, schema_path=SCHEMA)
 
 
+def test_irreversible_action_requires_gate_from_scripted_resolution(tmp_path: Path) -> None:
+    def remove_resolved_slot_gate(task):
+        irreversible = next(
+            rule for rule in task["episode"]["allowed_next_actions"]
+            if rule["irreversible"]
+        )
+        irreversible["when"] = []
+
+    target = _write_mutation(tmp_path, remove_resolved_slot_gate)
+    with pytest.raises(ValueError, match="lacks resolved-slot gate"):
+        load_tasks(target, schema_path=SCHEMA)
+
+
 def test_all_claim_keys_match_provenance_leaf_or_are_explicitly_derived() -> None:
     for record in load_tasks(PILOT, schema_path=SCHEMA):
         for claim in record.episode.gold_state:

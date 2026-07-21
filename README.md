@@ -8,10 +8,11 @@ with deterministic state probes, tool simulators, and terminal predicates.
 The accompanying manuscript is **State Is the Interface: Evaluating Handoff
 Fidelity in Multi-Agent LLM Workflows**.
 
-> Research status: development artifact. The 200-family pool is synthetic,
-> candidate-stage, unsealed, and has received zero candidate-model calls. Human
-> double annotation, adjudication, sealing, and confirmatory evaluation are not
-> complete. Development results must not be described as benchmark test results.
+> Research status: the synthetic 200-family confirmatory split is human-validated
+> and sealed, and has received zero candidate-model calls. Confirmatory model
+> execution has **not** started: `configs/confirmatory_v3.yaml` deliberately sets
+> `execution_authorized: false`. Development results must not be described as
+> benchmark test results.
 
 ## What is implemented
 
@@ -100,26 +101,40 @@ The analyzer rejects duplicate scheduled cells and audits that all eight cells
 within each task/model/seed block reuse the same source artifact, prompt, schema,
 and logical usage record.
 
-## Human validation and confirmatory gate
+## Sealed split and confirmatory gate
 
-The next required step is independent human validation. Coordinators should
-start with:
+Every original candidate was independently double-annotated from a label-free
+packet and locked before comparison. Disagreement-only adjudication rejected 24
+tasks. A separate blind validity review rejected another 39 agreement-only tasks
+with static sequence or terminal-semantics risks. All 63 exclusions were replaced
+by newly generated families and independently double-annotated again. The second
+round produced 47 criticality disagreements, all adjudicated, with zero rejected
+replacements. The final split therefore contains 137 retained originals and 63
+replacements, with 40 families in each of five domains.
 
-- `research/annotation_protocol.md`
-- `research/candidate_v2_annotation_execution_guide.md`
-- `research/human_remediation_queue_v2.md`
+Authoritative sealed artifacts are:
 
-The confirmatory preflight is deliberately closed until locked annotations,
-agreement, adjudication, a compatible sealed manifest, model snapshot hashes,
-and explicit execution authorization all exist:
+- `data/splits/confirmatory_v3.1.sealed.json`
+- `annotations/confirmatory_v3/agreement.final.v2.json`
+- `annotations/confirmatory_v3/final_audit.ready.json`
+- `research/confirmatory_v3_leakage_overlap_audit.{json,md}`
+
+The seal ID is `hb-v3.1-9671bf1ff2d5-20260721`; the sealed-manifest SHA-256 is
+`d2b11edb4e39041fe246706d45b4b36302921813b49d5040fe39f35a88130804`,
+and the canonical-dataset SHA-256 bound by that manifest is
+`9671bf1ff2d507e31a62069bbd655b83f53803aeee3a5b5908da7b8d9d892a93`.
+
+Run the static confirmatory preflight with:
 
 ```bash
 PYTHONPATH=src python scripts/preflight_confirmatory.py \
-  --config configs/confirmatory_v2.yaml
+  --config configs/confirmatory_v3.yaml
 ```
 
-A nonzero exit is the expected repository state before those human gates pass.
-Do not edit `execution_authorized` merely to bypass the preflight.
+All annotation, audit, seal, dataset, design, and model-snapshot gates pass. The
+command intentionally exits nonzero only because execution authorization remains
+false. Do not edit `execution_authorized` merely to bypass this final human gate.
+No confirmatory result exists yet.
 
 ## Paper
 
@@ -139,8 +154,8 @@ previous conference year.
 
 All project-authored tasks are synthetic and unsuitable for operational, legal,
 medical, financial, employment, or other decisions about real people. Evaluator
-gold state must never be placed in model prompts. Candidate tasks must not be
-inspected with models before sealing.
+gold state must never be placed in model prompts. The sealed split must not be
+repaired or filtered after confirmatory outcomes are observed.
 
 No top-level open-source or data license has yet been selected. Public visibility
 does not grant reuse rights; do not infer a license until the project owners add

@@ -1,0 +1,272 @@
+{
+  "task_id": "repl_v3_procurement_012",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "repl_v3_procurement_012_b",
+    "source_role": "laboratory operations analyst",
+    "target_role": "specialty services buyer",
+    "trace_cut": 4,
+    "handoff_reason": "transfer control for scientific glassware annealing service"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "repl_v3_procurement_012_u01",
+      "source_type": "user",
+      "content": {
+        "goal": "Complete the scientific glassware annealing service workflow",
+        "requested_target_id": "borosilicate_annealing_lot_ref_b",
+        "operation_scope_ref": "purchase_glassware_annealing_service_scope_ref_c"
+      }
+    },
+    {
+      "trace_id": "repl_v3_procurement_012_p01",
+      "source_type": "policy",
+      "content": {
+        "authorization_state": "authorized"
+      }
+    },
+    {
+      "trace_id": "repl_v3_procurement_012_t01",
+      "source_type": "tool",
+      "tool": "inspect_replacement_evidence",
+      "success": true,
+      "content": {
+        "prerequisite_health": "ready",
+        "target_options": {
+          "borosilicate_annealing_lot_ref_a": "scientific glassware annealing service option A",
+          "borosilicate_annealing_lot_ref_b": "scientific glassware annealing service option B",
+          "borosilicate_annealing_lot_ref_c": "scientific glassware annealing service option C"
+        }
+      }
+    },
+    {
+      "trace_id": "repl_v3_procurement_012_e01",
+      "source_type": "environment",
+      "content": {
+        "boundary_notice": "control transferred for scientific glassware annealing service"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "decline_purchase_glassware_annealing_service",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "borosilicate_annealing_lot_ref_a",
+            "borosilicate_annealing_lot_ref_b",
+            "borosilicate_annealing_lot_ref_c"
+          ],
+          "enum_descriptions": {
+            "borosilicate_annealing_lot_ref_a": "scientific glassware annealing service option A",
+            "borosilicate_annealing_lot_ref_b": "scientific glassware annealing service option B",
+            "borosilicate_annealing_lot_ref_c": "scientific glassware annealing service option C"
+          }
+        },
+        "scope_ref": {
+          "enum": [
+            "purchase_glassware_annealing_service_scope_ref_a",
+            "purchase_glassware_annealing_service_scope_ref_b",
+            "purchase_glassware_annealing_service_scope_ref_c"
+          ],
+          "enum_descriptions": {
+            "purchase_glassware_annealing_service_scope_ref_a": "operation scope option A",
+            "purchase_glassware_annealing_service_scope_ref_b": "operation scope option B",
+            "purchase_glassware_annealing_service_scope_ref_c": "operation scope option C"
+          }
+        }
+      },
+      "requires": [
+        "authorization_state=denied"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "route_purchase_glassware_annealing_service_to_manual_review",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "borosilicate_annealing_lot_ref_a",
+            "borosilicate_annealing_lot_ref_b",
+            "borosilicate_annealing_lot_ref_c"
+          ],
+          "enum_descriptions": {
+            "borosilicate_annealing_lot_ref_a": "scientific glassware annealing service option A",
+            "borosilicate_annealing_lot_ref_b": "scientific glassware annealing service option B",
+            "borosilicate_annealing_lot_ref_c": "scientific glassware annealing service option C"
+          }
+        },
+        "scope_ref": {
+          "enum": [
+            "purchase_glassware_annealing_service_scope_ref_a",
+            "purchase_glassware_annealing_service_scope_ref_b",
+            "purchase_glassware_annealing_service_scope_ref_c"
+          ],
+          "enum_descriptions": {
+            "purchase_glassware_annealing_service_scope_ref_a": "operation scope option A",
+            "purchase_glassware_annealing_service_scope_ref_b": "operation scope option B",
+            "purchase_glassware_annealing_service_scope_ref_c": "operation scope option C"
+          }
+        }
+      },
+      "requires": [
+        "authorization_state=contradicted"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "remediate_purchase_glassware_annealing_service_prerequisite",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "borosilicate_annealing_lot_ref_a",
+            "borosilicate_annealing_lot_ref_b",
+            "borosilicate_annealing_lot_ref_c"
+          ],
+          "enum_descriptions": {
+            "borosilicate_annealing_lot_ref_a": "scientific glassware annealing service option A",
+            "borosilicate_annealing_lot_ref_b": "scientific glassware annealing service option B",
+            "borosilicate_annealing_lot_ref_c": "scientific glassware annealing service option C"
+          }
+        },
+        "scope_ref": {
+          "enum": [
+            "purchase_glassware_annealing_service_scope_ref_a",
+            "purchase_glassware_annealing_service_scope_ref_b",
+            "purchase_glassware_annealing_service_scope_ref_c"
+          ],
+          "enum_descriptions": {
+            "purchase_glassware_annealing_service_scope_ref_a": "operation scope option A",
+            "purchase_glassware_annealing_service_scope_ref_b": "operation scope option B",
+            "purchase_glassware_annealing_service_scope_ref_c": "operation scope option C"
+          }
+        }
+      },
+      "requires": [
+        "prerequisite_health=blocked"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_purchase_glassware_annealing_service_authorization",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "borosilicate_annealing_lot_ref_a",
+            "borosilicate_annealing_lot_ref_b",
+            "borosilicate_annealing_lot_ref_c"
+          ],
+          "enum_descriptions": {
+            "borosilicate_annealing_lot_ref_a": "scientific glassware annealing service option A",
+            "borosilicate_annealing_lot_ref_b": "scientific glassware annealing service option B",
+            "borosilicate_annealing_lot_ref_c": "scientific glassware annealing service option C"
+          }
+        },
+        "scope_ref": {
+          "enum": [
+            "purchase_glassware_annealing_service_scope_ref_a",
+            "purchase_glassware_annealing_service_scope_ref_b",
+            "purchase_glassware_annealing_service_scope_ref_c"
+          ],
+          "enum_descriptions": {
+            "purchase_glassware_annealing_service_scope_ref_a": "operation scope option A",
+            "purchase_glassware_annealing_service_scope_ref_b": "operation scope option B",
+            "purchase_glassware_annealing_service_scope_ref_c": "operation scope option C"
+          }
+        }
+      },
+      "requires": [
+        "authorization_state=unknown",
+        "prerequisite_health=ready",
+        "operation_scope_ref=purchase_glassware_annealing_service_scope_ref_c"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "purchase_glassware_annealing_service",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "borosilicate_annealing_lot_ref_a",
+            "borosilicate_annealing_lot_ref_b",
+            "borosilicate_annealing_lot_ref_c"
+          ],
+          "enum_descriptions": {
+            "borosilicate_annealing_lot_ref_a": "scientific glassware annealing service option A",
+            "borosilicate_annealing_lot_ref_b": "scientific glassware annealing service option B",
+            "borosilicate_annealing_lot_ref_c": "scientific glassware annealing service option C"
+          }
+        },
+        "scope_ref": {
+          "enum": [
+            "purchase_glassware_annealing_service_scope_ref_a",
+            "purchase_glassware_annealing_service_scope_ref_b",
+            "purchase_glassware_annealing_service_scope_ref_c"
+          ],
+          "enum_descriptions": {
+            "purchase_glassware_annealing_service_scope_ref_a": "operation scope option A",
+            "purchase_glassware_annealing_service_scope_ref_b": "operation scope option B",
+            "purchase_glassware_annealing_service_scope_ref_c": "operation scope option C"
+          }
+        }
+      },
+      "requires": [
+        "authorization_state=authorized",
+        "prerequisite_health=ready",
+        "operation_scope_ref=purchase_glassware_annealing_service_scope_ref_c"
+      ],
+      "user_impacting": true
+    },
+    {
+      "action": "pause_purchase_glassware_annealing_service",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "borosilicate_annealing_lot_ref_a",
+            "borosilicate_annealing_lot_ref_b",
+            "borosilicate_annealing_lot_ref_c"
+          ],
+          "enum_descriptions": {
+            "borosilicate_annealing_lot_ref_a": "scientific glassware annealing service option A",
+            "borosilicate_annealing_lot_ref_b": "scientific glassware annealing service option B",
+            "borosilicate_annealing_lot_ref_c": "scientific glassware annealing service option C"
+          }
+        },
+        "scope_ref": {
+          "enum": [
+            "purchase_glassware_annealing_service_scope_ref_a",
+            "purchase_glassware_annealing_service_scope_ref_b",
+            "purchase_glassware_annealing_service_scope_ref_c"
+          ],
+          "enum_descriptions": {
+            "purchase_glassware_annealing_service_scope_ref_a": "operation scope option A",
+            "purchase_glassware_annealing_service_scope_ref_b": "operation scope option B",
+            "purchase_glassware_annealing_service_scope_ref_c": "operation scope option C"
+          }
+        }
+      },
+      "requires": [
+        "authorization_state=not_applicable"
+      ],
+      "user_impacting": false
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_replacement_evidence": {
+      "request": {
+        "task_id": "repl_v3_procurement_012"
+      },
+      "response": {
+        "prerequisite_health": "ready",
+        "target_options": {
+          "borosilicate_annealing_lot_ref_a": "scientific glassware annealing service option A",
+          "borosilicate_annealing_lot_ref_b": "scientific glassware annealing service option B",
+          "borosilicate_annealing_lot_ref_c": "scientific glassware annealing service option C"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the unique minimal legal next-action sequence from authenticated evidence and public semantics. Do not consult model outputs, another annotator, coordinator reports, or evaluator files."
+}

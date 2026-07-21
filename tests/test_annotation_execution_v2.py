@@ -67,7 +67,22 @@ def test_preparation_and_queue_writers_refuse_overwrite(tmp_path: Path) -> None:
     assert output.read_text() == "do not replace"
 
 
-def _completed(annotator, category):
+def test_preparation_supports_versioned_replacement_only_batches(tmp_path: Path) -> None:
+    assignments = tmp_path / "assignments"
+    assignments.mkdir()
+    (assignments / "manifest.json").write_text(json.dumps({"packet_count": 2}))
+    for annotator, task_ids in (("annotator_a", ["repl_1", "repl_2"]),
+                                ("annotator_b", ["repl_2", "repl_1"])):
+        rows = [{"task_id": task_id, "assignment_id": f"{annotator}-{task_id}",
+                 "packet": f"{task_id}.json", "packet_sha256": "a" * 64}
+                for task_id in task_ids]
+        (assignments / f"{annotator}.json").write_text(json.dumps({"assignments": rows}))
+    files = PREPARE.build(assignments)
+    assert len(files["annotator_a_responses.blank.json"]["annotations"]) == 2
+    assert files["lock_manifest.template.json"]["expected_task_ids"] == ["repl_1", "repl_2"]
+
+
+def _completed(annotator, category, *, inferable=True, leakage=False):
     return {"annotator_id": annotator, "annotations": [{
         "task_id": "candidate_opaque_001",
         "claims": [{"key": "destination", "category": category, "status": "known",
@@ -75,6 +90,8 @@ def _completed(annotator, category):
                     "provenance": [{"trace_id": "e1", "source_type": "user",
                                     "field_path": "content.destination"}]}],
         "action_sequence": [{"name": "act", "arguments": {"target": "x"}}],
+        "irreversible_args_inferable": inferable,
+        "catalog_leakage_flag": leakage,
     }]}
 
 
@@ -99,3 +116,24 @@ def test_disagreement_queue_requires_completed_locked_inputs_and_contains_only_d
     assert result["disagreements_only"] is True
     assert result["queue"] == [{"task_id": "candidate_opaque_001", "claim_key": "destination",
                                 "fields": ["category"], "resolution_code": None}]
+
+
+def test_disagreement_queue_includes_task_level_inferability_and_leakage(tmp_path: Path) -> None:
+    paths = [tmp_path / "a.json", tmp_path / "b.json"]
+    payloads = [_completed("annotator_a", "constraint", inferable=True, leakage=False),
+                _completed("annotator_b", "constraint", inferable=False, leakage=True)]
+    for path, payload in zip(paths, payloads):
+        path.write_text(json.dumps(payload))
+    lock = tmp_path / "lock.json"
+    lock.write_text(json.dumps({"locked": True, "expected_task_ids": ["candidate_opaque_001"],
+                                "inputs": [{"path": str(path),
+                                            "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                                            "annotator_id": payload["annotator_id"]}
+                                           for path, payload in zip(paths, payloads)]}))
+    result = QUEUE.generate(paths[0], paths[1], lock, tmp_path / "queue.json")
+    assert result["queue"] == [
+        {"task_id": "candidate_opaque_001", "claim_key": None,
+         "fields": ["irreversible_args_inferable"], "resolution_code": None},
+        {"task_id": "candidate_opaque_001", "claim_key": None,
+         "fields": ["catalog_leakage_flag"], "resolution_code": None},
+    ]

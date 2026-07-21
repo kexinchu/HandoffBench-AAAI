@@ -239,12 +239,12 @@ def _validate_record(
                 raise ValueError(
                     f"{episode.task_id}: reply trigger must be allowed in the initial slot status"
                 )
-                if update["status"] == "known":
-                    for rule in episode.allowed_next_actions:
-                        if rule.irreversible and rule.action != trigger_name:
-                            resolved_value_gate = f"{key}={update['value']}"
-                            if not ({f"{key}=known", resolved_value_gate} & set(rule.when)):
-                                raise ValueError(
+            if update["status"] == "known":
+                for rule in episode.allowed_next_actions:
+                    if rule.irreversible and rule.action != trigger_name:
+                        resolved_value_gate = f"{key}={update['value']}"
+                        if not ({f"{key}=known", resolved_value_gate} & set(rule.when)):
+                            raise ValueError(
                                 f"{episode.task_id}: irreversible {rule.action} lacks resolved-slot gate"
                             )
 

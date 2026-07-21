@@ -1,0 +1,18 @@
+{
+  "domain_counts": {
+    "commerce": 5,
+    "it": 35,
+    "procurement": 23
+  },
+  "format": "handoffbench-replacement-candidates-v3",
+  "generator": "scripts/generate_replacements_v3.py",
+  "generator_sha256": "4ad951653256b5f2314841efff7bd542a4ef923ec4f5eb7c2a9954655f8ed943",
+  "model_calls": 0,
+  "packet_directory": "data/annotations/replacement_packets_v3",
+  "packet_set_sha256": "bfb36d1e4c3c8f853efde0c21074eed861634246c6cd52903329c0d7249a46da",
+  "sealing_authority": null,
+  "source_path": "data/tasks/replacements_v3/replacement_candidates.v3.json",
+  "source_sha256": "810bd2cf91509c6e76b2f335f30c5cf97be06f015a3f21aafbf1477c3fb0c0e8",
+  "status": "candidate_unsealed",
+  "task_count": 63
+}

@@ -53,7 +53,8 @@ def inventory(model: dict[str, Any]) -> dict[str, Any]:
     summary_payload = [{key: item[key] for key in ("path", "size", "sha256")} for item in files]
     summary = hashlib.sha256(json.dumps(summary_payload, sort_keys=True,
                                         separators=(",", ":")).encode()).hexdigest()
-    return {"snapshot": model["snapshot"], "served_model_name": model["served_model_name"],
+    return {"provider": model["provider"], "snapshot": model["snapshot"],
+            "served_model_name": model["served_model_name"],
             "local_path": str(directory), "source": model.get("source"),
             "source_revision": model.get("source_revision"), "license": model.get("license"),
             "serving_args": model.get("serving_args", []), "file_count": len(files),
@@ -84,7 +85,7 @@ def verify(config_path: Path, manifest_path: Path) -> dict[str, Any]:
         except Exception as exc:
             failures.append(f"{model['snapshot']}: {exc}")
             continue
-        for field in ("served_model_name", "local_path", "source", "source_revision", "license",
+        for field in ("provider", "served_model_name", "local_path", "source", "source_revision", "license",
                       "serving_args", "file_count", "total_size", "directory_summary_sha256", "files"):
             if current.get(field) != recorded.get(field):
                 failures.append(f"{model['snapshot']}: drift in {field}")

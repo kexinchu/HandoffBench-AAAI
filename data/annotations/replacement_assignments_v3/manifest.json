@@ -1,0 +1,21 @@
+{
+  "manifest_version": "assignment-v1",
+  "seed": 270321,
+  "packet_set": "replacement_packets_v3",
+  "packet_count": 63,
+  "independent_annotators_per_task": 2,
+  "blinding": {
+    "annotators_do_not_receive_other_annotations": true,
+    "annotators_do_not_receive_adjudication_queue": true,
+    "assignment_ids_are_annotator_specific": true
+  },
+  "adjudication": {
+    "mode": "disagreements_only",
+    "preassigned_tasks": [],
+    "minimum_independent_annotations_before_queueing": 2
+  },
+  "assignment_files": [
+    "annotator_a.json",
+    "annotator_b.json"
+  ]
+}

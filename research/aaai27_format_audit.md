@@ -1,6 +1,6 @@
 # AAAI-27 format audit
 
-Audit date: 2026-07-18.  Scope: the anonymous review manuscript in
+Audit date: 2026-07-21.  Scope: the anonymous review manuscript in
 `paper/main.tex` and `paper/main.pdf`.
 
 ## Verified against the 2027 author kit
@@ -10,7 +10,7 @@ Audit date: 2026-07-18.  Scope: the anonymous review manuscript in
 - Uses `aaai2027.bst`; the source compiles with PDFLaTeX and BibTeX.
 - Anonymous title block is `Anonymous Submission` with empty affiliations.
 - The submission option suppresses the camera-ready copyright footer.
-- The generated PDF is US Letter (612 x 792 pt), two-column, and currently five
+- The generated PDF is US Letter (612 x 792 pt), two-column, and currently six
   pages including references.
 - No `hyperref`, page-number, header/footer, `geometry`, `titlesec`, manual page
   break, or non-AAAI font package is loaded by the manuscript.
@@ -35,9 +35,11 @@ Audit date: 2026-07-18.  Scope: the anonymous review manuscript in
 - Keep acknowledgements absent during anonymous review.  Audit repository URLs,
   supplementary files, PDF metadata, self-citations, and model/output paths for
   identity leakage.
-- Replace all explicitly provisional language and tables only after human
-  annotation, sealing, and confirmatory evaluation.  Formatting compliance does
-  not make the current five-page development manuscript submission-ready.
+- Human annotation and sealing language is now synchronized with the v3.1 seal.
+  Replace the explicitly pending confirmatory language and development-only
+  performance tables only after the authorized preregistered evaluation.
+  Formatting compliance does not make the current six-page manuscript
+  scientifically complete.
 
 ## Authoritative sources
 

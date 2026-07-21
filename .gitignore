@@ -6,6 +6,9 @@ __pycache__/
 .DS_Store
 .idea/
 .vscode/
+
+# Coordinator scratch manifests; only versioned locked manifests are released.
+data/annotations/**/.lock_manifest.*.json
 *.aux
 *.bbl
 *.blg

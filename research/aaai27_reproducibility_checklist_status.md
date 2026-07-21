@@ -5,10 +5,14 @@ The official AuthorKit checklist was copied without changing its questions into
 question section were replaced. It is a draft and must be reconciled with the
 AAAI-27 submission portal instructions before submission.
 
-The conservative `no` or `partial` answers are intentional:
+The conservative `no` or `partial` answers are intentional. Human double
+annotation, disagreement-only adjudication, independent blind validity review,
+replacement, final audit, and sealing are now complete. The sealed population is
+200 families (40 per domain), and its artifact chain attests zero candidate-model
+calls. However:
 
-- Human annotation, adjudication, overlap remediation, candidate sealing, and
-  confirmatory evaluation have not happened.
+- Confirmatory model execution has not happened and remains explicitly
+  unauthorized in `configs/confirmatory_v3.yaml`.
 - The repository currently has no declared research-use license, so public
   release-with-license questions cannot be answered yes.
 - Full hardware, memory, operating-system, serving-stack, and package-version
@@ -20,8 +24,9 @@ The conservative `no` or `partial` answers are intentional:
   are marked `NA` because they do not apply.
 
 The draft may be upgraded only when the corresponding artifact actually exists.
-In particular, do not change dataset/code licensing, infrastructure, annotation,
-or confirmatory-evidence answers based on intent alone.
+In particular, sealing does not justify upgrading licensing, infrastructure, or
+confirmatory-evidence answers. Those answers may change only when the relevant
+artifact exists.
 
 ## Offline rebuild
 

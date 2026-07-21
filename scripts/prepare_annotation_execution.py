@@ -26,8 +26,9 @@ def load_assignments(path: Path) -> list[dict[str, Any]]:
 def build(assignments_dir: Path) -> dict[str, Any]:
     manifest_path = assignments_dir / "manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    if manifest.get("packet_count") != 200:
-        raise ValueError("v2 execution requires exactly 200 assigned packets")
+    expected_count = manifest.get("packet_count")
+    if not isinstance(expected_count, int) or expected_count < 1:
+        raise ValueError("assignment manifest requires a positive packet_count")
     skeletons = {}
     task_sets = []
     for annotator in ("annotator_a", "annotator_b"):
@@ -55,8 +56,10 @@ def build(assignments_dir: Path) -> dict[str, Any]:
                 for row in rows
             ],
         }
-    if task_sets[0] != task_sets[1] or len(task_sets[0]) != 200:
-        raise ValueError("annotators must independently cover the same 200 tasks")
+    if task_sets[0] != task_sets[1] or len(task_sets[0]) != expected_count:
+        raise ValueError(
+            f"annotators must independently cover the same {expected_count} tasks"
+        )
     skeletons["lock_manifest.template.json"] = {
         "format": "annotation-lock-manifest-v2",
         "locked": False,
@@ -87,7 +90,11 @@ def main() -> None:
     args = parser.parse_args()
     files = build(args.assignments_dir)
     write_new(args.output_dir, files)
-    print(json.dumps({"output": str(args.output_dir), "blank_responses": 400}))
+    blank_responses = sum(
+        len(payload.get("annotations", []))
+        for name, payload in files.items() if name.endswith("_responses.blank.json")
+    )
+    print(json.dumps({"output": str(args.output_dir), "blank_responses": blank_responses}))
 
 
 if __name__ == "__main__":

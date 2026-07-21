@@ -1,0 +1,126 @@
+{
+  "format": "candidate-rejected-tasks-v2",
+  "rejected_task_count": 24,
+  "tasks": [
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_it_004"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_it_008"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_it_015"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_it_016"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_it_022"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_it_023"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_it_028"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_it_030"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_it_033"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_it_035"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_it_036"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_it_037"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_it_040"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_procurement_003"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_procurement_008"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_procurement_012"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_procurement_014"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_procurement_016"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_procurement_020"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_procurement_023"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_procurement_029"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_procurement_032"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_procurement_037"
+    },
+    {
+      "reason": "Blind packet public action contract and authenticated boundary evidence. Multiple public actions satisfy the same visible precondition, and the blind packet supplies no deterministic transition or terminal rule that uniquely distinguishes the competing sequences.",
+      "resolution_code": "REJECT_AMBIGUOUS_SEQUENCE",
+      "task_id": "cand_procurement_040"
+    }
+  ]
+}

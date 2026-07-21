@@ -12,7 +12,7 @@ from typing import Any
 
 def packet_inventory(packet_dir: Path) -> list[dict[str, str]]:
     packets = []
-    for path in sorted(packet_dir.glob("cand_*.json")):
+    for path in sorted(packet_dir.glob("*.json")):
         payload = json.loads(path.read_text(encoding="utf-8"))
         task_id = payload.get("task_id")
         if not isinstance(task_id, str) or path.stem != task_id:

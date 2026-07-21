@@ -1,0 +1,176 @@
+{
+  "task_id": "repl_v3_procurement_004",
+  "domain": "procurement",
+  "boundary": {
+    "boundary_id": "repl_v3_procurement_004_b",
+    "source_role": "sustainability sourcing analyst",
+    "target_role": "capital equipment buyer",
+    "trace_cut": 4,
+    "handoff_reason": "transfer control for water-reuse equipment"
+  },
+  "authenticated_upstream_trace": [
+    {
+      "trace_id": "repl_v3_procurement_004_u01",
+      "source_type": "user",
+      "content": {
+        "goal": "Complete the water-reuse equipment workflow",
+        "requested_target_id": "delta_reuse_module_ref_b"
+      }
+    },
+    {
+      "trace_id": "repl_v3_procurement_004_p01",
+      "source_type": "policy",
+      "content": {
+        "authorization_state": "authorized"
+      }
+    },
+    {
+      "trace_id": "repl_v3_procurement_004_t01",
+      "source_type": "tool",
+      "tool": "inspect_replacement_evidence",
+      "success": true,
+      "content": {
+        "prerequisite_health": "ready",
+        "target_options": {
+          "delta_reuse_module_ref_a": "water-reuse equipment option A",
+          "delta_reuse_module_ref_b": "water-reuse equipment option B",
+          "delta_reuse_module_ref_c": "water-reuse equipment option C"
+        }
+      }
+    },
+    {
+      "trace_id": "repl_v3_procurement_004_e01",
+      "source_type": "environment",
+      "content": {
+        "boundary_notice": "control transferred for water-reuse equipment"
+      }
+    }
+  ],
+  "public_action_contract": [
+    {
+      "action": "decline_purchase_water_reuse_equipment",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "delta_reuse_module_ref_a",
+            "delta_reuse_module_ref_b",
+            "delta_reuse_module_ref_c"
+          ],
+          "enum_descriptions": {
+            "delta_reuse_module_ref_a": "water-reuse equipment option A",
+            "delta_reuse_module_ref_b": "water-reuse equipment option B",
+            "delta_reuse_module_ref_c": "water-reuse equipment option C"
+          }
+        }
+      },
+      "requires": [
+        "authorization_state=denied"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "route_purchase_water_reuse_equipment_to_manual_review",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "delta_reuse_module_ref_a",
+            "delta_reuse_module_ref_b",
+            "delta_reuse_module_ref_c"
+          ],
+          "enum_descriptions": {
+            "delta_reuse_module_ref_a": "water-reuse equipment option A",
+            "delta_reuse_module_ref_b": "water-reuse equipment option B",
+            "delta_reuse_module_ref_c": "water-reuse equipment option C"
+          }
+        }
+      },
+      "requires": [
+        "authorization_state=contradicted"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "remediate_purchase_water_reuse_equipment_prerequisite",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "delta_reuse_module_ref_a",
+            "delta_reuse_module_ref_b",
+            "delta_reuse_module_ref_c"
+          ],
+          "enum_descriptions": {
+            "delta_reuse_module_ref_a": "water-reuse equipment option A",
+            "delta_reuse_module_ref_b": "water-reuse equipment option B",
+            "delta_reuse_module_ref_c": "water-reuse equipment option C"
+          }
+        }
+      },
+      "requires": [
+        "prerequisite_health=blocked"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "request_purchase_water_reuse_equipment_authorization",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "delta_reuse_module_ref_a",
+            "delta_reuse_module_ref_b",
+            "delta_reuse_module_ref_c"
+          ],
+          "enum_descriptions": {
+            "delta_reuse_module_ref_a": "water-reuse equipment option A",
+            "delta_reuse_module_ref_b": "water-reuse equipment option B",
+            "delta_reuse_module_ref_c": "water-reuse equipment option C"
+          }
+        }
+      },
+      "requires": [
+        "authorization_state=unknown",
+        "prerequisite_health=ready"
+      ],
+      "user_impacting": false
+    },
+    {
+      "action": "purchase_water_reuse_equipment",
+      "arguments": {
+        "target_id": {
+          "enum": [
+            "delta_reuse_module_ref_a",
+            "delta_reuse_module_ref_b",
+            "delta_reuse_module_ref_c"
+          ],
+          "enum_descriptions": {
+            "delta_reuse_module_ref_a": "water-reuse equipment option A",
+            "delta_reuse_module_ref_b": "water-reuse equipment option B",
+            "delta_reuse_module_ref_c": "water-reuse equipment option C"
+          }
+        }
+      },
+      "requires": [
+        "authorization_state=authorized",
+        "prerequisite_health=ready"
+      ],
+      "user_impacting": true
+    }
+  ],
+  "deterministic_tool_semantics": {
+    "inspect_replacement_evidence": {
+      "request": {
+        "task_id": "repl_v3_procurement_004"
+      },
+      "response": {
+        "prerequisite_health": "ready",
+        "target_options": {
+          "delta_reuse_module_ref_a": "water-reuse equipment option A",
+          "delta_reuse_module_ref_b": "water-reuse equipment option B",
+          "delta_reuse_module_ref_c": "water-reuse equipment option C"
+        }
+      },
+      "deterministic": true
+    }
+  },
+  "scripted_user_responses": {},
+  "annotation_instructions": "Independently reconstruct task-critical boundary claims and the unique minimal legal next-action sequence from authenticated evidence and public semantics. Do not consult model outputs, another annotator, coordinator reports, or evaluator files."
+}

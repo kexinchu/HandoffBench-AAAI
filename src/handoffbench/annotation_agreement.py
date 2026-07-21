@@ -199,12 +199,17 @@ def _task_counts(first: dict[str, Any], second: dict[str, Any]) -> dict[str, Any
                           "resolution_code": None} for key in sorted(left_keys - right_keys))
     disagreements.extend({"claim_key": key, "fields": ["missing_from_annotator_a"],
                           "resolution_code": None} for key in sorted(right_keys - left_keys))
+    inferability_exact = (first.get("irreversible_args_inferable") ==
+                          second.get("irreversible_args_inferable"))
+    leakage_exact = first.get("catalog_leakage_flag") == second.get("catalog_leakage_flag")
     return {
         "family": first.get("template_family") or second.get("template_family") or first["task_id"],
         "left_n": len(left), "right_n": len(right), "exact_claims": exact,
         "matches": matches, "pointer_tp": pointer_tp, "pointer_left": pointer_left,
         "pointer_right": pointer_right,
         "action_exact": canonical_json(first["action_sequence"]) == canonical_json(second["action_sequence"]),
+        "inferability_exact": inferability_exact,
+        "leakage_exact": leakage_exact,
         "disagreements": disagreements,
     }
 
@@ -237,6 +242,16 @@ def _aggregate(tasks: Iterable[dict[str, Any]]) -> dict[str, Any]:
         "action_sequence": {"agree": sum(t["action_exact"] for t in tasks),
                             "denominator": len(tasks),
                             "rate": sum(t["action_exact"] for t in tasks) / len(tasks)},
+        "irreversible_args_inferable": {
+            "agree": sum(t["inferability_exact"] for t in tasks),
+            "denominator": len(tasks),
+            "rate": sum(t["inferability_exact"] for t in tasks) / len(tasks),
+        },
+        "catalog_leakage_flag": {
+            "agree": sum(t["leakage_exact"] for t in tasks),
+            "denominator": len(tasks),
+            "rate": sum(t["leakage_exact"] for t in tasks) / len(tasks),
+        },
     }
 
 
@@ -255,7 +270,8 @@ def analyze_agreement(first: AnnotationSet, second: AnnotationSet, *, draws: int
     rng = random.Random(seed)
     paths = (("claim", "f1"), ("category", "rate"), ("status", "rate"),
              ("value", "rate"), ("criticality", "rate"), ("provenance", "f1"),
-             ("action_sequence", "rate"))
+             ("action_sequence", "rate"), ("irreversible_args_inferable", "rate"),
+             ("catalog_leakage_flag", "rate"))
     samples = {path: [] for path in paths}
     for _ in range(draws):
         chosen = [rng.choice(families) for _ in families]
@@ -274,6 +290,13 @@ def analyze_agreement(first: AnnotationSet, second: AnnotationSet, *, draws: int
     queue.extend({"task_id": task_id, "claim_key": None,
                   "fields": ["action_sequence"], "resolution_code": None}
                  for task_id, task in zip(sorted(a), task_counts) if not task["action_exact"])
+    queue.extend({"task_id": task_id, "claim_key": None,
+                  "fields": ["irreversible_args_inferable"], "resolution_code": None}
+                 for task_id, task in zip(sorted(a), task_counts)
+                 if not task["inferability_exact"])
+    queue.extend({"task_id": task_id, "claim_key": None,
+                  "fields": ["catalog_leakage_flag"], "resolution_code": None}
+                 for task_id, task in zip(sorted(a), task_counts) if not task["leakage_exact"])
     return {"protocol": "annotation-agreement-v1", "bootstrap_seed": seed,
             "bootstrap_draws": draws, "annotators": [first.annotator_id, second.annotator_id],
             "n_tasks": len(task_counts), "n_families": len(families),
@@ -287,7 +310,10 @@ def markdown_report(report: dict[str, Any]) -> str:
                                ("Status", "status", "rate"), ("Typed value", "value", "rate"),
                                ("Provenance F1", "provenance", "f1"),
                                ("Criticality", "criticality", "rate"),
-                               ("Exact action sequence", "action_sequence", "rate")):
+                               ("Exact action sequence", "action_sequence", "rate"),
+                               ("Irreversible arguments inferable",
+                                "irreversible_args_inferable", "rate"),
+                               ("Catalog leakage flag", "catalog_leakage_flag", "rate")):
         item = report["metrics"][key]; value = item[metric]
         denominator = item.get("denominator", item.get("annotator_a_denominator"))
         ci = item.get("cluster_bootstrap_ci", [None, None])

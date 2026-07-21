@@ -1,0 +1,388 @@
+{
+  "annotators": [
+    "annotator_a",
+    "annotator_b"
+  ],
+  "disagreements_only": true,
+  "format": "disagreement-queue-v2",
+  "n_tasks_compared": 63,
+  "queue": [
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_commerce_001"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_commerce_002"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_commerce_003"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_commerce_004"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_commerce_005"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_003"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_004"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_005"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_006"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_007"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_008"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_011"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_012"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_013"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_016"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_017"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_018"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_019"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_020"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_021"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_024"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_025"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_026"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_027"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_028"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_029"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_032"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_033"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_034"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_it_035"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_001"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_002"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_003"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_006"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_007"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_008"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_009"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_010"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_011"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_012"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_013"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_016"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_017"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_018"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_019"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_020"
+    },
+    {
+      "claim_key": "operation_scope_ref",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "repl_v3_procurement_021"
+    }
+  ],
+  "source_lock_manifest": "data/annotations/replacement_execution_v3/lock_manifest.locked.v1.json"
+}

@@ -1,0 +1,508 @@
+{
+  "assignments": [
+    {
+      "assignment_id": "1d8a7f5673b92250",
+      "position": 1,
+      "task_id": "repl_v3_it_014",
+      "packet": "repl_v3_it_014.json",
+      "packet_sha256": "22822ceba1d93d60e5c069c97896cf5a002d2a730eabbc9df3a11170e9e943f1",
+      "response": null
+    },
+    {
+      "assignment_id": "daffec61dad7a096",
+      "position": 2,
+      "task_id": "repl_v3_it_009",
+      "packet": "repl_v3_it_009.json",
+      "packet_sha256": "dc2aad5d6a87064648cd5db6624c84821b131de70392fd93feefd7d40485a616",
+      "response": null
+    },
+    {
+      "assignment_id": "03f34f843766274e",
+      "position": 3,
+      "task_id": "repl_v3_it_030",
+      "packet": "repl_v3_it_030.json",
+      "packet_sha256": "6fbfa7321ce5e67e2d06739a78df058644585271c6811f4d1c8ef88ac6adc0ca",
+      "response": null
+    },
+    {
+      "assignment_id": "591435c55cb7ab05",
+      "position": 4,
+      "task_id": "repl_v3_it_013",
+      "packet": "repl_v3_it_013.json",
+      "packet_sha256": "64e7c71a913893259fd3200a5de41e6c923b5bfba320e66b1e238d6c17d2597a",
+      "response": null
+    },
+    {
+      "assignment_id": "25b5842eda4aab41",
+      "position": 5,
+      "task_id": "repl_v3_it_024",
+      "packet": "repl_v3_it_024.json",
+      "packet_sha256": "bae35f3ec2e57c583b4d050fb968d4aee7eba9c0de32a1626dc14e64b030b56e",
+      "response": null
+    },
+    {
+      "assignment_id": "d7a97f8085cd61ab",
+      "position": 6,
+      "task_id": "repl_v3_procurement_023",
+      "packet": "repl_v3_procurement_023.json",
+      "packet_sha256": "419dfad0fc189baba45829a7dd8d997fa2079cc5b80d749ae73c7cebdd4ea88e",
+      "response": null
+    },
+    {
+      "assignment_id": "089f41ff33d6d076",
+      "position": 7,
+      "task_id": "repl_v3_it_012",
+      "packet": "repl_v3_it_012.json",
+      "packet_sha256": "131cd95fee7c8d7e64db5fe66020edd15f1325abcb6e7597d5d5c6f350fd39e4",
+      "response": null
+    },
+    {
+      "assignment_id": "50a0810a4bed4b2a",
+      "position": 8,
+      "task_id": "repl_v3_it_016",
+      "packet": "repl_v3_it_016.json",
+      "packet_sha256": "2af74783314305b6d24f4ce8a93bc4a79edd111323d805fa339c78c08b0d763c",
+      "response": null
+    },
+    {
+      "assignment_id": "b3f541e0efa22ba0",
+      "position": 9,
+      "task_id": "repl_v3_it_029",
+      "packet": "repl_v3_it_029.json",
+      "packet_sha256": "d4635fdd0bb06e090475a261e678016b91f0ced2e75aaa388f8b502161818bac",
+      "response": null
+    },
+    {
+      "assignment_id": "a4fd11a63e997ca6",
+      "position": 10,
+      "task_id": "repl_v3_commerce_002",
+      "packet": "repl_v3_commerce_002.json",
+      "packet_sha256": "968235a8b3ee0ef2940c958973e471589aa92e79891e77de95e0c9f22b571229",
+      "response": null
+    },
+    {
+      "assignment_id": "a34cafce7bfb33c6",
+      "position": 11,
+      "task_id": "repl_v3_procurement_013",
+      "packet": "repl_v3_procurement_013.json",
+      "packet_sha256": "062982711ae024c6db776bad712513fb9e2f8afd9396cd7688b66a49742a2dc7",
+      "response": null
+    },
+    {
+      "assignment_id": "7a648ed0c9492630",
+      "position": 12,
+      "task_id": "repl_v3_commerce_001",
+      "packet": "repl_v3_commerce_001.json",
+      "packet_sha256": "fc69f714182e7923dbfe88f475f0480b55e73e5ebc0845dd6eff84f5ef6701e3",
+      "response": null
+    },
+    {
+      "assignment_id": "b747ce1930583516",
+      "position": 13,
+      "task_id": "repl_v3_it_003",
+      "packet": "repl_v3_it_003.json",
+      "packet_sha256": "0617d0bafead301666f9b59ed55b66769ade9748146f57b2e093fdf3ad4be6b5",
+      "response": null
+    },
+    {
+      "assignment_id": "cba9c3fe8ef2c83a",
+      "position": 14,
+      "task_id": "repl_v3_it_017",
+      "packet": "repl_v3_it_017.json",
+      "packet_sha256": "e2dfa083510ee47191677e9bfdd9b50d8c05e29db6a7617fbbb36b06d929913c",
+      "response": null
+    },
+    {
+      "assignment_id": "65901542b2c2a4e9",
+      "position": 15,
+      "task_id": "repl_v3_procurement_020",
+      "packet": "repl_v3_procurement_020.json",
+      "packet_sha256": "2d2075ae1da1f1af9cef06c1dfcba77bbcbc7ef91dfab2f49503ea6b176ab85b",
+      "response": null
+    },
+    {
+      "assignment_id": "066ad1f397aaa3bb",
+      "position": 16,
+      "task_id": "repl_v3_procurement_014",
+      "packet": "repl_v3_procurement_014.json",
+      "packet_sha256": "54cff91818068c048bf8db8c09f553074ade60c61d7b1a6dd85afc590bbaa1f4",
+      "response": null
+    },
+    {
+      "assignment_id": "58d91304f35fcf39",
+      "position": 17,
+      "task_id": "repl_v3_procurement_016",
+      "packet": "repl_v3_procurement_016.json",
+      "packet_sha256": "0bae0ec70dbe4a43134f5926d850062154331e1d9347520e8594abdb878772e9",
+      "response": null
+    },
+    {
+      "assignment_id": "33296432d3bbfb24",
+      "position": 18,
+      "task_id": "repl_v3_procurement_006",
+      "packet": "repl_v3_procurement_006.json",
+      "packet_sha256": "ee4686196f6cadfc98f74272497326a075cc47299aa68aa25d5bd3c3f5efd9f3",
+      "response": null
+    },
+    {
+      "assignment_id": "a19760be7bd72f47",
+      "position": 19,
+      "task_id": "repl_v3_procurement_005",
+      "packet": "repl_v3_procurement_005.json",
+      "packet_sha256": "660209a45daaf330a2add293c771161c8a78b2f5a37f3d37cb75a9dc66d6ec2a",
+      "response": null
+    },
+    {
+      "assignment_id": "9f4dc83894c4264b",
+      "position": 20,
+      "task_id": "repl_v3_procurement_009",
+      "packet": "repl_v3_procurement_009.json",
+      "packet_sha256": "b1fbe6b98d1a360f54370fffdc76f836783429718b46125fa22a48d7096446fe",
+      "response": null
+    },
+    {
+      "assignment_id": "bbc4872bf4366978",
+      "position": 21,
+      "task_id": "repl_v3_it_033",
+      "packet": "repl_v3_it_033.json",
+      "packet_sha256": "d94f61349b1e030e6851be9d17fee98e195779e98389391979080bf2f6f3cfac",
+      "response": null
+    },
+    {
+      "assignment_id": "0c3e6ced51a1d5b3",
+      "position": 22,
+      "task_id": "repl_v3_it_027",
+      "packet": "repl_v3_it_027.json",
+      "packet_sha256": "042038d15dd98a4aeada1ab7cf6ddf26ebaa85ac31dc2d708c9e4b0279832c1a",
+      "response": null
+    },
+    {
+      "assignment_id": "9cf3d67a5f1c94fd",
+      "position": 23,
+      "task_id": "repl_v3_it_035",
+      "packet": "repl_v3_it_035.json",
+      "packet_sha256": "af96f5cb6b75a0953e9598236aab3bd6285762241854bee9af773173ab8a93a6",
+      "response": null
+    },
+    {
+      "assignment_id": "021f3f90e9f09795",
+      "position": 24,
+      "task_id": "repl_v3_it_008",
+      "packet": "repl_v3_it_008.json",
+      "packet_sha256": "574973aab61bfd8f522e31ee6aafa1603e33b3e0de0f7bc7af7f506df13641a6",
+      "response": null
+    },
+    {
+      "assignment_id": "7b7b9361b2c76470",
+      "position": 25,
+      "task_id": "repl_v3_procurement_008",
+      "packet": "repl_v3_procurement_008.json",
+      "packet_sha256": "7d5135944aed2b8f115ecbbf4135b50fdc2afd58592f0f6fab46d51014979d40",
+      "response": null
+    },
+    {
+      "assignment_id": "f32540d512532e73",
+      "position": 26,
+      "task_id": "repl_v3_it_006",
+      "packet": "repl_v3_it_006.json",
+      "packet_sha256": "11400bbc137a9f52a4859672f1ec659f98727d0e19b8562b8d4eb3abe17e1cfd",
+      "response": null
+    },
+    {
+      "assignment_id": "7ed139e2d9bcbc58",
+      "position": 27,
+      "task_id": "repl_v3_it_011",
+      "packet": "repl_v3_it_011.json",
+      "packet_sha256": "0b0d8384e7ad2dc720469cef4da4fce9d4aaf8afd56402e15ed8f543c4c4c479",
+      "response": null
+    },
+    {
+      "assignment_id": "9e23f48dae9f801b",
+      "position": 28,
+      "task_id": "repl_v3_procurement_012",
+      "packet": "repl_v3_procurement_012.json",
+      "packet_sha256": "0a6b4846a7f97358b6a588adbac42ec9eb3b71937e90af0b701a613c618bb6ac",
+      "response": null
+    },
+    {
+      "assignment_id": "7a32f52f7d0a546d",
+      "position": 29,
+      "task_id": "repl_v3_procurement_001",
+      "packet": "repl_v3_procurement_001.json",
+      "packet_sha256": "37c8bd1387626a0f4a2d03936098314f26f57b87c5718f57e37c84ddec9d8651",
+      "response": null
+    },
+    {
+      "assignment_id": "e34264bd64757cd0",
+      "position": 30,
+      "task_id": "repl_v3_procurement_019",
+      "packet": "repl_v3_procurement_019.json",
+      "packet_sha256": "011202c38c9209a6cd9b548f2636a1869ab33ede1e2c4cf3c3e10f01a3f0ee3c",
+      "response": null
+    },
+    {
+      "assignment_id": "c85a46e7d7e08425",
+      "position": 31,
+      "task_id": "repl_v3_procurement_003",
+      "packet": "repl_v3_procurement_003.json",
+      "packet_sha256": "c4f9d30e6adf78e70d2bef3097b837d51b2ea023ea7348ac1fcf3e6da60477f4",
+      "response": null
+    },
+    {
+      "assignment_id": "88ea82a3caa1c51d",
+      "position": 32,
+      "task_id": "repl_v3_it_023",
+      "packet": "repl_v3_it_023.json",
+      "packet_sha256": "2eea7c53a95406a6a164dee676d0895457880312e0fd4d96967ae353c5d0c828",
+      "response": null
+    },
+    {
+      "assignment_id": "ac1be72fa9859c15",
+      "position": 33,
+      "task_id": "repl_v3_procurement_004",
+      "packet": "repl_v3_procurement_004.json",
+      "packet_sha256": "8b09a868b237f1d15f9993d6e2d729c6f7984e970e3f5677ccfabf46b9eb53f6",
+      "response": null
+    },
+    {
+      "assignment_id": "f1542d1cb68bd6ed",
+      "position": 34,
+      "task_id": "repl_v3_procurement_022",
+      "packet": "repl_v3_procurement_022.json",
+      "packet_sha256": "acb6c27c1ba250050c2e9c9610042a3e72c424af0ad141660f0eb78ba1963d36",
+      "response": null
+    },
+    {
+      "assignment_id": "5262635897d8d3b0",
+      "position": 35,
+      "task_id": "repl_v3_procurement_002",
+      "packet": "repl_v3_procurement_002.json",
+      "packet_sha256": "08b97566b92ac9fc317ed7a3b1aff35d91bfa16dd64991152e36545a5044eec8",
+      "response": null
+    },
+    {
+      "assignment_id": "567b4b8f504c60de",
+      "position": 36,
+      "task_id": "repl_v3_procurement_007",
+      "packet": "repl_v3_procurement_007.json",
+      "packet_sha256": "87eb2eab4f5fc1e1e6701cc264d43de5d091f37f9726db36d80cefd3c1f4f502",
+      "response": null
+    },
+    {
+      "assignment_id": "46bd352df353db59",
+      "position": 37,
+      "task_id": "repl_v3_it_028",
+      "packet": "repl_v3_it_028.json",
+      "packet_sha256": "ddac71f94eb74130d576cb579bd01b2c61908e21741ac212934ef8d6fdccd9d8",
+      "response": null
+    },
+    {
+      "assignment_id": "c029bf18b80f9f03",
+      "position": 38,
+      "task_id": "repl_v3_procurement_018",
+      "packet": "repl_v3_procurement_018.json",
+      "packet_sha256": "dd5150e5c71846bdfe3254b3699c84dffd90df649e875c3452a42167b8cd70cb",
+      "response": null
+    },
+    {
+      "assignment_id": "fdf8dacd8d5d8b4b",
+      "position": 39,
+      "task_id": "repl_v3_it_019",
+      "packet": "repl_v3_it_019.json",
+      "packet_sha256": "8a805d9e5605153e4183145157c91bf904800a9dbdf0c9394287a64e15b75919",
+      "response": null
+    },
+    {
+      "assignment_id": "681b68858dcec42d",
+      "position": 40,
+      "task_id": "repl_v3_it_026",
+      "packet": "repl_v3_it_026.json",
+      "packet_sha256": "ff14508f3baea90c8c0a361aac6a6a216815cd38260552528d5314af7d7a011f",
+      "response": null
+    },
+    {
+      "assignment_id": "c1fb8af37a3a35c6",
+      "position": 41,
+      "task_id": "repl_v3_it_015",
+      "packet": "repl_v3_it_015.json",
+      "packet_sha256": "ff3787b9c88fec674552f114b0767d85d9c1a5f136097829308656c21f2c43ce",
+      "response": null
+    },
+    {
+      "assignment_id": "e4964513c5d05b25",
+      "position": 42,
+      "task_id": "repl_v3_procurement_010",
+      "packet": "repl_v3_procurement_010.json",
+      "packet_sha256": "7120e5fef018541c3f18b750be9eeccbea2111942de50f9ece092a30ad1be894",
+      "response": null
+    },
+    {
+      "assignment_id": "2a8bb36679a54579",
+      "position": 43,
+      "task_id": "repl_v3_it_018",
+      "packet": "repl_v3_it_018.json",
+      "packet_sha256": "9b8df9adf785aa777600237906c7d611b31a0f3f8e66560974b1f3049a8ca643",
+      "response": null
+    },
+    {
+      "assignment_id": "f24cdee1bf8e35ee",
+      "position": 44,
+      "task_id": "repl_v3_it_025",
+      "packet": "repl_v3_it_025.json",
+      "packet_sha256": "0129529ba863688f90f777d410d1214d8b25f0084e2f9e2f1b346e9f01a24846",
+      "response": null
+    },
+    {
+      "assignment_id": "6d03d014f6187fc1",
+      "position": 45,
+      "task_id": "repl_v3_procurement_021",
+      "packet": "repl_v3_procurement_021.json",
+      "packet_sha256": "17bab60fd5829c898c504982da68c1d31f50d4c96918b507cf0e23eaa19ee17f",
+      "response": null
+    },
+    {
+      "assignment_id": "c2c27a8b35434782",
+      "position": 46,
+      "task_id": "repl_v3_it_001",
+      "packet": "repl_v3_it_001.json",
+      "packet_sha256": "656d0a0bf08810f70b26a9b0cbcd8e898d2f54859c68558fb5e9442f6d04dc59",
+      "response": null
+    },
+    {
+      "assignment_id": "dd09ec9268c93532",
+      "position": 47,
+      "task_id": "repl_v3_procurement_015",
+      "packet": "repl_v3_procurement_015.json",
+      "packet_sha256": "fc7474edb731d7f7104506fff0bbe310e789644db5cd13d1075ef50fdc130e23",
+      "response": null
+    },
+    {
+      "assignment_id": "361cf0920bed5da4",
+      "position": 48,
+      "task_id": "repl_v3_commerce_004",
+      "packet": "repl_v3_commerce_004.json",
+      "packet_sha256": "9742be3d1e2b457a49e2306fdb1c560156b1d8cfaf27a7b3eb1f4d33367ba8b4",
+      "response": null
+    },
+    {
+      "assignment_id": "eb816b401d8391dc",
+      "position": 49,
+      "task_id": "repl_v3_it_002",
+      "packet": "repl_v3_it_002.json",
+      "packet_sha256": "763c5bd32da9a08c7e7fbf1ab8e600035762ba4675c50fd1a53ef989fb40f3e0",
+      "response": null
+    },
+    {
+      "assignment_id": "8097e06e64a62135",
+      "position": 50,
+      "task_id": "repl_v3_it_020",
+      "packet": "repl_v3_it_020.json",
+      "packet_sha256": "c194520003d6c66802e89d7424d0d77e59c5e355bd8a46e2be092663e109761f",
+      "response": null
+    },
+    {
+      "assignment_id": "dcaf97a33f90451c",
+      "position": 51,
+      "task_id": "repl_v3_it_021",
+      "packet": "repl_v3_it_021.json",
+      "packet_sha256": "663b69f236b216093aba86c9ec6c2d7859ca99d796075ac9106819461f48e90f",
+      "response": null
+    },
+    {
+      "assignment_id": "a8eb48cd3411c93a",
+      "position": 52,
+      "task_id": "repl_v3_it_032",
+      "packet": "repl_v3_it_032.json",
+      "packet_sha256": "c4f206a732f3ff6c613fe32e5d71d7e94e1e64642d6a4f7417f115ce1f5f39ee",
+      "response": null
+    },
+    {
+      "assignment_id": "cc5ab830ff5f0e02",
+      "position": 53,
+      "task_id": "repl_v3_it_010",
+      "packet": "repl_v3_it_010.json",
+      "packet_sha256": "f0dd245d8e7a6656ed0b75294fd7c6e20252540057c367ce860527f2c4748056",
+      "response": null
+    },
+    {
+      "assignment_id": "d3dcf6becdbc009a",
+      "position": 54,
+      "task_id": "repl_v3_commerce_005",
+      "packet": "repl_v3_commerce_005.json",
+      "packet_sha256": "83228df11bfbfcfccc605d6500c07697e1850668136e9d67b1399ac263bd6e9e",
+      "response": null
+    },
+    {
+      "assignment_id": "7ebaf757312d8802",
+      "position": 55,
+      "task_id": "repl_v3_procurement_017",
+      "packet": "repl_v3_procurement_017.json",
+      "packet_sha256": "63814f67afdf95c4dd959ca31214f9926580991e40a7ccd0f21e41633a605556",
+      "response": null
+    },
+    {
+      "assignment_id": "f85d67e9e10d3fda",
+      "position": 56,
+      "task_id": "repl_v3_it_031",
+      "packet": "repl_v3_it_031.json",
+      "packet_sha256": "1762edd774470a11092de64fd7e4698b39f0d6a6e05e49b9ffbdc0a457c20172",
+      "response": null
+    },
+    {
+      "assignment_id": "7cd5592bbe615599",
+      "position": 57,
+      "task_id": "repl_v3_it_022",
+      "packet": "repl_v3_it_022.json",
+      "packet_sha256": "d7cab75f0895aa1830061603fed361b62942565ef690a1d66c3261801084b83d",
+      "response": null
+    },
+    {
+      "assignment_id": "153ac1d65c014f5e",
+      "position": 58,
+      "task_id": "repl_v3_it_034",
+      "packet": "repl_v3_it_034.json",
+      "packet_sha256": "513c7530759cb23f7d673563f4379ba98290f18e5a72a1e15b20ef279777f398",
+      "response": null
+    },
+    {
+      "assignment_id": "ea3f364b4286aebf",
+      "position": 59,
+      "task_id": "repl_v3_it_004",
+      "packet": "repl_v3_it_004.json",
+      "packet_sha256": "7ac8df4093e04d1c07c3447fe2ca1e91c99001423494a7f46eddd4b466cb9cf0",
+      "response": null
+    },
+    {
+      "assignment_id": "20a19a2b77beadcd",
+      "position": 60,
+      "task_id": "repl_v3_procurement_011",
+      "packet": "repl_v3_procurement_011.json",
+      "packet_sha256": "ac248d836e2c7e1418134625e281b47bc906b2a6a9e3ace84744d2ee4810a757",
+      "response": null
+    },
+    {
+      "assignment_id": "d29a171ba3eaac43",
+      "position": 61,
+      "task_id": "repl_v3_it_005",
+      "packet": "repl_v3_it_005.json",
+      "packet_sha256": "cc18598c45697ad206632c8b9bf4efa3076ced4a45bae1110e4fe2401123d152",
+      "response": null
+    },
+    {
+      "assignment_id": "3de80fca754ccb91",
+      "position": 62,
+      "task_id": "repl_v3_it_007",
+      "packet": "repl_v3_it_007.json",
+      "packet_sha256": "cdc9e4e0fbc6273db7eb3dd7775a4e416507cb905e1c7e33ab0347bd135012da",
+      "response": null
+    },
+    {
+      "assignment_id": "2a2259b205a685ff",
+      "position": 63,
+      "task_id": "repl_v3_commerce_003",
+      "packet": "repl_v3_commerce_003.json",
+      "packet_sha256": "13448fc4ba2aa70983813b46bbae46e55a87903a28ae69e1ed07e34be1804f54",
+      "response": null
+    }
+  ]
+}

@@ -1,0 +1,5962 @@
+{
+  "annotators": [
+    "annotator_a",
+    "annotator_b"
+  ],
+  "disagreements_only": true,
+  "format": "disagreement-queue-v2",
+  "n_tasks_compared": 200,
+  "queue": [
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_001"
+    },
+    {
+      "claim_key": "damage",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_001"
+    },
+    {
+      "claim_key": "alternate_stock",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_001"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_002"
+    },
+    {
+      "claim_key": "missing_line",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_002"
+    },
+    {
+      "claim_key": "refund_amount",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_002"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_003"
+    },
+    {
+      "claim_key": "correct_stock",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_003"
+    },
+    {
+      "claim_key": "hold_amount",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_003"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_004"
+    },
+    {
+      "claim_key": "warranty_active",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_004"
+    },
+    {
+      "claim_key": "covered_remedy",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_004"
+    },
+    {
+      "claim_key": "current_lot",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_005"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_005"
+    },
+    {
+      "claim_key": "recall_rule",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_005"
+    },
+    {
+      "claim_key": "remedy_eligibility",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_005"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_006"
+    },
+    {
+      "claim_key": "ingredient_record",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_006"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_007"
+    },
+    {
+      "claim_key": "prorated_amount",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_007"
+    },
+    {
+      "claim_key": "full_refund_ineligible",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_007"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_008"
+    },
+    {
+      "claim_key": "duplicate_capture",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_008"
+    },
+    {
+      "claim_key": "pending_authorization",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_008"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_009"
+    },
+    {
+      "claim_key": "eligible_offer",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_009"
+    },
+    {
+      "claim_key": "credit_amount",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_009"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_010"
+    },
+    {
+      "claim_key": "coupon_values",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_010"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_011"
+    },
+    {
+      "claim_key": "revised_release",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_011"
+    },
+    {
+      "claim_key": "cancel_eligible",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_011"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_012"
+    },
+    {
+      "claim_key": "line_status",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_012"
+    },
+    {
+      "claim_key": "combined_eta",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_012"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_013"
+    },
+    {
+      "claim_key": "fulfillment_stage",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_013"
+    },
+    {
+      "claim_key": "redirect_eligible",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_013"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_014"
+    },
+    {
+      "claim_key": "carrier_handoff",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_014"
+    },
+    {
+      "claim_key": "intercept_option",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_014"
+    },
+    {
+      "claim_key": "fee",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_014"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_015"
+    },
+    {
+      "claim_key": "pickup_option",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_015"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_016"
+    },
+    {
+      "claim_key": "age_requirement",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_016"
+    },
+    {
+      "claim_key": "inventory",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_016"
+    },
+    {
+      "claim_key": "recipient_id_verified",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_016"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_017"
+    },
+    {
+      "claim_key": "credit_value",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_017"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_018"
+    },
+    {
+      "claim_key": "proof_mismatch",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_018"
+    },
+    {
+      "claim_key": "seller_response_window",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_018"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_019"
+    },
+    {
+      "claim_key": "not_downloaded",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_019"
+    },
+    {
+      "claim_key": "refund_eligible",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_019"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_020"
+    },
+    {
+      "claim_key": "seat_ownership",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_020"
+    },
+    {
+      "claim_key": "source_assignment",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_020"
+    },
+    {
+      "claim_key": "admin_authority",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_020"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_021"
+    },
+    {
+      "claim_key": "inspection_condition",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_021"
+    },
+    {
+      "claim_key": "revised_quote",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_021"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_022"
+    },
+    {
+      "claim_key": "inventory",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_022"
+    },
+    {
+      "claim_key": "coverage",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_022"
+    },
+    {
+      "claim_key": "slot",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_022"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_023"
+    },
+    {
+      "claim_key": "final_proof",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_023"
+    },
+    {
+      "claim_key": "nonreturnable_policy",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_023"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_024"
+    },
+    {
+      "claim_key": "point_buckets",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_024"
+    },
+    {
+      "claim_key": "redemption_order",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_024"
+    },
+    {
+      "claim_key": "reward_inventory",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_024"
+    },
+    {
+      "claim_key": "tax",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_024"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_025"
+    },
+    {
+      "claim_key": "bundle_price",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_025"
+    },
+    {
+      "claim_key": "prorated_refund",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_025"
+    },
+    {
+      "claim_key": "retention_charge",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_025"
+    },
+    {
+      "claim_key": "returned_serial",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_026"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_026"
+    },
+    {
+      "claim_key": "order_serial",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_026"
+    },
+    {
+      "claim_key": "replacement_stock",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_026"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_027"
+    },
+    {
+      "claim_key": "payoff_amount",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_027"
+    },
+    {
+      "claim_key": "quote_expiry",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_027"
+    },
+    {
+      "claim_key": "autopay_scheduled",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_027"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_028"
+    },
+    {
+      "claim_key": "jurisdiction_rule",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_028"
+    },
+    {
+      "claim_key": "certificate_expired",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_028"
+    },
+    {
+      "claim_key": "exemption_verified",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_028"
+    },
+    {
+      "claim_key": "po_revision",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_029"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_029"
+    },
+    {
+      "claim_key": "invoice_amount",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_029"
+    },
+    {
+      "claim_key": "current_po_cap",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_029"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_030"
+    },
+    {
+      "claim_key": "substitute_price",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_030"
+    },
+    {
+      "claim_key": "removal_allowed",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_030"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_031"
+    },
+    {
+      "claim_key": "floor",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_031"
+    },
+    {
+      "claim_key": "crew_requirement",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_031"
+    },
+    {
+      "claim_key": "stair_fee",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_031"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_032"
+    },
+    {
+      "claim_key": "hazard_class",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_032"
+    },
+    {
+      "claim_key": "mail_prohibited",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_032"
+    },
+    {
+      "claim_key": "dropoff_site",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_032"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_033"
+    },
+    {
+      "claim_key": "export_status",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_033"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_034"
+    },
+    {
+      "claim_key": "chargeback_open",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_034"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_035"
+    },
+    {
+      "claim_key": "production_not_started",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_035"
+    },
+    {
+      "claim_key": "cutoff_open",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_035"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_036"
+    },
+    {
+      "claim_key": "transfer_quota",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_036"
+    },
+    {
+      "claim_key": "target_household_verified",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_036"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_037"
+    },
+    {
+      "claim_key": "carrier_lock",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_037"
+    },
+    {
+      "claim_key": "unlock_date",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_037"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_038"
+    },
+    {
+      "claim_key": "temperature_excursion",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_038"
+    },
+    {
+      "claim_key": "disposal_required",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_038"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_039"
+    },
+    {
+      "claim_key": "hold_valid",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_039"
+    },
+    {
+      "claim_key": "no_capture",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_039"
+    },
+    {
+      "claim_key": "order_total",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_039"
+    },
+    {
+      "claim_key": "backup_status",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_040"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_040"
+    },
+    {
+      "claim_key": "erase_risk",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_040"
+    },
+    {
+      "claim_key": "manager_verification",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_001"
+    },
+    {
+      "claim_key": "account_locked",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_001"
+    },
+    {
+      "claim_key": "termination_effective",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_002"
+    },
+    {
+      "claim_key": "directory_disabled",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_002"
+    },
+    {
+      "claim_key": "active_sessions",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_002"
+    },
+    {
+      "claim_key": "incident_resolved",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_003"
+    },
+    {
+      "claim_key": "grant_active",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_003"
+    },
+    {
+      "claim_key": "new_leaf",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_004"
+    },
+    {
+      "claim_key": "missing_intermediate",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_004"
+    },
+    {
+      "claim_key": "canary_failed",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_004"
+    },
+    {
+      "claim_key": "ttl_propagation",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_005"
+    },
+    {
+      "claim_key": "new_endpoint_healthy",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_005"
+    },
+    {
+      "claim_key": "current_ttl",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_005"
+    },
+    {
+      "claim_key": "snapshot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_006"
+    },
+    {
+      "claim_key": "scan_clean",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_006"
+    },
+    {
+      "claim_key": "alert_confidence",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_007"
+    },
+    {
+      "claim_key": "host_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_007"
+    },
+    {
+      "claim_key": "exfiltration_active",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_007"
+    },
+    {
+      "claim_key": "severity",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_008"
+    },
+    {
+      "claim_key": "compatibility_failed",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_008"
+    },
+    {
+      "claim_key": "control_available",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_008"
+    },
+    {
+      "claim_key": "write_freeze",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_009"
+    },
+    {
+      "claim_key": "replica_health",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_009"
+    },
+    {
+      "claim_key": "replication_lag",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_009"
+    },
+    {
+      "claim_key": "requested_flow",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_010"
+    },
+    {
+      "claim_key": "shadowing_rule",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_010"
+    },
+    {
+      "claim_key": "replacement_deployed",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_011"
+    },
+    {
+      "claim_key": "public_exposure",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_011"
+    },
+    {
+      "claim_key": "key_active",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_011"
+    },
+    {
+      "claim_key": "account_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_011"
+    },
+    {
+      "claim_key": "validation",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_012"
+    },
+    {
+      "claim_key": "new_signing_cert",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_012"
+    },
+    {
+      "claim_key": "overlap_end",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_012"
+    },
+    {
+      "claim_key": "forward_rule",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_013"
+    },
+    {
+      "claim_key": "user_denial",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_013"
+    },
+    {
+      "claim_key": "external_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_013"
+    },
+    {
+      "claim_key": "device_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_014"
+    },
+    {
+      "claim_key": "ownership",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_014"
+    },
+    {
+      "claim_key": "profile_separable",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_014"
+    },
+    {
+      "claim_key": "approved_local_window",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_015"
+    },
+    {
+      "claim_key": "utc_conversion",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_015"
+    },
+    {
+      "claim_key": "region",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_015"
+    },
+    {
+      "claim_key": "ingest_rate",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_016"
+    },
+    {
+      "claim_key": "quota",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_016"
+    },
+    {
+      "claim_key": "archive_approved",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_016"
+    },
+    {
+      "claim_key": "legacy_rotation",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_017"
+    },
+    {
+      "claim_key": "shared_client",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_017"
+    },
+    {
+      "claim_key": "traffic_split",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_017"
+    },
+    {
+      "claim_key": "quota_usage",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_018"
+    },
+    {
+      "claim_key": "orphan_workloads",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_018"
+    },
+    {
+      "claim_key": "protected_workload",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_018"
+    },
+    {
+      "claim_key": "device_noncompliant",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_019"
+    },
+    {
+      "claim_key": "dataset_map",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_020"
+    },
+    {
+      "claim_key": "new_owner",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_021"
+    },
+    {
+      "claim_key": "user_inactive",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_021"
+    },
+    {
+      "claim_key": "automation_dependency",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_021"
+    },
+    {
+      "claim_key": "fix_deployed",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_022"
+    },
+    {
+      "claim_key": "dead_letter_ids",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_022"
+    },
+    {
+      "claim_key": "processed_ids",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_022"
+    },
+    {
+      "claim_key": "dual_read_support",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_023"
+    },
+    {
+      "claim_key": "old_workers_active",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_023"
+    },
+    {
+      "claim_key": "unrelated_alert_active",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_024"
+    },
+    {
+      "claim_key": "recovery_code_status",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_025"
+    },
+    {
+      "claim_key": "identity_proof_complete",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_025"
+    },
+    {
+      "claim_key": "old_factor_lost",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_025"
+    },
+    {
+      "claim_key": "private_copy",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_026"
+    },
+    {
+      "claim_key": "snapshot_acl",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_026"
+    },
+    {
+      "claim_key": "data_class",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_026"
+    },
+    {
+      "claim_key": "dependent_clone",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_026"
+    },
+    {
+      "claim_key": "failed_cohort_fix",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_027"
+    },
+    {
+      "claim_key": "approved_patch",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_027"
+    },
+    {
+      "claim_key": "cohort_tests",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_027"
+    },
+    {
+      "claim_key": "pool_utilization",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_028"
+    },
+    {
+      "claim_key": "stale_leases",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_028"
+    },
+    {
+      "claim_key": "reserved_range",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_028"
+    },
+    {
+      "claim_key": "dnssec_rollover",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_029"
+    },
+    {
+      "claim_key": "transfer_lock",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_029"
+    },
+    {
+      "claim_key": "anomalous_token_use",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_030"
+    },
+    {
+      "claim_key": "queued_releases",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_030"
+    },
+    {
+      "claim_key": "clean_runner_ready",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_030"
+    },
+    {
+      "claim_key": "quarantine_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_031"
+    },
+    {
+      "claim_key": "false_positive_evidence",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_031"
+    },
+    {
+      "claim_key": "required_retain_until",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_032"
+    },
+    {
+      "claim_key": "current_retain_until",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_032"
+    },
+    {
+      "claim_key": "lock_mode",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_032"
+    },
+    {
+      "claim_key": "clock_drift",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_033"
+    },
+    {
+      "claim_key": "peer_health",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_033"
+    },
+    {
+      "claim_key": "quorum",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_033"
+    },
+    {
+      "claim_key": "new_pool_healthy",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_034"
+    },
+    {
+      "claim_key": "active_sessions",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_034"
+    },
+    {
+      "claim_key": "requested_uris",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_035"
+    },
+    {
+      "claim_key": "domain_ownership",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_035"
+    },
+    {
+      "claim_key": "restricted_folder",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_036"
+    },
+    {
+      "claim_key": "firmware_hash",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_037"
+    },
+    {
+      "claim_key": "signing_cert_revoked",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_037"
+    },
+    {
+      "claim_key": "replacement_available",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_037"
+    },
+    {
+      "claim_key": "hotfix_reviewed",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_038"
+    },
+    {
+      "claim_key": "ci_outage",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_038"
+    },
+    {
+      "claim_key": "replica_rewrap",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_039"
+    },
+    {
+      "claim_key": "primary_rewrapped",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_039"
+    },
+    {
+      "claim_key": "replica_offline",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_039"
+    },
+    {
+      "claim_key": "signature_valid",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_040"
+    },
+    {
+      "claim_key": "delivery_timestamps",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_040"
+    },
+    {
+      "claim_key": "duplicate_ids",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_040"
+    },
+    {
+      "claim_key": "additional_quotes",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_001"
+    },
+    {
+      "claim_key": "estimated_total",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_001"
+    },
+    {
+      "claim_key": "severity",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_002"
+    },
+    {
+      "claim_key": "supplier_available",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_002"
+    },
+    {
+      "claim_key": "aggregate_total",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_003"
+    },
+    {
+      "claim_key": "bank_verification",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_004"
+    },
+    {
+      "claim_key": "tax_form_valid",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_004"
+    },
+    {
+      "claim_key": "sanctions_clear",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_004"
+    },
+    {
+      "claim_key": "conflict_disclosed",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_005"
+    },
+    {
+      "claim_key": "scores_exist",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_005"
+    },
+    {
+      "claim_key": "replacement_available",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_005"
+    },
+    {
+      "claim_key": "exception",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_006"
+    },
+    {
+      "claim_key": "data_class",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_006"
+    },
+    {
+      "claim_key": "offered_regions",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_006"
+    },
+    {
+      "claim_key": "notice_deadline",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_007"
+    },
+    {
+      "claim_key": "usage",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_007"
+    },
+    {
+      "claim_key": "notice_unsent",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_007"
+    },
+    {
+      "claim_key": "landed_costs",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_008"
+    },
+    {
+      "claim_key": "incoterms",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_008"
+    },
+    {
+      "claim_key": "eta",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_008"
+    },
+    {
+      "claim_key": "replacement_rate",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_009"
+    },
+    {
+      "claim_key": "quote_currency",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_009"
+    },
+    {
+      "claim_key": "payment_date",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_009"
+    },
+    {
+      "claim_key": "fx_lock_expired",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_009"
+    },
+    {
+      "claim_key": "credit_note",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_010"
+    },
+    {
+      "claim_key": "ordered_qty",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_010"
+    },
+    {
+      "claim_key": "received_qty",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_010"
+    },
+    {
+      "claim_key": "invoiced_qty",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_010"
+    },
+    {
+      "claim_key": "scope_delta",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_011"
+    },
+    {
+      "claim_key": "schedule_impact",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_011"
+    },
+    {
+      "claim_key": "normalized_identity",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_012"
+    },
+    {
+      "claim_key": "prior_payment",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_012"
+    },
+    {
+      "claim_key": "additional_funds",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_013"
+    },
+    {
+      "claim_key": "available_balance",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_013"
+    },
+    {
+      "claim_key": "pending_total",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_013"
+    },
+    {
+      "claim_key": "net_demand",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_014"
+    },
+    {
+      "claim_key": "moq",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_014"
+    },
+    {
+      "claim_key": "alternate_terms",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_014"
+    },
+    {
+      "claim_key": "applicable_clauses",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_015"
+    },
+    {
+      "claim_key": "service_date",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_016"
+    },
+    {
+      "claim_key": "coverage",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_016"
+    },
+    {
+      "claim_key": "certificate_expired",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_016"
+    },
+    {
+      "claim_key": "engineering_disposition",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_017"
+    },
+    {
+      "claim_key": "substitute_spec",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_017"
+    },
+    {
+      "claim_key": "inspection_result",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_018"
+    },
+    {
+      "claim_key": "delivery_received",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_018"
+    },
+    {
+      "claim_key": "visible_damage",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_018"
+    },
+    {
+      "claim_key": "prepay_terms",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_019"
+    },
+    {
+      "claim_key": "credit_score",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_019"
+    },
+    {
+      "claim_key": "service_class",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_020"
+    },
+    {
+      "claim_key": "lot_membership",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_020"
+    },
+    {
+      "claim_key": "end_use_certificate",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_021"
+    },
+    {
+      "claim_key": "classification",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_021"
+    },
+    {
+      "claim_key": "destination",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_021"
+    },
+    {
+      "claim_key": "end_user",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_021"
+    },
+    {
+      "claim_key": "amount",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_022"
+    },
+    {
+      "claim_key": "delegate_limit",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_022"
+    },
+    {
+      "claim_key": "total_demand",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_023"
+    },
+    {
+      "claim_key": "capacity",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_023"
+    },
+    {
+      "claim_key": "plant_priorities",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_023"
+    },
+    {
+      "claim_key": "milestone_paid",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_024"
+    },
+    {
+      "claim_key": "retention_amount",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_024"
+    },
+    {
+      "claim_key": "open_defects",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_024"
+    },
+    {
+      "claim_key": "reserve_exception",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_025"
+    },
+    {
+      "claim_key": "auction_closed",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_025"
+    },
+    {
+      "claim_key": "lowest_bid",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_025"
+    },
+    {
+      "claim_key": "committed_volume",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_026"
+    },
+    {
+      "claim_key": "released_volume",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_026"
+    },
+    {
+      "claim_key": "tier_schedule",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_026"
+    },
+    {
+      "claim_key": "current_assurance",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_027"
+    },
+    {
+      "claim_key": "reported_emissions",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_027"
+    },
+    {
+      "claim_key": "ownership_clarification",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_028"
+    },
+    {
+      "claim_key": "certification",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_028"
+    },
+    {
+      "claim_key": "registry_record",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_028"
+    },
+    {
+      "claim_key": "service_life",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_029"
+    },
+    {
+      "claim_key": "lease_cashflows",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_029"
+    },
+    {
+      "claim_key": "maintenance_forecast",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_029"
+    },
+    {
+      "claim_key": "coverage_exclusions",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_030"
+    },
+    {
+      "claim_key": "sla_options",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_030"
+    },
+    {
+      "claim_key": "damage_liability",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_031"
+    },
+    {
+      "claim_key": "consumed_units",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_031"
+    },
+    {
+      "claim_key": "title_trigger",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_031"
+    },
+    {
+      "claim_key": "damaged_units",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_031"
+    },
+    {
+      "claim_key": "hazard_class",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_032"
+    },
+    {
+      "claim_key": "route",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_032"
+    },
+    {
+      "claim_key": "carrier_permits",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_032"
+    },
+    {
+      "claim_key": "wipe_certificate",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_033"
+    },
+    {
+      "claim_key": "ownership",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_033"
+    },
+    {
+      "claim_key": "residual_value",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_033"
+    },
+    {
+      "claim_key": "data_bearing",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_033"
+    },
+    {
+      "claim_key": "negotiated_clause",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_034"
+    },
+    {
+      "claim_key": "supplier_ip_clause",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_034"
+    },
+    {
+      "claim_key": "cure_evidence",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_035"
+    },
+    {
+      "claim_key": "invoice_received",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_035"
+    },
+    {
+      "claim_key": "test_failures",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_035"
+    },
+    {
+      "claim_key": "revised_forecast",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_036"
+    },
+    {
+      "claim_key": "firm_horizon",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_036"
+    },
+    {
+      "claim_key": "supplier_commitments",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_036"
+    },
+    {
+      "claim_key": "policy_limit",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_037"
+    },
+    {
+      "claim_key": "aggregate_consumed",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_037"
+    },
+    {
+      "claim_key": "damage_assessment",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_038"
+    },
+    {
+      "claim_key": "deposit_amount",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_038"
+    },
+    {
+      "claim_key": "returned_count",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_038"
+    },
+    {
+      "claim_key": "participation_status",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_039"
+    },
+    {
+      "claim_key": "contract_category",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_039"
+    },
+    {
+      "claim_key": "ship_to",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_040"
+    },
+    {
+      "claim_key": "tax_code",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_040"
+    },
+    {
+      "claim_key": "calculated_tax",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_040"
+    },
+    {
+      "claim_key": "offered_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_001"
+    },
+    {
+      "claim_key": "joint_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_002"
+    },
+    {
+      "claim_key": "series_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_003"
+    },
+    {
+      "claim_key": "panel_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_004"
+    },
+    {
+      "claim_key": "eligible_room_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_005"
+    },
+    {
+      "claim_key": "candidate_number",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_005"
+    },
+    {
+      "claim_key": "calibration_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_006"
+    },
+    {
+      "claim_key": "appointment_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_007"
+    },
+    {
+      "claim_key": "conference_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_009"
+    },
+    {
+      "claim_key": "fee_quote_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_010"
+    },
+    {
+      "claim_key": "pickup_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_011"
+    },
+    {
+      "claim_key": "pickup_contact",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_011"
+    },
+    {
+      "claim_key": "outage_window_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_012"
+    },
+    {
+      "claim_key": "available_room_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_013"
+    },
+    {
+      "claim_key": "meeting_instant_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_014"
+    },
+    {
+      "claim_key": "send_invites",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_014"
+    },
+    {
+      "claim_key": "replacement_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_015"
+    },
+    {
+      "claim_key": "technician_visit_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_016"
+    },
+    {
+      "claim_key": "inspection_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_017"
+    },
+    {
+      "claim_key": "site_contact",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_017"
+    },
+    {
+      "claim_key": "hearing_window_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_018"
+    },
+    {
+      "claim_key": "pickup_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_019"
+    },
+    {
+      "claim_key": "class_section_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_020"
+    },
+    {
+      "claim_key": "safe_briefing_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_021"
+    },
+    {
+      "claim_key": "onboarding_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_022"
+    },
+    {
+      "claim_key": "meeting_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_023"
+    },
+    {
+      "claim_key": "meeting_title",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_023"
+    },
+    {
+      "claim_key": "drill_window_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_024"
+    },
+    {
+      "claim_key": "swap_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_025"
+    },
+    {
+      "claim_key": "dock_window_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_026"
+    },
+    {
+      "claim_key": "tour_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_027"
+    },
+    {
+      "claim_key": "mediation_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_028"
+    },
+    {
+      "claim_key": "preop_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_029"
+    },
+    {
+      "claim_key": "change_window_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_030"
+    },
+    {
+      "claim_key": "advising_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_031"
+    },
+    {
+      "claim_key": "property_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_032"
+    },
+    {
+      "claim_key": "panel_window_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_033"
+    },
+    {
+      "claim_key": "venue_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_034"
+    },
+    {
+      "claim_key": "case_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_035"
+    },
+    {
+      "claim_key": "shutdown_window_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_036"
+    },
+    {
+      "claim_key": "waitlist_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_037"
+    },
+    {
+      "claim_key": "volunteer_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_038"
+    },
+    {
+      "claim_key": "instrument_slot_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_039"
+    },
+    {
+      "claim_key": "conference_session_id",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_040"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_001"
+    },
+    {
+      "claim_key": "cancelled_segment",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_001"
+    },
+    {
+      "claim_key": "option",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_001"
+    },
+    {
+      "claim_key": "fee",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_001"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_002"
+    },
+    {
+      "claim_key": "predicted_arrival",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_002"
+    },
+    {
+      "claim_key": "connection_infeasible",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_002"
+    },
+    {
+      "claim_key": "protection_eligible",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_002"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_003"
+    },
+    {
+      "claim_key": "standby_inventory",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_003"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_004"
+    },
+    {
+      "claim_key": "ticket_name",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_004"
+    },
+    {
+      "claim_key": "document_name",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_004"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_005"
+    },
+    {
+      "claim_key": "material_change",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_005"
+    },
+    {
+      "claim_key": "refund_eligible",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_005"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_006"
+    },
+    {
+      "claim_key": "segment_quote",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_006"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_007"
+    },
+    {
+      "claim_key": "award_inventory",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_007"
+    },
+    {
+      "claim_key": "miles_balance",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_007"
+    },
+    {
+      "claim_key": "tax",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_007"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_008"
+    },
+    {
+      "claim_key": "age",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_008"
+    },
+    {
+      "claim_key": "nonstop_option",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_008"
+    },
+    {
+      "claim_key": "guardian_form_status",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_008"
+    },
+    {
+      "claim_key": "kennel_dimensions",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_009"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_009"
+    },
+    {
+      "claim_key": "pet_slot_available",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_009"
+    },
+    {
+      "claim_key": "weight_limit",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_009"
+    },
+    {
+      "claim_key": "share_assistance_need",
+      "fields": [
+        "category"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_010"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_010"
+    },
+    {
+      "claim_key": "transfer_time",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_010"
+    },
+    {
+      "claim_key": "escort_available",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_010"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_011"
+    },
+    {
+      "claim_key": "route_rules",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_011"
+    },
+    {
+      "claim_key": "visa_free_option",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_011"
+    },
+    {
+      "claim_key": "passport_expiry",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_012"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_012"
+    },
+    {
+      "claim_key": "validity_rule",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_012"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_013"
+    },
+    {
+      "claim_key": "qualifying_room",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_013"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_014"
+    },
+    {
+      "claim_key": "converted_total",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_014"
+    },
+    {
+      "claim_key": "deposit",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_014"
+    },
+    {
+      "claim_key": "roll_in_shower_status",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_015"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_015"
+    },
+    {
+      "claim_key": "candidate_room",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_015"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_016"
+    },
+    {
+      "claim_key": "relocation_option",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_016"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_017"
+    },
+    {
+      "claim_key": "qualifying_itinerary",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_017"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_018"
+    },
+    {
+      "claim_key": "strike_cancellation",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_018"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_019"
+    },
+    {
+      "claim_key": "age_eligible",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_019"
+    },
+    {
+      "claim_key": "rate",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_019"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_020"
+    },
+    {
+      "claim_key": "damage_record",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_020"
+    },
+    {
+      "claim_key": "fuel_policy",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_020"
+    },
+    {
+      "claim_key": "hold_amount",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_020"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_021"
+    },
+    {
+      "claim_key": "cabin_inventory",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_021"
+    },
+    {
+      "claim_key": "safety_review",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_021"
+    },
+    {
+      "claim_key": "vehicle_height",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_022"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_022"
+    },
+    {
+      "claim_key": "deck_limits",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_022"
+    },
+    {
+      "claim_key": "sailing",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_022"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_023"
+    },
+    {
+      "claim_key": "plan_terms",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_023"
+    },
+    {
+      "claim_key": "premium",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_023"
+    },
+    {
+      "claim_key": "current_delivery_address",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_024"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_024"
+    },
+    {
+      "claim_key": "bag_status",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_024"
+    },
+    {
+      "claim_key": "last_scan",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_024"
+    },
+    {
+      "claim_key": "delivery_eligible",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_024"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_025"
+    },
+    {
+      "claim_key": "credit_balance",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_025"
+    },
+    {
+      "claim_key": "credit_owner",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_025"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_026"
+    },
+    {
+      "claim_key": "certificate_valid",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_026"
+    },
+    {
+      "claim_key": "paired_inventory",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_026"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_027"
+    },
+    {
+      "claim_key": "fare_rule",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_027"
+    },
+    {
+      "claim_key": "constructed_fare",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_027"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_028"
+    },
+    {
+      "claim_key": "operating_carrier",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_028"
+    },
+    {
+      "claim_key": "operating_bag_rule",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_028"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_029"
+    },
+    {
+      "claim_key": "member_access",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_029"
+    },
+    {
+      "claim_key": "guest_entitlement",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_029"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_030"
+    },
+    {
+      "claim_key": "driver_capacity",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_030"
+    },
+    {
+      "claim_key": "change_fee",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_030"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_031"
+    },
+    {
+      "claim_key": "operator_cancellation",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_031"
+    },
+    {
+      "claim_key": "remedies",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_031"
+    },
+    {
+      "claim_key": "slot_conflict",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_031"
+    },
+    {
+      "claim_key": "start_date",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_032"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_032"
+    },
+    {
+      "claim_key": "blackout_calendar",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_032"
+    },
+    {
+      "claim_key": "pass_inventory",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_032"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_033"
+    },
+    {
+      "claim_key": "seat_blocks",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_033"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_034"
+    },
+    {
+      "claim_key": "coverage_map",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_034"
+    },
+    {
+      "claim_key": "pay_by_plate_fee",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_034"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_035"
+    },
+    {
+      "claim_key": "fx_quote",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_035"
+    },
+    {
+      "claim_key": "cash_inventory",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_035"
+    },
+    {
+      "claim_key": "recipient_identity_verified",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_035"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_036"
+    },
+    {
+      "claim_key": "battery_wh",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_036"
+    },
+    {
+      "claim_key": "removable",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_036"
+    },
+    {
+      "claim_key": "threshold_eligible",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_036"
+    },
+    {
+      "claim_key": "carrier_clearance",
+      "fields": [
+        "category",
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_036"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_037"
+    },
+    {
+      "claim_key": "held_seats",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_037"
+    },
+    {
+      "claim_key": "name_deadline",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_037"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_038"
+    },
+    {
+      "claim_key": "withdrawal_open",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_038"
+    },
+    {
+      "claim_key": "active_bid",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_038"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_039"
+    },
+    {
+      "claim_key": "form_complete",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_039"
+    },
+    {
+      "claim_key": "portrait_invalid",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_039"
+    },
+    {
+      "claim_key": "fee",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_039"
+    },
+    {
+      "claim_key": "eligible_action_target",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_040"
+    },
+    {
+      "claim_key": "booking_unused",
+      "fields": [
+        "criticality"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_040"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_008"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_004"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_008"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_015"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_016"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_022"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_023"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_028"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_030"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_033"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_035"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_036"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_037"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_040"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_003"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_008"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_012"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_014"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_016"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_020"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_023"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_028"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_029"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_032"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_037"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "action_sequence"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_040"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_001"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_002"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_003"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_004"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_005"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_006"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_007"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_008"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_009"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_010"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_011"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_012"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_013"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_014"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_015"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_016"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_017"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_018"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_019"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_020"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_021"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_022"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_023"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_024"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_025"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_026"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_027"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_028"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_029"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_030"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_031"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_032"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_033"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_034"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_035"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_036"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_037"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_038"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_039"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_commerce_040"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_001"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_002"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_003"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_004"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_005"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_006"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_007"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_008"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_009"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_010"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_011"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_012"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_013"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_014"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_015"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_016"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_017"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_018"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_019"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_020"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_021"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_022"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_023"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_024"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_025"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_026"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_027"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_028"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_029"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_030"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_031"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_032"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_033"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_034"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_035"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_036"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_037"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_038"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_039"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_it_040"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_001"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_002"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_003"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_004"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_005"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_006"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_007"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_008"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_009"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_010"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_011"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_012"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_013"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_014"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_015"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_016"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_017"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_018"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_019"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_020"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_021"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_022"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_023"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_024"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_025"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_026"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_027"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_028"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_029"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_030"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_031"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_032"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_033"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_034"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_035"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_036"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_037"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_038"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_039"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_procurement_040"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_001"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_002"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_003"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_004"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_005"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_006"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_007"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_008"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_009"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_010"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_011"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_012"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_013"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_014"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_015"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_016"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_017"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_018"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_019"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_020"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_021"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_022"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_023"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_024"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_025"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_026"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_027"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_028"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_029"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_030"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_031"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_032"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_033"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_034"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_035"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_036"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_037"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_038"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_039"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_scheduling_040"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_001"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_002"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_003"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_004"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_005"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_006"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_007"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_008"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_009"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_010"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_011"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_012"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_013"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_014"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_015"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_016"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_017"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_018"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_019"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_020"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_021"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_022"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_023"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_024"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_025"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_026"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_027"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_028"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_029"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_030"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_031"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_032"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_033"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_034"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_035"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_036"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_037"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_038"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_039"
+    },
+    {
+      "claim_key": null,
+      "fields": [
+        "catalog_leakage_flag"
+      ],
+      "resolution_code": null,
+      "task_id": "cand_travel_040"
+    }
+  ],
+  "source_lock_manifest": "data/annotations/execution_v2/lock_manifest.locked.json"
+}
