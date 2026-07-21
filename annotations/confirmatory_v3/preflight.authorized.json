@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "failures": [],
+  "checks": {
+    "candidate_population": true,
+    "sealed_manifest": true,
+    "human_agreement": true,
+    "resolved_model_snapshots": true,
+    "model_snapshot_hashes": true,
+    "execution_authorized": true
+  },
+  "inventory": {
+    "tasks": 200,
+    "domains": {
+      "travel": 40,
+      "commerce": 40,
+      "procurement": 40,
+      "it": 40,
+      "scheduling": 40
+    }
+  }
+}

@@ -1,5 +1,5 @@
 experiment_id: confirmatory_v3
-status: sealed_execution_disabled
+status: sealed_execution_authorized
 protocol: handoffbench-confirmatory-v3
 preregistration: research/preregistration_v3.md
 protocol_files:
@@ -82,4 +82,4 @@ outputs:
   root: outputs/confirmatory_v3
   invalid_root: outputs/confirmatory_v3_invalid
   accounting_schema: data/schemas/confirmatory_cost_accounting.schema.json
-execution_authorized: false
+execution_authorized: true

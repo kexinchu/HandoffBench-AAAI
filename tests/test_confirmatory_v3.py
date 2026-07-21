@@ -97,11 +97,11 @@ def test_ready_agreement_binds_chain_but_does_not_seal_or_authorize() -> None:
         assert hashlib.sha256(path.read_bytes()).hexdigest() == item["sha256"]
 
 
-def test_v3_config_is_sealed_and_execution_disabled() -> None:
+def test_v3_config_is_sealed_and_execution_authorized_after_tagged_freeze() -> None:
     config = yaml.safe_load((ROOT / "configs/confirmatory_v3.yaml").read_text(encoding="utf-8"))
     assert config["protocol"] == "handoffbench-confirmatory-v3"
-    assert config["status"] == "sealed_execution_disabled"
-    assert config["execution_authorized"] is False
+    assert config["status"] == "sealed_execution_authorized"
+    assert config["execution_authorized"] is True
     assert config["annotation_agreement"] == "annotations/confirmatory_v3/agreement.final.v2.json"
     assert len(config["candidate_files"]) == 5
     manifest_path = ROOT / config["sealed_manifest"]
