@@ -224,6 +224,15 @@ def test_manifest_binds_superseded_dataset_seal_without_rewriting_agreement(tmp_
     }
 
     prior_value = json.loads(prior.read_text())
+    prior_value["seal_id"] = "fixture-previous-execution-seal"
+    prior_value["dataset_seal_id"] = dataset_seal_id
+    prior.write_text(json.dumps(prior_value))
+    chained = MODULE.build_manifest(
+        candidates, config_path, agreement, seal_id="fixture-next-execution-seal",
+        sealed_at="2099-01-02T00:00:00Z")
+    assert chained["supersedes_manifest"]["sha256"] == \
+        MODULE.digest_bytes(prior.read_bytes())
+
     prior_value["canonical_dataset_sha256"] = "0" * 64
     prior.write_text(json.dumps(prior_value))
     with pytest.raises(ValueError, match="matching sealed canonical dataset"):

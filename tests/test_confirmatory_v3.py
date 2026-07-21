@@ -113,12 +113,12 @@ def test_v3_config_is_sealed_and_execution_authorized_after_tagged_freeze() -> N
     # Human agreement remains bound to the original immutable dataset seal;
     # the execution seal independently binds the corrected runner/design.
     assert agreement["seal_id"] == manifest["dataset_seal_id"]
-    assert manifest["seal_id"].startswith("hb-v3.2-exec-")
+    assert manifest["seal_id"].startswith("hb-v3.3-exec-")
     assert manifest["supersedes_manifest"]["path"] == \
-        "data/splits/confirmatory_v3.1.sealed.json"
+        "data/splits/confirmatory_v3.2.execution.sealed.json"
     assert manifest["canonical_dataset_sha256"] == agreement["canonical_dataset_sha256"]
     assert agreement["execution_authorized"] is False
-    assert config["model_snapshot_manifest"] == "configs/confirmatory_v3_model_snapshots.v2.json"
+    assert config["model_snapshot_manifest"] == "configs/confirmatory_v3_model_snapshots.v3.json"
 
 
 def test_builder_refuses_overwrite(tmp_path: Path) -> None:

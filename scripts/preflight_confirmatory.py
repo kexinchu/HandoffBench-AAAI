@@ -199,7 +199,7 @@ def supersedes_binding(
     path = resolve(base, value["path"])
     prior = json.loads(path.read_text(encoding="utf-8"))
     if (not isinstance(prior, dict) or prior.get("sealed") is not True
-            or prior.get("seal_id") != dataset_seal_id
+            or prior.get("dataset_seal_id", prior.get("seal_id")) != dataset_seal_id
             or prior.get("canonical_dataset_sha256") != dataset_sha256):
         raise ValueError("superseded manifest must be the matching sealed canonical dataset")
     return {"path": value["path"], "sha256": file_sha(path), "reason": value["reason"]}

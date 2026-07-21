@@ -27,14 +27,14 @@ candidate_files:
   - data/tasks/confirmatory_v3/procurement.json
   - data/tasks/confirmatory_v3/it.json
   - data/tasks/confirmatory_v3/scheduling.json
-sealed_manifest: data/splits/confirmatory_v3.2.execution.sealed.json
+sealed_manifest: data/splits/confirmatory_v3.3.execution.sealed.json
 dataset_seal_id: hb-v3.1-9671bf1ff2d5-20260721
 supersedes_manifest:
-  path: data/splits/confirmatory_v3.1.sealed.json
+  path: data/splits/confirmatory_v3.2.execution.sealed.json
   reason: >-
-    Execution-contract correction before any confirmatory model call: bind the
-    complete schedule and RunConfig hashes, align runner parameters and analysis
-    labels, and preserve identical canonical task bytes.
+    Pre-call serving correction: disable model-specific generation_config
+    defaults so both snapshots use the same explicitly sealed sampling surface;
+    preserve identical canonical task bytes and scheduled RunConfig hashes.
 annotation_agreement: annotations/confirmatory_v3/agreement.final.v2.json
 final_audit_file: annotations/confirmatory_v3/final_audit.ready.json
 expected_population:
@@ -50,7 +50,8 @@ models:
     source_revision: cf98f3b3bbb457ad9e2bb7baf9a0125b6b88caa8
     license: apache-2.0
     serving_args: [--host, 127.0.0.1, --port, '8101', --gpu-memory-utilization, '0.72',
-                   --max-model-len, '8192', --max-num-seqs, '8', --enforce-eager]
+                   --max-model-len, '8192', --max-num-seqs, '8', --enforce-eager,
+                   --generation-config, vllm]
   - provider: local_vllm
     snapshot: Ministral-3-14B-Instruct-2512
     served_model_name: ministral3-14b-2512
@@ -60,8 +61,9 @@ models:
     license: null
     serving_args: [--host, 127.0.0.1, --port, '8102', --max-model-len, '8192',
                    --gpu-memory-utilization, '0.85', --enforce-eager,
-                   --trust-remote-code, --language-model-only]
-model_snapshot_manifest: configs/confirmatory_v3_model_snapshots.v2.json
+                   --trust-remote-code, --language-model-only,
+                   --generation-config, vllm]
+model_snapshot_manifest: configs/confirmatory_v3_model_snapshots.v3.json
 seeds: [101, 202]
 generation:
   temperature: 0.7
