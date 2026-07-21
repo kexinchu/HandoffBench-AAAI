@@ -127,3 +127,28 @@ def test_builder_refuses_overwrite(tmp_path: Path) -> None:
     with pytest.raises(FileExistsError, match="refusing to overwrite"):
         BUILD._write(path, {"replacement": True})
     assert path.read_text(encoding="utf-8") == "keep"
+
+
+def test_v3_4_seal_prospectively_replaces_the_complete_qwen_arm() -> None:
+    config = yaml.safe_load(
+        (ROOT / "configs/confirmatory_v3.4.yaml").read_text(encoding="utf-8")
+    )
+    manifest = json.loads(
+        (ROOT / "data/splits/confirmatory_v3.4.execution.sealed.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    attempt = config["execution_attempt"]
+    assert config["execution_authorized"] is True
+    assert manifest["seal_id"].startswith("hb-v3.4-exec-")
+    assert manifest["execution_attempt"] == attempt
+    assert attempt["mode"] == "full_model_arm_replacement"
+    assert attempt["execute_models"] == ["qwen2.5-14b"]
+    assert attempt["expected_rows"] == 4400
+    assert attempt["resume_allowed"] is False
+    assert attempt["partial_retry_allowed"] is False
+    assert attempt["reuse_prior_rows_allowed"] is False
+    assert manifest["supersedes_manifest"]["path"] == \
+        "data/splits/confirmatory_v3.3.execution.sealed.json"
+    assert manifest["canonical_dataset_sha256"] == \
+        "9671bf1ff2d507e31a62069bbd655b83f53803aeee3a5b5908da7b8d9d892a93"

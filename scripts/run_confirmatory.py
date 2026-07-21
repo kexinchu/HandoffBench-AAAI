@@ -43,6 +43,21 @@ def canonical_hash(value: Any) -> str:
     return hashlib.sha256(raw.encode()).hexdigest()
 
 
+def raw_tree_inventory(root: Path) -> dict[str, Any]:
+    """Content-address a raw-run tree including its relative paths."""
+    entries = []
+    for path in sorted(root.rglob("*.json")):
+        entries.append({
+            "path": path.relative_to(root).as_posix(),
+            "sha256": file_sha256(path),
+        })
+    return {
+        "algorithm": "sha256-canonical-json-relative-path-file-sha256-v1",
+        "file_count": len(entries),
+        "sha256": canonical_hash(entries),
+    }
+
+
 def resolve(base: Path, value: str) -> Path:
     path = Path(value)
     return path if path.is_absolute() else base / path
@@ -163,7 +178,7 @@ def dry_run_payload(plan: dict[str, Any], selected_models: list[str] | None = No
     if len(models) != len(set(models)):
         raise ValueError("selected served model names must be unique")
     rows = [row for row in plan["rows"] if row["model"] in models]
-    return {
+    payload = {
         "format": "handoffbench-confirmatory-dry-run-v1",
         "status": "validated_no_provider_calls",
         "seal_id": plan["manifest"]["seal_id"],
@@ -181,6 +196,48 @@ def dry_run_payload(plan: dict[str, Any], selected_models: list[str] | None = No
         },
         "schedule": rows,
     }
+    attempt = plan["config"].get("execution_attempt")
+    if attempt is not None:
+        validate_execution_attempt(plan, models, None, require_fresh_root=False)
+        payload["execution_attempt"] = attempt
+    return payload
+
+
+def validate_execution_attempt(
+    plan: dict[str, Any], selected_models: list[str], output_root: Path | None, *,
+    require_fresh_root: bool,
+) -> dict[str, Any] | None:
+    """Enforce a prospective full-arm replacement contract when configured."""
+    attempt = plan["config"].get("execution_attempt")
+    if attempt is None:
+        return None
+    required = {
+        "attempt_id", "mode", "execute_models", "expected_rows",
+        "fresh_output_root", "resume_allowed", "partial_retry_allowed",
+        "reuse_prior_rows_allowed", "disposition_file", "retained_arms",
+        "forbidden_raw_roots", "infrastructure",
+    }
+    if not isinstance(attempt, dict) or set(attempt) != required:
+        raise ValueError("execution_attempt fields do not match the sealed v3.4 contract")
+    if attempt["mode"] != "full_model_arm_replacement":
+        raise ValueError("v3.4 requires full_model_arm_replacement mode")
+    expected_models = attempt["execute_models"]
+    if selected_models != expected_models or expected_models != ["qwen2.5-14b"]:
+        raise ValueError("selected models must exactly match the sealed replacement arm")
+    rows = [row for row in plan["rows"] if row["model"] in selected_models]
+    keys = {(row["task_id"], row["model"], row["seed"], row["condition"])
+            for row in rows}
+    if attempt["expected_rows"] != 4400 or len(rows) != len(keys) != 4400:
+        raise ValueError("replacement attempt must contain exactly 4,400 unique Qwen rows")
+    if any(attempt[field] is not False for field in (
+            "resume_allowed", "partial_retry_allowed", "reuse_prior_rows_allowed")):
+        raise ValueError("v3.4 replacement must prohibit resume, partial retry, and row reuse")
+    expected_root = resolve(plan["base"], attempt["fresh_output_root"]).resolve()
+    if output_root is not None and output_root.resolve() != expected_root:
+        raise ValueError(f"output root must equal sealed fresh root: {expected_root}")
+    if require_fresh_root and expected_root.exists():
+        raise ValueError(f"sealed fresh output root already exists; attempt is closed: {expected_root}")
+    return attempt
 
 
 def parse_base_urls(values: list[str]) -> dict[str, str]:
@@ -283,6 +340,9 @@ def execute(plan: dict[str, Any], selected_models: list[str], output_root: Path,
     unknown_urls = set(base_urls) - set(selected_models)
     if unknown_urls:
         raise ValueError(f"base URL supplied for an unselected model: {sorted(unknown_urls)}")
+    attempt = validate_execution_attempt(
+        plan, selected_models, output_root, require_fresh_root=True
+    )
     records = {record.episode.task_id: record for record in plan["records"]}
     totals = {"scheduled": 0, "resumed": 0, "written": 0}
 
@@ -350,9 +410,14 @@ def execute(plan: dict[str, Any], selected_models: list[str], output_root: Path,
         pilot_cli.atomic_json(model_root / "execution_ledger.json", {
             "format": "handoffbench-confirmatory-execution-ledger-v1",
             "seal_id": plan["manifest"]["seal_id"], "model": model,
+            "attempt_id": attempt["attempt_id"] if attempt else None,
             "base_url": url, "provider_health": health[model], "hashes": plan["hashes"],
             "scheduled_rows_for_model": len(model_rows),
             "persisted_rows_for_model": len(runs),
+            "resumed_rows": totals["resumed"],
+            "written_rows": totals["written"],
+            "schedule_sha256": canonical_hash(sorted(expected_keys)),
+            "raw_run_inventory": raw_tree_inventory(model_root / "runs"),
         })
     return totals
 
@@ -377,7 +442,10 @@ def main() -> int:
         parser.error("--workers must be at least 1")
 
     plan = validated_plan(args.config)
-    selected_models = args.model or plan["design"]["models"]
+    attempt = plan["config"].get("execution_attempt")
+    selected_models = args.model or (
+        attempt["execute_models"] if attempt is not None else plan["design"]["models"]
+    )
     if args.dry_run:
         payload = dry_run_payload(plan, selected_models)
         rendered = json.dumps(payload, ensure_ascii=False, indent=2)
@@ -386,7 +454,9 @@ def main() -> int:
         print(rendered)
         return 0
 
-    output_root = (args.output_dir or resolve(plan["base"], plan["config"]["outputs"]["root"])).resolve()
+    configured_output = (attempt["fresh_output_root"] if attempt is not None
+                         else plan["config"]["outputs"]["root"])
+    output_root = (args.output_dir or resolve(plan["base"], configured_output)).resolve()
     totals = execute(plan, selected_models, output_root, parse_base_urls(args.base_url),
                      args.api_key, args.timeout, args.workers)
     print(json.dumps({"status": "execution_complete", "output_root": str(output_root),

@@ -34,6 +34,68 @@ def resolve(base: Path, value: str) -> Path:
     return path if path.is_absolute() else base / path
 
 
+def raw_tree_sha256(root: Path, base: Path) -> tuple[int, str]:
+    """Hash sorted repo-relative paths and file hashes for a retained raw arm."""
+    digest = hashlib.sha256()
+    paths = sorted(root.rglob("*.json"), key=lambda path: path.relative_to(base).as_posix())
+    for path in paths:
+        relative = path.relative_to(base).as_posix()
+        digest.update(relative.encode("utf-8") + b"\0")
+        digest.update(digest_bytes(path.read_bytes()).encode("ascii") + b"\n")
+    return len(paths), digest.hexdigest()
+
+
+def validate_execution_attempt(config: dict[str, Any], base: Path) -> dict[str, Any] | None:
+    attempt = config.get("execution_attempt")
+    if attempt is None:
+        return None
+    required = {
+        "attempt_id", "mode", "execute_models", "expected_rows",
+        "fresh_output_root", "resume_allowed", "partial_retry_allowed",
+        "reuse_prior_rows_allowed", "disposition_file", "retained_arms",
+        "forbidden_raw_roots", "infrastructure",
+    }
+    if not isinstance(attempt, dict) or set(attempt) != required:
+        raise ValueError("execution_attempt fields do not match the v3.4 contract")
+    if (attempt["mode"] != "full_model_arm_replacement"
+            or attempt["execute_models"] != ["qwen2.5-14b"]
+            or attempt["expected_rows"] != 4400
+            or any(attempt[field] is not False for field in (
+                "resume_allowed", "partial_retry_allowed", "reuse_prior_rows_allowed"))):
+        raise ValueError("v3.4 must replace the complete 4,400-row Qwen arm without reuse")
+    if resolve(base, attempt["fresh_output_root"]).exists():
+        raise ValueError("v3.4 fresh output root already exists")
+    disposition_path = resolve(base, attempt["disposition_file"])
+    disposition = json.loads(disposition_path.read_text(encoding="utf-8"))
+    if (disposition.get("decision_basis") != "systemic_qwen_provider_outage"
+            or disposition.get("qwen_arm", {}).get("status") != "excluded_entire_arm"
+            or disposition.get("qwen_arm", {}).get("excluded_rows") != 4400
+            or disposition.get("qwen_arm", {}).get("row_reuse_allowed") is not False):
+        raise ValueError("v3.3 disposition does not exclude the entire Qwen arm")
+    retained = attempt["retained_arms"]
+    if not isinstance(retained, dict) or set(retained) != {"ministral3-14b-2512"}:
+        raise ValueError("v3.4 must retain exactly the sealed Ministral arm")
+    arm = retained["ministral3-14b-2512"]
+    ledger = resolve(base, arm["ledger"])
+    if digest_bytes(ledger.read_bytes()) != arm["ledger_sha256"]:
+        raise ValueError("retained Ministral ledger hash drift")
+    count, tree_hash = raw_tree_sha256(resolve(base, arm["raw_root"]), base)
+    if (count != arm["raw_file_count"] or arm["raw_file_count"] != 4400
+            or tree_hash != arm["raw_tree_sha256"]):
+        raise ValueError("retained Ministral raw inventory drift")
+    if attempt["forbidden_raw_roots"] != ["outputs/confirmatory_v3/qwen2.5-14b/runs"]:
+        raise ValueError("v3.4 must forbid the original Qwen raw root")
+    infrastructure = attempt["infrastructure"]
+    if (not isinstance(infrastructure, dict)
+            or not str(infrastructure.get("gpu_uuid", "")).startswith("GPU-")
+            or infrastructure.get("require_idle_gpu_before_start") is not True
+            or infrastructure.get("require_unused_port_before_start") is not True
+            or infrastructure.get("fail_on_competing_gpu_process") is not True
+            or infrastructure.get("fail_on_provider_restart_or_5xx") is not True):
+        raise ValueError("v3.4 infrastructure isolation contract is incomplete")
+    return attempt
+
+
 def config_design(config: dict[str, Any]) -> dict[str, Any]:
     """Return execution design fields; mutable authorization/output paths are excluded."""
     excluded = {"execution_authorized", "status", "sealed_manifest", "annotation_agreement",
@@ -165,6 +227,7 @@ def build_manifest(
         raise ValueError("seal_id and sealed_at must be explicit non-empty values")
     config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
     base = Path(config.get("project_root", ROOT))
+    execution_attempt = validate_execution_attempt(config, base)
     configured = [resolve(base, value).resolve() for value in config["candidate_files"]]
     supplied = [path.resolve() for path in candidate_files]
     if supplied != configured:
@@ -261,6 +324,7 @@ def build_manifest(
         "design_matrix": config["design_matrix"],
         "design_matrix_sha256": digest_bytes(design_matrix.read_bytes()),
         "confirmatory_design": execution_design,
+        "execution_attempt": execution_attempt,
         "supersedes_manifest": supersedes,
     }
 

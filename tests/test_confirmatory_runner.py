@@ -161,3 +161,34 @@ def test_model_scoped_execution_is_resumable_and_reuses_one_factorial_source(
     ledger = json.loads((output / model / "execution_ledger.json").read_text())
     assert ledger["provider_health"]["server_header"] == "test-runtime"
     assert ledger["persisted_rows_for_model"] == 11
+
+
+def test_v3_4_replacement_requires_all_qwen_rows_and_a_fresh_root(tmp_path):
+    runner, plan = _plan_fixture(tmp_path)
+    fresh = tmp_path / "fresh-v3.4"
+    plan["config"]["execution_attempt"] = {
+        "attempt_id": "test-v3.4-qwen-full-arm",
+        "mode": "full_model_arm_replacement",
+        "execute_models": ["qwen2.5-14b"],
+        "expected_rows": 4400,
+        "fresh_output_root": str(fresh),
+        "resume_allowed": False,
+        "partial_retry_allowed": False,
+        "reuse_prior_rows_allowed": False,
+        "disposition_file": "unused-in-runner-test.json",
+        "retained_arms": {},
+        "forbidden_raw_roots": ["outputs/confirmatory_v3/qwen2.5-14b/runs"],
+        "infrastructure": {},
+    }
+
+    payload = runner.dry_run_payload(plan, ["qwen2.5-14b"])
+    assert payload["counts"]["selected_scheduled_rows"] == 4400
+    assert payload["counts"]["unique_selected_rows"] == 4400
+    with pytest.raises(ValueError, match="selected models"):
+        runner.dry_run_payload(plan, ["ministral3-14b-2512"])
+
+    fresh.mkdir()
+    with pytest.raises(ValueError, match="already exists"):
+        runner.validate_execution_attempt(
+            plan, ["qwen2.5-14b"], fresh, require_fresh_root=True
+        )

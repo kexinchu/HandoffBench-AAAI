@@ -43,6 +43,81 @@ def canonical_hash(value: Any) -> str:
                                      ensure_ascii=False).encode()).hexdigest()
 
 
+def _raw_tree_inventory(root: Path) -> dict[str, Any]:
+    entries = [
+        {"path": path.relative_to(root).as_posix(), "sha256": sha256(path)}
+        for path in sorted(root.rglob("*.json"))
+    ]
+    return {
+        "algorithm": "sha256-canonical-json-relative-path-file-sha256-v1",
+        "file_count": len(entries),
+        "sha256": canonical_hash(entries),
+    }
+
+
+def _sealed_path_tree_sha256(root: Path, base: Path) -> tuple[int, str]:
+    digest = hashlib.sha256()
+    paths = sorted(root.rglob("*.json"), key=lambda path: path.relative_to(base).as_posix())
+    for path in paths:
+        relative = path.relative_to(base).as_posix()
+        digest.update(relative.encode("utf-8") + b"\0")
+        digest.update(sha256(path).encode("ascii") + b"\n")
+    return len(paths), digest.hexdigest()
+
+
+def _validate_replacement_inputs(
+    manifest: dict[str, Any], base: Path, run_dirs: list[str | Path],
+) -> dict[str, str] | None:
+    """Bind final analysis to retained Ministral plus fresh v3.4 Qwen only."""
+    attempt = manifest.get("execution_attempt")
+    if attempt is None:
+        return None
+    retained = attempt.get("retained_arms", {}).get("ministral3-14b-2512", {})
+    retained_root = _resolve(base, retained.get("raw_root", ""))
+    qwen_root = _resolve(
+        base, str(Path(attempt["fresh_output_root"]) / "qwen2.5-14b" / "runs")
+    )
+    supplied = [Path(value).resolve() for value in run_dirs]
+    if len(supplied) != 2 or set(supplied) != {retained_root, qwen_root}:
+        raise ValueError(
+            "v3.4 analysis requires exactly the retained Ministral and fresh Qwen raw roots"
+        )
+    forbidden = {_resolve(base, value) for value in attempt["forbidden_raw_roots"]}
+    if forbidden & set(supplied):
+        raise ValueError("invalidated v3.3 Qwen raw root is forbidden")
+    ledger_path = _resolve(base, retained["ledger"])
+    if sha256(ledger_path) != retained["ledger_sha256"]:
+        raise ValueError("retained Ministral ledger hash drift")
+    count, tree_hash = _sealed_path_tree_sha256(retained_root, base)
+    if count != retained["raw_file_count"] or tree_hash != retained["raw_tree_sha256"]:
+        raise ValueError("retained Ministral raw inventory drift")
+
+    replacement_ledger_path = qwen_root.parent / "execution_ledger.json"
+    replacement_ledger = json.loads(replacement_ledger_path.read_text(encoding="utf-8"))
+    expected_hashes = {
+        "canonical_dataset_sha256": manifest["canonical_dataset_sha256"],
+        "design_matrix_sha256": manifest["design_matrix_sha256"],
+        "confirmatory_config_design_sha256": manifest["confirmatory_config_design_sha256"],
+    }
+    if (replacement_ledger.get("seal_id") != manifest.get("seal_id")
+            or replacement_ledger.get("attempt_id") != attempt.get("attempt_id")
+            or replacement_ledger.get("model") != "qwen2.5-14b"
+            or replacement_ledger.get("scheduled_rows_for_model") != 4400
+            or replacement_ledger.get("persisted_rows_for_model") != 4400
+            or replacement_ledger.get("resumed_rows") != 0
+            or replacement_ledger.get("written_rows") != 4400
+            or any(replacement_ledger.get("hashes", {}).get(key) != value
+                   for key, value in expected_hashes.items())
+            or replacement_ledger.get("raw_run_inventory") != _raw_tree_inventory(qwen_root)):
+        raise ValueError("fresh Qwen execution ledger/inventory does not satisfy v3.4")
+    return {
+        "ministral_raw_root": str(retained_root),
+        "qwen_raw_root": str(qwen_root),
+        "qwen_execution_ledger": str(replacement_ledger_path),
+        "qwen_execution_ledger_sha256": sha256(replacement_ledger_path),
+    }
+
+
 def _resolve(base: Path, value: str) -> Path:
     path = Path(value)
     return (path if path.is_absolute() else base / path).resolve()
@@ -243,6 +318,7 @@ def load_and_validate(manifest_path: str | Path, run_dirs: list[str | Path]) -> 
     manifest = dict(manifest); manifest["confirmatory_design"] = design
     factorial = list(ADVISORY_FACTORIAL)
 
+    replacement_provenance = _validate_replacement_inputs(manifest, base, run_dirs)
     paths: list[Path] = []
     for directory in map(Path, run_dirs):
         resolved = directory.resolve()
@@ -277,6 +353,18 @@ def load_and_validate(manifest_path: str | Path, run_dirs: list[str | Path]) -> 
         if expected_hash is not None and run.get("config_hash") != expected_hash:
             raise ValueError(f"config hash drift: {key}")
         _validate_run_config(run, key)
+        if replacement_provenance is not None and run.get("model") == "qwen2.5-14b":
+            error = run.get("error") if isinstance(run.get("error"), dict) else {}
+            error_type = str(error.get("type", ""))
+            message = str(error.get("message", "")).lower()
+            infrastructure_error = (
+                error_type in {"URLError", "TimeoutError", "ConnectionError"}
+                or "connection refused" in message or "connection reset" in message
+                or "enginecore" in message or "http 5" in message
+                or "out of memory" in message or "cuda oom" in message
+            )
+            if infrastructure_error:
+                raise ValueError(f"v3.4 Qwen infrastructure failure invalidates attempt: {key}")
         metrics = run.get("metrics")
         validator_cost = metrics.get("validator_cost") if isinstance(metrics, dict) else None
         if (not isinstance(validator_cost, (int, float)) or isinstance(validator_cost, bool)
@@ -294,6 +382,8 @@ def load_and_validate(manifest_path: str | Path, run_dirs: list[str | Path]) -> 
                   "candidate_file_hashes": task_file_hashes,
                   "canonical_dataset_sha256": canonical_hash(tasks),
                   "raw_run_files": run_files, "n_raw_runs": len(ordered)}
+    if replacement_provenance is not None:
+        provenance["execution_replacement"] = replacement_provenance
     return manifest, ordered, {"families": families, "provenance": provenance}
 
 
