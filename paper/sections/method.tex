@@ -3,7 +3,7 @@
 
 \paragraph{Boundary-state evaluation.}
 HandoffBench isolates a single transfer of control rather than evaluating generic conversational memory.  An episode is
-$e=(E,\mathcal{A},\mathcal{U},\tau,b,a_s,a_t,G_b,\Phi)$, where $E$ is a seeded workflow environment, $\tau$ is the authenticated source trace cut at boundary $b$, $a_s$ and $a_t$ are the source and receiver roles, $G_b$ is evaluator-private boundary state, and $\Phi$ is a machine-executable terminal predicate.  For transfer mechanism $m$, the receiver observes only $V_m(\tau)$ and produces post-boundary trace $\rho_m$.  Across mechanisms we hold fixed $E$, $\tau$, $b$, receiver model and prompt, tools, decoding parameters, and seed.  Thus, comparisons vary the transfer representation while preserving the evidence and downstream capability.
+$e=(E,\mathcal{A},\mathcal{U},\tau,b,a_s,a_t,G_b,\Phi)$, where $E$ is a seeded workflow environment, $\tau$ is the authenticated source trace cut at boundary $b$, $a_s$ and $a_t$ are the source and receiver roles, $G_b$ is evaluator-private boundary state, and $\Phi$ is a machine-executable terminal predicate.  For transfer mechanism $m$, the receiver observes only $V_m(\tau)$ and produces post-boundary trace $\rho_m$.  Across mechanisms we hold fixed $E$, $\tau$, $b$, receiver model and prompt, tools, decoding parameters, and seed.  Thus, comparisons vary the transfer representation while preserving the evidence and downstream capability. Figure~\ref{fig:handoffbench-overview} summarizes the controlled path and evaluator-only oracle branch.
 
 The evaluator proposal is a task-critical set of typed atomic claims,
 \begin{equation}

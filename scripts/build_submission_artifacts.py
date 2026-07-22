@@ -16,6 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TRACKED_INPUTS = (
     "paper/main.tex",
+    "paper/figures/handoffbench_overview.tex",
     "paper/references.bib",
     "paper/sections/method.tex",
     "paper/sections/benchmark.tex",
@@ -80,10 +81,10 @@ def environment_record() -> dict:
 
 
 def table_source_record() -> dict:
-    legacy = json.loads((ROOT / TRACKED_INPUTS[6]).read_text(encoding="utf-8"))
-    factorial = json.loads((ROOT / TRACKED_INPUTS[7]).read_text(encoding="utf-8"))
-    power = json.loads((ROOT / TRACKED_INPUTS[8]).read_text(encoding="utf-8"))
-    confirmatory = json.loads((ROOT / TRACKED_INPUTS[9]).read_text(encoding="utf-8"))
+    legacy = json.loads((ROOT / TRACKED_INPUTS[7]).read_text(encoding="utf-8"))
+    factorial = json.loads((ROOT / TRACKED_INPUTS[8]).read_text(encoding="utf-8"))
+    power = json.loads((ROOT / TRACKED_INPUTS[9]).read_text(encoding="utf-8"))
+    confirmatory = json.loads((ROOT / TRACKED_INPUTS[10]).read_text(encoding="utf-8"))
     subgroup_path = "outputs/confirmatory_v3.4.1/post_confirmatory_v1/exploratory_subgroup_results.json"
     non_ok_path = "outputs/confirmatory_v3.4.1/post_confirmatory_v1/non_ok_descriptive_audit_v1.json"
     subgroups = json.loads((ROOT / subgroup_path).read_text(encoding="utf-8"))

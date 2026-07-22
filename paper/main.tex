@@ -8,6 +8,8 @@
 \usepackage{caption}
 \usepackage{booktabs}
 \usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
 \frenchspacing
 \pdfinfo{/TemplateVersion (2027.1)}
 \setcounter{secnumdepth}{1}
@@ -79,6 +81,7 @@ showing a 19.5-point Structured-to-Oracle boundary gap and a 3.63-point average
 benefit from advisory checks. Secondary estimates for typing and provenance are
 reported separately from the confirmatory multiplicity family.
 
+\input{figures/handoffbench_overview}
 \input{sections/method}
 \input{sections/benchmark}
 \input{sections/evidence}
@@ -96,7 +99,9 @@ mechanisms need not combine monotonically: typing was mildly beneficial, while
 the tested trace-linked provenance implementation incurred a small negative
 success estimate and a large token cost. These findings support explicit boundary-state evaluation and
 targeted validation, not a blanket claim that richer capsules or enforcement
-are universally superior.
+are universally superior. HandoffBench's contribution is therefore not a
+universal capsule recipe, but an outcome-linked, judge-free protocol for making
+the handoff interface experimentally measurable.
 
 \bibliography{references}
 

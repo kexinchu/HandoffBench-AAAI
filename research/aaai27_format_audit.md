@@ -8,6 +8,8 @@ Audit updated: 2026-07-22. Scope: the anonymous review manuscript in
 - Uses `\documentclass[letterpaper]{article}` and
   `\usepackage[submission]{aaai2027}` from the bundled AAAI-27 author kit.
 - Uses `aaai2027.bst`; the source compiles with PDFLaTeX and BibTeX.
+- The method overview is a native vector TikZ figure; no external raster asset
+  or identifying file metadata is embedded by the figure source.
 - Anonymous title block is `Anonymous Submission` with empty affiliations.
 - The submission option suppresses the camera-ready copyright footer.
 - The generated PDF is US Letter (612 x 792 pt), two-column, and currently seven

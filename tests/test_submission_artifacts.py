@@ -23,7 +23,8 @@ def test_offline_submission_artifact_builder(tmp_path):
     assert tables["factorial"]["n_runs"] == 384
     assert tables["factorial"]["n_ok"] == 381
     assert tables["factorial"]["source_fairness"]["pass"] is True
-    assert len(hashes) == 32 and all(len(digest) == 64 for digest in hashes.values())
+    assert len(hashes) == 33 and all(len(digest) == 64 for digest in hashes.values())
+    assert "paper/figures/handoffbench_overview.tex" in hashes
     assert tables["confirmatory"]["development_only"] is False
     assert tables["confirmatory"]["n_runs"] == 8800
     assert tables["confirmatory"]["n_tasks"] == 200
@@ -43,7 +44,8 @@ def test_offline_submission_artifact_builder(tmp_path):
                         "$-6.77$ pp", "$+6.77$ pp", "$-4.69$ pp"):
         assert paper_value in evidence
     for paper_value in ("8,800 scheduled ITT cells", "$-19.50$ percentage points",
-                        "improved strict success by 3.63 points"):
+                        "improved strict success by 3.63 points",
+                        "71.63 / 91.13", "70.19 / 73.81"):
         assert paper_value in evidence
 
 

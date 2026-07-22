@@ -33,29 +33,30 @@ boundary regression and test serialization mechanisms under fixed evidence.
 \begin{table}[t]
 \centering
 \small
-\begin{tabular}{p{0.20\columnwidth}p{0.21\columnwidth}p{0.43\columnwidth}}
+\begin{tabular}{@{}p{0.19\columnwidth}p{0.25\columnwidth}p{0.46\columnwidth}@{}}
 \toprule
 Work & Primary object & Distinction of HandoffBench \\
 \midrule
 Handoff Debt
-& Coding takeover and rediscovery under four context views
-& Gold field-level boundary state; epistemic and authority-bearing claims;
-oracle-gated transfer regression rather than repository resumability. \\
+& Coding takeover across four context views
+& Atomic gold boundary state with epistemic and authority claims;
+oracle-gated regression rather than resumability. \\
 NeuroState-Bench
-& Commitment integrity through side-query probes within an agent profile
-& A manipulated predecessor--successor boundary and alternative transport
-representations, with claims bound to authenticated trace events. \\
+& Within-agent commitment probes
+& A manipulated predecessor--successor boundary and trace-grounded claims. \\
 Provenance\-Guard
-& Runtime screening of proposed tool actions using evidence for user intent
-& Provenance is an advisory representation factor in the primary study;
-action blocking is isolated as a separate enforcement intervention. \\
+& Evidence-based action screening
+& Provenance is a representation factor; action blocking is a separate
+intervention. \\
 \bottomrule
 \end{tabular}
-\caption{Claim-level positioning against the closest collisions. Structured
-handoffs, state probes, and provenance-aware blocking are prior art; our target
-is controlled measurement of semantic state transfer across a role handoff.}
+\caption{Claim-level positioning against the three closest mechanism-level
+collisions. Structured handoffs, state probes, and provenance-aware blocking
+are prior art; our target is controlled measurement of semantic state transfer
+across a role handoff. Concurrent benchmark comparisons appear in the text.}
 \label{tab:closest-collisions}
 \end{table}
+\FloatBarrier
 
 \section{Development Findings and Design Adaptation}
 
@@ -106,45 +107,28 @@ rule retained them with zero success and state credit. Their processing points
 were nine source-transfer parses, eight receiver-output parses, 86
 receiver-state schema/semantic checks, and 75 receiver action-catalog checks.
 The respective Qwen/Ministral splits were 0/9, 1/7, 49/37, and 31/44.
-Table~\ref{tab:nonok} shows non-OK rows in every non-oracle condition rather
-than a single treatment; Gold Oracle had zero.
+Non-OK rows occurred in every non-oracle condition rather than a single
+treatment; Gold Oracle had zero. Complete condition-by-model counts and the raw
+failure taxonomy are included in the released non-OK audit.
 
-\begin{table}[t]
+\begin{center}
+\begin{minipage}{\columnwidth}
 \centering
-\small
-\begin{tabular}{@{}lrr@{}}
+\scriptsize
+\begin{tabular}{@{}lccc@{}}
 \toprule
-Contrast & Effect (pp) & Family 95\% CI \\
+Test & Rates (\%) & $\Delta$ pp [family 95\% CI] & $p_{\mathrm{Holm}}$ \\
 \midrule
-Structured $-$ Oracle & $-19.50$ & $[-23.63,-15.38]$ \\
-Advisory checks & $+3.63$ & $[+1.91,+5.44]$ \\
+Structured / Oracle & 71.63 / 91.13 & $-19.50\ [-23.63,-15.38]$ & $<.001$ \\
+Checks off / on & 70.19 / 73.81 & $+3.63\ [+1.91,+5.44]$ & $<.001$ \\
 \bottomrule
 \end{tabular}
-\caption{The two prespecified confirmatory strict-success tests. Both have
-Holm-adjusted $p<.001$ and use ITT rows with family-clustered inference. Rates
-appear in the text; effects are percentage points.}
+\captionof{table}{The two prespecified confirmatory strict-success tests. Rate order
+matches the test labels; effects are percentage points. All ITT rows are
+retained and inference is clustered by task family.}
 \label{tab:confirmatory-main}
-\end{table}
-
-\begin{table}[t]
-\centering
-\small
-\begin{tabular}{@{}lrr@{\qquad}lrr@{}}
-\toprule
-Condition & Q & M & Condition & Q & M \\
-\midrule
-F--N--N & 13 & 9 & T--N--N & 4 & 11 \\
-F--N--C & 11 & 8 & T--N--C & 4 & 9 \\
-F--P--N & 17 & 11 & T--P--N & 1 & 12 \\
-F--P--C & 19 & 11 & T--P--C & 5 & 8 \\
-Full History & 2 & 8 & Enforced & 5 & 10 \\
-\bottomrule
-\end{tabular}
-\caption{Non-OK ITT cells by condition and model (Qwen Q, Ministral M).
-F/T: free-form/typed; N/P: no/trace provenance; N/C: no/computed checks.
-Enforced is the typed, provenance, checks-on arm; Gold Oracle had 0/0.}
-\label{tab:nonok}
-\end{table}
+\end{minipage}
+\end{center}
 
 Both prespecified tests rejected their null hypotheses after Holm correction.
 Structured transfer reached 71.6\% strict success, compared with 91.1\% under

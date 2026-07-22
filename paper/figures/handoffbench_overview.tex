@@ -1,0 +1,60 @@
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}[
+  font=\footnotesize,
+  >=Latex,
+  box/.style={draw, rounded corners=2pt, line width=.55pt, align=center,
+    inner xsep=4pt, inner ysep=5pt, minimum height=17mm},
+  frozen/.style={box, fill=black!4, text width=30mm},
+  intervention/.style={box, fill=blue!7, draw=blue!55!black, text width=35mm},
+  execution/.style={box, fill=green!7, draw=green!45!black, text width=30mm},
+  evaluation/.style={box, fill=orange!9, draw=orange!60!black, text width=32mm},
+  gold/.style={box, dashed, fill=violet!6, draw=violet!60!black,
+    text width=39mm, minimum height=10mm},
+  flow/.style={->, line width=.7pt, draw=black!75},
+  oracle/.style={->, dashed, line width=.7pt, draw=violet!70!black},
+  label/.style={font=\tiny, align=center, fill=white,
+    inner xsep=.5pt, inner ysep=0pt}
+]
+\node[frozen] (episode) {
+  \textbf{Frozen episode and source}\\[-1pt]
+  $\tau, E, \mathcal{A}, \Phi$\\
+  \scriptsize one source call $\rightarrow$ immutable artifact
+};
+\node[intervention, right=8mm of episode] (repr) {
+  \textbf{Boundary representation}\\[-1pt]
+  \scriptsize matched $2\!\times\!2\!\times\!2$: typing $\times$
+  provenance $\times$ advisory checks\\[-1pt]
+  \scriptsize plus Full-History control
+};
+\node[execution, right=8mm of repr] (receiver) {
+  \textbf{Fixed receiver and tools}\\[-1pt]
+  \scriptsize state probe $\rightarrow$ action\\[-1pt]
+  \scriptsize deterministic transitions
+};
+\node[evaluation, right=8mm of receiver] (scores) {
+  \textbf{Judge-free evaluation}\\[-1pt]
+  \scriptsize state fidelity vs. $G_b$\\[-1pt]
+  \scriptsize strict success $S$ via $\Phi$\\[-1pt]
+  \scriptsize oracle-gated HIR
+};
+
+\node[gold, above=5mm of receiver, xshift=-13mm] (goldstate) {
+  \textbf{Evaluator-private gold boundary state $G_b$}\\[-1pt]
+  \scriptsize typed values, epistemic status, criticality, trace provenance
+};
+
+\draw[flow] (episode) -- node[label, above=1pt] {fixed inputs} (repr);
+\draw[flow] (repr) -- node[label, above=1pt] {treatment $V_m$} (receiver);
+\draw[flow] (receiver) -- node[label, above=1pt] {$\widehat G_b,\rho_m$} (scores);
+\draw[oracle] (goldstate.south) -- node[label, right=1pt] {oracle only} (receiver.north);
+\draw[flow, draw=violet!70!black] (goldstate.east) -| node[label, near start] {scoring reference} (scores.north);
+\end{tikzpicture}
+\caption{HandoffBench intervenes on the receiver-visible boundary
+representation while holding the authenticated trace, environment, receiver,
+tools, budget, and seed fixed. The gold state $G_b$ is evaluator-private: it
+scores probe fidelity and is exposed to the same receiver only in the Gold
+Oracle arm. Joint oracle success and treatment failure define handoff-induced
+regression (HIR).}
+\label{fig:handoffbench-overview}
+\end{figure*}
