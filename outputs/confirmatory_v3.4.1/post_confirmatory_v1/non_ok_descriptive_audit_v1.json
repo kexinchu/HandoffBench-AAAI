@@ -1,0 +1,851 @@
+{
+  "provenance": {
+    "audit_module": "src/handoffbench/non_ok_audit.py",
+    "audit_module_sha256": "52d92f1c15853dd2834c5547bf10286aef506db3463ce222eee0d7fe1a5b17ec",
+    "audit_script": "scripts/audit_confirmatory_non_ok.py",
+    "audit_script_sha256": "f390337e4033a143d85d1e7e55adecd8ed00193a07661eb9034a536fb2ee4c9a",
+    "canonical_dataset_sha256": "9671bf1ff2d507e31a62069bbd655b83f53803aeee3a5b5908da7b8d9d892a93",
+    "n_validated_raw_runs": 8800,
+    "raw_run_inventories": {
+      "outputs/confirmatory_v3.4.1/qwen2.5-14b/runs": {
+        "algorithm": "sha256-canonical-json-relative-path-file-sha256-v1",
+        "file_count": 4400,
+        "sha256": "cc3e62cf3067701f311ec3a480c8ad520e09e68ce92d4d622fe35a57e381c87d"
+      },
+      "outputs/confirmatory_v3/ministral3-14b-2512/runs": {
+        "algorithm": "sha256-canonical-json-relative-path-file-sha256-v1",
+        "file_count": 4400,
+        "sha256": "5504b5deb2eac1bc387b1fbda4ec826392a8c7f2fbd0af10773105eb2de430a7"
+      }
+    },
+    "seal_id": "hb-v3.4.1-exec-9671bf1ff2d5-20260721",
+    "sealed_manifest": "data/splits/confirmatory_v3.4.1.execution.sealed.json",
+    "sealed_manifest_sha256": "a51d810927620ced84acc800991db55226645d7a234d58737ba4506e50df2b3b"
+  },
+  "report": {
+    "analysis_contract": "post_confirmatory_non_ok_audit_v1",
+    "analysis_status": "exploratory_descriptive",
+    "breakdowns": {
+      "by_condition": [
+        {
+          "group": "free_form__absent__absent__advisory",
+          "non_ok_percent": 2.75,
+          "non_ok_rate": 0.0275,
+          "non_ok_rows": 22,
+          "total_rows": 800
+        },
+        {
+          "group": "free_form__absent__executable__advisory",
+          "non_ok_percent": 2.375,
+          "non_ok_rate": 0.02375,
+          "non_ok_rows": 19,
+          "total_rows": 800
+        },
+        {
+          "group": "free_form__trace_linked__absent__advisory",
+          "non_ok_percent": 3.5,
+          "non_ok_rate": 0.035,
+          "non_ok_rows": 28,
+          "total_rows": 800
+        },
+        {
+          "group": "free_form__trace_linked__executable__advisory",
+          "non_ok_percent": 3.75,
+          "non_ok_rate": 0.0375,
+          "non_ok_rows": 30,
+          "total_rows": 800
+        },
+        {
+          "group": "full_history",
+          "non_ok_percent": 1.25,
+          "non_ok_rate": 0.0125,
+          "non_ok_rows": 10,
+          "total_rows": 800
+        },
+        {
+          "group": "gold_oracle",
+          "non_ok_percent": 0.0,
+          "non_ok_rate": 0.0,
+          "non_ok_rows": 0,
+          "total_rows": 800
+        },
+        {
+          "group": "typed__absent__absent__advisory",
+          "non_ok_percent": 1.875,
+          "non_ok_rate": 0.01875,
+          "non_ok_rows": 15,
+          "total_rows": 800
+        },
+        {
+          "group": "typed__absent__executable__advisory",
+          "non_ok_percent": 1.625,
+          "non_ok_rate": 0.01625,
+          "non_ok_rows": 13,
+          "total_rows": 800
+        },
+        {
+          "group": "typed__trace_linked__absent__advisory",
+          "non_ok_percent": 1.625,
+          "non_ok_rate": 0.01625,
+          "non_ok_rows": 13,
+          "total_rows": 800
+        },
+        {
+          "group": "typed__trace_linked__executable__advisory",
+          "non_ok_percent": 1.625,
+          "non_ok_rate": 0.01625,
+          "non_ok_rows": 13,
+          "total_rows": 800
+        },
+        {
+          "group": "typed__trace_linked__executable__enforced",
+          "non_ok_percent": 1.875,
+          "non_ok_rate": 0.01875,
+          "non_ok_rows": 15,
+          "total_rows": 800
+        }
+      ],
+      "by_error_message": [
+        {
+          "group": "Expecting ',' delimiter: line 47 column 1532 (char 2573)",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "Expecting ',' delimiter: line 48 column 1529 (char 2459)",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "Expecting ',' delimiter: line 48 column 80093 (char 81102)",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "Expecting ',' delimiter: line 641 column 6 (char 5170)",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "Expecting ',' delimiter: line 65 column 1293 (char 2662)",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "Expecting ',' delimiter: line 65 column 1422 (char 2682)",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "Expecting ',' delimiter: line 69 column 15321 (char 16721)",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "Unterminated string starting at: line 1 column 4913 (char 4912)",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: activate",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 2,
+          "total_rows": 2
+        },
+        {
+          "group": "receiver selected action outside visible catalog: ask",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 3,
+          "total_rows": 3
+        },
+        {
+          "group": "receiver selected action outside visible catalog: ask DOB",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: ask accept/cancel",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 2,
+          "total_rows": 2
+        },
+        {
+          "group": "receiver selected action outside visible catalog: ask current date",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: ask license country",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: ask name",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 10,
+          "total_rows": 10
+        },
+        {
+          "group": "receiver selected action outside visible catalog: ask serial",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 4,
+          "total_rows": 4
+        },
+        {
+          "group": "receiver selected action outside visible catalog: ask visa possession",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 9,
+          "total_rows": 9
+        },
+        {
+          "group": "receiver selected action outside visible catalog: ask weight",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: ask_DOB",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 9,
+          "total_rows": 9
+        },
+        {
+          "group": "receiver selected action outside visible catalog: ask_choice",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: ask_current_date",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: ask_license_country",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 4,
+          "total_rows": 4
+        },
+        {
+          "group": "receiver selected action outside visible catalog: book nonstop",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: disclose surface gap",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: disclose_surface_gap",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 2,
+          "total_rows": 2
+        },
+        {
+          "group": "receiver selected action outside visible catalog: issue fare",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: issue_fare",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 2,
+          "total_rows": 2
+        },
+        {
+          "group": "receiver selected action outside visible catalog: modify segment",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: offer credit",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: offer_credit",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: poll export",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: poll_export",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: refund",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: release_hold",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 2,
+          "total_rows": 2
+        },
+        {
+          "group": "receiver selected action outside visible catalog: request_authorization_for_wildlife_camera_rental_execution",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: request_authorization_reassessment_for_execute_wildlife_camera_rental",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: request_execute_biodiversity_survey_subcontract_prerequisite_health_assessment",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 2,
+          "total_rows": 2
+        },
+        {
+          "group": "receiver selected action outside visible catalog: terminate_action_chain",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: verify_property_feature",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: wait_for_authorization",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: wait_for_authorization_decision",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: wait_for_authorization_resolution",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: wait_for_authorization_state",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver selected action outside visible catalog: wait_for_provision_honeypot_telemetry_sink_authorization",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver_state commitments[0] key must be a non-empty string",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 1,
+          "total_rows": 1
+        },
+        {
+          "group": "receiver_state constraints[0] key must be a non-empty string",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 3,
+          "total_rows": 3
+        },
+        {
+          "group": "receiver_state next_step_preconditions[0] must contain exactly key/status/value",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 8,
+          "total_rows": 8
+        },
+        {
+          "group": "receiver_state next_step_preconditions[0] unknown/not_applicable value must be null",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 6,
+          "total_rows": 6
+        },
+        {
+          "group": "receiver_state policy_checks[0] has invalid status",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 3,
+          "total_rows": 3
+        },
+        {
+          "group": "receiver_state tool_evidence[0] has invalid status",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 9,
+          "total_rows": 9
+        },
+        {
+          "group": "receiver_state tool_evidence[0] must contain exactly key/status/value",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 13,
+          "total_rows": 13
+        },
+        {
+          "group": "receiver_state unresolved_slots[0] must contain exactly key/status/value",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 3,
+          "total_rows": 3
+        },
+        {
+          "group": "receiver_state unresolved_slots[1] unknown/not_applicable value must be null",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 4,
+          "total_rows": 4
+        },
+        {
+          "group": "receiver_state verified_facts[0] must contain exactly key/status/value",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 36,
+          "total_rows": 36
+        },
+        {
+          "group": "source transfer is not valid JSON",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 9,
+          "total_rows": 9
+        }
+      ],
+      "by_error_stage": [
+        {
+          "group": "receiver_action_validation",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 75,
+          "total_rows": 75
+        },
+        {
+          "group": "receiver_output_parse",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 8,
+          "total_rows": 8
+        },
+        {
+          "group": "receiver_state_validation",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 86,
+          "total_rows": 86
+        },
+        {
+          "group": "source_transfer_parse",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 9,
+          "total_rows": 9
+        }
+      ],
+      "by_error_type": [
+        {
+          "group": "JSONDecodeError",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 8,
+          "total_rows": 8
+        },
+        {
+          "group": "ValueError",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 170,
+          "total_rows": 170
+        }
+      ],
+      "by_factor_level": {
+        "checks": [
+          {
+            "group": "absent",
+            "non_ok_percent": 2.4375,
+            "non_ok_rate": 0.024375,
+            "non_ok_rows": 78,
+            "total_rows": 3200
+          },
+          {
+            "group": "executable",
+            "non_ok_percent": 2.25,
+            "non_ok_rate": 0.0225,
+            "non_ok_rows": 90,
+            "total_rows": 4000
+          },
+          {
+            "group": "not_applicable",
+            "non_ok_percent": 0.625,
+            "non_ok_rate": 0.00625,
+            "non_ok_rows": 10,
+            "total_rows": 1600
+          }
+        ],
+        "enforcement": [
+          {
+            "group": "advisory",
+            "non_ok_percent": 2.390625,
+            "non_ok_rate": 0.02390625,
+            "non_ok_rows": 153,
+            "total_rows": 6400
+          },
+          {
+            "group": "enforced",
+            "non_ok_percent": 1.875,
+            "non_ok_rate": 0.01875,
+            "non_ok_rows": 15,
+            "total_rows": 800
+          },
+          {
+            "group": "not_applicable",
+            "non_ok_percent": 0.625,
+            "non_ok_rate": 0.00625,
+            "non_ok_rows": 10,
+            "total_rows": 1600
+          }
+        ],
+        "provenance": [
+          {
+            "group": "absent",
+            "non_ok_percent": 2.15625,
+            "non_ok_rate": 0.0215625,
+            "non_ok_rows": 69,
+            "total_rows": 3200
+          },
+          {
+            "group": "not_applicable",
+            "non_ok_percent": 0.625,
+            "non_ok_rate": 0.00625,
+            "non_ok_rows": 10,
+            "total_rows": 1600
+          },
+          {
+            "group": "trace_linked",
+            "non_ok_percent": 2.475,
+            "non_ok_rate": 0.02475,
+            "non_ok_rows": 99,
+            "total_rows": 4000
+          }
+        ],
+        "typing": [
+          {
+            "group": "free_form",
+            "non_ok_percent": 3.09375,
+            "non_ok_rate": 0.0309375,
+            "non_ok_rows": 99,
+            "total_rows": 3200
+          },
+          {
+            "group": "not_applicable",
+            "non_ok_percent": 0.625,
+            "non_ok_rate": 0.00625,
+            "non_ok_rows": 10,
+            "total_rows": 1600
+          },
+          {
+            "group": "typed",
+            "non_ok_percent": 1.725,
+            "non_ok_rate": 0.01725,
+            "non_ok_rows": 69,
+            "total_rows": 4000
+          }
+        ]
+      },
+      "by_model": [
+        {
+          "group": "ministral3-14b-2512",
+          "non_ok_percent": 2.2045454545454546,
+          "non_ok_rate": 0.022045454545454545,
+          "non_ok_rows": 97,
+          "total_rows": 4400
+        },
+        {
+          "group": "qwen2.5-14b",
+          "non_ok_percent": 1.8409090909090908,
+          "non_ok_rate": 0.01840909090909091,
+          "non_ok_rows": 81,
+          "total_rows": 4400
+        }
+      ],
+      "by_model_condition": [
+        {
+          "group": "ministral3-14b-2512|free_form__absent__absent__advisory",
+          "non_ok_percent": 2.25,
+          "non_ok_rate": 0.0225,
+          "non_ok_rows": 9,
+          "total_rows": 400
+        },
+        {
+          "group": "ministral3-14b-2512|free_form__absent__executable__advisory",
+          "non_ok_percent": 2.0,
+          "non_ok_rate": 0.02,
+          "non_ok_rows": 8,
+          "total_rows": 400
+        },
+        {
+          "group": "ministral3-14b-2512|free_form__trace_linked__absent__advisory",
+          "non_ok_percent": 2.75,
+          "non_ok_rate": 0.0275,
+          "non_ok_rows": 11,
+          "total_rows": 400
+        },
+        {
+          "group": "ministral3-14b-2512|free_form__trace_linked__executable__advisory",
+          "non_ok_percent": 2.75,
+          "non_ok_rate": 0.0275,
+          "non_ok_rows": 11,
+          "total_rows": 400
+        },
+        {
+          "group": "ministral3-14b-2512|full_history",
+          "non_ok_percent": 2.0,
+          "non_ok_rate": 0.02,
+          "non_ok_rows": 8,
+          "total_rows": 400
+        },
+        {
+          "group": "ministral3-14b-2512|gold_oracle",
+          "non_ok_percent": 0.0,
+          "non_ok_rate": 0.0,
+          "non_ok_rows": 0,
+          "total_rows": 400
+        },
+        {
+          "group": "ministral3-14b-2512|typed__absent__absent__advisory",
+          "non_ok_percent": 2.75,
+          "non_ok_rate": 0.0275,
+          "non_ok_rows": 11,
+          "total_rows": 400
+        },
+        {
+          "group": "ministral3-14b-2512|typed__absent__executable__advisory",
+          "non_ok_percent": 2.25,
+          "non_ok_rate": 0.0225,
+          "non_ok_rows": 9,
+          "total_rows": 400
+        },
+        {
+          "group": "ministral3-14b-2512|typed__trace_linked__absent__advisory",
+          "non_ok_percent": 3.0,
+          "non_ok_rate": 0.03,
+          "non_ok_rows": 12,
+          "total_rows": 400
+        },
+        {
+          "group": "ministral3-14b-2512|typed__trace_linked__executable__advisory",
+          "non_ok_percent": 2.0,
+          "non_ok_rate": 0.02,
+          "non_ok_rows": 8,
+          "total_rows": 400
+        },
+        {
+          "group": "ministral3-14b-2512|typed__trace_linked__executable__enforced",
+          "non_ok_percent": 2.5,
+          "non_ok_rate": 0.025,
+          "non_ok_rows": 10,
+          "total_rows": 400
+        },
+        {
+          "group": "qwen2.5-14b|free_form__absent__absent__advisory",
+          "non_ok_percent": 3.25,
+          "non_ok_rate": 0.0325,
+          "non_ok_rows": 13,
+          "total_rows": 400
+        },
+        {
+          "group": "qwen2.5-14b|free_form__absent__executable__advisory",
+          "non_ok_percent": 2.75,
+          "non_ok_rate": 0.0275,
+          "non_ok_rows": 11,
+          "total_rows": 400
+        },
+        {
+          "group": "qwen2.5-14b|free_form__trace_linked__absent__advisory",
+          "non_ok_percent": 4.25,
+          "non_ok_rate": 0.0425,
+          "non_ok_rows": 17,
+          "total_rows": 400
+        },
+        {
+          "group": "qwen2.5-14b|free_form__trace_linked__executable__advisory",
+          "non_ok_percent": 4.75,
+          "non_ok_rate": 0.0475,
+          "non_ok_rows": 19,
+          "total_rows": 400
+        },
+        {
+          "group": "qwen2.5-14b|full_history",
+          "non_ok_percent": 0.5,
+          "non_ok_rate": 0.005,
+          "non_ok_rows": 2,
+          "total_rows": 400
+        },
+        {
+          "group": "qwen2.5-14b|gold_oracle",
+          "non_ok_percent": 0.0,
+          "non_ok_rate": 0.0,
+          "non_ok_rows": 0,
+          "total_rows": 400
+        },
+        {
+          "group": "qwen2.5-14b|typed__absent__absent__advisory",
+          "non_ok_percent": 1.0,
+          "non_ok_rate": 0.01,
+          "non_ok_rows": 4,
+          "total_rows": 400
+        },
+        {
+          "group": "qwen2.5-14b|typed__absent__executable__advisory",
+          "non_ok_percent": 1.0,
+          "non_ok_rate": 0.01,
+          "non_ok_rows": 4,
+          "total_rows": 400
+        },
+        {
+          "group": "qwen2.5-14b|typed__trace_linked__absent__advisory",
+          "non_ok_percent": 0.25,
+          "non_ok_rate": 0.0025,
+          "non_ok_rows": 1,
+          "total_rows": 400
+        },
+        {
+          "group": "qwen2.5-14b|typed__trace_linked__executable__advisory",
+          "non_ok_percent": 1.25,
+          "non_ok_rate": 0.0125,
+          "non_ok_rows": 5,
+          "total_rows": 400
+        },
+        {
+          "group": "qwen2.5-14b|typed__trace_linked__executable__enforced",
+          "non_ok_percent": 1.25,
+          "non_ok_rate": 0.0125,
+          "non_ok_rows": 5,
+          "total_rows": 400
+        }
+      ],
+      "by_status": [
+        {
+          "group": "error",
+          "non_ok_percent": 100.0,
+          "non_ok_rate": 1.0,
+          "non_ok_rows": 178,
+          "total_rows": 178
+        },
+        {
+          "group": "ok",
+          "non_ok_percent": 0.0,
+          "non_ok_rate": 0.0,
+          "non_ok_rows": 0,
+          "total_rows": 8622
+        }
+      ]
+    },
+    "confirmatory_inference": false,
+    "denominator": "all 8,800 validated scheduled ITT rows",
+    "error_stage_rule": {
+      "other_model_output_or_validation": "all remaining non-OK validator records",
+      "receiver_action_validation": "message starts with 'receiver selected action outside visible catalog'",
+      "receiver_output_parse": "error type is JSONDecodeError after source-transfer parsing",
+      "receiver_state_validation": "message starts with 'receiver_state '",
+      "source_transfer_parse": "message starts with 'source transfer is not valid JSON'"
+    },
+    "overall": {
+      "non_ok_percent": 2.022727272727273,
+      "non_ok_rate": 0.020227272727272726,
+      "non_ok_rows": 178,
+      "ok_rows": 8622,
+      "total_rows": 8800
+    },
+    "scope": "Post-confirmatory descriptive audit of non-OK rows in the two raw roots validated by the v3.4.1 execution seal. It does not alter sealed analysis, results, raw runs, or the execution seal.",
+    "success_treatment": {
+      "formal_macro_state_f1_rule": "the sealed analyzer assigns macro_state_f1=0 to every non-OK row",
+      "formal_strict_success_rule": "the sealed analyzer assigns strict_success=1 only when status is ok and success is truthy; every non-OK row therefore receives zero",
+      "non_ok_rows_with_formal_macro_state_f1_zero": 178,
+      "non_ok_rows_with_formal_strict_success_zero": 178,
+      "reported_macro_state_f1_metric_all_zero": true,
+      "reported_metric_rows_checked": 178,
+      "reported_strict_success_metric_all_zero": true
+    }
+  }
+}

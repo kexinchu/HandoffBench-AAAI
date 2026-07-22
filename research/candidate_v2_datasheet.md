@@ -87,9 +87,11 @@ transactions, medical records, support logs, or personal communications. Domain
 patterns are generic workflow abstractions rather than representations of a named
 company's private policy.
 
-The repository currently contains no top-level license file. Consequently, this
-datasheet makes no open-license grant and users must not infer one. A release must
-declare the code/data license and verify compatibility before redistribution.
+Project-authored synthetic benchmark data and annotation records are licensed
+under CC BY 4.0; project-authored software is Apache-2.0. The manuscript, AAAI
+author kit, model weights, and third-party materials remain outside those
+grants. See the top-level license and third-party notice files before
+redistribution.
 
 ## Personal data, safety, and risks
 

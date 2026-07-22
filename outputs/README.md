@@ -14,7 +14,9 @@ data, analysis code, and generated outputs. Raw run trees and service logs remai
 excluded from Git and should be distributed as a separate immutable archive.
 `confirmatory_v3.4.1/post_confirmatory_v1/` contains explicitly exploratory,
 unadjusted model/domain subgroup diagnostics generated without modifying the
-sealed confirmatory analyzer.
+sealed confirmatory analyzer. It also contains
+`non_ok_descriptive_audit_v1.json`, a non-inferential accounting of all 178
+non-OK ITT rows by model, condition, factor level, and recorded failure stage.
 
 ## Offline stage decomposition
 

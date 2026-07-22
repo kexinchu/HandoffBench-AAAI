@@ -35,6 +35,18 @@ TRACKED_INPUTS = (
     "outputs/confirmatory_v3.4.1/post_confirmatory_v1/exploratory_subgroup_results.json",
     "outputs/confirmatory_v3.4.1/post_confirmatory_v1/provenance_manifest.json",
     "research/reviewer_audit_v3.md",
+    "outputs/confirmatory_v3.4.1/post_confirmatory_v1/non_ok_descriptive_audit_v1.json",
+    "research/non_ok_descriptive_audit_v1.md",
+    "research/human_spot_check_record_v1.md",
+    "LICENSE",
+    "DATA_LICENSE.md",
+    "NOTICE",
+    "THIRD_PARTY_NOTICES.md",
+    "release/ANONYMOUS_SUPPLEMENT_README.md",
+    "release/DATA_AND_MODEL_CARD.md",
+    "release/RELEASE_SCOPE.md",
+    "scripts/build_anonymous_supplement.py",
+    "research/reviewer_audit_v4.md",
 )
 
 
@@ -72,7 +84,10 @@ def table_source_record() -> dict:
     factorial = json.loads((ROOT / TRACKED_INPUTS[7]).read_text(encoding="utf-8"))
     power = json.loads((ROOT / TRACKED_INPUTS[8]).read_text(encoding="utf-8"))
     confirmatory = json.loads((ROOT / TRACKED_INPUTS[9]).read_text(encoding="utf-8"))
-    subgroups = json.loads((ROOT / TRACKED_INPUTS[17]).read_text(encoding="utf-8"))
+    subgroup_path = "outputs/confirmatory_v3.4.1/post_confirmatory_v1/exploratory_subgroup_results.json"
+    non_ok_path = "outputs/confirmatory_v3.4.1/post_confirmatory_v1/non_ok_descriptive_audit_v1.json"
+    subgroups = json.loads((ROOT / subgroup_path).read_text(encoding="utf-8"))
+    non_ok = json.loads((ROOT / non_ok_path).read_text(encoding="utf-8"))["report"]
     overall = {row["method"]: row for row in legacy["summary"] if row["variant"] == "all"}
     effects = factorial["estimates"]["effects"]["strict_success"]
     power_cells = {(row["n_families"], row["icc"], row["target_absolute_effect"]): row["power"]
@@ -111,6 +126,12 @@ def table_source_record() -> dict:
             "analysis_contract": subgroups["analysis_contract"],
             "checks_by_model": subgroups["estimands"]["advisory_checks_main_effect"]["by_model"],
             "checks_model_difference": subgroups["estimands"]["checks_model_difference_interaction"]["overall"],
+            "non_ok_descriptive": {
+                "confirmatory_inference": False,
+                "analysis_contract": non_ok["analysis_contract"],
+                "overall": non_ok["overall"],
+                "by_error_stage": non_ok["breakdowns"]["by_error_stage"],
+            },
         },
     }
 

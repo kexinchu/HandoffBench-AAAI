@@ -30,13 +30,13 @@ Deterministic receiver-state probes link field fidelity to regression and policy
 violations. We compare
 full history, free-form summaries, structured payloads, and Executable Handoff
 Capsules, which bind typed claims to trace provenance and machine-checkable
-preconditions. We preregister a factorial evaluation to isolate the effects of
-typing, provenance, and executable checks under matched evidence and budgets.
-Before candidate-model evaluation, we double-annotated, independently audited,
+preconditions. We seal a pre-execution factorial analysis plan to isolate typing,
+provenance, and executable checks under matched evidence and budgets.
+Before candidate-model evaluation, isolated agents double-annotated and audited,
 replaced exclusions, and sealed a balanced 200-family split. Across 8,800
 intent-to-treat runs with two models, two seeds, and eleven conditions,
 Structured transfer achieved 71.6\% strict success versus 91.1\% for the Gold
-Oracle, a preregistered gap of 19.5 percentage points (family-clustered 95\% CI
+Oracle, a prespecified gap of 19.5 percentage points (family-clustered 95\% CI
 $[15.4,23.6]$; Holm-adjusted $p<.001$). Pooled advisory checks improved strict
 success by 3.63 points (95\% CI $[1.91,5.44]$; Holm-adjusted $p<.001$).
 Exploratory estimates were $+7.06$ points for Ministral and $+0.19$ for Qwen,
@@ -58,9 +58,9 @@ performance \citep{liu2024agentbench,yao2024taubench,lu2025toolsandbox,zhu2025mu
 while recent coding-agent takeover evaluation measures the effort needed to
 resume interrupted work \citep{kc2026handoff}. These works do not, however, expose a gold semantic
 state at an inter-role boundary and score which atomic facts, unknowns,
-permissions, and preconditions crossed it. Consequently, an end-to-end failure
-cannot be localized to source extraction, the transfer representation, or the
-receiving agent's use of correctly transferred state.
+permissions, and preconditions crossed it. Consequently, their end-to-end
+scores do not directly quantify regression attributable to a changed boundary
+representation under a fixed receiver and environment.
 
 We present HandoffBench, a benchmark and intervention protocol that holds the
 upstream trace, target model, tools, and budget fixed while intervening on the
@@ -74,7 +74,7 @@ Our contributions are: (1) a controlled benchmark for field-level
 handoff fidelity in interactive tool workflows; (2) deterministic state probes
 and oracle interventions that identify handoff-induced regression; and (3) a matched
 factorial protocol that separates typing, provenance, and advisory executable
-checks from action enforcement; and (4) a preregistered 8,800-run evaluation
+checks from action enforcement; and (4) a pre-execution-sealed 8,800-run evaluation
 showing a 19.5-point Structured-to-Oracle boundary gap and a 3.63-point average
 benefit from advisory checks. Secondary estimates for typing and provenance are
 reported separately from the confirmatory multiplicity family.

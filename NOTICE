@@ -1,0 +1,10 @@
+HandoffBench
+Copyright 2026 HandoffBench authors and contributors
+
+The software source code is licensed under Apache License 2.0. Project-authored
+benchmark data and released evaluation outputs are licensed separately under
+CC BY 4.0; see DATA_LICENSE.md.
+
+This distribution may refer to third-party models and include an unmodified
+AAAI author kit. Those materials are not relicensed by HandoffBench; see
+THIRD_PARTY_NOTICES.md and the notices supplied with each upstream work.

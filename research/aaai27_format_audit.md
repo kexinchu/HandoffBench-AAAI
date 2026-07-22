@@ -34,14 +34,15 @@ Audit updated: 2026-07-22. Scope: the anonymous review manuscript in
   does not append it to `main.pdf`.
 - All code, data, and other material necessary for reproducibility must be
   provided at submission time. A promise to release after acceptance does not
-  count. Prepare an anonymized Code and Data Supplement by the July 31, 2026
-  supplementary deadline; the main paper deadline is July 28, 2026.
+  count. The deterministic anonymous Code and Data Supplement now builds and
+  passes its mechanical audit; upload it by the July 31, 2026 supplementary
+  deadline. The main paper deadline is July 28, 2026.
 - Keep acknowledgements absent during anonymous review.  Audit repository URLs,
   supplementary files, PDF metadata, self-citations, and model/output paths for
   identity leakage.
 - Agent-annotation, execution-lineage, and result language is synchronized with
   the post-seal annotation-provenance correction, v3.1 dataset seal, and v3.4.1
-  execution seal. The current seven-page PDF includes both preregistered
+  execution seal. The current seven-page PDF includes both pre-execution-sealed
   confirmatory results and labels development and secondary estimates
   separately. Formatting compliance does not by itself establish scientific
   completeness; repeat the audit after every substantive paper edit.

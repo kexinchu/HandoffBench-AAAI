@@ -1,7 +1,13 @@
 % Development numbers are diagnostic only.
 \section{Closest Related Work}
 
-The broad idea of evaluating agent handoffs is not new. Most directly,
+Learned communication studies optimize messages for cooperative tasks
+\citep{sukhbaatar2016commnet,foerster2016dial}, while stateful tool-use and
+collaboration benchmarks measure policy compliance, terminal success, and
+team-level coordination
+\citep{yao2024taubench,lu2025toolsandbox,zhu2025multiagentbench}. These lines do
+not expose a scored semantic state at a fixed, manipulated role boundary. The
+broad idea of evaluating agent handoffs is also not new. Most directly,
 \emph{Handoff Debt} interrupts coding agents at deterministic repository
 checkpoints and compares repository-only, raw-trace, summary-note, and
 structured-note views, measuring task resolution and successor rediscovery
@@ -21,8 +27,8 @@ drift, signal corruption, and capability gaps, then learns when to clarify
 permission-isolated enterprise workflows in which context transfer is one
 bottleneck \citep{yu2026entcollab}. HandoffBench does not claim these messaging,
 repair, or enterprise settings. It contributes evaluator-visible atomic boundary
-state and matched interventions that localize extraction, transport, and
-receiver-utilization failures.
+state and matched representation interventions that estimate oracle-gated
+boundary regression and test serialization mechanisms under fixed evidence.
 
 \begin{table}[t]
 \centering
@@ -64,26 +70,6 @@ $[-22.9,12.5]$). This is a
 negative development result: it does not support generic EHC superiority, and
 we retain rather than tune it away.
 
-\begin{table}[t]
-\centering
-\small
-\begin{tabular}{@{}lrr@{}}
-\toprule
-Development view & Success & Rate \\
-\midrule
-Full History & 44/48 & 91.7\% \\
-Free Summary & 23/48 & 47.9\% \\
-Structured Payload & 36/48 & 75.0\% \\
-All-on EHC & 33/48 & 68.8\% \\
-Gold Oracle & 45/48 & 93.8\% \\
-\bottomrule
-\end{tabular}
-\caption{Development-only strict success across two model families and six independent
-families (four counterfactual variants each). These are design diagnostics, not
-benchmark test results.}
-\label{tab:dev-legacy}
-\end{table}
-
 A representation-matched $2\!\times\!2\!\times\!2$ development factorial
 (typing, trace-linked provenance, and advisory checks) scheduled 384 cells for
 two model families; 381 completed provider/parsing successfully, and all cells remain in
@@ -98,25 +84,6 @@ thesis from ``all-on capsules are superior'' to two falsifiable benchmark
 questions: whether boundary regression exists, and which representation
 mechanisms help or harm under matched information.
 
-\begin{table}[t]
-\centering
-\small
-\begin{tabular}{@{}lrr@{}}
-\toprule
-Factor / interaction & Effect & Family 95\% CI \\
-\midrule
-Typing & +2.60 pp & $[0.52,4.69]$ \\
-Provenance & $-6.77$ pp & $[-15.63,2.60]$ \\
-Advisory checks & +6.77 pp & $[3.65,9.38]$ \\
-Provenance $\times$ checks & $-4.69$ pp & $[-10.42,-0.52]$ \\
-\bottomrule
-\end{tabular}
-\caption{Development-only strict-success effects from the fair
-$2\times2\times2$ factorial (two model families, six independent families, 384 ITT
-cells). The source-identity audit passed all 48 episode--model blocks.}
-\label{tab:dev-factorial}
-\end{table}
-
 Power was likewise treated as a pre-test design input. A fixed-seed simulation
 with model repeats nested within family and family-cluster bootstrap inference
 estimated, at ICC $=.10$, power of .441 for an 8-pp effect and .633 for a 10-pp
@@ -130,12 +97,17 @@ permit optional stopping.
 
 The sealed matrix contains all 8,800 scheduled ITT cells: 200 independent
 families, two models, two seeds, and eleven conditions. The only two
-preregistered confirmatory tests use family-cluster percentile-bootstrap
+confirmatory tests sealed before execution use family-cluster percentile-bootstrap
 intervals (10,000 draws) and Holm-adjusted two-sided $p$-values. All other
 factorial, endpoint, condition, model, and domain estimates below are secondary
 or exploratory. Across the matrix, 178 cells (2.02\%; 97 Ministral and 81
-Qwen) had non-OK model-output, schema, or parse status; the preregistered ITT
-rule retained them with zero success and state credit.
+Qwen) had non-OK model-output, schema, or parse status; the prespecified ITT
+rule retained them with zero success and state credit. Their processing points
+were nine source-transfer parses, eight receiver-output parses, 86
+receiver-state schema/semantic checks, and 75 receiver action-catalog checks.
+The respective Qwen/Ministral splits were 0/9, 1/7, 49/37, and 31/44.
+Table~\ref{tab:nonok} shows non-OK rows in every non-oracle condition rather
+than a single treatment; Gold Oracle had zero.
 
 \begin{table}[t]
 \centering
@@ -148,20 +120,40 @@ Structured $-$ Oracle & $-19.50$ & $[-23.63,-15.38]$ \\
 Advisory checks & $+3.63$ & $[+1.91,+5.44]$ \\
 \bottomrule
 \end{tabular}
-\caption{The two preregistered confirmatory strict-success tests. Both have
+\caption{The two prespecified confirmatory strict-success tests. Both have
 Holm-adjusted $p<.001$ and use ITT rows with family-clustered inference. Rates
 appear in the text; effects are percentage points.}
 \label{tab:confirmatory-main}
 \end{table}
 
-Both preregistered tests rejected their null hypotheses after Holm correction.
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lrr@{\qquad}lrr@{}}
+\toprule
+Condition & Q & M & Condition & Q & M \\
+\midrule
+F--N--N & 13 & 9 & T--N--N & 4 & 11 \\
+F--N--C & 11 & 8 & T--N--C & 4 & 9 \\
+F--P--N & 17 & 11 & T--P--N & 1 & 12 \\
+F--P--C & 19 & 11 & T--P--C & 5 & 8 \\
+Full History & 2 & 8 & Enforced & 5 & 10 \\
+\bottomrule
+\end{tabular}
+\caption{Non-OK ITT cells by condition and model (Qwen Q, Ministral M).
+F/T: free-form/typed; N/P: no/trace provenance; N/C: no/computed checks.
+Enforced is the typed, provenance, checks-on arm; Gold Oracle had 0/0.}
+\label{tab:nonok}
+\end{table}
+
+Both prespecified tests rejected their null hypotheses after Holm correction.
 Structured transfer reached 71.6\% strict success, compared with 91.1\% under
 the Gold Oracle, for a paired effect of $-19.50$ percentage points (95\% CI
 $[-23.63,-15.38]$; $p_{\mathrm{Holm}}<.001$). Its oracle-gated HIR incidence
 over all scheduled pairs was 21.75\% (95\% CI $[17.88,25.63]$): in these cells,
 the oracle succeeded while Structured failed. In the matched representation factorial, advisory
 executable checks improved strict success by 3.63 points on average (95\% CI
-$[1.91,5.44]$; $p_{\mathrm{Holm}}<.001$), supporting the preregistered
+$[1.91,5.44]$; $p_{\mathrm{Holm}}<.001$), supporting the prespecified
 directional hypothesis.
 
 Secondary, unadjusted strict-success estimates were $+1.44$ points for typing

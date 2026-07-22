@@ -9,7 +9,7 @@ The evaluator proposal is a task-critical set of typed atomic claims,
 \begin{equation}
 G_b=\{g_i=(k_i,v_i,q_i,p_i,\ell_i,w_i)\}_{i=1}^{n},
 \end{equation}
-with canonical key $k_i$, normalized value $v_i$, epistemic status $q_i\in\{\textsc{known},\textsc{unknown},\textsc{contradicted},\textsc{n/a}\}$, authenticated provenance $p_i$, criticality $\ell_i$, and preregistered weight $w_i>0$.  A proposed claim is retained only when its omission or mutation can change a legal next action or $\Phi$; open status is itself state and is never imputed.  Executable preconditions remain in action rules, and tool-execution metadata is scored through workflow events, so neither is counted again in the primary semantic-state score.  Candidate families must be independently double-annotated and adjudicated before sealing; model outputs are unavailable during this process.
+with canonical key $k_i$, normalized value $v_i$, epistemic status $q_i\in\{\textsc{known},\textsc{unknown},\textsc{contradicted},\textsc{n/a}\}$, authenticated provenance $p_i$, criticality $\ell_i$, and prespecified weight $w_i>0$.  A proposed claim is retained only when its omission or mutation can change a legal next action or $\Phi$; open status is itself state and is never imputed.  Executable preconditions remain in action rules, and tool-execution metadata is scored through workflow events, so neither is counted again in the primary semantic-state score.  Candidate families must be independently double-annotated and adjudicated before sealing; model outputs are unavailable during this process.
 
 \paragraph{Judge-free evaluator.}
 Every receiver first emits the same schema-constrained state probe and then one schema-constrained action.  Values are compared by declared canonicalizers (e.g., ISO dates, normalized identifiers, and unordered sets), never by an LLM judge.  Within each $(\text{category},k)$ group, gold and predicted claims are assigned one-to-one by deterministic maximum-weight bipartite matching.  Hence a duplicated prediction can receive credit at most once and all remaining copies are false positives; duplicated gold atoms likewise require distinct predictions.  For a matched pair $(g_i,\hat g_j)$, let $r_{ij}$ be overlap measured relative to the gold value and $p_{ij}$ overlap measured relative to the prediction; both reduce to exact equality of status and normalized value for non-set claims, while set claims use directional element overlap.  We report the resulting weighted micro diagnostics,
@@ -19,25 +19,56 @@ P_s=\frac{\sum_{(i,j)\in\mathcal{M}}\bar w_{c(j)}p_{ij}}{\sum_j\bar w_{c(j)}},
 \end{equation}
 where $\bar w_c$ is a fixed category weight rather than a model-supplied weight.  The assignment optimizes the combined directional recall and precision credit.  Distinct from these weighted micro diagnostics, headline transfer fidelity is the unweighted mean of per-field $F_1$ over populated primary semantic fields, using the same field-local one-to-one matching.  We additionally report category recall, contradiction among predictions sharing a gold key, unsupported-key rate, and provenance validity.
 
-The simulator checks action arguments, ordering, call limits, public preconditions, and role allow-lists before applying deterministic user or tool transitions.  Strict success is $S(e,m)=\mathbf{1}[\Phi(E_{\mathrm{terminal}},\rho_m)]$.  Episode-level safety and efficiency errors include action without scoped consent, unsupported commitment reports, missed preconditions, duplicate stable tool calls, unnecessary re-asks, and role violations.  A gold-state oracle uses the same receiver and environment but exposes canonical $G_b$.  We attribute a paired handoff-induced regression only when the oracle succeeds:
+The simulator checks action arguments, ordering, call limits, public preconditions, and role allow-lists before applying deterministic user or tool transitions.  Strict success is $S(e,m)=\mathbf{1}[\Phi(E_{\mathrm{terminal}},\rho_m)]$.  Episode-level safety and efficiency errors include action without scoped consent, unsupported commitment reports, missed preconditions, duplicate stable tool calls, unnecessary re-asks, and role violations.  A gold-state oracle uses the same receiver and environment but exposes canonical $G_b$.  We count a paired handoff-induced regression only when the oracle succeeds:
 \begin{equation}
 \mathrm{HIR}(e,m)=\mathbf{1}\{S(e,o)=1\ \wedge\ S(e,m)=0\}.
 \end{equation}
-This definition avoids labeling failures that persist under perfect transfer as handoff-caused.
+Its reported rate is the mean of this joint indicator over all scheduled pairs,
+not failure probability conditional on oracle success. This avoids labeling
+failures that persist under perfect transfer as handoff-caused.
+
+\paragraph{Worked episode.}
+In sealed task \url{repl_v3_procurement_003}, authenticated events state that
+the requested target is option A, scope is B, authorization is unknown, and
+prerequisites are ready.
+The gold interface contains the corresponding typed atoms, including
+\texttt{requested\_target\_id=A} linked to the user event and
+\texttt{authorization\_state=(unknown,null)} linked to policy. The factorial
+view renders one generated artifact either as fixed-field prose or typed atoms;
+provenance adds trace IDs, and checks add computed public-predicate statuses
+(e.g., \texttt{authorization\_state=unknown: satisfied}). In the typed,
+trace-provenance, checks-on advisory cell for Qwen seed 202, the artifact omitted
+target A, the receiver selected option B, and the episode failed. In its matched
+Gold Oracle run, the same receiver observed A and completed the legal
+authorize--purchase sequence. This case illustrates the scored path from trace
+to boundary state to representation to action, not an additional statistical
+result.
 
 \subsection{Representation Factorial}
 \label{sec:factorial}
 
 The mechanism-identification experiment is a representation-only $2\times2\times2$ factorial: typing (fixed-envelope free-form versus typed atoms) $\times$ provenance (absent versus trace-linked) $\times$ checks (absent versus executable).  All eight cells expose the same ten semantic fields.  For each $(e,\text{model},\text{seed})$ block, the source receives the identical frozen trace, atomic evidence, public predicates, prompt, schema, and token budget.  Crucially, the source is called once per block: its immutable generated artifact, raw output, prompt/schema hashes, and logical usage record are reused across all eight cells.  A fairness audit rejects an incomplete cube or any block with unequal source output, prompt, schema, or usage hashes.
 
-The factors alter serialization, not source information.  Typing renders the same atoms either as $\{k,q,v\}$ records or as deterministic prose within the fixed field envelope.  Provenance-off cells omit bindings but do not withhold evidence from the source.  Checks-off cells omit evaluated statuses but do not withhold public predicates.  In checks-on cells, the framework evaluates those predicates against the source state; it does not introduce evaluator gold.  Every raw artifact is retained unchanged.  Validation produces a sidecar and, where relevant, visible error annotations; it neither supplies corrected values nor quarantines a claim in the primary experiment.
+The factors alter serialization, not source information.  Typing renders the same atoms either as $\{k,q,v\}$ records or as deterministic prose within the fixed field envelope.  Provenance-off cells omit bindings but do not withhold evidence from the source.  Checks-off cells omit evaluated statuses but do not withhold public predicates.  In checks-on cells, the framework evaluates those predicates against the generated source state and serializes each condition with \texttt{satisfied}, \texttt{missing}, or \texttt{contradicted} status for the receiver; it does not introduce evaluator gold.  Every raw artifact is retained unchanged.  Validation produces a sidecar and, where relevant, visible error annotations; it neither supplies corrected values nor quarantines a claim in the primary experiment.
 
 All factorial cells use advisory execution.  Executable checks therefore mean ``represent a computed status,'' not ``block an action.''  Action enforcement is an orthogonal binary intervention: the secondary enforced arm holds the all-on representation fixed and reports prevented violations, false blocks, and success.  It is not pooled into factorial effects or described as a representation gain.  Legacy Full History, Free Summary, Structured Payload, all-on Capsule, and Gold Oracle remain descriptive controls outside the factorial.
 
 \subsection{Confirmatory Statistics}
 \label{sec:statistics}
 
-The preregistered confirmatory population contains 200 independently authored families (40 in each of five domains), sealed after annotation, adjudication, replacement, and overlap audit and before any confirmatory call. We evaluated Qwen2.5-14B-Instruct and Ministral-3-14B-Instruct-2512 with seeds 101 and 202, temperature .7, at most 1,600 output tokens and four receiver turns. Model and seed rows are repeated measures nested within task family, giving $200\times2\times2\times11=8{,}800$ scheduled cells. Analysis is intent-to-treat (ITT): every scheduled task--model--seed--condition cell remains in its assigned condition. Provider, schema, or parse failures receive zero strict success and state credit, remain in all denominators, and retain their raw calls and costs.
+Before any confirmatory call, we content-hashed and sealed a project-local
+analysis plan, hypotheses, multiplicity family, population, and execution
+configuration. We call this a pre-execution preregistration, but it was not
+deposited in a third-party registry. The population contains 200 independently
+authored families (40 in each of five domains), sealed after annotation,
+adjudication, replacement, and overlap audit. We evaluated
+Qwen2.5-14B-Instruct and Ministral-3-14B-Instruct-2512 with seeds 101 and 202,
+temperature .7, at most 1,600 output tokens and four receiver turns. Model and
+seed rows are repeated measures nested within task family, giving
+$200\times2\times2\times11=8{,}800$ scheduled cells. Analysis is intent-to-treat
+(ITT): every scheduled task--model--seed--condition cell remains in its assigned
+condition. Provider, schema, or parse failures receive zero strict success and
+state credit, remain in all denominators, and retain their raw calls and costs.
 
 For the balanced factorial, factors are effect-coded $x_f\in\{-1,+1\}$. We estimated all main effects, all two-way interactions, and the three-way interaction; for term $T$, the balanced contrast is $2\,\mathrm{E}[Y\prod_{f\in T}x_f]$. Strict success is primary; state $F_1$, critical error, HIR, tokens, calls, and validator cost are secondary. Confidence intervals use percentile bootstrap resampling of independent task families, carrying along all model, seed, and condition rows. Binary paired contrasts use the same family-cluster bootstrap; exact McNemar tests are sensitivity analyses because repeated model/seed observations are clustered. Optional post-confirmatory mixed diagnostic models may include family and model intercepts, but they are not part of the confirmatory evidence or multiplicity family and are reported only with convergence diagnostics and any fallbacks.
 

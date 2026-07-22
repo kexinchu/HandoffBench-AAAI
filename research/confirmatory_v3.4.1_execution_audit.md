@@ -59,7 +59,7 @@ infrastructure error.
 ## Formal analysis audit
 
 The analysis used family-cluster percentile bootstrap inference with seed 2027
-and 10,000 draws. Independent recomputation verified both preregistered effects,
+and 10,000 draws. Independent recomputation verified both prespecified effects,
 their confidence intervals, sign-flip tests, Holm correction, and provenance
 closure across all 8,800 raw hashes.
 

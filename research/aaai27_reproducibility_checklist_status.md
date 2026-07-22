@@ -11,10 +11,14 @@ replacement, final audit, sealing, confirmatory execution, and formal analysis
 are complete. The sealed population contains 200 families (40 per domain), and
 the final analysis contains all 8,800 scheduled ITT cells. However:
 
-- The repository currently has no declared research-use license, so public
-  release-with-license questions cannot be answered yes.
-- AAAI-27 evaluates reproducibility only from materials supplied at submission;
-  an anonymized Code and Data Supplement still must be packaged and uploaded.
+- Apache-2.0 now covers project-authored software and CC BY 4.0 covers
+  project-authored synthetic data and released evaluation records. The
+  manuscript, AAAI author kit, model weights, and third-party materials are
+  explicitly excluded from those grants.
+- A deterministic anonymous Code and Data Supplement has been built and audited
+  with all 8,800 raw records. It must still be uploaded by the authors at
+  submission; its existence in a local ignored build directory is not itself a
+  completed OpenReview upload.
 - The annotation agents' exact underlying model/runtime identity was not
   recorded, and no recruited-human audit exists; the checklist and paper cannot
   claim human-grounded annotation reproducibility.
@@ -31,8 +35,9 @@ The significance-testing response is now `yes`: the paper identifies its two
 confirmatory tests, uses family-clustered inference, applies Holm correction,
 and keeps unadjusted secondary estimates outside that family. Other responses
 may be upgraded only when the corresponding artifact and paper disclosure
-actually exist; completed execution does not by itself justify upgrading
-licensing, infrastructure, code-appendix, or hyperparameter answers.
+actually exist. Licensed-release questions may now be answered `yes`; completed
+execution does not by itself justify upgrading infrastructure, code-appendix,
+or hyperparameter answers.
 
 ## Offline rebuild
 
@@ -51,3 +56,7 @@ The default interpreter is `python`; override it with
 `PYTHON=/path/to/project/python` when needed. The build first checks Python and
 dependency minimum versions and fails with an actionable message if the wrong
 environment is active.
+
+Build the separate anonymous supplement with `make anonymous-supplement`. Its
+manifest hashes every archive member and its auditor rejects Git metadata,
+identity-bearing paths/remotes, unsafe paths, missing raw roots, and hash drift.

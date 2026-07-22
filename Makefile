@@ -2,7 +2,7 @@ PYTHON ?= python
 PAPER_DIR := paper
 BUILD_DIR := build/reproducibility
 
-.PHONY: submission env-check artifacts test paper checklist pdf-audit
+.PHONY: submission env-check artifacts test paper checklist pdf-audit anonymous-supplement
 
 submission: env-check test artifacts paper checklist pdf-audit
 
@@ -27,3 +27,6 @@ checklist:
 pdf-audit: paper
 	! rg -n "undefined|Overfull|LaTeX Warning" $(PAPER_DIR)/main.log
 	pdfinfo $(PAPER_DIR)/main.pdf | rg "Pages|Page size"
+
+anonymous-supplement: env-check
+	PYTHONPATH=src $(PYTHON) scripts/build_anonymous_supplement.py

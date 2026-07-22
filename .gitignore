@@ -60,3 +60,4 @@ outputs/confirmatory_v3.4.1/analysis_v3.4.1/provenance_manifest.json
 !outputs/confirmatory_v3.4.1/post_confirmatory_v1/
 !outputs/confirmatory_v3.4.1/post_confirmatory_v1/exploratory_subgroup_results.json
 !outputs/confirmatory_v3.4.1/post_confirmatory_v1/provenance_manifest.json
+!outputs/confirmatory_v3.4.1/post_confirmatory_v1/non_ok_descriptive_audit_v1.json

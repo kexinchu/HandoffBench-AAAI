@@ -3,9 +3,9 @@
 Audit updated: 2026-07-22. The requested endpoint is an AAAI-27-format paper
 with evidence strong enough for an approximately 4/5 review. Agent annotation,
 replacement, final audit, dataset sealing, confirmatory execution, infrastructure
-audit, and formal analysis are complete. The remaining work is submission-level
-paper, checklist, release auditing, and human validity review; a review score
-cannot be guaranteed.
+audit, formal analysis, submission-level paper revision, licensing, and anonymous
+release auditing are complete. Upload and independently documented human
+validity review remain author actions; a review score cannot be guaranteed.
 
 | Requirement derived from the brief | Authoritative evidence | Status |
 |---|---|---|
@@ -21,9 +21,9 @@ cannot be guaranteed.
 | Adequate construct validity | All final tasks pass public unique-terminal-sequence, grounding, provenance, impact, and exact-oracle hard checks | Hard gates pass; synthetic/ecological limitations remain |
 | Novelty survives closest-work comparison | Primary-source audit including Handoff Debt, PACT, AgentAsk, EntCollabBench, NeuroState, and ProvenanceGuard | Current scoped claim is defensible; recheck at submission |
 | Reproducible statistical analysis | Preregistration, ITT/fail-closed analyzer, family bootstrap, Holm, McNemar sensitivity, input hashes, and immutable run ledgers | Complete; 10,000-draw formal artifacts and provenance manifest generated |
-| Confirmatory evidence answers the research questions | Sealed 200-family × 2-model × 2-seed × 11-condition cube and generated tables | Complete: 8,800/8,800 ITT cells; both preregistered tests reported |
+| Confirmatory evidence answers the research questions | Sealed 200-family × 2-model × 2-seed × 11-condition cube and generated tables | Complete: 8,800/8,800 ITT cells; both pre-execution-sealed tests reported |
 | AAAI-27 format compliance | `paper/main.pdf`, official 2027 author kit, and format audit | Current anonymous draft passes mechanical checks and the 7/9-page rule; checklist is separate |
-| Reviewer-level completeness | Final paper containing confirmatory estimates, uncertainty, null/harmful outcomes, and updated review | In progress: confirmatory results integrated; final format/checklist/reviewer audit remains |
+| Reviewer-level completeness | Final paper containing confirmatory estimates, uncertainty, null/harmful outcomes, and updated review | Substantively complete; final upload and human-audit metadata remain |
 
 ## Agent-annotation and replacement record
 
@@ -84,7 +84,7 @@ earlier Qwen arm was invalidated after external service termination; none of its
 rows were reused. The replacement ledger records 4,400 written and zero resumed
 rows, while the infrastructure audit found zero provider infrastructure errors.
 
-The two preregistered confirmatory tests both pass Holm correction. Structured
+The two prespecified, pre-execution-sealed confirmatory tests both pass Holm correction. Structured
 strict success was 71.625% versus 91.125% for Gold Oracle, an effect of -19.50
 percentage points (family-bootstrap 95% CI [-23.625, -15.375];
 Holm-adjusted p approximately 0.00010). Advisory checks improved strict success
@@ -94,14 +94,10 @@ estimates remain outside the confirmatory multiplicity family.
 
 ## Remaining order of operations
 
-1. Rebuild the manuscript and checklist, enforce the AAAI main-text page limit,
-   and resolve all warnings or paper-to-artifact test failures.
-2. Complete an independent post-results reviewer audit, including claim strength,
-   model/domain heterogeneity, limitations, and related-work positioning.
-3. Reconcile the reproducibility checklist with recorded hardware/software
-   details and final AAAI-27 submission instructions.
-4. Decide release licenses and archive immutable raw runs separately from Git;
-   do not infer an open license from repository visibility.
-5. Obtain and lock an independent recruited-human audit (without outcome-driven
+1. Record the author spot-check's sample size, task IDs, rubric, and blinding;
+   otherwise retain it as an informal face check rather than human validation.
+2. Upload the already built anonymous supplement and separately built checklist
+   by the AAAI deadlines, then verify uploaded bytes against local hashes.
+3. Obtain and lock an independent recruited-human audit (without outcome-driven
    task repair) or explicitly accept agent-annotated construct validity as a
    major limitation.

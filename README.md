@@ -10,7 +10,8 @@ Fidelity in Multi-Agent LLM Workflows**.
 
 > Research status: the synthetic 200-family split was independently
 > agent-annotated, adjudicated, statically audited, and sealed
-> before candidate-model evaluation. The preregistered 8,800-cell confirmatory
+> before candidate-model evaluation. The project-local, pre-execution-sealed
+> 8,800-cell confirmatory
 > matrix and v3.4.1 replacement audit are complete. Formal results distinguish
 > the two Holm-controlled confirmatory tests from unadjusted secondary analyses.
 
@@ -46,8 +47,8 @@ outputs/     Small aggregate development results used by the manuscript
 
 Raw model traces and third-party paper PDFs are intentionally excluded from the
 Git repository. Aggregate development and confirmatory artifacts include their
-input provenance; a complete archival release should publish the immutable raw
-runs as a separate versioned artifact.
+input provenance; `make anonymous-supplement` packages the immutable raw runs as
+a separate, audited submission artifact.
 
 ## Installation
 
@@ -166,7 +167,7 @@ caption says “oracle-conditional”; the recorded 21.75\% is the oracle-gated
 joint incidence over all scheduled pairs, as defined by the sealed indicator,
 not a conditional probability.
 
-The two preregistered confirmatory results are:
+The two prespecified, pre-execution-sealed confirmatory results are:
 
 - Structured versus Gold Oracle strict success: 71.6\% versus 91.1\%, a
   $-19.50$ percentage-point effect (family-bootstrap 95\% CI
@@ -204,16 +205,30 @@ The current anonymous draft is available at `paper/main.pdf`. Its development
 and confirmatory claims are audited in:
 
 - `research/reviewer_audit_v3.md`
+- `research/reviewer_audit_v4.md`
 - `research/completion_audit.md`
 - `research/aaai27_format_audit.md`
 - `research/paper_code_consistency_audit.md`
+- `research/non_ok_descriptive_audit_v1.md`
 
 The official AAAI-27 limit is seven pages of non-reference content and nine
 pages total, with pages 8--9 reserved for references. The reproducibility
 checklist is a separate upload; `paper/ReproducibilityChecklist_draft.pdf` is
 built independently. AAAI-27 also requires reproducibility materials at
-submission time, so an anonymized Code and Data Supplement must accompany the
-paper rather than relying on a post-acceptance release promise.
+submission time. Build and mechanically audit the complete anonymous Code and
+Data Supplement with:
+
+```bash
+make anonymous-supplement
+```
+
+The ignored build artifact under `build/anonymous_supplement/` contains the 200
+frozen tasks, 8,800 sealed raw runs, analysis code, public provenance, release
+documentation, and per-member hashes. It excludes Git metadata, remotes,
+private absolute-path manifests, credentials, service logs, and model weights.
+Upload this artifact with the submission rather than relying on a
+post-acceptance release promise. Verify the three upload artifacts against
+`release/SUBMISSION_ARTIFACTS.sha256` before and after upload.
 
 ## Data and release cautions
 
@@ -222,6 +237,14 @@ medical, financial, employment, or other decisions about real people. Evaluator
 gold state must never be placed in model prompts. The sealed split must not be
 repaired or filtered after confirmatory outcomes are observed.
 
-No top-level open-source or data license has yet been selected. Public visibility
-does not grant reuse rights; do not infer a license until the project owners add
-one. Third-party author-kit files retain their original terms.
+Project-authored software is licensed under Apache-2.0 (`LICENSE`).
+Project-authored synthetic tasks, annotations, and released evaluation records
+are licensed under CC BY 4.0 (`DATA_LICENSE.md`). The manuscript, AAAI author
+kit, model weights, trademarks, and other third-party materials are excluded
+from those grants; see `NOTICE`, `THIRD_PARTY_NOTICES.md`, and
+`release/RELEASE_SCOPE.md`.
+
+The project records an informal author spot-check in
+`research/human_spot_check_record_v1.md`. Because its sample IDs, size, rubric,
+and blinding have not yet been recorded, it is not cited as independent human
+validation and does not change the frozen dataset.
