@@ -24,6 +24,17 @@ TRACKED_INPUTS = (
     "outputs/cf_combined_v2_qwen_ministral/counterfactual_analysis.json",
     "outputs/factorial_cf_v4_qwen_ministral/factorial_analysis.json",
     "research/power_simulation_v1.json",
+    "outputs/confirmatory_v3.4.1/analysis_v3.4.1/confirmatory_results.json",
+    "outputs/confirmatory_v3.4.1/analysis_v3.4.1/provenance_manifest.public.json",
+    "data/splits/confirmatory_v3.4.1.execution.sealed.json",
+    "configs/confirmatory_v3.4.1.yaml",
+    "research/confirmatory_v3.4.1_execution_audit.md",
+    "research/annotation_provenance_correction_v1.json",
+    "research/annotation_provenance_correction_v1.md",
+    "research/runtime_environment_snapshot_v3.4.1.md",
+    "outputs/confirmatory_v3.4.1/post_confirmatory_v1/exploratory_subgroup_results.json",
+    "outputs/confirmatory_v3.4.1/post_confirmatory_v1/provenance_manifest.json",
+    "research/reviewer_audit_v3.md",
 )
 
 
@@ -60,6 +71,8 @@ def table_source_record() -> dict:
     legacy = json.loads((ROOT / TRACKED_INPUTS[6]).read_text(encoding="utf-8"))
     factorial = json.loads((ROOT / TRACKED_INPUTS[7]).read_text(encoding="utf-8"))
     power = json.loads((ROOT / TRACKED_INPUTS[8]).read_text(encoding="utf-8"))
+    confirmatory = json.loads((ROOT / TRACKED_INPUTS[9]).read_text(encoding="utf-8"))
+    subgroups = json.loads((ROOT / TRACKED_INPUTS[17]).read_text(encoding="utf-8"))
     overall = {row["method"]: row for row in legacy["summary"] if row["variant"] == "all"}
     effects = factorial["estimates"]["effects"]["strict_success"]
     power_cells = {(row["n_families"], row["icc"], row["target_absolute_effect"]): row["power"]
@@ -83,6 +96,22 @@ def table_source_record() -> dict:
             f"n{n}_effect{effect:.2f}": power_cells[(n, 0.1, effect)]
             for n in (120, 200) for effect in (0.08, 0.10)
         },
+        "confirmatory": {
+            "development_only": False,
+            "n_runs": confirmatory["n_runs"],
+            "n_tasks": confirmatory["n_tasks"],
+            "n_models": confirmatory["n_models"],
+            "n_seeds": confirmatory["n_seeds"],
+            "bootstrap_seed": confirmatory["bootstrap_seed"],
+            "bootstrap_draws": confirmatory["bootstrap_draws"],
+            "tests": confirmatory["confirmatory_tests"],
+        },
+        "post_confirmatory_exploratory": {
+            "confirmatory_inference": False,
+            "analysis_contract": subgroups["analysis_contract"],
+            "checks_by_model": subgroups["estimands"]["advisory_checks_main_effect"]["by_model"],
+            "checks_model_difference": subgroups["estimands"]["checks_model_difference_interaction"]["overall"],
+        },
     }
 
 
@@ -101,6 +130,12 @@ def table_rows_tex(record: dict) -> str:
         lines.append(f"% {name}: {item['effect']:.12g} "
                      f"[{item['cluster_bootstrap_ci_low']:.12g}, "
                      f"{item['cluster_bootstrap_ci_high']:.12g}]")
+    lines.append("% Confirmatory strict-success effects and family-bootstrap CIs:")
+    for name, item in record["confirmatory"]["tests"].items():
+        lines.append(f"% {name}: {item['effect']:.12g} "
+                     f"[{item['cluster_bootstrap_ci'][0]:.12g}, "
+                     f"{item['cluster_bootstrap_ci'][1]:.12g}], "
+                     f"Holm p={item['holm_adjusted_p']:.12g}")
     return "\n".join(lines) + "\n"
 
 

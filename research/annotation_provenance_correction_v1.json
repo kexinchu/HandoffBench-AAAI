@@ -1,0 +1,15 @@
+{
+  "correction_id": "handoffbench-annotation-provenance-correction-v1",
+  "date": "2026-07-22",
+  "status": "post-seal_metadata_correction",
+  "affected_artifact": "annotations/confirmatory_v3/agreement.final.v2.json",
+  "affected_field": "zero_call_attestation.statement",
+  "incorrect_phrase": "Human annotations were the only semantic decisions",
+  "corrected_statement": "Two isolated LLM-agent annotation roles and a separate disagreement-only LLM-agent adjudication role made the semantic annotation decisions; no candidate evaluation model was called before sealing.",
+  "annotation_model_runtime_recorded": false,
+  "semantic_labels_changed": false,
+  "dataset_bytes_changed": false,
+  "execution_or_analysis_changed": false,
+  "seal_modified": false,
+  "implication": "Agreement statistics measure replicated agent judgments and must not be described as human validation. A new human audit is required for any human-grounded validity claim."
+}

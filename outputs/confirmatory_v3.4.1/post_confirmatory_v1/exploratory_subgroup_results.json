@@ -1,0 +1,416 @@
+{
+  "analysis_contract": "post_confirmatory_v1",
+  "analysis_status": "exploratory",
+  "bootstrap": {
+    "draws": 10000,
+    "method": "percentile family-cluster bootstrap",
+    "rng_policy": "each reported estimate initializes Python random.Random(seed)",
+    "seed": 2027,
+    "unit": "template_family"
+  },
+  "confirmatory_inference": false,
+  "domains": [
+    "commerce",
+    "it",
+    "procurement",
+    "scheduling",
+    "travel"
+  ],
+  "endpoint": "strict_success_intention_to_treat",
+  "estimands": {
+    "advisory_checks_main_effect": {
+      "by_domain": {
+        "commerce": {
+          "effect": 0.0140625,
+          "family_cluster_bootstrap_ci": [
+            -0.0140625,
+            0.0453125
+          ],
+          "n_families": 40,
+          "n_paired_units": 160
+        },
+        "it": {
+          "effect": 0.0546875,
+          "family_cluster_bootstrap_ci": [
+            0.0140625,
+            0.0984375
+          ],
+          "n_families": 40,
+          "n_paired_units": 160
+        },
+        "procurement": {
+          "effect": 0.11875,
+          "family_cluster_bootstrap_ci": [
+            0.0640625,
+            0.178125
+          ],
+          "n_families": 40,
+          "n_paired_units": 160
+        },
+        "scheduling": {
+          "effect": -0.009375,
+          "family_cluster_bootstrap_ci": [
+            -0.0328125,
+            0.0109375
+          ],
+          "n_families": 40,
+          "n_paired_units": 160
+        },
+        "travel": {
+          "effect": 0.003125,
+          "family_cluster_bootstrap_ci": [
+            -0.0171875,
+            0.0234375
+          ],
+          "n_families": 40,
+          "n_paired_units": 160
+        }
+      },
+      "by_model": {
+        "ministral3-14b-2512": {
+          "effect": 0.070625,
+          "family_cluster_bootstrap_ci": [
+            0.038125,
+            0.105
+          ],
+          "n_families": 200,
+          "n_paired_units": 400
+        },
+        "qwen2.5-14b": {
+          "effect": 0.001875,
+          "family_cluster_bootstrap_ci": [
+            -0.009375,
+            0.01375
+          ],
+          "n_families": 200,
+          "n_paired_units": 400
+        }
+      },
+      "by_model_domain": {
+        "ministral3-14b-2512|commerce": {
+          "effect": 0.01875,
+          "family_cluster_bootstrap_ci": [
+            -0.034375,
+            0.078125
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "ministral3-14b-2512|it": {
+          "effect": 0.125,
+          "family_cluster_bootstrap_ci": [
+            0.05,
+            0.209375
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "ministral3-14b-2512|procurement": {
+          "effect": 0.20625,
+          "family_cluster_bootstrap_ci": [
+            0.103125,
+            0.321875
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "ministral3-14b-2512|scheduling": {
+          "effect": -0.01875,
+          "family_cluster_bootstrap_ci": [
+            -0.065625,
+            0.021875
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "ministral3-14b-2512|travel": {
+          "effect": 0.021875,
+          "family_cluster_bootstrap_ci": [
+            -0.009375,
+            0.053125
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "qwen2.5-14b|commerce": {
+          "effect": 0.009375,
+          "family_cluster_bootstrap_ci": [
+            -0.009375,
+            0.03125
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "qwen2.5-14b|it": {
+          "effect": -0.015625,
+          "family_cluster_bootstrap_ci": [
+            -0.046875,
+            0.00625
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "qwen2.5-14b|procurement": {
+          "effect": 0.03125,
+          "family_cluster_bootstrap_ci": [
+            0.003125,
+            0.071875
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "qwen2.5-14b|scheduling": {
+          "effect": 0.0,
+          "family_cluster_bootstrap_ci": [
+            0.0,
+            0.0
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "qwen2.5-14b|travel": {
+          "effect": -0.015625,
+          "family_cluster_bootstrap_ci": [
+            -0.040625,
+            0.009375
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        }
+      },
+      "definition": "mean strict success(checks executable) minus checks absent, averaged over typing and provenance in the advisory 2x2x2 factorial"
+    },
+    "checks_model_difference_interaction": {
+      "by_domain": {
+        "commerce": {
+          "effect": -0.009375,
+          "family_cluster_bootstrap_ci": [
+            -0.071875,
+            0.046875
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "it": {
+          "effect": -0.140625,
+          "family_cluster_bootstrap_ci": [
+            -0.228125,
+            -0.0625
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "procurement": {
+          "effect": -0.175,
+          "family_cluster_bootstrap_ci": [
+            -0.29375,
+            -0.065625
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "scheduling": {
+          "effect": 0.01875,
+          "family_cluster_bootstrap_ci": [
+            -0.021875,
+            0.065625
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "travel": {
+          "effect": -0.0375,
+          "family_cluster_bootstrap_ci": [
+            -0.078125,
+            0.003125
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        }
+      },
+      "contrast": "qwen2.5-14b minus ministral3-14b-2512",
+      "definition": "difference between model-specific advisory checks main effects",
+      "overall": {
+        "effect": -0.06875,
+        "family_cluster_bootstrap_ci": [
+          -0.104375,
+          -0.034375
+        ],
+        "n_families": 200,
+        "n_paired_units": 400
+      }
+    },
+    "structured_vs_oracle": {
+      "by_domain": {
+        "commerce": {
+          "effect": -0.13125,
+          "family_cluster_bootstrap_ci": [
+            -0.2125,
+            -0.0625
+          ],
+          "n_families": 40,
+          "n_paired_units": 160
+        },
+        "it": {
+          "effect": -0.425,
+          "family_cluster_bootstrap_ci": [
+            -0.51875,
+            -0.325
+          ],
+          "n_families": 40,
+          "n_paired_units": 160
+        },
+        "procurement": {
+          "effect": -0.275,
+          "family_cluster_bootstrap_ci": [
+            -0.4,
+            -0.15
+          ],
+          "n_families": 40,
+          "n_paired_units": 160
+        },
+        "scheduling": {
+          "effect": -0.05,
+          "family_cluster_bootstrap_ci": [
+            -0.08125,
+            -0.01875
+          ],
+          "n_families": 40,
+          "n_paired_units": 160
+        },
+        "travel": {
+          "effect": -0.09375,
+          "family_cluster_bootstrap_ci": [
+            -0.15,
+            -0.04375
+          ],
+          "n_families": 40,
+          "n_paired_units": 160
+        }
+      },
+      "by_model": {
+        "ministral3-14b-2512": {
+          "effect": -0.2,
+          "family_cluster_bootstrap_ci": [
+            -0.25,
+            -0.15
+          ],
+          "n_families": 200,
+          "n_paired_units": 400
+        },
+        "qwen2.5-14b": {
+          "effect": -0.19,
+          "family_cluster_bootstrap_ci": [
+            -0.2425,
+            -0.1375
+          ],
+          "n_families": 200,
+          "n_paired_units": 400
+        }
+      },
+      "by_model_domain": {
+        "ministral3-14b-2512|commerce": {
+          "effect": -0.1375,
+          "family_cluster_bootstrap_ci": [
+            -0.225,
+            -0.0625
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "ministral3-14b-2512|it": {
+          "effect": -0.425,
+          "family_cluster_bootstrap_ci": [
+            -0.55,
+            -0.3
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "ministral3-14b-2512|procurement": {
+          "effect": -0.2,
+          "family_cluster_bootstrap_ci": [
+            -0.35,
+            -0.05
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "ministral3-14b-2512|scheduling": {
+          "effect": -0.1,
+          "family_cluster_bootstrap_ci": [
+            -0.1625,
+            -0.0375
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "ministral3-14b-2512|travel": {
+          "effect": -0.1375,
+          "family_cluster_bootstrap_ci": [
+            -0.225,
+            -0.05
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "qwen2.5-14b|commerce": {
+          "effect": -0.125,
+          "family_cluster_bootstrap_ci": [
+            -0.225,
+            -0.05
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "qwen2.5-14b|it": {
+          "effect": -0.425,
+          "family_cluster_bootstrap_ci": [
+            -0.575,
+            -0.2625
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "qwen2.5-14b|procurement": {
+          "effect": -0.35,
+          "family_cluster_bootstrap_ci": [
+            -0.5,
+            -0.2
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "qwen2.5-14b|scheduling": {
+          "effect": 0.0,
+          "family_cluster_bootstrap_ci": [
+            0.0,
+            0.0
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        },
+        "qwen2.5-14b|travel": {
+          "effect": -0.05,
+          "family_cluster_bootstrap_ci": [
+            -0.1,
+            -0.0125
+          ],
+          "n_families": 40,
+          "n_paired_units": 80
+        }
+      },
+      "definition": "strict success(typed__absent__absent__advisory) minus gold_oracle"
+    }
+  },
+  "models": [
+    "qwen2.5-14b",
+    "ministral3-14b-2512"
+  ],
+  "multiplicity_correction": "none; exploratory estimates only",
+  "n_families": 200,
+  "n_models": 2,
+  "n_seeds": 2,
+  "n_tasks": 200,
+  "n_validated_runs": 8800
+}

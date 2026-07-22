@@ -1,6 +1,6 @@
 # AAAI-27 format audit
 
-Audit date: 2026-07-21.  Scope: the anonymous review manuscript in
+Audit updated: 2026-07-22. Scope: the anonymous review manuscript in
 `paper/main.tex` and `paper/main.pdf`.
 
 ## Verified against the 2027 author kit
@@ -10,8 +10,9 @@ Audit date: 2026-07-21.  Scope: the anonymous review manuscript in
 - Uses `aaai2027.bst`; the source compiles with PDFLaTeX and BibTeX.
 - Anonymous title block is `Anonymous Submission` with empty affiliations.
 - The submission option suppresses the camera-ready copyright footer.
-- The generated PDF is US Letter (612 x 792 pt), two-column, and currently six
-  pages including references.
+- The generated PDF is US Letter (612 x 792 pt), two-column, and currently seven
+  pages total; technical content ends and references begin on page 6, and page 7
+  contains references only.
 - No `hyperref`, page-number, header/footer, `geometry`, `titlesec`, manual page
   break, or non-AAAI font package is loaded by the manuscript.
 - References flow directly after the conclusion.
@@ -24,33 +25,41 @@ Audit date: 2026-07-21.  Scope: the anonymous review manuscript in
 - The present PDF passes the font audit: every font is embedded, all are Type 1,
   and the file is PDF 1.5 and unencrypted.  Repeat this audit on the final PDF,
   including absence of bookmarks/embedded links and cleared identifying metadata.
-- The AAAI-27 event page currently links the author kit and gives the main-track
-  deadline, but the retrieved page does not itself state a page limit or the
-  disposition of the reproducibility checklist.  Do not silently inherit these
-  details from AAAI-26.  Recheck the AAAI-27 submission instructions immediately
-  before submission and include/submit the checklist exactly as directed.
-- Keep technical content within the event-specific limit once confirmatory
-  results are inserted; references and any checklist must follow the exact
-  AAAI-27 event instructions.
+- The AAAI-27 main-track limit is 7 pages of non-reference content and 9 pages
+  total, with pages 8--9 reserved exclusively for references. The current PDF
+  is within both limits.
+- AAAI-27 requires the completed reproducibility checklist to be uploaded
+  separately from the main paper. The repository therefore builds
+  `paper/ReproducibilityChecklist_draft.pdf` as a standalone two-page file and
+  does not append it to `main.pdf`.
+- All code, data, and other material necessary for reproducibility must be
+  provided at submission time. A promise to release after acceptance does not
+  count. Prepare an anonymized Code and Data Supplement by the July 31, 2026
+  supplementary deadline; the main paper deadline is July 28, 2026.
 - Keep acknowledgements absent during anonymous review.  Audit repository URLs,
   supplementary files, PDF metadata, self-citations, and model/output paths for
   identity leakage.
-- Human annotation and sealing language is now synchronized with the v3.1 seal.
-  Replace the explicitly pending confirmatory language and development-only
-  performance tables only after the authorized preregistered evaluation.
-  Formatting compliance does not make the current six-page manuscript
-  scientifically complete.
+- Agent-annotation, execution-lineage, and result language is synchronized with
+  the post-seal annotation-provenance correction, v3.1 dataset seal, and v3.4.1
+  execution seal. The current seven-page PDF includes both preregistered
+  confirmatory results and labels development and secondary estimates
+  separately. Formatting compliance does not by itself establish scientific
+  completeness; repeat the audit after every substantive paper edit.
 
 ## Authoritative sources
 
 - AAAI-27 event page and author-kit link:
   https://aaai.org/conference/aaai/aaai-27/
+- AAAI-27 main-track call and explicit 7/9-page rule:
+  https://aaai.org/conference/aaai/aaai-27/main-technical-track-call/
+- AAAI-27 submission instructions, separate checklist, and reproducibility
+  material policy:
+  https://aaai.org/conference/aaai/aaai-27/submission-instructions/
 - Bundled anonymous instructions:
   `paper/AuthorKit27/AnonymousSubmission2027.tex`
 - Bundled style and bibliography files:
   `paper/AuthorKit27/aaai2027.sty` and
   `paper/AuthorKit27/aaai2027.bst`
 
-The AAAI-26 submission page was consulted only as historical context.  Its
-seven-page technical-content limit and checklist procedure are not treated here
-as authoritative AAAI-27 requirements unless AAAI-27 publishes the same rules.
+The audit relies on the event-specific AAAI-27 pages updated in May and June
+2026, not an inherited prior-year rule.

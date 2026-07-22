@@ -50,3 +50,13 @@ outputs/*
 !outputs/factorial_cf_v3_ministral3_14b/factorial_analysis.json
 !outputs/factorial_cf_v4_qwen_ministral/
 !outputs/factorial_cf_v4_qwen_ministral/factorial_analysis.json
+!outputs/confirmatory_v3.4.1/
+outputs/confirmatory_v3.4.1/*
+!outputs/confirmatory_v3.4.1/analysis_v3.4.1/
+!outputs/confirmatory_v3.4.1/analysis_v3.4.1/confirmatory_results.json
+!outputs/confirmatory_v3.4.1/analysis_v3.4.1/main_tables.tex
+outputs/confirmatory_v3.4.1/analysis_v3.4.1/provenance_manifest.json
+!outputs/confirmatory_v3.4.1/analysis_v3.4.1/provenance_manifest.public.json
+!outputs/confirmatory_v3.4.1/post_confirmatory_v1/
+!outputs/confirmatory_v3.4.1/post_confirmatory_v1/exploratory_subgroup_results.json
+!outputs/confirmatory_v3.4.1/post_confirmatory_v1/provenance_manifest.json

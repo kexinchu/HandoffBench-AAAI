@@ -8,11 +8,11 @@ with deterministic state probes, tool simulators, and terminal predicates.
 The accompanying manuscript is **State Is the Interface: Evaluating Handoff
 Fidelity in Multi-Agent LLM Workflows**.
 
-> Research status: the synthetic 200-family confirmatory split is human-validated
-> and sealed, and has received zero candidate-model calls. Confirmatory model
-> execution has **not** started: `configs/confirmatory_v3.yaml` deliberately sets
-> `execution_authorized: false`. Development results must not be described as
-> benchmark test results.
+> Research status: the synthetic 200-family split was independently
+> agent-annotated, adjudicated, statically audited, and sealed
+> before candidate-model evaluation. The preregistered 8,800-cell confirmatory
+> matrix and v3.4.1 replacement audit are complete. Formal results distinguish
+> the two Holm-controlled confirmatory tests from unadjusted secondary analyses.
 
 ## What is implemented
 
@@ -45,9 +45,9 @@ outputs/     Small aggregate development results used by the manuscript
 ```
 
 Raw model traces and third-party paper PDFs are intentionally excluded from the
-Git repository. Aggregate development artifacts include their input-directory
-provenance; a complete archival release should publish the immutable raw runs as
-a separate versioned artifact.
+Git repository. Aggregate development and confirmatory artifacts include their
+input provenance; a complete archival release should publish the immutable raw
+runs as a separate versioned artifact.
 
 ## Installation
 
@@ -101,7 +101,7 @@ The analyzer rejects duplicate scheduled cells and audits that all eight cells
 within each task/model/seed block reuse the same source artifact, prompt, schema,
 and logical usage record.
 
-## Sealed split and confirmatory gate
+## Sealed split and confirmatory execution
 
 Every original candidate was independently double-annotated from a label-free
 packet and locked before comparison. Disagreement-only adjudication rejected 24
@@ -119,36 +119,101 @@ Authoritative sealed artifacts are:
 - `annotations/confirmatory_v3/final_audit.ready.json`
 - `research/confirmatory_v3_leakage_overlap_audit.{json,md}`
 
+Annotation provenance correction:
+
+- `research/annotation_provenance_correction_v1.{json,md}`
+
+The A/B labels and disagreement adjudication were produced by isolated LLM-agent
+roles, not recruited human annotators. The original sealed agreement artifact's
+“Human annotations” wording is incorrect and is retained only to preserve its
+hash. Agreement statistics must not be described as human validation; a new,
+separately documented human audit is still required for that claim.
+
 The seal ID is `hb-v3.1-9671bf1ff2d5-20260721`; the sealed-manifest SHA-256 is
 `d2b11edb4e39041fe246706d45b4b36302921813b49d5040fe39f35a88130804`,
 and the canonical-dataset SHA-256 bound by that manifest is
 `9671bf1ff2d507e31a62069bbd655b83f53803aeee3a5b5908da7b8d9d892a93`.
 
-Run the static confirmatory preflight with:
+The original v3.3 Qwen arm was invalidated after an externally documented
+service termination. A prospective v3.4.1 seal required a full fresh Qwen arm:
+all 4,400 rows were newly written, none were resumed, and no old Qwen row enters
+the analysis. The intact 4,400-row Ministral arm was retained. Independent
+infrastructure and provenance audits passed, yielding the complete 8,800-cell
+ITT matrix. The matrix includes 178 non-OK model-output/schema/parse rows
+(2.02%), all retained with zero success and state credit; the infrastructure
+audit separately found zero provider infrastructure errors.
+
+Formal aggregate artifacts are:
+
+- `outputs/confirmatory_v3.4.1/analysis_v3.4.1/confirmatory_results.json`
+- `outputs/confirmatory_v3.4.1/analysis_v3.4.1/main_tables.tex`
+- `outputs/confirmatory_v3.4.1/analysis_v3.4.1/provenance_manifest.public.json`
+- `research/confirmatory_v3.4.1_execution_audit.md`
+- `outputs/confirmatory_v3.4.1/post_confirmatory_v1/exploratory_subgroup_results.json`
+- `outputs/confirmatory_v3.4.1/post_confirmatory_v1/provenance_manifest.json`
+
+The tracked provenance file is a deterministic anonymous derivative with
+repo-relative paths; its `source_private_manifest_sha256` binds the unmodified
+private sealed manifest. Generate it with
+`scripts/sanitize_confirmatory_provenance.py`; do not submit the private
+absolute-path manifest for anonymous review.
+
+`main_tables.tex` preserves the sealed analyzer's three-decimal presentation,
+which renders the approximately $10^{-4}$ adjusted p-values as `0.000`. This is
+rounding, not a zero p-value; the manuscript reports `$p<.001$`, and the exact
+floating-point values remain in `confirmatory_results.json`. Its legacy HIR
+caption says “oracle-conditional”; the recorded 21.75\% is the oracle-gated
+joint incidence over all scheduled pairs, as defined by the sealed indicator,
+not a conditional probability.
+
+The two preregistered confirmatory results are:
+
+- Structured versus Gold Oracle strict success: 71.6\% versus 91.1\%, a
+  $-19.50$ percentage-point effect (family-bootstrap 95\% CI
+  $[-23.63,-15.38]$; Holm-adjusted $p<.001$).
+- Advisory executable checks: $+3.63$ percentage points on average (95\% CI
+  $[1.91,5.44]$; Holm-adjusted $p<.001$).
+
+Typing, provenance, interactions, endpoints, and model/domain slices remain
+secondary or exploratory; their nominal intervals must not be presented as
+confirmatory evidence. The separately versioned post-confirmatory subgroup
+artifact shows that the pooled checks gain is heterogeneous across the two
+models and carries no multiplicity-adjusted inference.
+
+To verify the current execution seal before analysis:
 
 ```bash
 PYTHONPATH=src python scripts/preflight_confirmatory.py \
-  --config configs/confirmatory_v3.yaml
+  --config configs/confirmatory_v3.4.1.yaml
 ```
 
-All annotation, audit, seal, dataset, design, and model-snapshot gates pass. The
-command intentionally exits nonzero only because execution authorization remains
-false. Do not edit `execution_authorized` merely to bypass this final human gate.
-No confirmatory result exists yet.
+To regenerate the formal aggregates from separately archived raw runs:
+
+```bash
+PYTHONPATH=src python scripts/analyze_confirmatory.py \
+  --sealed-manifest data/splits/confirmatory_v3.4.1.execution.sealed.json \
+  --raw-run-dir outputs/confirmatory_v3/ministral3-14b-2512/runs \
+  --raw-run-dir outputs/confirmatory_v3.4.1/qwen2.5-14b/runs \
+  --output-dir outputs/confirmatory_v3.4.1/analysis_v3.4.1 \
+  --bootstrap-draws 10000
+```
 
 ## Paper
 
 The current anonymous draft is available at `paper/main.pdf`. Its development
-claims and unresolved limitations are audited in:
+and confirmatory claims are audited in:
 
-- `research/reviewer_audit_v2.md`
+- `research/reviewer_audit_v3.md`
 - `research/completion_audit.md`
 - `research/aaai27_format_audit.md`
 - `research/paper_code_consistency_audit.md`
 
-The official AAAI-27 event-specific page limit and checklist submission procedure
-must be rechecked before submission; this repository does not infer them from a
-previous conference year.
+The official AAAI-27 limit is seven pages of non-reference content and nine
+pages total, with pages 8--9 reserved for references. The reproducibility
+checklist is a separate upload; `paper/ReproducibilityChecklist_draft.pdf` is
+built independently. AAAI-27 also requires reproducibility materials at
+submission time, so an anonymized Code and Data Supplement must accompany the
+paper rather than relying on a post-acceptance release promise.
 
 ## Data and release cautions
 

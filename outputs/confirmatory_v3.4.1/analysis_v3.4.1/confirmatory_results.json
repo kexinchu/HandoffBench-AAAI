@@ -1,0 +1,1044 @@
+{
+  "analysis_contract": "preregistration-v3",
+  "bootstrap_draws": 10000,
+  "bootstrap_seed": 2027,
+  "condition_summary": {
+    "free_form__absent__absent__advisory": {
+      "calls": {
+        "cluster_bootstrap_ci": [
+          3.17625,
+          3.415
+        ],
+        "mean": 3.295
+      },
+      "critical_errors": {
+        "cluster_bootstrap_ci": [
+          1.77375,
+          2.02875
+        ],
+        "mean": 1.9
+      },
+      "input_tokens": {
+        "cluster_bootstrap_ci": [
+          6272.22125,
+          7160.0875
+        ],
+        "mean": 6712.93
+      },
+      "macro_state_f1": {
+        "cluster_bootstrap_ci": [
+          0.5399080592348684,
+          0.5790235855579605
+        ],
+        "mean": 0.5592145791099739
+      },
+      "output_tokens": {
+        "cluster_bootstrap_ci": [
+          1651.1225,
+          1825.59375
+        ],
+        "mean": 1736.44875
+      },
+      "strict_success": {
+        "cluster_bootstrap_ci": [
+          0.6575,
+          0.7475
+        ],
+        "mean": 0.70375
+      },
+      "validator_cost": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0
+      }
+    },
+    "free_form__absent__executable__advisory": {
+      "calls": {
+        "cluster_bootstrap_ci": [
+          3.11875,
+          3.34
+        ],
+        "mean": 3.22875
+      },
+      "critical_errors": {
+        "cluster_bootstrap_ci": [
+          1.77375,
+          2.025
+        ],
+        "mean": 1.89625
+      },
+      "input_tokens": {
+        "cluster_bootstrap_ci": [
+          6209.08375,
+          7048.29625
+        ],
+        "mean": 6626.54125
+      },
+      "macro_state_f1": {
+        "cluster_bootstrap_ci": [
+          0.5391507945757945,
+          0.5795405888641086
+        ],
+        "mean": 0.5594975877679825
+      },
+      "output_tokens": {
+        "cluster_bootstrap_ci": [
+          1618.4,
+          1783.045
+        ],
+        "mean": 1700.18625
+      },
+      "strict_success": {
+        "cluster_bootstrap_ci": [
+          0.695,
+          0.77625
+        ],
+        "mean": 0.73625
+      },
+      "validator_cost": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0
+      }
+    },
+    "free_form__trace_linked__absent__advisory": {
+      "calls": {
+        "cluster_bootstrap_ci": [
+          3.1925,
+          3.4375
+        ],
+        "mean": 3.3125
+      },
+      "critical_errors": {
+        "cluster_bootstrap_ci": [
+          1.8025,
+          2.0625
+        ],
+        "mean": 1.93125
+      },
+      "input_tokens": {
+        "cluster_bootstrap_ci": [
+          7126.94875,
+          8099.65375
+        ],
+        "mean": 7618.72875
+      },
+      "macro_state_f1": {
+        "cluster_bootstrap_ci": [
+          0.5364446672540423,
+          0.5778676472224169
+        ],
+        "mean": 0.5570957419286366
+      },
+      "output_tokens": {
+        "cluster_bootstrap_ci": [
+          1660.60625,
+          1831.575
+        ],
+        "mean": 1746.4675
+      },
+      "strict_success": {
+        "cluster_bootstrap_ci": [
+          0.6375,
+          0.72625
+        ],
+        "mean": 0.6825
+      },
+      "validator_cost": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0
+      }
+    },
+    "free_form__trace_linked__executable__advisory": {
+      "calls": {
+        "cluster_bootstrap_ci": [
+          3.11375,
+          3.33375
+        ],
+        "mean": 3.2225
+      },
+      "critical_errors": {
+        "cluster_bootstrap_ci": [
+          1.78625,
+          2.05125
+        ],
+        "mean": 1.91875
+      },
+      "input_tokens": {
+        "cluster_bootstrap_ci": [
+          6962.9425,
+          7881.3825
+        ],
+        "mean": 7421.28375
+      },
+      "macro_state_f1": {
+        "cluster_bootstrap_ci": [
+          0.5371922465813913,
+          0.5787096696127946
+        ],
+        "mean": 0.558098749337894
+      },
+      "output_tokens": {
+        "cluster_bootstrap_ci": [
+          1618.01875,
+          1778.605
+        ],
+        "mean": 1699.0375
+      },
+      "strict_success": {
+        "cluster_bootstrap_ci": [
+          0.6875,
+          0.7675
+        ],
+        "mean": 0.72875
+      },
+      "validator_cost": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0
+      }
+    },
+    "full_history": {
+      "calls": {
+        "cluster_bootstrap_ci": [
+          1.735,
+          1.94
+        ],
+        "mean": 1.83375
+      },
+      "critical_errors": {
+        "cluster_bootstrap_ci": [
+          2.28375,
+          2.53625
+        ],
+        "mean": 2.41
+      },
+      "input_tokens": {
+        "cluster_bootstrap_ci": [
+          4155.28,
+          4730.93875
+        ],
+        "mean": 4441.55625
+      },
+      "macro_state_f1": {
+        "cluster_bootstrap_ci": [
+          0.4069435482817836,
+          0.44408527616174676
+        ],
+        "mean": 0.4254846035228388
+      },
+      "output_tokens": {
+        "cluster_bootstrap_ci": [
+          784.52625,
+          917.95875
+        ],
+        "mean": 850.35375
+      },
+      "strict_success": {
+        "cluster_bootstrap_ci": [
+          0.87125,
+          0.93375
+        ],
+        "mean": 0.90375
+      },
+      "validator_cost": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0
+      }
+    },
+    "gold_oracle": {
+      "calls": {
+        "cluster_bootstrap_ci": [
+          1.7325,
+          1.9475
+        ],
+        "mean": 1.8375
+      },
+      "critical_errors": {
+        "cluster_bootstrap_ci": [
+          0.09,
+          0.14375
+        ],
+        "mean": 0.11625
+      },
+      "input_tokens": {
+        "cluster_bootstrap_ci": [
+          4002.34375,
+          4565.50375
+        ],
+        "mean": 4277.58
+      },
+      "macro_state_f1": {
+        "cluster_bootstrap_ci": [
+          0.9472458333333333,
+          0.964842757936508
+        ],
+        "mean": 0.9561874007936508
+      },
+      "output_tokens": {
+        "cluster_bootstrap_ci": [
+          573.19,
+          654.85375
+        ],
+        "mean": 612.935
+      },
+      "strict_success": {
+        "cluster_bootstrap_ci": [
+          0.87375,
+          0.94375
+        ],
+        "mean": 0.91125
+      },
+      "validator_cost": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0
+      }
+    },
+    "typed__absent__absent__advisory": {
+      "calls": {
+        "cluster_bootstrap_ci": [
+          3.17125,
+          3.40875
+        ],
+        "mean": 3.29125
+      },
+      "critical_errors": {
+        "cluster_bootstrap_ci": [
+          1.73125,
+          1.965
+        ],
+        "mean": 1.84625
+      },
+      "input_tokens": {
+        "cluster_bootstrap_ci": [
+          6234.28125,
+          7104.445
+        ],
+        "mean": 6674.28
+      },
+      "macro_state_f1": {
+        "cluster_bootstrap_ci": [
+          0.5466924578893329,
+          0.5849216172716173
+        ],
+        "mean": 0.5657567117458565
+      },
+      "output_tokens": {
+        "cluster_bootstrap_ci": [
+          1643.27125,
+          1808.86125
+        ],
+        "mean": 1726.74375
+      },
+      "strict_success": {
+        "cluster_bootstrap_ci": [
+          0.67375,
+          0.7575
+        ],
+        "mean": 0.71625
+      },
+      "validator_cost": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0
+      }
+    },
+    "typed__absent__executable__advisory": {
+      "calls": {
+        "cluster_bootstrap_ci": [
+          3.10125,
+          3.32
+        ],
+        "mean": 3.20875
+      },
+      "critical_errors": {
+        "cluster_bootstrap_ci": [
+          1.71375,
+          1.94125
+        ],
+        "mean": 1.82625
+      },
+      "input_tokens": {
+        "cluster_bootstrap_ci": [
+          6142.83125,
+          6947.78375
+        ],
+        "mean": 6542.105
+      },
+      "macro_state_f1": {
+        "cluster_bootstrap_ci": [
+          0.5473843519845164,
+          0.5847407129298576
+        ],
+        "mean": 0.5663066288426486
+      },
+      "output_tokens": {
+        "cluster_bootstrap_ci": [
+          1609.025,
+          1768.17
+        ],
+        "mean": 1688.4225
+      },
+      "strict_success": {
+        "cluster_bootstrap_ci": [
+          0.71625,
+          0.795
+        ],
+        "mean": 0.75625
+      },
+      "validator_cost": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0
+      }
+    },
+    "typed__trace_linked__absent__advisory": {
+      "calls": {
+        "cluster_bootstrap_ci": [
+          3.1925,
+          3.43125
+        ],
+        "mean": 3.3125
+      },
+      "critical_errors": {
+        "cluster_bootstrap_ci": [
+          1.71875,
+          1.95125
+        ],
+        "mean": 1.83375
+      },
+      "input_tokens": {
+        "cluster_bootstrap_ci": [
+          7103.1875,
+          8094.6525
+        ],
+        "mean": 7590.525
+      },
+      "macro_state_f1": {
+        "cluster_bootstrap_ci": [
+          0.552479511284281,
+          0.5903488701661399
+        ],
+        "mean": 0.5712574257309454
+      },
+      "output_tokens": {
+        "cluster_bootstrap_ci": [
+          1651.21,
+          1815.005
+        ],
+        "mean": 1732.76875
+      },
+      "strict_success": {
+        "cluster_bootstrap_ci": [
+          0.66,
+          0.74875
+        ],
+        "mean": 0.705
+      },
+      "validator_cost": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0
+      }
+    },
+    "typed__trace_linked__executable__advisory": {
+      "calls": {
+        "cluster_bootstrap_ci": [
+          3.14,
+          3.36
+        ],
+        "mean": 3.25
+      },
+      "critical_errors": {
+        "cluster_bootstrap_ci": [
+          1.71625,
+          1.955
+        ],
+        "mean": 1.83375
+      },
+      "input_tokens": {
+        "cluster_bootstrap_ci": [
+          7031.34625,
+          7949.3125
+        ],
+        "mean": 7489.59625
+      },
+      "macro_state_f1": {
+        "cluster_bootstrap_ci": [
+          0.5498585808806203,
+          0.5890985869393764
+        ],
+        "mean": 0.569916765234035
+      },
+      "output_tokens": {
+        "cluster_bootstrap_ci": [
+          1625.14375,
+          1785.535
+        ],
+        "mean": 1705.6025
+      },
+      "strict_success": {
+        "cluster_bootstrap_ci": [
+          0.69125,
+          0.77
+        ],
+        "mean": 0.73125
+      },
+      "validator_cost": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0
+      }
+    },
+    "typed__trace_linked__executable__enforced": {
+      "calls": {
+        "cluster_bootstrap_ci": [
+          3.125,
+          3.3475
+        ],
+        "mean": 3.235
+      },
+      "critical_errors": {
+        "cluster_bootstrap_ci": [
+          1.72125,
+          1.95625
+        ],
+        "mean": 1.84125
+      },
+      "input_tokens": {
+        "cluster_bootstrap_ci": [
+          6998.58875,
+          7915.9225
+        ],
+        "mean": 7443.475
+      },
+      "macro_state_f1": {
+        "cluster_bootstrap_ci": [
+          0.5499662151505902,
+          0.5885399291071989
+        ],
+        "mean": 0.5692113629973827
+      },
+      "output_tokens": {
+        "cluster_bootstrap_ci": [
+          1618.98125,
+          1778.43125
+        ],
+        "mean": 1697.57375
+      },
+      "strict_success": {
+        "cluster_bootstrap_ci": [
+          0.70125,
+          0.78
+        ],
+        "mean": 0.74125
+      },
+      "validator_cost": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0
+      }
+    }
+  },
+  "confirmatory_tests": {
+    "advisory_checks_main_effect": {
+      "cluster_bootstrap_ci": [
+        0.0190625,
+        0.054375
+      ],
+      "effect": 0.03625,
+      "holm_adjusted_p": 9.99950002499875e-05,
+      "mcnemar_sensitivity": {
+        "discordant": 306,
+        "left_only": 211,
+        "right_only": 95,
+        "two_sided_exact_p": 2.8551721969010392e-11
+      },
+      "test": "family-level two-sided sign-flip",
+      "two_sided_p": 9.99950002499875e-05
+    },
+    "structured_vs_oracle": {
+      "cluster_bootstrap_ci": [
+        -0.23625,
+        -0.15375
+      ],
+      "effect": -0.195,
+      "hir": 0.2175,
+      "hir_ci": [
+        0.17875,
+        0.25625
+      ],
+      "holm_adjusted_p": 9.99950002499875e-05,
+      "mcnemar_sensitivity": {
+        "discordant": 192,
+        "left_only": 18,
+        "right_only": 174,
+        "two_sided_exact_p": 3.0623072794326618e-33
+      },
+      "test": "family-level two-sided sign-flip",
+      "two_sided_p": 4.999750012499375e-05
+    }
+  },
+  "factorial_effects": {
+    "calls": {
+      "checks": {
+        "cluster_bootstrap_ci": [
+          -0.111875,
+          -0.040625
+        ],
+        "effect": -0.0753125
+      },
+      "provenance": {
+        "cluster_bootstrap_ci": [
+          -0.0046875,
+          0.04125
+        ],
+        "effect": 0.0184375
+      },
+      "provenance:checks": {
+        "cluster_bootstrap_ci": [
+          -0.0171875,
+          0.0153125
+        ],
+        "effect": -0.0009375
+      },
+      "typing": {
+        "cluster_bootstrap_ci": [
+          -0.0228125,
+          0.0246875
+        ],
+        "effect": 0.0009375
+      },
+      "typing:checks": {
+        "cluster_bootstrap_ci": [
+          -0.0140625,
+          0.0196875
+        ],
+        "effect": 0.0028125
+      },
+      "typing:provenance": {
+        "cluster_bootstrap_ci": [
+          -0.0025,
+          0.028125
+        ],
+        "effect": 0.0128125
+      },
+      "typing:provenance:checks": {
+        "cluster_bootstrap_ci": [
+          -0.0053125,
+          0.0271875
+        ],
+        "effect": 0.0109375
+      }
+    },
+    "critical_errors": {
+      "checks": {
+        "cluster_bootstrap_ci": [
+          -0.0265625,
+          0.0075
+        ],
+        "effect": -0.0090625
+      },
+      "provenance": {
+        "cluster_bootstrap_ci": [
+          -0.00875,
+          0.0340625
+        ],
+        "effect": 0.0121875
+      },
+      "provenance:checks": {
+        "cluster_bootstrap_ci": [
+          -0.013125,
+          0.0190625
+        ],
+        "effect": 0.0028125
+      },
+      "typing": {
+        "cluster_bootstrap_ci": [
+          -0.1246875,
+          -0.0334375
+        ],
+        "effect": -0.0765625
+      },
+      "typing:checks": {
+        "cluster_bootstrap_ci": [
+          -0.0209375,
+          0.0203125
+        ],
+        "effect": -0.0009375
+      },
+      "typing:provenance": {
+        "cluster_bootstrap_ci": [
+          -0.034375,
+          0.005
+        ],
+        "effect": -0.0146875
+      },
+      "typing:provenance:checks": {
+        "cluster_bootstrap_ci": [
+          -0.0084375,
+          0.0228125
+        ],
+        "effect": 0.0071875
+      }
+    },
+    "input_tokens": {
+      "checks": {
+        "cluster_bootstrap_ci": [
+          -255.5171875,
+          -8.08625
+        ],
+        "effect": -129.234375
+      },
+      "provenance": {
+        "cluster_bootstrap_ci": [
+          794.1853125,
+          994.788125
+        ],
+        "effect": 891.069375
+      },
+      "provenance:checks": {
+        "cluster_bootstrap_ci": [
+          -71.2446875,
+          33.483125
+        ],
+        "effect": -19.9525
+      },
+      "typing": {
+        "cluster_bootstrap_ci": [
+          -93.1384375,
+          50.60375
+        ],
+        "effect": -20.744375
+      },
+      "typing:checks": {
+        "cluster_bootstrap_ci": [
+          -45.30875,
+          69.8390625
+        ],
+        "effect": 12.6825
+      },
+      "typing:provenance": {
+        "cluster_bootstrap_ci": [
+          -8.76625,
+          91.96125
+        ],
+        "effect": 40.79875
+      },
+      "typing:provenance:checks": {
+        "cluster_bootstrap_ci": [
+          -11.6853125,
+          83.3784375
+        ],
+        "effect": 35.575625
+      }
+    },
+    "macro_state_f1": {
+      "checks": {
+        "cluster_bootstrap_ci": [
+          -0.0026710868703056197,
+          0.00307751290954416
+        ],
+        "effect": 0.0001238181667869174
+      },
+      "provenance": {
+        "cluster_bootstrap_ci": [
+          -0.002563711173086173,
+          0.005216436775030524
+        ],
+        "effect": 0.0013982936912624406
+      },
+      "provenance:checks": {
+        "cluster_bootstrap_ci": [
+          -0.0030048923877048876,
+          0.0025487845487845483
+        ],
+        "effect": -0.00029264471061346087
+      },
+      "typing": {
+        "cluster_bootstrap_ci": [
+          0.003112129334785586,
+          0.017204211876086877
+        ],
+        "effect": 0.009832718352249603
+      },
+      "typing:checks": {
+        "cluster_bootstrap_ci": [
+          -0.003841663978382728,
+          0.0026741853343415847
+        ],
+        "effect": -0.0005191898668461167
+      },
+      "typing:provenance": {
+        "cluster_bootstrap_ci": [
+          -0.00013684290246790282,
+          0.006625324617512117
+        ],
+        "effect": 0.003157131496975247
+      },
+      "typing:provenance:checks": {
+        "cluster_bootstrap_ci": [
+          -0.003475526065369815,
+          0.002124901718651719
+        ],
+        "effect": -0.0006526440862378358
+      }
+    },
+    "output_tokens": {
+      "checks": {
+        "cluster_bootstrap_ci": [
+          -57.4003125,
+          -18.6646875
+        ],
+        "effect": -37.295
+      },
+      "provenance": {
+        "cluster_bootstrap_ci": [
+          -6.1728125,
+          22.56625
+        ],
+        "effect": 8.01875
+      },
+      "provenance:checks": {
+        "cluster_bootstrap_ci": [
+          -8.899375,
+          9.20875
+        ],
+        "effect": -0.003125
+      },
+      "typing": {
+        "cluster_bootstrap_ci": [
+          -22.0096875,
+          6.8928125
+        ],
+        "effect": -7.150625
+      },
+      "typing:checks": {
+        "cluster_bootstrap_ci": [
+          -5.754375,
+          14.973125
+        ],
+        "effect": 4.55125
+      },
+      "typing:provenance": {
+        "cluster_bootstrap_ci": [
+          -5.769375,
+          13.2946875
+        ],
+        "effect": 3.58375
+      },
+      "typing:provenance:checks": {
+        "cluster_bootstrap_ci": [
+          -3.675625,
+          14.74
+        ],
+        "effect": 5.580625
+      }
+    },
+    "strict_success": {
+      "checks": {
+        "cluster_bootstrap_ci": [
+          0.0190625,
+          0.054375
+        ],
+        "effect": 0.03625
+      },
+      "provenance": {
+        "cluster_bootstrap_ci": [
+          -0.028125,
+          -0.0046875
+        ],
+        "effect": -0.01625
+      },
+      "provenance:checks": {
+        "cluster_bootstrap_ci": [
+          -0.0090625,
+          0.0090625
+        ],
+        "effect": 0.0
+      },
+      "typing": {
+        "cluster_bootstrap_ci": [
+          0.000625,
+          0.0284375
+        ],
+        "effect": 0.014375
+      },
+      "typing:checks": {
+        "cluster_bootstrap_ci": [
+          -0.011875,
+          0.005625
+        ],
+        "effect": -0.003125
+      },
+      "typing:provenance": {
+        "cluster_bootstrap_ci": [
+          -0.01,
+          0.0065625
+        ],
+        "effect": -0.001875
+      },
+      "typing:provenance:checks": {
+        "cluster_bootstrap_ci": [
+          -0.015,
+          0.00125
+        ],
+        "effect": -0.006875
+      }
+    },
+    "validator_cost": {
+      "checks": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "effect": 0.0
+      },
+      "provenance": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "effect": 0.0
+      },
+      "provenance:checks": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "effect": 0.0
+      },
+      "typing": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "effect": 0.0
+      },
+      "typing:checks": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "effect": 0.0
+      },
+      "typing:provenance": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "effect": 0.0
+      },
+      "typing:provenance:checks": {
+        "cluster_bootstrap_ci": [
+          0.0,
+          0.0
+        ],
+        "effect": 0.0
+      }
+    }
+  },
+  "hir_by_condition": {
+    "free_form__absent__absent__advisory": {
+      "cluster_bootstrap_ci": [
+        0.19,
+        0.265
+      ],
+      "rate": 0.2275
+    },
+    "free_form__absent__executable__advisory": {
+      "cluster_bootstrap_ci": [
+        0.16,
+        0.225
+      ],
+      "rate": 0.19125
+    },
+    "free_form__trace_linked__absent__advisory": {
+      "cluster_bootstrap_ci": [
+        0.2025,
+        0.28
+      ],
+      "rate": 0.24125
+    },
+    "free_form__trace_linked__executable__advisory": {
+      "cluster_bootstrap_ci": [
+        0.1725,
+        0.2375
+      ],
+      "rate": 0.205
+    },
+    "full_history": {
+      "cluster_bootstrap_ci": [
+        0.0275,
+        0.0625
+      ],
+      "rate": 0.04375
+    },
+    "typed__absent__absent__advisory": {
+      "cluster_bootstrap_ci": [
+        0.18,
+        0.2575
+      ],
+      "rate": 0.2175
+    },
+    "typed__absent__executable__advisory": {
+      "cluster_bootstrap_ci": [
+        0.15,
+        0.21375
+      ],
+      "rate": 0.18125
+    },
+    "typed__trace_linked__absent__advisory": {
+      "cluster_bootstrap_ci": [
+        0.18625,
+        0.26375
+      ],
+      "rate": 0.22375
+    },
+    "typed__trace_linked__executable__advisory": {
+      "cluster_bootstrap_ci": [
+        0.1725,
+        0.23875
+      ],
+      "rate": 0.205
+    },
+    "typed__trace_linked__executable__enforced": {
+      "cluster_bootstrap_ci": [
+        0.1625,
+        0.22875
+      ],
+      "rate": 0.195
+    }
+  },
+  "itt": true,
+  "n_models": 2,
+  "n_runs": 8800,
+  "n_seeds": 2,
+  "n_tasks": 200,
+  "protocol": "handoffbench-confirmatory-v3"
+}

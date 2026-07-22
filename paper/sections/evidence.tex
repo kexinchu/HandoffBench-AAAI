@@ -34,7 +34,7 @@ Work & Primary object & Distinction of HandoffBench \\
 Handoff Debt
 & Coding takeover and rediscovery under four context views
 & Gold field-level boundary state; epistemic and authority-bearing claims;
-oracle-conditional transfer regression rather than repository resumability. \\
+oracle-gated transfer regression rather than repository resumability. \\
 NeuroState-Bench
 & Commitment integrity through side-query probes within an agent profile
 & A manipulated predecessor--successor boundary and alternative transport
@@ -126,28 +126,73 @@ authored families (40 per domain) before annotation or any candidate model call.
 These simulated values are assumptions, not observed test effects, and do not
 permit optional stopping.
 
-\section{Confirmatory Analysis Plan}
+\section{Confirmatory Results}
 
-The confirmatory unit is the independently authored task family. Model and seed
-observations are repeated measures nested within family and are never counted as
-independent samples. Every scheduled task--model--seed--condition cell is
-analyzed intent-to-treat: provider, schema, and parse failures receive zero
-strict-success and state credit while their calls and costs remain in the
-release artifacts. Strict end-to-end success is primary; first-probe macro state
-F1, episode-level critical errors, oracle-conditional handoff-induced
-regression, input/output tokens, calls, and validator cost are secondary.
+The sealed matrix contains all 8,800 scheduled ITT cells: 200 independent
+families, two models, two seeds, and eleven conditions. The only two
+preregistered confirmatory tests use family-cluster percentile-bootstrap
+intervals (10,000 draws) and Holm-adjusted two-sided $p$-values. All other
+factorial, endpoint, condition, model, and domain estimates below are secondary
+or exploratory. Across the matrix, 178 cells (2.02\%; 97 Ministral and 81
+Qwen) had non-OK model-output, schema, or parse status; the preregistered ITT
+rule retained them with zero success and state credit.
 
-Two contrasts form the confirmatory family: Structured versus Gold Oracle on
-strict success, testing whether non-oracle transfer induces boundary regression,
-and the advisory-check main effect in the matched factorial. Paired binary
-effects use 95\% family-cluster percentile-bootstrap intervals; exact McNemar
-tests are sensitivity analyses because repeated model/seed rows are clustered.
-Continuous and count outcomes use the same family bootstrap. The two primary
-two-sided tests are Holm-adjusted. Typing and provenance effects are two-sided,
-as development evidence was uncertain or negative; all interactions,
-domain/category/model slices, and legacy-view contrasts are secondary or
-exploratory. EHC versus Structured remains a reported two-sided comparison,
-but no superiority claim is made unless its corrected interval excludes zero in
-the favorable direction. Advisory representation and enforced action gating are
-analyzed separately, and null or harmful provenance effects remain reportable
-outcomes.
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Contrast & Effect (pp) & Family 95\% CI \\
+\midrule
+Structured $-$ Oracle & $-19.50$ & $[-23.63,-15.38]$ \\
+Advisory checks & $+3.63$ & $[+1.91,+5.44]$ \\
+\bottomrule
+\end{tabular}
+\caption{The two preregistered confirmatory strict-success tests. Both have
+Holm-adjusted $p<.001$ and use ITT rows with family-clustered inference. Rates
+appear in the text; effects are percentage points.}
+\label{tab:confirmatory-main}
+\end{table}
+
+Both preregistered tests rejected their null hypotheses after Holm correction.
+Structured transfer reached 71.6\% strict success, compared with 91.1\% under
+the Gold Oracle, for a paired effect of $-19.50$ percentage points (95\% CI
+$[-23.63,-15.38]$; $p_{\mathrm{Holm}}<.001$). Its oracle-gated HIR incidence
+over all scheduled pairs was 21.75\% (95\% CI $[17.88,25.63]$): in these cells,
+the oracle succeeded while Structured failed. In the matched representation factorial, advisory
+executable checks improved strict success by 3.63 points on average (95\% CI
+$[1.91,5.44]$; $p_{\mathrm{Holm}}<.001$), supporting the preregistered
+directional hypothesis.
+
+Secondary, unadjusted strict-success estimates were $+1.44$ points for typing
+(nominal 95\% CI $[0.06,2.84]$) and $-1.63$ points for trace-linked provenance
+($[-2.81,-0.47]$). All two-way interaction intervals crossed zero, as did the
+three-way interaction. These mechanism diagnostics are outside the
+confirmatory multiplicity family and do not establish general typing benefits
+or provenance harms. Secondary endpoints were directionally consistent with a
+small diagnostic value for typing: macro state $F_1$ rose by .0098 and mean
+critical errors fell by .0766. Checks reduced calls by .075, input tokens by
+129, and output tokens by 37 on average, while provenance increased input use
+by 891 tokens. These endpoint intervals are likewise unadjusted.
+
+An explicitly post-confirmatory, unadjusted model diagnostic found a checks
+effect of $+7.06$ points for Ministral (family-bootstrap 95\% CI
+$[3.81,10.50]$) but $+0.19$ for Qwen ($[-0.94,1.38]$); the Qwen-minus-Ministral
+difference was $-6.88$ points ($[-10.44,-3.44]$). Thus, the pooled gain did not
+replicate in Qwen. These exploratory intervals receive no multiplicity
+correction and do not support a universal model or domain claim. Descriptively, Full
+History achieved 90.4\%, close to the Oracle's 91.1\%, despite much lower
+normalized first-probe state $F_1$; successful action selection need not require
+explicit recovery of every probed atom. The all-on advisory and enforced arms
+achieved 73.1\% and 74.1\%, respectively, but this difference is not a
+confirmatory enforcement test.
+
+\paragraph{Execution and reproducibility.}
+The analysis binds dataset seal
+\texttt{hb-v3.1-9671bf1ff2d5-20260721} to execution seal
+\texttt{hb-v3.4.1-exec-9671bf1ff2d5-20260721}. It combines 4,400 retained
+Ministral rows with 4,400 fresh Qwen rows; the invalidated earlier Qwen arm
+contributes zero rows. The Qwen ledger records 4,400 written and zero resumed
+rows, and the infrastructure audit found no provider infrastructure error.
+Bootstrap seed 2027, analysis code hashes, all raw-input hashes, and generated
+artifact hashes are recorded in the released provenance manifest.

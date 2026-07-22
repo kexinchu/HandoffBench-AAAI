@@ -23,21 +23,25 @@
 Multi-agent language-model systems increasingly transfer task ownership between
 specialized agents, yet existing evaluations rarely measure which task-critical
 state survives the transfer. We introduce HandoffBench, a controlled evaluation
-protocol for inter-role handoffs in interactive, policy-constrained tool
-workflows. Each episode fixes an upstream trace and annotates a hidden atomic
-state at the handoff boundary, including verified evidence, epistemic unknowns,
-scoped consent, and policy decisions. Deterministic probes enable separate
-measurement of source extraction, transport, and receiver utilization errors and link
-field-level fidelity to downstream regression and policy violations. We compare
+protocol for inter-role handoffs in policy-constrained tool workflows. Each
+episode fixes an upstream trace and annotates hidden boundary state: verified
+evidence, epistemic unknowns, scoped consent, and policy decisions.
+Deterministic receiver-state probes link field fidelity to regression and policy
+violations. We compare
 full history, free-form summaries, structured payloads, and Executable Handoff
 Capsules, which bind typed claims to trace provenance and machine-checkable
-preconditions. We preregister a factorial evaluation to isolate the effects of typing,
-provenance, and executable checks under matched evidence and budgets. This
-framework treats state as the interface between agents and makes handoff
-failures independently measurable rather than conflating them with routing,
-memory, or general reasoning failures. Before any candidate-model call, we
-double-annotate, independently audit, replace exclusions, and seal a balanced 200-family
-split; confirmatory execution remains pending.
+preconditions. We preregister a factorial evaluation to isolate the effects of
+typing, provenance, and executable checks under matched evidence and budgets.
+Before candidate-model evaluation, we double-annotated, independently audited,
+replaced exclusions, and sealed a balanced 200-family split. Across 8,800
+intent-to-treat runs with two models, two seeds, and eleven conditions,
+Structured transfer achieved 71.6\% strict success versus 91.1\% for the Gold
+Oracle, a preregistered gap of 19.5 percentage points (family-clustered 95\% CI
+$[15.4,23.6]$; Holm-adjusted $p<.001$). Pooled advisory checks improved strict
+success by 3.63 points (95\% CI $[1.91,5.44]$; Holm-adjusted $p<.001$).
+Exploratory estimates were $+7.06$ points for Ministral and $+0.19$ for Qwen,
+revealing model-dependent check utility. Substantial boundary regression thus
+remains even with structured state.
 \end{abstract}
 
 \section{Introduction}
@@ -66,13 +70,14 @@ environment events. Core metrics are computed from typed equality, provenance
 integrity, simulator transitions, and Boolean success predicates rather than an
 LLM judge.
 
-Our intended contributions are: (1) a controlled benchmark for field-level
-handoff fidelity in interactive tool workflows; (2) a three-stage diagnostic
-decomposition of extraction, transport, and utilization, including oracle
-interventions that identify handoff-induced regression; and (3) a matched
+Our contributions are: (1) a controlled benchmark for field-level
+handoff fidelity in interactive tool workflows; (2) deterministic state probes
+and oracle interventions that identify handoff-induced regression; and (3) a matched
 factorial protocol that separates typing, provenance, and advisory executable
-checks from action enforcement. We report development diagnostics transparently
-but reserve benchmark-level claims for the frozen confirmatory evaluation.
+checks from action enforcement; and (4) a preregistered 8,800-run evaluation
+showing a 19.5-point Structured-to-Oracle boundary gap and a 3.63-point average
+benefit from advisory checks. Secondary estimates for typing and provenance are
+reported separately from the confirmatory multiplicity family.
 
 \input{sections/method}
 \input{sections/benchmark}
@@ -81,10 +86,17 @@ but reserve benchmark-level claims for the frozen confirmatory evaluation.
 
 \section{Conclusion}
 
-Reliable multi-agent systems require more than correct routing. By treating the
-handoff boundary as a typed, measurable interface, HandoffBench aims to reveal
-which state is lost, why downstream behavior regresses, and when evidence-linked
-and executable transfer artifacts help.
+Reliable multi-agent systems require more than correct routing. Treating the
+handoff boundary as a measurable interface exposed a 19.5-point loss from
+Structured transfer relative to the Gold Oracle and 21.8\% oracle-gated HIR
+incidence over all scheduled pairs. Advisory checks recovered 3.6 points on
+average but did not close the boundary gap, and an exploratory split found the
+gain only in Ministral, not Qwen. Secondary estimates suggest that serialization
+mechanisms need not combine monotonically: typing was mildly beneficial, while
+the tested trace-linked provenance implementation incurred a small negative
+success estimate and a large token cost. These findings support explicit boundary-state evaluation and
+targeted validation, not a blanket claim that richer capsules or enforcement
+are universally superior.
 
 \bibliography{references}
 

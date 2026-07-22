@@ -23,14 +23,26 @@ def test_offline_submission_artifact_builder(tmp_path):
     assert tables["factorial"]["n_runs"] == 384
     assert tables["factorial"]["n_ok"] == 381
     assert tables["factorial"]["source_fairness"]["pass"] is True
-    assert len(hashes) == 9 and all(len(digest) == 64 for digest in hashes.values())
+    assert len(hashes) == 20 and all(len(digest) == 64 for digest in hashes.values())
+    assert tables["confirmatory"]["development_only"] is False
+    assert tables["confirmatory"]["n_runs"] == 8800
+    assert tables["confirmatory"]["n_tasks"] == 200
+    assert tables["confirmatory"]["tests"]["structured_vs_oracle"]["effect"] == -.195
+    assert tables["confirmatory"]["tests"]["advisory_checks_main_effect"]["effect"] == .03625
+    assert tables["post_confirmatory_exploratory"]["confirmatory_inference"] is False
+    assert tables["post_confirmatory_exploratory"]["checks_by_model"]["qwen2.5-14b"]["effect"] == .001875
     rows = (output / "development_table_rows.tex").read_text()
     assert "Full History & 44/48 & 91.7\\%" in rows
     assert "typing: 0.0260416666667" in rows
     assert "checks: 0.0677083333333" in rows
+    assert "structured_vs_oracle: -0.195" in rows
+    assert "advisory_checks_main_effect: 0.03625" in rows
     evidence = (ROOT / "paper/sections/evidence.tex").read_text()
     for paper_value in ("scheduled 384 cells", "381 completed", "+2.60 pp",
                         "$-6.77$ pp", "+6.77 pp", "$-4.69$ pp"):
+        assert paper_value in evidence
+    for paper_value in ("8,800 scheduled ITT cells", "$-19.50$ percentage points",
+                        "improved strict success by 3.63 points"):
         assert paper_value in evidence
 
 

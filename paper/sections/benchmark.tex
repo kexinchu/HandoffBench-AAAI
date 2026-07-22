@@ -24,34 +24,36 @@ entity replacement or paraphrase does not create a new family. The original pool
 contained 200 families evenly divided among travel, commerce, procurement,
 enterprise IT, and scheduling.
 
-Every label-free packet was independently annotated twice and locked before
-comparison. On 990 claims, claim $F_1$ was .961 and exact action-sequence
+Every label-free packet was independently annotated by two isolated LLM-agent
+roles and locked before comparison. On 990 claims, claim $F_1$ was .961 and exact action-sequence
 agreement was 174/200; category and criticality agreement had Cohen's
 $\kappa=.945$ and $.242$, respectively, while status, typed value, and provenance
 agreed on 990/990 claims. Disagreement-only adjudication covered all 739 queued
-entries and rejected 24 tasks. Separately, a reviewer blind to labels and
+entries and rejected 24 tasks. Separately, an independent review agent blind to labels and
 adjudication examined 39 agreement-only tasks flagged by static validity risks
 and rejected all: 34 had ambiguous terminal actions, four had ambiguous sequence
 order, and one lacked public terminal semantics.
 
 We generated 63 new families to replace these disjoint exclusions, without
-inspecting any candidate-model output, and double-annotated them anew. The
-annotators agreed on all 63 action sequences and on identity, category, status,
+inspecting any candidate-model output, and double-annotated them anew. The two
+annotation agents agreed on all 63 action sequences and on identity, category,
+status,
 value, and provenance for all 299 claims. Criticality agreement was 252/299
-($\kappa=.693$); a third annotator resolved all 47 criticality disagreements,
+($\kappa=.693$); a separate adjudication agent resolved all 47 criticality
+disagreements,
 rejecting no replacement. The final population is therefore 137 retained
 originals plus 63 replacements, again 40 per domain (Table~\ref{tab:sealed-stats}).
 
 \paragraph{Isolation and lineage.}
-The two human roles received independently shuffled packets containing only the
+The two annotation-agent roles received independently shuffled packets containing only the
 trace cut, role boundary, public action schemas, and deterministic scripted
 transitions. They did not receive source annotations, evaluator predicates,
 development outputs, family blueprints, or one another's responses. Each
 response was schema-validated and content-hashed before comparison. The
 adjudicator saw only queued field or sequence disagreements; exact-agreement
-items were not reopened. Likewise, the independent validity reviewer saw only
+items were not reopened. Likewise, the independent validity-review agent saw only
 the 39 designated public packets, not A/B labels, queues, adjudication decisions,
-or evaluator gold. This separation matters because annotator agreement alone
+or evaluator gold. This separation matters because agent agreement alone
 cannot show that a public contract identifies a unique terminal behavior.
 
 Rejected originals remain in the audit lineage but are absent from the final
@@ -68,7 +70,7 @@ because none existed during selection.
 \begin{table}[t]
 \centering
 \small
-\caption{Human validation, sealing, and static diagnostics for the final v3
+\caption{Agent annotation, sealing, and static diagnostics for the final v3
 split. Probe rates are not model-performance results.}
 \label{tab:sealed-stats}
 \begin{tabular}{@{}lr@{}}
@@ -114,6 +116,7 @@ tasks. The normalization erases action names, keys, and values, and can collapse
 common ask/authorize/commit skeletons; this is a topology diagnostic rather than
 evidence of semantic duplication. Conversely, its concentration means that we
 do not claim a complete structural holdout. These diagnostics were reported
-without post-hoc filtering. The split is frozen for the preregistered evaluation,
-but confirmatory execution remains explicitly unauthorized and no confirmatory
-result is reported here.
+without post-hoc filtering. The dataset remained byte-identical throughout
+confirmatory execution. The final v3.4.1 execution seal retains the v3.1 dataset
+hash and binds the model snapshots, prompts, generation settings, and analysis
+contract.
